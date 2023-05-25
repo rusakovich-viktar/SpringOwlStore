@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<pmd xmlns="http://pmd.sourceforge.net/report/2.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://pmd.sourceforge.net/report/2.0.0 http://pmd.sourceforge.net/report_2_0_0.xsd" version="6.53.0" timestamp="2023-03-12T21:46:04.698">
+<file name="C:\Java\ViRusC18tms2022\Lesson29\src\main\java\listener\DependencyInitializationContextListener.java">
+<violation beginline="25" endline="25" begincolumn="24" endcolumn="33" rule="CloseResource" ruleset="Error Prone" package="listener" class="DependencyInitializationContextListener" method="contextInitialized" variable="connection" externalInfoUrl="https://pmd.github.io/pmd-6.53.0/pmd_rules_java_errorprone.html#closeresource" priority="3">
+Ensure that resources like this Connection object are closed after use
+</violation>
+<violation beginline="41" endline="41" begincolumn="30" endcolumn="39" rule="CloseResource" ruleset="Error Prone" package="listener" class="DependencyInitializationContextListener" method="contextDestroyed" variable="connection" externalInfoUrl="https://pmd.github.io/pmd-6.53.0/pmd_rules_java_errorprone.html#closeresource" priority="3">
+Ensure that resources like this Connection object are closed after use
+</violation>
+</file>
+<file name="C:\Java\ViRusC18tms2022\Lesson29\src\main\java\repository\user\JdbcUserRepository.java">
+<violation beginline="28" endline="28" begincolumn="23" endcolumn="31" rule="CloseResource" ruleset="Error Prone" package="repository.user" class="JdbcUserRepository" method="findUserLoginPassword" variable="statement" externalInfoUrl="https://pmd.github.io/pmd-6.53.0/pmd_rules_java_errorprone.html#closeresource" priority="3">
+Ensure that resources like this Statement object are closed after use
+</violation>
+<violation beginline="29" endline="29" begincolumn="23" endcolumn="24" rule="CloseResource" ruleset="Error Prone" package="repository.user" class="JdbcUserRepository" method="findUserLoginPassword" variable="rs" externalInfoUrl="https://pmd.github.io/pmd-6.53.0/pmd_rules_java_errorprone.html#closeresource" priority="3">
+Ensure that resources like this ResultSet object are closed after use
+</violation>
+<violation beginline="44" endline="44" begincolumn="31" endcolumn="39" rule="CloseResource" ruleset="Error Prone" package="repository.user" class="JdbcUserRepository" method="addNewUser" variable="statement" externalInfoUrl="https://pmd.github.io/pmd-6.53.0/pmd_rules_java_errorprone.html#closeresource" priority="3">
+Ensure that resources like this PreparedStatement object are closed after use
+</violation>
+</file>
+<file name="C:\Java\ViRusC18tms2022\Lesson29\src\main\java\servlet\LoginServlet.java">
+<violation beginline="40" endline="40" begincolumn="22" endcolumn="31" rule="UnusedLocalVariable" ruleset="Best Practices" package="servlet" class="LoginServlet" method="doPost" variable="userAccess" externalInfoUrl="https://pmd.github.io/pmd-6.53.0/pmd_rules_java_bestpractices.html#unusedlocalvariable" priority="3">
+Avoid unused local variables such as 'userAccess'.
+</violation>
+</file>
+</pmd>

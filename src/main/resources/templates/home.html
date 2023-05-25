@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<body>
+<!--<div th:replace="header :: header"></div>-->
+<br>
+<h2>All categories</h2>
+<p>[[${categories.size}]]</p>
+<div class="container-fluid">
+    <th:block th:if="${categories != null}">
+        <div class="row">
+            <th:block th:each="category : ${categories}">
+                <div class="card w-25 m-1" >
+                    <div class="card-body">
+                        [[${category.getName()}]]
+<!--                        <a th:href="@{/category(categoryId=${category.getId()}, nameCategory=${category.getName()})}">-->
+<!--                            <img class="card-img"-->
+<!--                                 style="width:150px;height:120px"-->
+<!--                                 th:src="@{${'/images/' + category.getImageName()},true}"-->
+<!--                                 alt="Card image">-->
+<!--                        </a>-->
+                    </div>
+                </div>
+            </th:block>
+        </div>
+    </th:block>
+</div>
+</body>
+</body>
+</html>
