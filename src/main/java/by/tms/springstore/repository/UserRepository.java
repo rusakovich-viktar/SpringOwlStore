@@ -1,7 +1,6 @@
 package by.tms.springstore.repository;
 
-import by.tms.springstore.dto.UserDto;
-import by.tms.springstore.model.User;
+import by.tms.springstore.domain.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.Optional;

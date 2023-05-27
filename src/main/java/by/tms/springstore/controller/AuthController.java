@@ -1,7 +1,7 @@
 package by.tms.springstore.controller;
 
 import by.tms.springstore.dto.UserDto;
-import by.tms.springstore.model.User;
+import by.tms.springstore.domain.User;
 import by.tms.springstore.service.UserService;
 import by.tms.springstore.utils.Constants;
 import jakarta.servlet.http.HttpServletRequest;
@@ -15,6 +15,8 @@ import org.springframework.web.servlet.ModelAndView;
 
 import static by.tms.springstore.utils.Constants.Attributes.CART;
 import static by.tms.springstore.utils.Constants.Attributes.USER_DTO;
+import static by.tms.springstore.utils.Constants.PagePath.REDIRECT_TO_HOME;
+import static by.tms.springstore.utils.Constants.PagePath.SIGN_IN;
 import static by.tms.springstore.utils.Constants.RequestParams.PASSWORD;
 
 @RequiredArgsConstructor
@@ -25,7 +27,7 @@ public class AuthController {
 
     @GetMapping("/signin")
     public String getLoginPage() {
-        return "signin";
+        return SIGN_IN;
     }
 
     @PostMapping("/signin")
@@ -40,9 +42,10 @@ public class AuthController {
 //            session.setAttribute(CART, cart);
             session.setAttribute(Constants.Attributes.USERNAME, username);
             session.setAttribute(USER_DTO, userDto);
-            modelAndView.setViewName("redirect:/home");
+            modelAndView.addObject(USER_DTO, userDto);
+            modelAndView.setViewName(REDIRECT_TO_HOME);
         } else {
-            modelAndView.setViewName("signin");
+            modelAndView.setViewName(SIGN_IN);
         }
         return modelAndView;
     }

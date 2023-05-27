@@ -28,8 +28,8 @@
         <h2 class="text-center">${oneProduct.getName()}</h2><br>
 
         <img class="mx-auto d-block" style="height:auto; max-width: 400px;"
-             src="${contextPath}/images/${oneProduct.getImageName()}"
-             alt="${oneProduct.getImageName()}">
+             src="${contextPath}/images/${oneProduct.getimagePath()}"
+             alt="${oneProduct.getimagePath()}">
 
         <br>
         <div class="container">
@@ -52,7 +52,7 @@
         <br>
         <form method="post" action="/cart/add">
             <input type="hidden" value="${oneProduct.getId()}" name="id"/>
-            <input type="hidden" value="${oneProduct.getImageName()}" name="imageName"/>
+            <input type="hidden" value="${oneProduct.getimagePath()}" name="imagePath"/>
             <input type="hidden" value="${oneProduct.getName()}" name="name"/>
             <input type="hidden" value="${oneProduct.getDescription()}" name="description"/>
             <input type="hidden" value="${oneProduct.getPrice()}" name="price"/>

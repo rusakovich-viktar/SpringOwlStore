@@ -33,7 +33,7 @@
                         <a href="/category?categoryId=${category.getId()}&nameCategory=${category.getName()}">
                             <img class="card-img"
                                  style="width:150px;height:120px"
-                                 src="${contextPath}/images/${category.getImageName()}"
+                                 src="${contextPath}/images/${category.getImagePath()}"
                                  alt="Card image">
                         </a>
                     </div>

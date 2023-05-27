@@ -1,6 +1,6 @@
 package by.tms.springstore.service.impl;
 
-import by.tms.springstore.model.Category;
+import by.tms.springstore.domain.Category;
 import by.tms.springstore.repository.CategoryRepository;
 import by.tms.springstore.service.CategoryService;
 import lombok.RequiredArgsConstructor;
@@ -16,7 +16,7 @@ public class CategoryServiceImpl implements CategoryService {
 
     @Override
     public List<Category> getCategories() {
-        return categoryRepository.findAllCategory();
+        return categoryRepository.findAllCategories();
 //        return categoryRepository.getCategories();
     }
 

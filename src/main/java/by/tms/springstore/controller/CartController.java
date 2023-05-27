@@ -61,13 +61,13 @@
 //        HttpSession session = request.getSession(false);
 //        Cart cart = (Cart) session.getAttribute(CART);
 //        int id = Integer.parseInt(request.getParameter(ID));
-//        String imageName = request.getParameter(IMAGE_NAME);
+//        String imagePath = request.getParameter(IMAGE_NAME);
 //        String name = request.getParameter(NAME);
 //        String description = request.getParameter(DESCRIPTION);
 //        String priceParameter = request.getParameter(PRICE_PARAMETER);
 //        int categoryId = Integer.parseInt(request.getParameter(CATEGORY_ID));
 //        BigDecimal price = new BigDecimal(priceParameter);
-//        Product product = new Product(id, imageName, name, description, price, categoryId);
+//        Product product = new Product(id, imagePath, name, description, price, categoryId);
 //        String action = request.getParameter(ACTION);
 //        if ("Buy".equals(action)) {
 //            cart.addProduct(product);

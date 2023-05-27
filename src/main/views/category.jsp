@@ -29,8 +29,8 @@
             <div class="row">
                 <div class="col-lg-1" style="background-color:white;">
                     <a href="/product?productId=${product.getId()}">
-                        <img src="${contextPath}/images/${product.getImageName()}"
-                             alt="${product.getImageName()}" class="responsive"></a></div>
+                        <img src="${contextPath}/images/${product.getImagePath()}"
+                             alt="${product.getImagePath()}" class="responsive"></a></div>
                 <div class="col" style="background-color:white;">
                     <p><b class="font-italic">Модель:</b> ${product.getName()}</p>
                     <p><b class="font-italic">Описание:</b> ${product.getDescription()}</p>

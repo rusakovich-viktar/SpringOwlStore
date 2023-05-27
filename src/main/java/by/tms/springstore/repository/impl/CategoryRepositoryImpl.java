@@ -29,7 +29,7 @@
 //                Category category = Category.builder()
 //                        .id(rs.getInt("id"))
 //                        .name(rs.getString("name"))
-//                        .imageName(rs.getString("imageName"))
+//                        .imagePath(rs.getString("imagePath"))
 //                        .build();
 //                categories.add(category);
 //            }

@@ -1,14 +1,13 @@
 package by.tms.springstore.service.impl;
 
 import by.tms.springstore.dto.UserDto;
-import by.tms.springstore.model.User;
+import by.tms.springstore.domain.User;
 import by.tms.springstore.repository.UserRepository;
 import by.tms.springstore.service.UserService;
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 
-import javax.print.attribute.standard.Destination;
 import java.util.Optional;
 
 @Service

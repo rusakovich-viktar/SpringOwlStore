@@ -30,7 +30,7 @@
 //            while (resultSet.next()) {
 //                Product product = new Product();
 //                product.setId(resultSet.getInt("id"));
-//                product.setImageName(resultSet.getString("image_name"));
+//                product.setimagePath(resultSet.getString("image_name"));
 //                product.setName(resultSet.getString("name"));
 //                product.setDescription(resultSet.getString("description"));
 //                product.setPrice(resultSet.getBigDecimal("price"));
@@ -52,7 +52,7 @@
 //            if (resultSet.next()) {
 //                Product product = new Product();
 //                product.setId(resultSet.getInt("id"));
-//                product.setImageName(resultSet.getString("image_name"));
+//                product.setimagePath(resultSet.getString("image_name"));
 //                product.setName(resultSet.getString("name"));
 //                product.setDescription(resultSet.getString("description"));
 //                product.setPrice(resultSet.getBigDecimal("price"));
@@ -77,7 +77,7 @@
 //            while (resultSet.next()) {
 //                Product product = new Product();
 //                product.setId(resultSet.getInt("id"));
-//                product.setImageName(resultSet.getString("image_name"));
+//                product.setimagePath(resultSet.getString("image_name"));
 //                product.setName(resultSet.getString("name"));
 //                product.setDescription(resultSet.getString("description"));
 //                product.setPrice(resultSet.getBigDecimal("price"));

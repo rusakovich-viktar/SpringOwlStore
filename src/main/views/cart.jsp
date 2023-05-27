@@ -25,8 +25,8 @@
         <div class="container-fluid">
             <div class="row">
                 <div class="col" style="background-color:white;height: auto;max-width: 200px">
-                    <img src="${contextPath}/images/${myProduct.getImageName()}"
-                         alt="${myProduct.getImageName()}" class="mx-auto d-block"
+                    <img src="${contextPath}/images/${myProduct.getImagePath()}"
+                         alt="${myProduct.getImagePath()}" class="mx-auto d-block"
                          style="max-height: 100px;width: auto">
                 </div>
 
@@ -36,7 +36,7 @@
                     <p><b class="font-italic">Цена:</b> ${myProduct.getPrice()} руб.</p>
                     <form method="post" action='/cart/add'>
                         <input type="hidden" value="${myProduct.getId()}" name="id"/>
-                        <input type="hidden" value="${myProduct.getImageName()}" name="imageName"/>
+                        <input type="hidden" value="${myProduct.getImagePath()}" name="imagePath"/>
                         <input type="hidden" value="${myProduct.getName()}" name="name"/>
                         <input type="hidden" value="${myProduct.getDescription()}" name="description"/>
                         <input type="hidden" value="${myProduct.getPrice()}" name="price"/>

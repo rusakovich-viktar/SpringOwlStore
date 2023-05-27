@@ -1,4 +1,4 @@
-package by.tms.springstore.model;
+package by.tms.springstore.domain;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -30,13 +30,13 @@ public class Product {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
-    @Column(name = "image_name")
-    private String imageName;
+    @Column(name = "image_path")
+    private String imagePath;
     private String name;
     private String description;
     private BigDecimal price;
     @ManyToOne
-    @JoinColumn(name = "categories_id")
+    @JoinColumn(name = "category_id")
     private Category category;
 
 //    private int categoryId;

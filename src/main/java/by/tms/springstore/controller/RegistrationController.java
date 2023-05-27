@@ -1,6 +1,6 @@
 package by.tms.springstore.controller;
 
-import by.tms.springstore.model.User;
+import by.tms.springstore.domain.User;
 import by.tms.springstore.service.UserService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;

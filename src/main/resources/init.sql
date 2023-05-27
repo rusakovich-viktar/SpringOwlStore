@@ -3,27 +3,22 @@ create schema "online-store";
 
 create table "online-store".categories
 (
-    id          integer primary key generated always as identity unique,
-    name        text,
-    "imageName" text
+    id         integer primary key generated always as identity,
+    name       text,
+    image_path text
 );
 
 alter table "online-store".categories
     owner to postgres;
 
 
-INSERT INTO "online-store".categories (id, name, "imageName")
-VALUES (1, 'Mobile phones', 'mobile.jpg');
-INSERT INTO "online-store".categories (id, name, "imageName")
-VALUES (2, 'Laptops', 'laptop.jpg');
-INSERT INTO "online-store".categories (id, name, "imageName")
-VALUES (3, 'GPS Navigators', 'jps_nav.jpg');
-INSERT INTO "online-store".categories (id, name, "imageName")
-VALUES (4, 'Fridges', 'fridge.jpg');
-INSERT INTO "online-store".categories (id, name, "imageName")
-VALUES (5, 'Cars', 'car.jpg');
-INSERT INTO "online-store".categories (id, name, "imageName")
-VALUES (6, 'Cameras', 'camera.jpg');
+INSERT INTO "online-store".categories (id, name, image_path)
+VALUES (1, 'Mobile phones', 'mobile.jpg'),
+       (2, 'Laptops', 'laptop.jpg'),
+       (3, 'GPS Navigators', 'jps_nav.jpg'),
+       (4, 'Fridges', 'fridge.jpg'),
+       (5, 'Cars', 'car.jpg'),
+       (6, 'Cameras', 'camera.jpg');
 
 
 --Таблица пользователей создаем
@@ -57,16 +52,16 @@ ALTER TABLE "online-store".categories
 
 CREATE TABLE "online-store".products
 (
-    id          integer primary key generated always as identity unique,
-    image_name  VARCHAR(255),
-    name        VARCHAR(255)   NOT NULL,
-    description TEXT,
-    price       NUMERIC(10, 2) NOT NULL,
+    id            integer primary key generated always as identity unique,
+    image_path    VARCHAR(255),
+    name          VARCHAR(255)   NOT NULL,
+    description   TEXT,
+    price         NUMERIC(10, 2) NOT NULL,
     category_id INTEGER        NOT NULL,
     FOREIGN KEY (category_id) REFERENCES "online-store".categories (id) ON DELETE CASCADE
 );
 
-INSERT INTO "online-store".products (image_name, name, description, price, category_id)
+INSERT INTO "online-store".products (image_path, name, description, price, category_id)
 VALUES ('mobileApple.jpg', 'Смартфон Apple iPhone 13 128GB (темная ночь)', 'Apple iOS, экран 6.1'' OLED (1170x2532), Apple A15 Bionic, ОЗУ 4 ГБ, флэш-память 128 ГБ, " +
                                     "камера 12 Мп, аккумулятор 3227 мАч, 1 SIM', 2600, 1),
        ('mobileSamsung.jpg', 'Смартфон Samsung Galaxy A52 SM-A525F/DS 8GB/256GB (синий)', 'Android, экран 6.5'' AMOLED (1080x2400), Qualcomm Snapdragon 720G, ОЗУ 8 ГБ, флэш-память 256 ГБ," +

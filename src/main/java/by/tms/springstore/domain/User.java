@@ -1,4 +1,4 @@
-package by.tms.springstore.model;
+package by.tms.springstore.domain;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -12,8 +12,6 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.experimental.SuperBuilder;
-
-import java.time.LocalDate;
 
 @Getter
 @Setter

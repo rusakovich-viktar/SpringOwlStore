@@ -1,34 +1,45 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
+    <title>Home page</title>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <!--<link rel="stylesheet" type="text/css" href="resources/style.css">-->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+    <link rel="stylesheet" th:href="@{/css/style.css}">
 </head>
 <body>
-<body>
-<!--<div th:replace="header :: header"></div>-->
-<br>
+<div th:include="header.html" th:fragment="headerFragment"></div>
+
+        <br><br><br><br><br><br>
 <h2>All categories</h2>
-<p>[[${categories.size}]]</p>
+
 <div class="container-fluid">
-    <th:block th:if="${categories != null}">
+
+    <div th:if="${categories != null}">
         <div class="row">
-            <th:block th:each="category : ${categories}">
-                <div class="card w-25 m-1" >
-                    <div class="card-body">
-                        [[${category.getName()}]]
-<!--                        <a th:href="@{/category(categoryId=${category.getId()}, nameCategory=${category.getName()})}">-->
-<!--                            <img class="card-img"-->
-<!--                                 style="width:150px;height:120px"-->
-<!--                                 th:src="@{${'/images/' + category.getImageName()},true}"-->
-<!--                                 alt="Card image">-->
-<!--                        </a>-->
-                    </div>
+            <div th:each="category : ${categories}" class="card w-25 m-1" type="category">
+                <div class="card-body">
+
+                    <a th:href="@{/category(categoryId=${category.id}, nameCategory=${category.name})}">
+                        <div>
+                            <span th:text="${category.name}"></span>
+<!--                     >>>>>>>>>>>>>>       <span th:text="${userDto.username}"></span>-->
+                            <img class="card-img" th:src="@{/images/__${category.imagePath}__}"
+                                 style="width:150px;height:120px" alt="Card image"/>
+
+                        </div>
+                    </a>
+                    <!--                    <a th:href="@{'/category/' + ${category.id}}" th:text="${category.name}"></a>-->
                 </div>
-            </th:block>
+            </div>
         </div>
-    </th:block>
+    </div>
 </div>
-</body>
 </body>
 </html>
