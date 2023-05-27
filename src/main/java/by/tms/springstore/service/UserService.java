@@ -8,7 +8,7 @@ public interface UserService {
 
     void addNewUser(User user);
 
-//    void updateUser(UserDto userDto);
+    void updateUser(UserDto userDto);
 
     UserDto findUserDtoById(Long id);
 

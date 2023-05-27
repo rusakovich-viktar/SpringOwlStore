@@ -1,6 +1,6 @@
 //package by.tms.springstore.service.impl;
 //
-//import by.tms.springstore.model.Product;
+//import by.tms.springstore.domain.Product;
 //import by.tms.springstore.repository.ProductRepository;
 //import by.tms.springstore.service.ProductService;
 //import lombok.RequiredArgsConstructor;
@@ -16,15 +16,15 @@
 //    private final ProductRepository productRepository;
 //
 //    public List<Product> getProducts() {
-//        return productRepository.getProducts();
+//        return productRepository.findAllProducts();
 //    }
 //
 //    public Product getProductById(int id) {
-//        return productRepository.getProductById(id);
+//        return productRepository.findById(id);
 //    }
 //
 //    public List<Product> getProductsByCategoryId(int categoryId) {
-//        return productRepository.getProductsByCategoryId(categoryId);
+//        return productRepository.findByCategoryId(categoryId);
 //    }
 //
 //}

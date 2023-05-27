@@ -3,6 +3,7 @@ package by.tms.springstore.controller;
 import by.tms.springstore.dto.UserDto;
 import by.tms.springstore.domain.Category;
 import by.tms.springstore.service.CategoryService;
+import by.tms.springstore.utils.Constants;
 import by.tms.springstore.utils.Utils;
 import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
@@ -15,6 +16,8 @@ import java.util.List;
 
 import static by.tms.springstore.utils.Constants.Attributes.CATEGORIES;
 import static by.tms.springstore.utils.Constants.Attributes.USER_DTO;
+import static by.tms.springstore.utils.Constants.PagePath.HOME;
+import static by.tms.springstore.utils.Constants.PagePath.SIGN_IN;
 
 @RequiredArgsConstructor
 @Controller
@@ -28,9 +31,9 @@ public class HomeController {
         if (Utils.isUserLogIn(userDto)) {
             List<Category> categories = categoryService.getCategories();
             modelAndView.addObject(CATEGORIES, categories);
-            modelAndView.setViewName("home");
+            modelAndView.setViewName(HOME);
         } else {
-            modelAndView.setViewName("signin");
+            modelAndView.setViewName(SIGN_IN);
         }
         return modelAndView;
     }

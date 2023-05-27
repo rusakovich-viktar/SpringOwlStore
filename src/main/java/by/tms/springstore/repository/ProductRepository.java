@@ -1,14 +1,18 @@
 //package by.tms.springstore.repository;
 //
-//import by.tms.springstore.model.Product;
+//import by.tms.springstore.domain.Product;
+//import org.springframework.data.jpa.repository.JpaRepository;
 //
 //import java.util.List;
 //
-//public interface ProductRepository extends Repository {
+//public interface ProductRepository extends JpaRepository<Product, Integer> {
 //
-//    List<Product> getProducts();
+//    List<Product> findAllProducts();
+//    //        List<Product> getProducts ();
 //
-//    Product getProductById(int id);
+//    Product findById(int id);
+//    //    Product getProductById(int id);
 //
-//    List<Product> getProductsByCategoryId(int categoryId);
+//    List<Product> findByCategoryId(int categoryId);
+//    //    List<Product> getProductsByCategoryId(int categoryId);
 //}

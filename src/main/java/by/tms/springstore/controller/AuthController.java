@@ -8,6 +8,7 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -36,13 +37,12 @@ public class AuthController {
                                               HttpSession session, ModelAndView modelAndView) {
         User user = userService.getUserByLoginAndPassword(username, pass);
         if (user != null) {
-            UserDto userDto = new UserDto(user.getId(), user.getUsername(), user.getName(), user.getSurname(), user.getGender(), user.getBirthday(), user.getEmail()/*, user.getRegistrationDate()*/);
+            UserDto userDto = new UserDto(user.getId(), user.getUsername(), user.getName(), user.getSurname(), user.getGender(), user.getBirthday(), user.getEmail(), user.getRegistrationDate());
 //            Cart cart = new Cart();
             session.setAttribute(CART, new Object());
 //            session.setAttribute(CART, cart);
             session.setAttribute(Constants.Attributes.USERNAME, username);
             session.setAttribute(USER_DTO, userDto);
-            modelAndView.addObject(USER_DTO, userDto);
             modelAndView.setViewName(REDIRECT_TO_HOME);
         } else {
             modelAndView.setViewName(SIGN_IN);
@@ -56,7 +56,7 @@ public class AuthController {
         if (session != null) {
             session.invalidate();
         }
-        return "signin";
+        return SIGN_IN;
     }
 
 }

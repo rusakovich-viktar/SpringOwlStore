@@ -1,7 +1,8 @@
 //package by.tms.springstore.controller;
 //
+//import by.tms.springstore.domain.Product;
 //import by.tms.springstore.dto.UserDto;
-//import by.tms.springstore.model.Product;
+//
 //import by.tms.springstore.service.ProductService;
 //import by.tms.springstore.utils.Constants;
 //import jakarta.servlet.http.HttpServletRequest;
@@ -32,7 +33,7 @@
 //        HttpSession session = request.getSession();
 //        UserDto userDto = (UserDto) session.getAttribute(USER_DTO);
 //        if (isUserLogIn(userDto)) {
-////            List<Product> categoryProducts = productService.getProductsByCategoryId(categoryId);
+//            List<Product> categoryProducts = productService.getProductsByCategoryId(categoryId);
 //            modelAndView.addObject(PRODUCTS, categoryProducts);
 //            modelAndView.addObject(Constants.Attributes.NAME_CATEGORY, nameCategory);
 //            modelAndView.setViewName("category");

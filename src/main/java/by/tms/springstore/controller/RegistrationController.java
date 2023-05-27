@@ -66,7 +66,7 @@ public class RegistrationController {
                 if (!matcher.matches()) {
                     model.addAttribute("error", "Некорректный формат email.");
                 } else {
-                    userService.addNewUser(new User(username, name, surname, gender, birthday, email, /*registrationDate,*/ password));
+                    userService.addNewUser(new User(username, name, surname, gender, birthday, email, registrationDate, password));
 //                    userService.addNewUser(new User(username, name, surname, gender, birthday, email, registrationDate, password));
                     modelAndView.setViewName("redirect:/signin");
                 }

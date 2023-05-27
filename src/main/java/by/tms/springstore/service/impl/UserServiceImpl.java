@@ -2,6 +2,7 @@ package by.tms.springstore.service.impl;
 
 import by.tms.springstore.dto.UserDto;
 import by.tms.springstore.domain.User;
+import by.tms.springstore.exceptions.NotFoundException;
 import by.tms.springstore.repository.UserRepository;
 import by.tms.springstore.service.UserService;
 import lombok.RequiredArgsConstructor;
@@ -28,7 +29,16 @@ public class UserServiceImpl implements UserService {
 //        userRepository.addNewUser(user);
     }
 
-
+    public void updateUser(UserDto userDto) {
+        User user = userRepository.findById(userDto.getId())
+                .orElseThrow(() -> new NotFoundException("User not found"));
+        user.setName(userDto.getName());
+        user.setSurname(userDto.getSurname());
+        user.setBirthday(userDto.getBirthday());
+        user.setGender(userDto.getGender());
+        user.setEmail(userDto.getEmail());
+        userRepository.saveAndFlush(user);
+    }
 
 //    @Override
 //    public void updateUser(UserDto userDto) {
@@ -36,9 +46,10 @@ public class UserServiceImpl implements UserService {
 //        userRepository.saveAndFlush(user);
 ////        userRepository.updateUserDtoById(userDto);
 //    }
-
+//
 //    private User convertToUser(UserDto userDto) {
-//        return User.builder().id(userDto.getId()).
+//        return User.builder().
+//                id(userDto.getId()).
 //
 //        .build();
 

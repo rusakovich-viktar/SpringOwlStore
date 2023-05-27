@@ -40,10 +40,15 @@ public class Constants {
 
 
     }
+
     @UtilityClass
     public class PagePath {
         public static final String SIGN_IN = "signin";
+        public static final String HOME = "home";
         public static final String REDIRECT_TO_HOME = "redirect:/home";
+        public static final String PROFILE = "profile";
+        public static final String EDIT_PROFILE = "edit-profile";
+
     }
 
 }
