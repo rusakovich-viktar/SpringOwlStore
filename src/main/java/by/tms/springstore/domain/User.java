@@ -18,15 +18,15 @@ import java.time.LocalDate;
 
 @Getter
 @Setter
+@AllArgsConstructor
 @EqualsAndHashCode(callSuper = false)
 @SuperBuilder
 @Entity
 @Table(name = "users", schema = "online-store")
 @NoArgsConstructor
-@AllArgsConstructor
 public class User  {
-    @Id
 //    @UniqueElements
+    @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     @Column(name = "login_key")

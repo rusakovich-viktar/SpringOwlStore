@@ -9,11 +9,11 @@
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
     <groupId>by.tms</groupId>
-    <artifactId>SpringStore</artifactId>
+    <artifactId>spring-store</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <!--    <packaging>war</packaging>-->
-    <name>SpringStore</name>
-    <description>SpringStore</description>
+    <name>spring-store</name>
+    <description>spring-store</description>
     <properties>
         <java.version>17</java.version>
         <spotbugs.maven.plugin.version>4.7.3.4</spotbugs.maven.plugin.version>

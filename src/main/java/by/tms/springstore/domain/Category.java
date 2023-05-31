@@ -18,8 +18,8 @@ import lombok.experimental.SuperBuilder;
 import java.util.List;
 
 @Setter
-@SuperBuilder
 @Getter
+@SuperBuilder
 @ToString
 @EqualsAndHashCode
 @Entity
@@ -38,3 +38,6 @@ public class Category {
     private List<Product> productList;
 
 }
+
+
+

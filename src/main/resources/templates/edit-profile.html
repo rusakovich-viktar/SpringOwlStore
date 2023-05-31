@@ -1,27 +1,88 @@
+<!--<!DOCTYPE html>-->
+<!--<html xmlns:th="http://www.thymeleaf.org" lang="en">-->
+<!--<head>-->
+<!--  <meta charset="UTF-8">-->
+<!--  <title>Edit user</title>-->
+<!--</head>-->
+<!--<body>-->
+<!--<form action="profile" th:object="${userDto}" method="post">-->
+<!--  <label>Username(неизменяемое поле): </label>-->
+<!--  <input type="text" th:field="*{username}" readonly="readonly" title="Неизменяемое поле"/><br><br>-->
+<!--  <label>Name: </label>-->
+<!--  <input type="text" th:field="*{name}" title="Введите ваше имя"/><br><br>-->
+<!--  <label>Surname: </label>-->
+<!--  <input type="text" th:field="*{surname}" title="Введите вашу фамилию"/><br><br>-->
+<!--  <label>Birthday: </label>-->
+<!--  <input type="text" th:field="*{birthday}" title="Введите год рождения"/><br><br>-->
+<!--  <label>Gender: </label>-->
+<!--  <input type="radio" th:field="*{gender}" value="male"/> Male-->
+<!--  <input type="radio" th:field="*{gender}" value="female"/> Female-->
+<!--  <input type="radio" th:field="*{gender}" value="non-binary"/> Non-binary<br><br>-->
+<!--  <label>Email: </label>-->
+<!--  <input type="text" th:field="*{email}"/><br><br>-->
+<!--  <input type="hidden" th:field="*{id}"/>-->
+<!--  <input type="submit" value="Изменить">-->
+<!--</form>-->
+<!--</body>-->
+<!--</html>-->
+
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org" lang="en">
 <head>
   <meta charset="UTF-8">
   <title>Edit user</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+  <style>
+    .blue-text {
+      color: blue;
+    }
+  </style>
 </head>
 <body>
-<form action="profile" th:object="${userDto}" method="post">
-  <label>Username: </label>
-  <input type="text" th:field="*{username}" readonly="readonly" title="Неизменяемое поле"/><br><br>
-  <label>Name: </label>
-  <input type="text" th:field="*{name}" title="Введите ваше имя"/><br><br>
-  <label>Surname: </label>
-  <input type="text" th:field="*{surname}" title="Введите вашу фамилию"/><br><br>
-  <label>Birthday: </label>
-  <input type="text" th:field="*{birthday}" title="Введите год рождения"/><br><br>
-  <label>Gender: </label>
-  <input type="radio" th:field="*{gender}" value="male"/> Male
-  <input type="radio" th:field="*{gender}" value="female"/> Female
-  <input type="radio" th:field="*{gender}" value="non-binary"/> Non-binary<br><br>
-  <label>Email: </label>
-  <input type="text" th:field="*{email}"/><br><br>
-  <input type="hidden" th:field="*{id}"/>
-  <input type="submit" value="Изменить">
-</form>
+<div class="container">
+  <h1>Редактирование данных пользователя</h1>
+  <form action="profile" th:object="${userDto}" method="post">
+    <div class="form-group">
+      <label for="username">Username:</label>
+      <input type="text" th:field="*{username}" readonly="readonly" class="form-control" id="username" title="Неизменяемое поле">
+    </div>
+    <div class="form-group">
+      <label for="name">Name:</label>
+      <input type="text" th:field="*{name}" class="form-control blue-text" id="name" placeholder="Введите ваше имя">
+    </div>
+    <div class="form-group">
+      <label for="surname">Surname:</label>
+      <input type="text" th:field="*{surname}" class="form-control blue-text" id="surname" placeholder="Введите вашу фамилию">
+    </div>
+    <div class="form-group">
+      <label for="birthday">Birthday:</label>
+      <input type="text" th:field="*{birthday}" class="form-control blue-text" id="birthday" placeholder="Введите год рождения">
+    </div>
+    <div class="form-group">
+      <label>Gender:</label>
+      <div class="form-check">
+        <input type="radio" th:field="*{gender}" class="form-check-input" id="male" value="male">
+        <label class="form-check-label" for="male">Male</label>
+      </div>
+      <div class="form-check">
+        <input type="radio" th:field="*{gender}" class="form-check-input" id="female" value="female">
+        <label class="form-check-label" for="female">Female</label>
+      </div>
+      <div class="form-check">
+        <input type="radio" th:field="*{gender}" class="form-check-input" id="non-binary" value="non-binary">
+        <label class="form-check-label" for="non-binary">Non-binary</label>
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="email">Email:</label>
+      <input type="text" th:field="*{email}" class="form-control blue-text" id="email" placeholder="Введите ваш email">
+    </div>
+    <input type="hidden" th:field="*{id}">
+    <button type="submit" class="btn btn-primary">Изменить</button>
+  </form>
+</div>
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
 </body>
 </html>

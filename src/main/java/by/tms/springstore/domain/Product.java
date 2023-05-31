@@ -22,9 +22,9 @@ import java.math.BigDecimal;
 @AllArgsConstructor
 @EqualsAndHashCode(of = "id")
 @ToString
-@NoArgsConstructor
 @Entity
 @Table(name = "products", schema = "online-store")
+@NoArgsConstructor
 
 public class Product {
     @Id
@@ -40,5 +40,4 @@ public class Product {
     private Category category;
 
 //    private int categoryId;
-
 }

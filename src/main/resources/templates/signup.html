@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+  <title>Страница авторизации</title>
+  <link rel="stylesheet" th:href="@{/css/registration.css}">
+  <div th:block th:insert="~{bootstrap-basic.html}"></div>
+</head>
+<body>
+<!--<div class="row">-->
+<!--    <section class="section">-->
+<!--        <header>-->
+<!--            <h3>Register page</h3>-->
+<!--            <h4>Please fill your information below</h4>-->
+<!--        </header>-->
+<!--        <main>-->
+<!--            <form id="registrationForm" method="post" th:action="@{/signup}" th:object="${user}">-->
+<!--                <div class="form-item box-item">-->
+<!--                    <input id="email" type="email" placeholder="Email" name="email" th:field="*{email}" required><br/>-->
+<!--                </div>-->
+<!--                <div class="form-item box-item">-->
+<!--                    <label>Username</label>-->
+<!--                    <input id="username" type="text" placeholder="enter username" autocomplete="off" name="username" th:field="*{username}"-->
+<!--                           required><br/>-->
+<!--                </div>-->
+<!--                <div class="form-item box-item">-->
+<!--                    <span>..Введите пароль </span>-->
+<!--                    <input id="password" type="password" name="password" autocomplete="off" th:field="*{password}" required><br/>-->
+<!--                </div>-->
+<!--                <div class="form-item box-item">-->
+<!--                    <span>Повторите пароль</span>-->
+<!--                    <input id="repeatPswd" type="password" required name="repeatPass" autocomplete="off"><br/>-->
+<!--                </div>-->
+<!--                <div id="lower">-->
+<!--                    <button id="regFormSignUpBtn" type="submit">Зарегистрироваться</button>-->
+<!--                    <br/>-->
+<!--                </div>-->
+<!--            </form>-->
+<!--        </main>-->
+<!--        <footer>-->
+<!--            <p>Already have an account? <a href="#" th:href="@{/home}">Login here</a></p>-->
+<!--        </footer>-->
+<!--        <i class="wave"></i>-->
+<!--    </section>-->
+<!--</div>-->
+
+
+<div class="container d-flex justify-content-center align-items-center vh-100">
+    <div class="row">
+        <div class="col-lg-auto">
+            <div class="card">
+                <div class="card-body">
+                    <h3 class="card-title text-right">Register panel</h3>
+                    <h4 class="card-subtitle mb-4 text-center">Для регистрации заполните следующую информацию:</h4>
+                    <form id="registrationForm" method="post" th:action="@{/signup}" th:object="${user}">
+                        <div class="mb-3">
+                            <label for="email" class="form-label">Введите Email</label>
+                            <input id="email" type="email" class="form-control" placeholder="Email" name="email" th:field="*{email}" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="username" class="form-label">Введите Username</label>
+                            <input id="username" type="text" class="form-control" placeholder="Enter username" autocomplete="off" name="username" th:field="*{username}" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="password" class="form-label">Введите Password</label>
+                            <input id="password" type="password" class="form-control" name="password" autocomplete="off" th:field="*{password}" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="repeatPswd" class="form-label">Повторите Password</label>
+                            <input id="repeatPswd" type="password" class="form-control" required name="repeatPass" autocomplete="off">
+                        </div>
+                        <div class="text-center">
+                            <button id="regFormSignUpBtn" type="submit" class="btn btn-primary">Register</button>
+                        </div>
+                    </form>
+                    <p class="text-center mt-4">Already have an account? <a href="#" th:href="@{/home}">Login here</a></p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+</body>
+</html>

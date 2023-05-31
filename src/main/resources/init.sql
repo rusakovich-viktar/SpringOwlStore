@@ -25,19 +25,17 @@ VALUES (1, 'Mobile phones', 'mobile.jpg'),
 CREATE TABLE "online-store".users
 (
     id              integer primary key generated always as identity unique,
-    login_key       text not null unique,
+    login_key       varchar(20) not null unique,
     pass_value      text not null,
-    first_name      text not null,
-    second_name     text not null,
-    day_of_birthday date not null,
-    gender          text not null,
-    email           text not null
+    first_name      varchar(30),
+    second_name     varchar(30),
+    day_of_birthday date,
+    gender          varchar(10),
+    email           text not null unique,
+    registration_date date NOT NULL DEFAULT CURRENT_DATE
 );
 
-
-alter table "online-store".users
-    add registration_date date;
-
+SELECT TO_CHAR(NOW() :: DATE, 'dd.MM.yyyy');
 
 -- Вставляем пользователей в таблицу
 INSERT INTO "online-store".users (login_key, pass_value, first_name, second_name, day_of_birthday, gender, email,

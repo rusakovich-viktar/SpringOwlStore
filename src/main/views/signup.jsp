@@ -3,7 +3,6 @@
 <html>
 <head>
     <link rel="stylesheet" type="text/css" href="<c:url value="/static/css/registration.css"/>">
-    <script type="text/javascript" src="<c:url value="/static/css/script.js"/>"></script>
     <title>Страница авторизации</title>
 </head>
 <body>
@@ -17,14 +16,10 @@
             <c:set var="contextPath" value="${pageContext.request.contextPath}"/>
             <form id="registrationForm" method="post" action="${contextPath}/signup" onsubmit="return validateForm()">
                 <div class="form-item box-item">
-                    <input id="name" type="text" placeholder="Имя" name="name" oninput="validateName()"
-                           required><br/>
-                    <span id="nameError" style="display: none;">*Поле 'Имя' не заполнено!</span>
+                    <input id="name" type="text" placeholder="Имя" name="name" required><br/>
                 </div>
                 <div class="form-item box-item">
-                    <input id="surname" type="text" placeholder="Фамилия" name="surname"
-                           oninput="validateSurname()" required><br/>
-                    <span id="surnameError" style="display: none;">*Поле 'Фамилия' не заполнено!</span>
+                    <input id="surname" type="text" placeholder="Фамилия" name="surname" required><br/>
                 </div>
                 <div id="brthDateLbl">
                     <label>Дата рождения</label>
@@ -34,10 +29,7 @@
                 </div>
 
                 <div class="form-item box-item">
-                    <input id="email" type="email" placeholder="Email" name="email" oninput="validateEmail()"
-                           required><br/>
-                    <span id="emailError" style="display: none;">*Поле 'Email' не заполнено!</span>
-                    <span id="validationErr" style="display: none;">*Неверный формат email адреса!</span>
+                    <input id="email" type="email" placeholder="Email" name="email" required><br/>
                 </div>
                 <div class="form-item box-item">
                     <div class="form-item-triple">
@@ -57,27 +49,19 @@
                             <label for="Non-binary">non-binary</label>
                         </div>
                     </div>
-                    <small class="errorOnce"><i class="fa fa-asterisk" aria-hidden="true"></i> choose at least
-                        one</small>
                 </div>
                 <div class="form-item box-item">
                     <label>Username</label>
                     <input id="username" type="text" placeholder="enter username" autocomplete="off" name="username"
-                           oninput="validatePass()" required><br/>
+                            required><br/>
                 </div>
                 <div class="form-item box-item">
                     <span>..Введите пароль  </span>
-                    <input id="password" type="password" name="password" autocomplete="off" oninput="validatePass()"
-                           required><br/>
-                    <span id="passwordError"
-                          style="display: none;">*Поле 'Пароль' должно содержать не менее 8 символов</span>
+                    <input id="password" type="password" name="password" autocomplete="off" required><br/>
                 </div>
                 <div class="form-item box-item">
                     <span>Повторите пароль</span>
-                    <input id="repeatPswd" type="password" required name="repeatPass" autocomplete="off"
-                           oninput="validateRepeatPass()"><br/>
-                    <span id="repeatPassError" style="display: none;">*Поле 'Повторите пароль' не заполнено!</span>
-                    <span id="matchingError" style="display: none;">*Пароли не совпадают!</span>
+                    <input id="repeatPswd" type="password" required name="repeatPass" autocomplete="off"><br/>
                 </div>
                 <input type="hidden" name="registrationDate" value="<%= java.time.LocalDate.now() %>">
                 <div id="lower">
