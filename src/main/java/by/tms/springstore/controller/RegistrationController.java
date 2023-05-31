@@ -2,11 +2,9 @@ package by.tms.springstore.controller;
 
 import by.tms.springstore.domain.User;
 import by.tms.springstore.service.UserService;
-import by.tms.springstore.utils.Constants;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -33,13 +31,6 @@ public class RegistrationController {
         return modelAndView;
     }
 
-
-    //Отображение html формы по добавлению
-//    @GetMapping()
-//    public String getRegistrationPage(Model model) {
-//        model.addAttribute("user", new User());
-//        return "signup";
-//    }
     @GetMapping()
     public ModelAndView getRegistrationPage(ModelAndView modelAndView) {
         modelAndView.addObject(USER, new User());
