@@ -20,8 +20,7 @@ import java.math.BigDecimal;
 @Setter
 @Getter
 @AllArgsConstructor
-@EqualsAndHashCode(of = "id")
-@ToString
+//@EqualsAndHashCode(of = "id")
 @Entity
 @Table(name = "products", schema = "online-store")
 @NoArgsConstructor

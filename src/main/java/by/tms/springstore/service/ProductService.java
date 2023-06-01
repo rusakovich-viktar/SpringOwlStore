@@ -9,5 +9,5 @@ public interface ProductService {
 
     Product getProductById(int id);
 
-    List<Product> getProductsByCategoryId(int categoryId);
+    List<Product> getAllProductsByCategoryId(int categoryId);
 }

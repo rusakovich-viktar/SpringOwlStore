@@ -1,7 +1,7 @@
 package by.tms.springstore.service.impl;
 
-import by.tms.springstore.dto.UserDto;
 import by.tms.springstore.domain.User;
+import by.tms.springstore.dto.UserDto;
 import by.tms.springstore.exceptions.NotFoundException;
 import by.tms.springstore.repository.UserRepository;
 import by.tms.springstore.service.UserService;
@@ -13,6 +13,7 @@ import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
+
 public class UserServiceImpl implements UserService {
 
     private final UserRepository userRepository;
@@ -32,28 +33,16 @@ public class UserServiceImpl implements UserService {
     public void updateUser(UserDto userDto) {
         User user = userRepository.findById(userDto.getId())
                 .orElseThrow(() -> new NotFoundException("User not found"));
-        user.setName(userDto.getName());
-        user.setSurname(userDto.getSurname());
-        user.setBirthday(userDto.getBirthday());
-        user.setGender(userDto.getGender());
-        user.setEmail(userDto.getEmail());
-        userRepository.saveAndFlush(user);
+        userRepository.saveAndFlush(
+                user.toBuilder()
+                        .name(userDto.getName())
+                        .surname(userDto.getSurname())
+                        .birthday(userDto.getBirthday())
+                        .gender(userDto.getGender())
+                        .email(userDto.getEmail())
+                        .build()
+        );
     }
-
-//    @Override
-//    public void updateUser(UserDto userDto) {
-//        User user = convertToUser(userDto);
-//        userRepository.saveAndFlush(user);
-////        userRepository.updateUserDtoById(userDto);
-//    }
-//
-//    private User convertToUser(UserDto userDto) {
-//        return User.builder().
-//                id(userDto.getId()).
-//
-//        .build();
-
-
 
     @Override
     public UserDto findUserDtoById(Long id) {

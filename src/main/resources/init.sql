@@ -24,21 +24,21 @@ VALUES (1, 'Mobile phones', 'mobile.jpg'),
 --Таблица пользователей создаем
 CREATE TABLE "online-store".users
 (
-    id              integer primary key generated always as identity unique,
-    login_key       varchar(20) not null unique,
-    pass_value      text not null,
-    first_name      varchar(30),
-    second_name     varchar(30),
-    day_of_birthday date,
-    gender          varchar(10),
-    email           text not null unique,
-    registration_date date NOT NULL DEFAULT CURRENT_DATE
+    id                integer generated always as identity primary key ,
+    username          varchar(20) not null unique,
+    password          text        not null,
+    name              varchar(30),
+    surname           varchar(30),
+    birthday          date,
+    gender            varchar(10),
+    email             text        not null unique,
+    registration_date date        NOT NULL DEFAULT now()
 );
 
-SELECT TO_CHAR(NOW() :: DATE, 'dd.MM.yyyy');
+-- SELECT TO_CHAR(NOW() :: DATE, 'dd.MM.yyyy');
 
 -- Вставляем пользователей в таблицу
-INSERT INTO "online-store".users (login_key, pass_value, first_name, second_name, day_of_birthday, gender, email,
+INSERT INTO "online-store".users (username, password, name, surname, birthday, gender, email,
                                   registration_date)
 VALUES ('admin', 'admin', 'username', 'adminovich', '20.03.1900', 'male', 'admin@tms.by', '20.03.1900'),
        ('test', 'test', 'testname', 'testovich', '20.03.1800', 'female', 'miner@grind.com', '20.03.1900');
@@ -50,11 +50,11 @@ ALTER TABLE "online-store".categories
 
 CREATE TABLE "online-store".products
 (
-    id            integer primary key generated always as identity unique,
-    image_path    VARCHAR(255),
-    name          VARCHAR(255)   NOT NULL,
-    description   TEXT,
-    price         NUMERIC(10, 2) NOT NULL,
+    id          integer primary key generated always as identity unique,
+    image_path  VARCHAR(255),
+    name        VARCHAR(255)   NOT NULL,
+    description TEXT,
+    price       NUMERIC(10, 2) NOT NULL,
     category_id INTEGER        NOT NULL,
     FOREIGN KEY (category_id) REFERENCES "online-store".categories (id) ON DELETE CASCADE
 );

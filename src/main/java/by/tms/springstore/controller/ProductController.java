@@ -1,7 +1,7 @@
 //package by.tms.springstore.controller;
 //
+//import by.tms.springstore.domain.Product;
 //import by.tms.springstore.dto.UserDto;
-//import by.tms.springstore.model.Product;
 //import by.tms.springstore.service.ProductService;
 //import jakarta.servlet.http.HttpServletRequest;
 //import jakarta.servlet.http.HttpSession;

@@ -20,7 +20,7 @@ import java.util.List;
 @Setter
 @Getter
 @SuperBuilder
-@ToString
+//@ToString
 @EqualsAndHashCode
 @Entity
 @Table(name = "categories", schema = "online-store")
