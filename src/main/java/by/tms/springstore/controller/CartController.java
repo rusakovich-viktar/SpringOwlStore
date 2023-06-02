@@ -1,6 +1,7 @@
 package by.tms.springstore.controller;
 
 import by.tms.springstore.domain.Cart;
+import by.tms.springstore.domain.Product;
 import by.tms.springstore.service.CartService;
 import by.tms.springstore.utils.Constants;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -10,6 +11,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.servlet.ModelAndView;
+
+import java.util.List;
 
 @RestController
 @SessionAttributes({Constants.Attributes.CART})
@@ -37,4 +40,14 @@ public class CartController {
     public Cart shoppingCart() {
         return new Cart();
     }
+
+//    @GetMapping("/cart")
+//    public ModelAndView getCart() {
+//        Cart cart = cartService.getCart();
+//        ModelAndView modelAndView = new ModelAndView("cart");
+//        modelAndView.addObject("cart", cart);
+//        return modelAndView;
+//    }
+
+
 }

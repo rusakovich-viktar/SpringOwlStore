@@ -1,10 +1,15 @@
 package by.tms.springstore.domain;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
@@ -34,5 +39,9 @@ public class User {
     @Column(name = "registration_date")
     private LocalDate registrationDate;
     private String password;
+    @Enumerated(EnumType.STRING)
+    private Role role;
+    @OneToOne(cascade = CascadeType.REMOVE)
+    private Cart cart;
 
 }
