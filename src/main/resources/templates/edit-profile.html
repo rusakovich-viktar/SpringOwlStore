@@ -1,37 +1,8 @@
-<!--<!DOCTYPE html>-->
-<!--<html xmlns:th="http://www.thymeleaf.org" lang="en">-->
-<!--<head>-->
-<!--  <meta charset="UTF-8">-->
-<!--  <title>Edit user</title>-->
-<!--</head>-->
-<!--<body>-->
-<!--<form action="profile" th:object="${userDto}" method="post">-->
-<!--  <label>Username(неизменяемое поле): </label>-->
-<!--  <input type="text" th:field="*{username}" readonly="readonly" title="Неизменяемое поле"/><br><br>-->
-<!--  <label>Name: </label>-->
-<!--  <input type="text" th:field="*{name}" title="Введите ваше имя"/><br><br>-->
-<!--  <label>Surname: </label>-->
-<!--  <input type="text" th:field="*{surname}" title="Введите вашу фамилию"/><br><br>-->
-<!--  <label>Birthday: </label>-->
-<!--  <input type="text" th:field="*{birthday}" title="Введите год рождения"/><br><br>-->
-<!--  <label>Gender: </label>-->
-<!--  <input type="radio" th:field="*{gender}" value="male"/> Male-->
-<!--  <input type="radio" th:field="*{gender}" value="female"/> Female-->
-<!--  <input type="radio" th:field="*{gender}" value="non-binary"/> Non-binary<br><br>-->
-<!--  <label>Email: </label>-->
-<!--  <input type="text" th:field="*{email}"/><br><br>-->
-<!--  <input type="hidden" th:field="*{id}"/>-->
-<!--  <input type="submit" value="Изменить">-->
-<!--</form>-->
-<!--</body>-->
-<!--</html>-->
-
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org" lang="en">
 <head>
-  <meta charset="UTF-8">
+  <div th:block th:insert="~{bootstrap-basic.html}"></div>
   <title>Edit user</title>
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
   <style>
     .blue-text {
       color: blue;
@@ -81,8 +52,5 @@
     <button type="submit" class="btn btn-primary">Изменить</button>
   </form>
 </div>
-<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
 </body>
 </html>
