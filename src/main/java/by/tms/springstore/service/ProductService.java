@@ -3,11 +3,12 @@ package by.tms.springstore.service;
 import by.tms.springstore.domain.Product;
 
 import java.util.List;
+import java.util.Optional;
 
 public interface ProductService {
     List<Product> getProducts();
 
-    Product getProductById(int id);
+    Product getProductById(Long id);
 
-    List<Product> getAllProductsByCategoryId(int categoryId);
+    List<Product> getAllProductsByCategoryId(Long categoryId);
 }

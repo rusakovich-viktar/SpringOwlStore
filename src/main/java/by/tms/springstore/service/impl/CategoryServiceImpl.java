@@ -7,6 +7,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
@@ -21,10 +22,10 @@ public class CategoryServiceImpl implements CategoryService {
     }
 
     @Override
-    public Category getCategoryById(int id) {
+    public Category getCategoryById(Long id) {
         return categoryRepository.findById(id);
-//        return categoryRepository.getCategory(id);
     }
+//        return categoryRepository.getCategory(id);
 
     @Override
     public Category getCategoryByName(String name) {

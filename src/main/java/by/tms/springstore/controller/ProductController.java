@@ -10,6 +10,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+import java.util.Optional;
+
 import static by.tms.springstore.utils.Constants.Attributes.ONE_PRODUCT;
 import static by.tms.springstore.utils.Constants.Attributes.USER_DTO;
 import static by.tms.springstore.utils.Constants.RequestParams.PRODUCT_ID;
@@ -26,7 +28,7 @@ public class ProductController {
         HttpSession session = request.getSession();
         UserDto userDto = (UserDto) session.getAttribute(USER_DTO);
         if (isUserLogIn(userDto)) {
-            int productId = Integer.parseInt(request.getParameter(PRODUCT_ID));
+            long productId = Long.parseLong(request.getParameter(PRODUCT_ID));
             Product product = productService.getProductById(productId);
             request.setAttribute(ONE_PRODUCT, product);
             modelAndView.setViewName("product");

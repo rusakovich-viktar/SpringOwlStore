@@ -28,7 +28,7 @@ public class CategoryController {
     private final ProductService productService;
 
     @GetMapping("/category")
-    public ModelAndView showCategories(@RequestParam(CATEGORY_ID) int categoryId,
+    public ModelAndView showCategories(@RequestParam(CATEGORY_ID) long categoryId,
                                        @RequestParam(Constants.RequestParams.NAME_CATEGORY) String nameCategory,
                                        HttpServletRequest request, ModelAndView modelAndView) {
         HttpSession session = request.getSession();

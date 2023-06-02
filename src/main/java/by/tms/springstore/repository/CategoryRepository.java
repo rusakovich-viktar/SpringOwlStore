@@ -5,12 +5,13 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 
 import java.util.List;
+import java.util.Optional;
 
 public interface CategoryRepository extends JpaRepository<Category, Integer> {
     @Query("from Category")
     List<Category> findAllCategories();
     //    List<Category> getCategories();
 
-    Category findById(int id);
+    Category findById(Long id);
 //    Category getCategory(int id);
 }

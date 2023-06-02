@@ -8,6 +8,7 @@ import lombok.Setter;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Setter
 @Service
@@ -19,11 +20,11 @@ public class ProductServiceImpl implements ProductService {
         return productRepository.findAll();
     }
 
-    public Product getProductById(int id) {
+    public Product getProductById(Long id) {
         return productRepository.findById(id);
     }
 
-    public List<Product> getAllProductsByCategoryId(int categoryId) {
+    public List<Product> getAllProductsByCategoryId(Long categoryId) {
         return productRepository.findAllByCategoryId(categoryId);
     }
 
