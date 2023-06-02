@@ -28,7 +28,7 @@ import java.util.Map;
 @EqualsAndHashCode(callSuper = false)
 @SuperBuilder(toBuilder = true)
 @Entity
-@Table(name = "cart", schema = "online-store")
+@Table(name = "cart", schema = "online-store2")
 @NoArgsConstructor
 public class Cart {
     @Id

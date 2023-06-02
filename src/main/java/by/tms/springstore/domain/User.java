@@ -16,6 +16,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.experimental.SuperBuilder;
+import org.hibernate.annotations.CreationTimestamp;
 
 import java.time.LocalDate;
 
@@ -24,7 +25,7 @@ import java.time.LocalDate;
 @EqualsAndHashCode(callSuper = false)
 @SuperBuilder(toBuilder = true)
 @Entity
-@Table(name = "users", schema = "online-store")
+@Table(name = "users", schema = "online-store2")
 @NoArgsConstructor
 public class User {
     @Id
@@ -36,6 +37,7 @@ public class User {
     private String gender;
     private String birthday;
     private String email;
+    @CreationTimestamp
     @Column(name = "registration_date")
     private LocalDate registrationDate;
     private String password;

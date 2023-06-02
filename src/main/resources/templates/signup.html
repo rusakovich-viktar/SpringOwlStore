@@ -34,9 +34,6 @@
                             <input id="repeatPswd" type="password" class="form-control" required name="repeatPass"
                                    autocomplete="off">
                         </div>
-                        <div class="mb-3">
-                            <input name="registrationDate" hidden th:value="${#dates.format(#dates.createNow(), 'dd.MM.yyyy')}"/>
-                        </div>
                         <div class="text-center">
                             <button id="regFormSignUpBtn" type="submit" class="btn btn-primary">Register</button>
                         </div>
