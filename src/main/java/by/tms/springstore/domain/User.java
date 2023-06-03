@@ -25,7 +25,7 @@ import java.time.LocalDate;
 @EqualsAndHashCode(callSuper = false)
 @SuperBuilder(toBuilder = true)
 @Entity
-@Table(name = "users", schema = "online-store2")
+@Table(name = "users", schema = "online-store")
 @NoArgsConstructor
 public class User {
     @Id

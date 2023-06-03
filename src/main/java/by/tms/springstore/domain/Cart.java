@@ -28,7 +28,7 @@ import java.util.Map;
 @EqualsAndHashCode(callSuper = false)
 @SuperBuilder(toBuilder = true)
 @Entity
-@Table(name = "cart", schema = "online-store2")
+@Table(name = "cart", schema = "online-store")
 @NoArgsConstructor
 public class Cart {
     @Id
@@ -38,7 +38,7 @@ public class Cart {
     @JoinColumn(name = "user_id")
     private User user;
     @ManyToMany
-    @JoinTable(name = "card_products",
+    @JoinTable(name = "card_products", schema = "online-store",
             joinColumns = @JoinColumn(name = "card_id"),
             inverseJoinColumns = @JoinColumn(name = "product_id"))
     private List<Product> products;

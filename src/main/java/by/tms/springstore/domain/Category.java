@@ -23,7 +23,7 @@ import java.util.List;
 //@ToString
 @EqualsAndHashCode
 @Entity
-@Table(name = "categories", schema = "online-store2")
+@Table(name = "categories", schema = "online-store")
 @NoArgsConstructor
 
 public class Category {

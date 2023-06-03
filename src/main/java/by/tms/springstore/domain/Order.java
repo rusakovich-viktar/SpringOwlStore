@@ -23,7 +23,7 @@ import java.time.LocalDateTime;
 @SuperBuilder
 @EqualsAndHashCode
 @Entity
-@Table(name = "orders", schema = "online-store2")
+@Table(name = "orders", schema = "online-store")
 @NoArgsConstructor
 public class Order {
     @Id

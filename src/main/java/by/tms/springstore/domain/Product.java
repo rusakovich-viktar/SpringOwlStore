@@ -22,7 +22,7 @@ import java.math.BigDecimal;
 @AllArgsConstructor
 //@EqualsAndHashCode(of = "id")
 @Entity
-@Table(name = "products", schema = "online-store2")
+@Table(name = "products", schema = "online-store")
 @NoArgsConstructor
 
 public class Product {
