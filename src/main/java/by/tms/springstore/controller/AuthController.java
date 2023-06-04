@@ -8,9 +8,11 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -22,9 +24,27 @@ import static by.tms.springstore.utils.Constants.RequestParams.PASSWORD;
 
 @RequiredArgsConstructor
 @Controller
+//@RequestMapping("/users")
 public class AuthController {
 
     private final UserService userService;
+
+
+//    @GetMapping("/new")
+//    public String newUser(Model model) {
+//        model.addAttribute("user", new UserDto());
+//        return "user";
+//    }
+//
+//    @PostMapping("/save")
+//    public String saveUser (UserDto userDto, Model model ) {
+//        if (userService.save(userDto)) {
+//            return "redirect:/";
+//        } else {
+//            model.addAttribute("user", userDto);
+//            return "user";
+//        }
+//    }
 
     @GetMapping("/signin")
     public String getLoginPage() {
@@ -58,5 +78,6 @@ public class AuthController {
         }
         return SIGN_IN;
     }
+
 
 }

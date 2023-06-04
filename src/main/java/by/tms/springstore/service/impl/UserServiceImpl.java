@@ -18,6 +18,7 @@ public class UserServiceImpl implements UserService {
 
     private final UserRepository userRepository;
 
+
     @Override
     public User getUserByLoginAndPassword(String login, String password) {
         return userRepository.findByUsernameAndPassword(login, password);
@@ -53,4 +54,33 @@ public class UserServiceImpl implements UserService {
 //        return userRepository.findUserDtoById(id);
     }
 
+//    @Override
+//    public boolean save(UserDto userDto) {
+//        if (!Objects.equals(userDto.getPassword(), userDto.getMatchingPassword())) {
+//            throw new RuntimeException("Password is not equals");
+//        }
+//        User user = User.builder()
+//                .name(userDto.getUsername())
+//                .password((passwordEncoder.encode(userDto.getPassword())))
+//                .email(userDto.getEmail())
+//                .role(Role.CLIENT)
+//                .build();
+//        userRepository.saveAndFlush(user);
+//        return true;
+//    }
+
+//    @Override
+//    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+//        User user = userRepository.findFirstByUsername(username);
+//        if (user == null) {
+//            throw new UsernameNotFoundException("User not found with name: " + username);
+//        }
+//        List<GrantedAuthority> roles = new ArrayList<>();
+//        roles.add(new SimpleGrantedAuthority(user.getRole().name()));
+//        return new org.springframework.security.core.userdetails.User(
+//                user.getName(),
+//                user.getPassword(),
+//                roles
+//        );
+//    }
 }

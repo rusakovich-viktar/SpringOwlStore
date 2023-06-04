@@ -27,7 +27,7 @@
         <maven.compiler.target>17</maven.compiler.target>
         <jsp-api.version>2.2</jsp-api.version>
         <jstl.version>1.2</jstl.version>
-        <flyway-core.version>9.19.1</flyway-core.version>
+        <flyway.version>9.19.1</flyway.version>
     </properties>
     <dependencies>
         <dependency>
@@ -82,7 +82,7 @@
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-devtools</artifactId>
-            <scope>runtime</scope>
+            <scope>compile</scope>
             <optional>true</optional>
         </dependency>
         <dependency>
@@ -111,27 +111,33 @@
             <version>3.1.1</version>
         </dependency>
         <dependency>
+            <groupId>jakarta.servlet</groupId>
+            <artifactId>jakarta.servlet-api</artifactId>
+            <version>6.0.0</version>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
             <artifactId>jstl</artifactId>
             <groupId>jstl</groupId>
             <version>${jstl.version}</version>
         </dependency>
-        <dependency>
-            <artifactId>jsp-api</artifactId>
-            <groupId>javax.servlet.jsp</groupId>
-            <scope>provided</scope>
-            <version>${jsp-api.version}</version>
-        </dependency>
+<!--        <dependency>-->
+<!--            <artifactId>jsp-api</artifactId>-->
+<!--            <groupId>javax.servlet.jsp</groupId>-->
+<!--            <scope>provided</scope>-->
+<!--            <version>${jsp-api.version}</version>-->
+<!--        </dependency>-->
         <dependency>
             <groupId>org.jetbrains</groupId>
             <artifactId>annotations</artifactId>
             <version>24.0.1</version>
             <scope>compile</scope>
         </dependency>
-<!--        <dependency>-->
-<!--            <groupId>org.flywaydb</groupId>-->
-<!--            <artifactId>flyway-core</artifactId>-->
-<!--            <version>${flyway-core.version}</version>-->
-<!--        </dependency>-->
+                <dependency>
+            <groupId>org.flywaydb</groupId>
+            <artifactId>flyway-core</artifactId>
+            <version>${flyway.version}</version>
+        </dependency>
     </dependencies>
 
     <build>
@@ -263,7 +269,7 @@
             <plugin>
                 <groupId>org.flywaydb</groupId>
                 <artifactId>flyway-maven-plugin</artifactId>
-                <version>${flyway-core.version}</version>
+                <version>${flyway.version}</version>
                 <configuration>
                     <user>postgres</user>
                     <password>root</password>

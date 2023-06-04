@@ -1,9 +1,10 @@
 package by.tms.springstore.service;
 
-import by.tms.springstore.dto.UserDto;
 import by.tms.springstore.domain.User;
+import by.tms.springstore.dto.UserDto;
 
-public interface UserService {
+public interface UserService  {
+
     User getUserByLoginAndPassword(String login, String password);
 
     void addNewUser(User user);

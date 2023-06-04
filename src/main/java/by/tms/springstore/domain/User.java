@@ -41,9 +41,9 @@ public class User {
     @Column(name = "registration_date")
     private LocalDate registrationDate;
     private String password;
-    @Enumerated(EnumType.STRING)
-    private Role role;
-    @OneToOne(cascade = CascadeType.REMOVE)
-    private Cart cart;
+//    @Enumerated(EnumType.STRING)
+//    private Role role;
+//    @OneToOne(cascade = CascadeType.REMOVE)
+//    private Cart cart;
 
 }

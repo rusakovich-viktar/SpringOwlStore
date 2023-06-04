@@ -5,6 +5,7 @@ import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Past;
 import jakarta.validation.constraints.Size;
+import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -21,6 +22,7 @@ import java.time.LocalDate;
 @SuperBuilder
 @EqualsAndHashCode
 @NoArgsConstructor
+@AllArgsConstructor
 public class UserDto {
 //    @UniqueElements
 //    @NotNull
@@ -38,8 +40,11 @@ public class UserDto {
     private String email;
     private LocalDate registrationDate;
 
-    public UserDto(String username, String name, String surname, String gender, String birthday, String email /*, String registrationDate*/) {
-    }
+    ///
+    private String password;
+    private String matchingPassword;
+
+
 
     public UserDto(Long id, String username, String name, String surname, String gender, String birthday, String email, LocalDate registrationDate) {
         this.id = id;

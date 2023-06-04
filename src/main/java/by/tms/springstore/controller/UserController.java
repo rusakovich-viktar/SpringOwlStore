@@ -23,7 +23,7 @@ import static by.tms.springstore.utils.Constants.PagePath.PROFILE;
 
 @Controller
 @RequiredArgsConstructor
-@RequestMapping("/user")
+//@RequestMapping("/user")
 public class UserController {
 
 
