@@ -43,7 +43,7 @@ public class User {
     private String password;
 //    @Enumerated(EnumType.STRING)
 //    private Role role;
-//    @OneToOne(cascade = CascadeType.REMOVE)
-//    private Cart cart;
+    @OneToOne(cascade = CascadeType.REMOVE)
+    private Cart cart;
 
 }

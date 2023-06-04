@@ -3,7 +3,7 @@ package by.tms.springstore.service;
 import by.tms.springstore.domain.User;
 import by.tms.springstore.dto.UserDto;
 
-public interface UserService  {
+public interface UserService {
 
     User getUserByLoginAndPassword(String login, String password);
 
@@ -12,5 +12,8 @@ public interface UserService  {
     void updateUser(UserDto userDto);
 
     UserDto findUserDtoById(Long id);
+
+    User findByName(String name);
+
 
 }

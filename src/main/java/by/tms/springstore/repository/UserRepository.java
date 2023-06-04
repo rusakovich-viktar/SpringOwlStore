@@ -11,8 +11,11 @@ public interface UserRepository extends JpaRepository<User, Long> {
     //    void addNewUser(User user);
 
     User findByUsernameAndPassword(String login, String password);
-//    User getUserByLoginAndPassword(String login, String password);
+
+    //    User getUserByLoginAndPassword(String login, String password);
 //    UserDto updateUserDtoById(UserDto user);
     Optional<User> findById(Long id);
     //    UserDto findUserDtoById(Long id);
+
+    User findFirstByName(String name);
 }

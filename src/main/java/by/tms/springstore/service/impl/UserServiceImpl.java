@@ -54,6 +54,11 @@ public class UserServiceImpl implements UserService {
 //        return userRepository.findUserDtoById(id);
     }
 
+    @Override
+    public User findByName(String name) {
+        return userRepository.findFirstByName(name);
+    }
+
 //    @Override
 //    public boolean save(UserDto userDto) {
 //        if (!Objects.equals(userDto.getPassword(), userDto.getMatchingPassword())) {
