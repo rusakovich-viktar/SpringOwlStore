@@ -2,11 +2,9 @@ package by.tms.springstore.controller;
 
 import by.tms.springstore.dto.UserDto;
 import by.tms.springstore.service.UserService;
-import by.tms.springstore.utils.Constants;
 import jakarta.servlet.http.HttpSession;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
-import org.jetbrains.annotations.NotNull;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -23,7 +21,7 @@ import static by.tms.springstore.utils.Constants.PagePath.PROFILE;
 
 @Controller
 @RequiredArgsConstructor
-//@RequestMapping("/user")
+@RequestMapping("/user")
 public class UserController {
 
 

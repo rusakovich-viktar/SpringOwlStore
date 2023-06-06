@@ -24,8 +24,8 @@
     <div class="row row-cols-1 row-cols-md-3">
         <div class="col mb-4 h-100"  th:each="product : ${products}">
             <div class="card h-100 product-card">
-                <a th:href="@{/product(productId=${product.id})}">
-<!--                <a th:href="@{'/product/' + ${product.id}}">-->
+<!--                <a th:href="@{/product(productId=${product.id})}">-->
+                <a th:href="@{'/product/' + ${product.id}}">
                     <img class="card-img-top"
                          th:src="@{'/images/' + ${product.imagePath}}" alt th:text="${product.name}">
                 </a>

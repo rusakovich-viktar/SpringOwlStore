@@ -31,8 +31,8 @@ public class CartServiceImpl implements CartService {
     }
 
     @Override
-    public CartDto getCartByUser(String name) {
-        User user = userService.findByName(name);
+    public CartDto getCartByUsername(String username) {
+        User user = userService.findByUsername(username);
         if(user == null || user.getCart() == null){
             return new CartDto();
         }

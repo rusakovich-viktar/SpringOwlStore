@@ -1,16 +1,14 @@
 package by.tms.springstore.controller;
 
-import by.tms.springstore.dto.UserDto;
 import by.tms.springstore.domain.Category;
+import by.tms.springstore.dto.UserDto;
 import by.tms.springstore.service.CategoryService;
-import by.tms.springstore.utils.Constants;
 import by.tms.springstore.utils.Utils;
 import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
 import org.jetbrains.annotations.NotNull;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import java.util.List;

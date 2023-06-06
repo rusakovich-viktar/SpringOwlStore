@@ -11,7 +11,7 @@ public interface CartService {
 
     void addProducts(Cart cart, List<Long> productIds);
 
-    CartDto getCartByUser(String name);
+    CartDto getCartByUsername(String username);
 
     void commitCartToOrder(String username);
 

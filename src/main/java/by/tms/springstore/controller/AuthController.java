@@ -1,5 +1,6 @@
 package by.tms.springstore.controller;
 
+import by.tms.springstore.domain.Cart;
 import by.tms.springstore.dto.UserDto;
 import by.tms.springstore.domain.User;
 import by.tms.springstore.service.UserService;
@@ -58,9 +59,9 @@ public class AuthController {
         User user = userService.getUserByLoginAndPassword(username, pass);
         if (user != null) {
             UserDto userDto = new UserDto(user.getId(), user.getUsername(), user.getName(), user.getSurname(), user.getGender(), user.getBirthday(), user.getEmail(), user.getRegistrationDate());
-//            Cart cart = new Cart();
-            session.setAttribute(CART, new Object());
-//            session.setAttribute(CART, cart);
+            Cart cart = new Cart();
+//            session.setAttribute(CART, new Object());
+            session.setAttribute(CART, cart);
             session.setAttribute(Constants.Attributes.USERNAME, username);
             session.setAttribute(USER_DTO, userDto);
             modelAndView.setViewName(REDIRECT_TO_HOME);
