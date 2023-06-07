@@ -12,12 +12,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
-import java.security.Principal;
-import java.util.Optional;
-
 import static by.tms.springstore.utils.Constants.Attributes.ONE_PRODUCT;
 import static by.tms.springstore.utils.Constants.Attributes.USER_DTO;
-import static by.tms.springstore.utils.Constants.RequestParams.PRODUCT_ID;
 import static by.tms.springstore.utils.Utils.isUserLogIn;
 
 @RequiredArgsConstructor
@@ -44,15 +40,10 @@ public class ProductController {
     }
 
 
-    @GetMapping("/{id}/card")
-    public String addCart(@PathVariable Long id, HttpSession session /*, Principal principal*/) {
+    @GetMapping("/{productId}/cart")
+    public String addCart(@PathVariable Long productId, HttpSession session) {
         UserDto userDto = (UserDto) session.getAttribute(USER_DTO);
-        /*  sessionObjectHolder.addClick();
-        if(principal == null){
-            return "redirect:/product";
-        }*/
-        productService.addToUserCart(id, userDto.getUsername());
-        return "redirect:/product";
+        productService.addToUserCart(productId, userDto.getUsername());
+        return "redirect:/product/" + productId;
     }
-
 }

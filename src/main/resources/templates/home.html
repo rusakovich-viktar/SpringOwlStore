@@ -21,7 +21,7 @@
             <div th:each="category : ${categories}" class="card w-25 m-1" type="category">
                 <div class="card-body">
 
-                    <a th:href="@{/category(categoryId=${category.id}, nameCategory=${category.name})}">
+                    <a th:href="@{/category/{id}(id=${category.id})}">
 <!--                    <a th:href="@{/category(categoryId=${category.id}, nameCategory=${category.name})}">-->
                         <div>
                             <span th:text="${category.name}"></span>

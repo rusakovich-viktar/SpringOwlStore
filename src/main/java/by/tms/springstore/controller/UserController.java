@@ -9,6 +9,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -27,8 +28,8 @@ public class UserController {
 
     private final UserService userService;
 
-    @GetMapping("/profile")
-    public ModelAndView showUserProfile(@RequestParam("id") Long id,
+    @GetMapping("/profile/{userId}")
+    public ModelAndView showUserProfile(@PathVariable("userId") Long id,
                                         ModelAndView modelAndView) {
         UserDto newUserDto = userService.findUserDtoById(id);
         modelAndView.addObject(USER_DTO, newUserDto);
