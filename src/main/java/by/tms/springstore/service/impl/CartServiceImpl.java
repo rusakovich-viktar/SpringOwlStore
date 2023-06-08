@@ -49,8 +49,13 @@ public class CartServiceImpl implements CartService {
     }
 
     @Override
+    @jakarta.transaction.Transactional
     public void addProducts(Cart cart, List<Long> productIds) {
-
+        List<Product> products = cart.getProducts();
+        List<Product> newProductsList = products == null ? new ArrayList<>() : new ArrayList<>(products);
+        newProductsList.addAll(getCollectRefProductsByIds(productIds));
+        cart.setProducts(newProductsList);
+        cartRepository.save(cart);
     }
 
     @Override
@@ -72,7 +77,6 @@ public class CartServiceImpl implements CartService {
                 detail.setSum(detail.getSum().add(product.getPrice()));
             }
         }
-
         cartDto.setCartDetails(new ArrayList<>(mapByProductId.values()));
         cartDto.aggregate();
 
