@@ -15,6 +15,7 @@ import java.math.BigDecimal;
 @Builder
 public class CartDetailDto {
     private String name;
+    private String imagePath;
     private Long productId;
     private BigDecimal price;
     @Builder.Default
@@ -23,6 +24,7 @@ public class CartDetailDto {
 
     public CartDetailDto(Product product) {
         this.name = product.getName();
+        this.imagePath = product.getImagePath();
         this.productId = product.getId();
         this.price = product.getPrice();
         this.amount = 1.0;

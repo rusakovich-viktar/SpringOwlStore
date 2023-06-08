@@ -36,20 +36,6 @@
             </tbody>
         </table>
     </div>
-    <br>
-    <br>
-    <form method="post" th:action="@{/cart/add}">
-        <input type="hidden" th:value="${oneProduct.id}" name="id"/>
-        <input type="hidden" th:value="${oneProduct.imagePath}" name="imagePath"/>
-        <input type="hidden" th:value="${oneProduct.name}" name="name"/>
-        <input type="hidden" th:value="${oneProduct.description}" name="description"/>
-        <input type="hidden" th:value="${oneProduct.price}" name="price"/>
-        <input type="hidden" th:value="${oneProduct.category}" name="categoryId"/>
-        <button type="submit" value="Buy" name="action" class="buttonAddProduct"><i
-                class="fa fa-lg fa-fw fa-cart-plus"></i> Buy
-        </button>
-        <br>
-    </form>
 </div>
 
 </body>

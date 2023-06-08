@@ -45,5 +45,6 @@ public class ProductController {
         UserDto userDto = (UserDto) session.getAttribute(USER_DTO);
         productService.addToUserCart(productId, userDto.getUsername());
         return "redirect:/product/" + productId;
+
     }
 }

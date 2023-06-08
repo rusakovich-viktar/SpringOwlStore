@@ -13,4 +13,7 @@ public interface ProductService {
     List<Product> getAllProductsByCategoryId(Long categoryId);
 
     void addToUserCart(Long productId, String username);
+
+    @jakarta.transaction.Transactional
+    void removeFromUserCart(Long productId, String username);
 }

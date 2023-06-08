@@ -43,31 +43,4 @@ public class Cart {
             inverseJoinColumns = @JoinColumn(name = "product_id"))
     private List<Product> products;
 
-
-//    private Map<Integer, Product> products;
-//    BigDecimal totalPrice = BigDecimal.ZERO;
-//
-//    public Cart() {
-//        this.products = new HashMap<>();
-//    }
-//
-//    public void addProduct(Product product) {
-//        products.put(product.getId(), product);
-//        totalPrice = totalPrice.add(product.getPrice());
-//    }
-//
-//    public void removeProduct(int productId) {
-//        Product product = products.get(productId);
-//        products.remove(productId);
-//        totalPrice = totalPrice.subtract(product.getPrice());
-//    }
-//
-//    public List<Product> getProducts() {
-//        return new ArrayList<>(products.values());
-//    }
-//
-//    public void clear() {
-//        products.clear();
-//    }
-
 }

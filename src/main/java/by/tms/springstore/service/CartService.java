@@ -3,6 +3,7 @@ package by.tms.springstore.service;
 import by.tms.springstore.domain.Cart;
 import by.tms.springstore.domain.User;
 import by.tms.springstore.dto.CartDto;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -16,5 +17,5 @@ public interface CartService {
     void commitCartToOrder(String username);
 
 
-
+    void deleteProduct(Cart cart, List<Long> productIds);
 }

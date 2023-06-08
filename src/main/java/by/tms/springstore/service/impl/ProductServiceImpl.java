@@ -9,11 +9,11 @@ import by.tms.springstore.service.ProductService;
 import by.tms.springstore.service.UserService;
 import lombok.RequiredArgsConstructor;
 import lombok.Setter;
+import org.jetbrains.annotations.NotNull;
 import org.springframework.stereotype.Service;
 
 import java.util.Collections;
 import java.util.List;
-import java.util.Optional;
 
 @Setter
 @Service
@@ -39,10 +39,7 @@ public class ProductServiceImpl implements ProductService {
     @Override
     @jakarta.transaction.Transactional
     public void addToUserCart(Long productId, String username) {
-        User user = userService.findByUsername(username);
-        if (user == null) {
-            throw new RuntimeException("User not found. " + username);
-        }
+        User user = getUser(username);
         Cart cart = user.getCart();
         if (cart == null) {
             Cart newCart = cartService.createCart(user, Collections.singletonList(productId));
@@ -52,5 +49,25 @@ public class ProductServiceImpl implements ProductService {
             cartService.addProducts(cart, Collections.singletonList(productId));
         }
     }
+
+    @NotNull
+    private User getUser(String username) {
+        User user = userService.findByUsername(username);
+        if (user == null) {
+            throw new RuntimeException("User not found. " + username);
+        }
+        return user;
+    }
+
+    @Override
+    @jakarta.transaction.Transactional
+    public void removeFromUserCart(Long productId, String username) {
+        User user = getUser(username);
+        Cart cart = user.getCart();
+        if (cart != null) {
+            cartService.deleteProduct(cart, Collections.singletonList(productId));
+        }
+    }
+
 
 }

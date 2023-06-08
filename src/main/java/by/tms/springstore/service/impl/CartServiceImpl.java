@@ -10,17 +10,14 @@ import by.tms.springstore.repository.CartRepository;
 import by.tms.springstore.repository.ProductRepository;
 import by.tms.springstore.service.CartService;
 import by.tms.springstore.service.UserService;
-import jakarta.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Objects;
-import java.util.Optional;
-import java.util.stream.Collectors;
 
 
 @Service
@@ -87,4 +84,16 @@ public class CartServiceImpl implements CartService {
     public void commitCartToOrder(String username) {
 
     }
+
+    @Override
+    @jakarta.transaction.Transactional
+    public void deleteProduct(Cart cart, List<Long> productIds) {
+        List<Product> products = cart.getProducts();
+        List<Product> newProductsList = products == null ? new ArrayList<>() : new ArrayList<>(products);
+        newProductsList.removeAll(getCollectRefProductsByIds(productIds));
+        cart.setProducts(newProductsList);
+        cartRepository.save(cart);
+    }
+
+
 }

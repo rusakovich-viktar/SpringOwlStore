@@ -4,6 +4,7 @@
     <title>Cart</title>
     <div th:block th:insert="~{bootstrap-basic.html}"></div>
     <link rel="stylesheet" th:href="@{/css/style.css}">
+
 </head>
 <body>
 <div th:block th:insert="~{header.html}"></div>
@@ -11,39 +12,61 @@
 
 <h2>Корзина</h2>
 
-<h3>All sum -> <b th:text="${cart.sum}">1000</b></h3>
 
 <table border="1" align="center">
     <tr>
-        <td>Title</td>
-        <td>Amount</td>
-        <td>Price</td>
-        <td>Sum</td>
+        <td></td>
+        <td>Название</td>
+        <td>Количество</td>
+        <td>Цена</td>
+        <td>Итого</td>
         <td></td>
     </tr>
     <tr th:each="detail : ${cart.cartDetails}">
-        <td th:text="${detail.name}">Cheese</td>
+        <td><a th:href="@{/product/{productId}(productId=${detail.productId})}">
+            <img class="card-img-top"
+                 th:src="@{/images/{imagePath}(imagePath=${detail.imagePath})}"></a></td>
+        <td><a th:href="@{/product/{productId}(productId=${detail.productId})}" th:text="${detail.name}">name</a></td>
         <td th:text="${detail.amount}">2</td>
         <td th:text="${detail.price}">11.0</td>
         <td th:text="${detail.sum}">22</td>
-        <td><a href="#">Remove</a></td>
+        <td><a th:href="@{/cart/{id}/delete(id=${detail.productId})}">Удалить</a></td>
     </tr>
+   <tr> итого -> <b th:text="${cart.sum}">1000</b> </tr>
 </table>
 
 
-
-<!--<div class="container-fluid mb-4" th:each="product : ${cart.getProducts()}">-->
-
-
-
-<!--    <div class="card w-25 m-1" type="product">-->
-<!--        <div class="card-body">-->
-<!--            <h4 class="card-title" th:text="${product.name}"></h4>-->
-<!--            <h4 class="card-title" th:text="${product.getDescription()}"></h4>-->
-<!--            <h4 class="card-title" th:text="${product.getPrice()}"></h4>-->
-<!--        </div>-->
-<!--    </div>-->
-<!--</div>-->
+<table class="table table-striped table-hover table-bordered" align="center">
+    <thead>
+    <tr>
+        <th></th>
+        <th>Название</th>
+        <th>Количество</th>
+        <th>Цена</th>
+        <th>Итого</th>
+        <th></th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="detail: ${cart.cartDetails}">
+        <td><a th:href="@{/product/{productId}(productId=${detail.productId})}">
+            <img class="card-img-top img-fluid rounded"
+                 th:src="@{/images/{imagePath}(imagePath=${detail.imagePath})}"
+                 style="max-width: 100px;"></a></td>
+        <td><a th:href="@{/product/{productId}(productId=${detail.productId})}" th:text="${detail.name}">name</a></td>
+        <td th:text="${detail.amount}">2</td>
+        <td th:text="${detail.price}">11.0</td>
+        <td th:text="${detail.sum}">22</td>
+        <td><a th:href="@{/cart/{id}/delete(id=${detail.productId})}" class="btn btn-danger btn-sm">Удалить</a></td>
+    </tr>
+    <tr>
+        <td colspan="3"></td>
+        <th>Итого:</th>
+        <td colspan="1" class="font-weight-bold" th:text="${cart.sum}"></td>
+        <td></td>
+    </tr>
+    </tbody>
+</table>
 
 </body>
 </html>
