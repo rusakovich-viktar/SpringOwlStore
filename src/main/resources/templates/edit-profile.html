@@ -2,14 +2,17 @@
 <html xmlns:th="http://www.thymeleaf.org" lang="en">
 <head>
   <div th:block th:insert="~{bootstrap-basic.html}"></div>
+  <link rel="stylesheet" th:href="@{/css/style.css}">
+
   <title>Edit user</title>
   <style>
-    .blue-text {
-      color: blue;
-    }
-  </style>
+      .blue-text {
+        color: blue;
+      }
+    </style>
 </head>
 <body>
+<div th:block th:insert="~{header.html}"></div>
 <div class="container">
   <h1>Редактирование данных пользователя</h1>
   <form action="profile" th:object="${userDto}" method="post">
