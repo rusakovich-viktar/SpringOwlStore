@@ -1,31 +1,55 @@
 package by.tms.springstore.controller;
 
+import by.tms.springstore.domain.Cart;
 import by.tms.springstore.dto.UserDto;
-import by.tms.springstore.model.User;
+import by.tms.springstore.domain.User;
 import by.tms.springstore.service.UserService;
 import by.tms.springstore.utils.Constants;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import static by.tms.springstore.utils.Constants.Attributes.CART;
 import static by.tms.springstore.utils.Constants.Attributes.USER_DTO;
+import static by.tms.springstore.utils.Constants.PagePath.REDIRECT_TO_HOME;
+import static by.tms.springstore.utils.Constants.PagePath.SIGN_IN;
 import static by.tms.springstore.utils.Constants.RequestParams.PASSWORD;
 
 @RequiredArgsConstructor
 @Controller
+//@RequestMapping("/users")
 public class AuthController {
 
     private final UserService userService;
 
+
+//    @GetMapping("/new")
+//    public String newUser(Model model) {
+//        model.addAttribute("user", new UserDto());
+//        return "user";
+//    }
+//
+//    @PostMapping("/save")
+//    public String saveUser (UserDto userDto, Model model ) {
+//        if (userService.save(userDto)) {
+//            return "redirect:/";
+//        } else {
+//            model.addAttribute("user", userDto);
+//            return "user";
+//        }
+//    }
+
     @GetMapping("/signin")
     public String getLoginPage() {
-        return "signin";
+        return SIGN_IN;
     }
 
     @PostMapping("/signin")
@@ -34,15 +58,15 @@ public class AuthController {
                                               HttpSession session, ModelAndView modelAndView) {
         User user = userService.getUserByLoginAndPassword(username, pass);
         if (user != null) {
-            UserDto userDto = new UserDto(user.getId(), user.getUsername(), user.getName(), user.getSurname(), user.getGender(), user.getBirthday(), user.getEmail()/*, user.getRegistrationDate()*/);
-//            Cart cart = new Cart();
-            session.setAttribute(CART, new Object());
-//            session.setAttribute(CART, cart);
+            UserDto userDto = new UserDto(user.getId(), user.getUsername(), user.getName(), user.getSurname(), user.getGender(), user.getBirthday(), user.getEmail(), user.getRegistrationDate());
+            Cart cart = new Cart();
+//            session.setAttribute(CART, new Object());
+            session.setAttribute(CART, cart);
             session.setAttribute(Constants.Attributes.USERNAME, username);
             session.setAttribute(USER_DTO, userDto);
-            modelAndView.setViewName("redirect:/home");
+            modelAndView.setViewName(REDIRECT_TO_HOME);
         } else {
-            modelAndView.setViewName("signin");
+            modelAndView.setViewName(SIGN_IN);
         }
         return modelAndView;
     }
@@ -53,7 +77,8 @@ public class AuthController {
         if (session != null) {
             session.invalidate();
         }
-        return "signin";
+        return SIGN_IN;
     }
+
 
 }

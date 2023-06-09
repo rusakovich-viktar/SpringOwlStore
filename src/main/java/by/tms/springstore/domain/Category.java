@@ -1,5 +1,7 @@
-package by.tms.springstore.model;
+package by.tms.springstore.domain;
 
+import jakarta.persistence.CascadeType;
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -16,9 +18,9 @@ import lombok.experimental.SuperBuilder;
 import java.util.List;
 
 @Setter
-@SuperBuilder
 @Getter
-@ToString
+@SuperBuilder
+//@ToString
 @EqualsAndHashCode
 @Entity
 @Table(name = "categories", schema = "online-store")
@@ -27,11 +29,15 @@ import java.util.List;
 public class Category {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private Long id;
     private String name;
-    private String imageName;
+    @Column(name = "image_path")
+    private String imagePath;
 
-    @OneToMany(mappedBy = "category")
+    @OneToMany(mappedBy = "category", orphanRemoval = true, cascade = CascadeType.ALL)
     private List<Product> productList;
 
 }
+
+
+

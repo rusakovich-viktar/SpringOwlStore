@@ -1,13 +1,19 @@
-//package by.tms.springstore.service;
-//
-//import by.tms.springstore.model.Product;
-//
-//import java.util.List;
-//
-//public interface ProductService {
-//    List<Product> getProducts();
-//
-//    Product getProductById(int id);
-//
-//    List<Product> getProductsByCategoryId(int categoryId);
-//}
+package by.tms.springstore.service;
+
+import by.tms.springstore.domain.Product;
+
+import java.util.List;
+import java.util.Optional;
+
+public interface ProductService {
+    List<Product> getProducts();
+
+    Product getProductById(Long id);
+
+    List<Product> getAllProductsByCategoryId(Long categoryId);
+
+    void addToUserCart(Long productId, String username);
+
+    @jakarta.transaction.Transactional
+    void removeFromUserCart(Long productId, String username);
+}

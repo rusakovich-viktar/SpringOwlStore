@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="ru">
+<head>
+    <title>Category</title>
+    <div th:block th:insert="~{bootstrap-basic.html}"></div>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+    <style>
+        .product-card {
+            width: 18rem;
+        }
+
+        .product-card img {
+            width: 100%;
+            height: auto;
+        }
+    </style>
+</head>
+<body>
+
+<div th:block th:insert="~{header.html}"></div>
+
+<div class="container">
+    <h2><span th:text="${nameCategory}"></span></h2>
+    <div class="row row-cols-1 row-cols-md-3">
+        <div class="col mb-4 h-100"  th:each="product : ${products}">
+            <div class="card h-100 product-card">
+<!--                <a th:href="@{/product(productId=${product.id})}">-->
+                <a th:href="@{'/product/' + ${product.id}}">
+                    <img class="card-img-top"
+                         th:src="@{'/images/' + ${product.imagePath}}" alt th:text="${product.name}">
+                </a>
+                <div class="card-body">
+                    <b>Описание:</b>
+                    <p class="card-text" th:text="${product.description}"></p>
+                    <b>Цена:</b>
+                    <p class="card-text" th:text="${product.price}"></p>
+
+<!--                    <td><a th:href="@{/product/{id}/cart(id=${product.id})}">Add to cart</a></td>-->
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>

@@ -14,7 +14,9 @@ public class Constants {
         public static final String NAME_CATEGORY = "nameCategory";
         public static final String MY_PRODUCTS = "myProducts";
         public static final String ONE_PRODUCT = "oneProduct";
+        public static final String PRODUCT = "product";
         public static final String USER_DTO = "userDto";
+        public static final String USER = "user";
         public static final String TOTAL_PRICE = "totalPrice";
     }
 
@@ -30,13 +32,28 @@ public class Constants {
         public static final String EMAIL = "email";
         public static final String REGISTRATION_DATE = "registrationDate";
         public static final String ID = "id";
-        public static final String IMAGE_NAME = "imageName";
+        public static final String IMAGE_PATH = "imagePath";
         public static final String NAME = "name";
         public static final String DESCRIPTION = "description";
         public static final String PRICE_PARAMETER = "price";
         public static final String CATEGORY_ID = "categoryId";
         public static final String NAME_CATEGORY = "nameCategory";
         public static final String ACTION = "action";
+
+
+    }
+
+    @UtilityClass
+    public class PagePath {
+        public static final String SIGN_IN = "signin";
+        public static final String SIGN_UP = "signup";
+
+        public static final String HOME = "home";
+        public static final String CART = "cart";
+        public static final String REDIRECT_TO_HOME = "redirect:/home";
+        public static final String PROFILE = "profile";
+        public static final String EDIT_PROFILE = "edit-profile";
+
     }
 
 }

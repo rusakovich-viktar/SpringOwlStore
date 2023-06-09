@@ -1,8 +1,9 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="UTF-8">
     <title>Title</title>
+    <div th:block th:insert="~{bootstrap-basic.html}"></div>
+    <link rel="stylesheet" th:href="@{/css/login.css}">
 </head>
 <body>
 <div id="wrapper">

@@ -1,4 +1,4 @@
-package by.tms.springstore.model;
+package by.tms.springstore.domain;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -20,25 +20,23 @@ import java.math.BigDecimal;
 @Setter
 @Getter
 @AllArgsConstructor
-@EqualsAndHashCode(of = "id")
-@ToString
-@NoArgsConstructor
+//@EqualsAndHashCode(of = "id")
 @Entity
 @Table(name = "products", schema = "online-store")
+@NoArgsConstructor
 
 public class Product {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
-    @Column(name = "image_name")
-    private String imageName;
+    private Long id;
+    @Column(name = "image_path")
+    private String imagePath;
     private String name;
     private String description;
     private BigDecimal price;
     @ManyToOne
-    @JoinColumn(name = "categories_id")
+    @JoinColumn(name = "category_id")
     private Category category;
 
 //    private int categoryId;
-
 }
