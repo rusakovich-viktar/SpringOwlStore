@@ -26,11 +26,13 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
+    @jakarta.transaction.Transactional
     public void addNewUser(User user) {
         userRepository.saveAndFlush(user);
 //        userRepository.addNewUser(user);
     }
-
+    @Override
+    @jakarta.transaction.Transactional
     public void updateUser(UserDto userDto) {
         User user = userRepository.findById(userDto.getId())
                 .orElseThrow(() -> new NotFoundException("User not found"));
@@ -60,37 +62,9 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
+    @jakarta.transaction.Transactional
     public void save(User user) {
         userRepository.save(user);
     }
 
-//    @Override
-//    public boolean save(UserDto userDto) {
-//        if (!Objects.equals(userDto.getPassword(), userDto.getMatchingPassword())) {
-//            throw new RuntimeException("Password is not equals");
-//        }
-//        User user = User.builder()
-//                .name(userDto.getUsername())
-//                .password((passwordEncoder.encode(userDto.getPassword())))
-//                .email(userDto.getEmail())
-//                .role(Role.CLIENT)
-//                .build();
-//        userRepository.saveAndFlush(user);
-//        return true;
-//    }
-
-//    @Override
-//    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-//        User user = userRepository.findFirstByUsername(username);
-//        if (user == null) {
-//            throw new UsernameNotFoundException("User not found with name: " + username);
-//        }
-//        List<GrantedAuthority> roles = new ArrayList<>();
-//        roles.add(new SimpleGrantedAuthority(user.getRole().name()));
-//        return new org.springframework.security.core.userdetails.User(
-//                user.getName(),
-//                user.getPassword(),
-//                roles
-//        );
-//    }
 }
