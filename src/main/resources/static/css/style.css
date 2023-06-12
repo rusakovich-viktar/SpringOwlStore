@@ -89,4 +89,25 @@ li a:hover {
 
 /*___________________*/
 
+.center-text {
+    text-align: center;
+}
+
+.empty-cart {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+}
+
+.image-container {
+    height: 300px; /* Высота контейнера изображения */
+    overflow: hidden; /* Скрытие лишней части изображения */
+}
+
+.image-container img {
+    object-fit: cover; /* Растяжение изображения для заполнения контейнера */
+    height: 100%; /* Растягиваем изображение на всю высоту контейнера */
+    width: 100%; /* Растягиваем изображение на всю ширину контейнера */
+}
 

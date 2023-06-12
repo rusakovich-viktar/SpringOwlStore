@@ -14,6 +14,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import static by.tms.springstore.utils.Constants.Attributes.ONE_PRODUCT;
 import static by.tms.springstore.utils.Constants.Attributes.USER_DTO;
+import static by.tms.springstore.utils.Constants.RequestParams.PRODUCT_ID;
 import static by.tms.springstore.utils.Utils.isUserLogIn;
 
 @RequiredArgsConstructor
@@ -40,7 +41,7 @@ public class ProductController {
     }
 
 
-    @GetMapping("/{productId}/cart")
+    @GetMapping("/add/{productId}")
     public String addCart(@PathVariable Long productId, HttpSession session) {
         UserDto userDto = (UserDto) session.getAttribute(USER_DTO);
         productService.addToUserCart(productId, userDto.getUsername());

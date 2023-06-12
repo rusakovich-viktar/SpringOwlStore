@@ -61,7 +61,6 @@ public class AuthController {
         if (user != null) {
             UserDto userDto = new UserDto(user.getId(), user.getUsername(), user.getName(), user.getSurname(), user.getGender(), user.getBirthday(), user.getEmail(), user.getRegistrationDate());
             Cart cart = new Cart();
-//            session.setAttribute(CART, new Object());
             session.setAttribute(CART, cart);
             session.setAttribute(Constants.Attributes.USERNAME, username);
             session.setAttribute(USER_DTO, userDto);

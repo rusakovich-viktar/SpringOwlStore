@@ -38,22 +38,26 @@ public class CartController {
         return "cart";
     }
 
-    @GetMapping("/{productId}/delete")
+    @GetMapping("/delete/{productId}")
     public String deleteAllIdenticalProductsFromCart(@PathVariable Long productId, Model model, HttpSession session) {
         UserDto userDto = (UserDto) session.getAttribute(USER_DTO);
         productService.removeAllIdenticalProductsFromUserCart(productId, userDto.getUsername());
         return "redirect:/cart";
-//        return "redirect:/product/" + productId;
     }
 
-    @GetMapping("/{productId}/delete-one")
+    @GetMapping("/delete-one/{productId}")
     public String deleteOneIdenticalProductsFromCart(@PathVariable Long productId, Model model, HttpSession session) {
         UserDto userDto = (UserDto) session.getAttribute(USER_DTO);
         productService.removeOneIdenticalProductFromUserCart(productId, userDto.getUsername());
         return "redirect:/cart";
-//        return "redirect:/product/" + productId;
     }
 
+    @GetMapping("/add/{productId}")
+    public String addCart(@PathVariable Long productId, HttpSession session) {
+        UserDto userDto = (UserDto) session.getAttribute(USER_DTO);
+        productService.addToUserCart(productId, userDto.getUsername());
+        return "redirect:/cart";
+    }
 
 
     @PostMapping()
@@ -63,5 +67,4 @@ public class CartController {
         }
         return "redirect:/cart";
     }
-
 }

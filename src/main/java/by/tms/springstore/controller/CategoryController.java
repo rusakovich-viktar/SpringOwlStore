@@ -31,7 +31,8 @@ public class CategoryController {
     private final ProductService productService;
 
     @GetMapping("/category/{categoryId}")
-    public ModelAndView showCategories(@PathVariable Long categoryId,
+    public ModelAndView showCategories
+            (@PathVariable Long categoryId,
             /*@RequestParam(CATEGORY_ID) long categoryId,
                                        @RequestParam(Constants.RequestParams.NAME_CATEGORY) String nameCategory,*/
                                        HttpServletRequest request, ModelAndView modelAndView) {

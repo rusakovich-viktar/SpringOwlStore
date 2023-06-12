@@ -30,8 +30,7 @@
             <tr>
                 <td th:text="${oneProduct.description}"></td>
                 <td class="text-center" style="vertical-align: middle" th:text="${oneProduct.price}"></td>
-<!--                <td><a th:href="@{/product/{id}/cart(id=${product.id})}">Add to cart</a></td>-->
-                <td><a th:href="@{/product/{id}/cart(id=${oneProduct.id})}">Add to cart</a></td>
+                <td><a th:href="@{/product/add/{id}(id=${oneProduct.id})}" class="btn btn-success btn-sm">Add to cart</a></td>
             </tr>
             </tbody>
         </table>
