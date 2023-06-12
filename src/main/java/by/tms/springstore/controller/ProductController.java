@@ -41,7 +41,7 @@ public class ProductController {
     }
 
 
-    @GetMapping("/add/{productId}")
+    @GetMapping("/{productId}/add")
     public String addCart(@PathVariable Long productId, HttpSession session) {
         UserDto userDto = (UserDto) session.getAttribute(USER_DTO);
         productService.addToUserCart(productId, userDto.getUsername());

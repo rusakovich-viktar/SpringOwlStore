@@ -40,7 +40,7 @@
         </td>
         <td><a th:href="@{/cart/delete-one/{id}(id=${detail.productId})}" class="btn btn-info btn-sm">-</a></td>
         <td th:text="${detail.amount}" style="text-align:center">amount</td>
-        <td><a th:href="@{/cart/add/{id}(id=${detail.productId})}" class="btn btn-info btn-sm">+</a></td>
+        <td><a th:href="@{/cart/{id}/add(id=${detail.productId})}" class="btn btn-info btn-sm">+</a></td>
         <td th:text="${detail.price}">price</td>
         <td th:text="${detail.sum}">sum</td>
         <td><a th:href="@{/cart/delete/{id}(id=${detail.productId})}" class="btn btn-danger btn-sm">Очистить</a>

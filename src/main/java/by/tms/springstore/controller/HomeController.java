@@ -25,7 +25,7 @@ public class HomeController {
     private final CategoryService categoryService;
 
     @GetMapping("/home")
-    public ModelAndView getHomePage(@NotNull HttpSession session, ModelAndView modelAndView) {
+    public ModelAndView getHomePage(HttpSession session, ModelAndView modelAndView) {
         UserDto userDto = (UserDto) session.getAttribute(USER_DTO);
         if (Utils.isUserLogIn(userDto)) {
             List<Category> categories = categoryService.getCategories();
