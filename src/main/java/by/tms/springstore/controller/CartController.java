@@ -39,12 +39,21 @@ public class CartController {
     }
 
     @GetMapping("/{productId}/delete")
-    public String deleteProductFromCart(@PathVariable Long productId, Model model, HttpSession session) {
+    public String deleteAllIdenticalProductsFromCart(@PathVariable Long productId, Model model, HttpSession session) {
         UserDto userDto = (UserDto) session.getAttribute(USER_DTO);
-        productService.removeFromUserCart(productId, userDto.getUsername());
+        productService.removeAllIdenticalProductsFromUserCart(productId, userDto.getUsername());
         return "redirect:/cart";
 //        return "redirect:/product/" + productId;
     }
+
+    @GetMapping("/{productId}/delete-one")
+    public String deleteOneIdenticalProductsFromCart(@PathVariable Long productId, Model model, HttpSession session) {
+        UserDto userDto = (UserDto) session.getAttribute(USER_DTO);
+        productService.removeOneIdenticalProductFromUserCart(productId, userDto.getUsername());
+        return "redirect:/cart";
+//        return "redirect:/product/" + productId;
+    }
+
 
 
     @PostMapping()

@@ -7,6 +7,7 @@ import by.tms.springstore.repository.ProductRepository;
 import by.tms.springstore.service.CartService;
 import by.tms.springstore.service.ProductService;
 import by.tms.springstore.service.UserService;
+import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import lombok.Setter;
 import org.jetbrains.annotations.NotNull;
@@ -37,7 +38,7 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
-    @jakarta.transaction.Transactional
+    @Transactional
     public void addToUserCart(Long productId, String username) {
         User user = getUser(username);
         Cart cart = user.getCart();
@@ -60,13 +61,24 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
-    @jakarta.transaction.Transactional
-    public void removeFromUserCart(Long productId, String username) {
+    @Transactional
+    public void removeAllIdenticalProductsFromUserCart(Long productId, String username) {
         User user = getUser(username);
         Cart cart = user.getCart();
         if (cart != null) {
-            cartService.deleteProduct(cart, Collections.singletonList(productId));
+            cartService.deleteAllIdenticalProduct(cart, Collections.singletonList(productId));
         }
+    }
+
+    @Override
+    @Transactional
+    public void removeOneIdenticalProductFromUserCart(Long productId, String username) {
+        User user = getUser(username);
+        Cart cart = user.getCart();
+        if (cart != null) {
+            cartService.deleteOneProduct(cart, Collections.singletonList(productId));
+        }
+
     }
 
 

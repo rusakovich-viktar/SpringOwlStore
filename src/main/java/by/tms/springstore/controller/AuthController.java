@@ -52,6 +52,7 @@ public class AuthController {
         return SIGN_IN;
     }
 
+
     @PostMapping("/signin")
     public ModelAndView loginHomePageFromForm(@RequestParam(Constants.RequestParams.USERNAME) String username,
                                               @RequestParam(PASSWORD) String pass,

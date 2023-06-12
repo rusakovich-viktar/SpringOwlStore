@@ -28,7 +28,7 @@ public class CartServiceImpl implements CartService {
     private final UserService userService;
 
     @Override
-    @jakarta.transaction.Transactional
+    @Transactional
     public Cart createCart(User user, List<Long> productIds) {
         Cart cart = new Cart();
         cart.setUser(user);
@@ -46,7 +46,7 @@ public class CartServiceImpl implements CartService {
     }
 
     @Override
-    @jakarta.transaction.Transactional
+    @Transactional
     public void addProducts(Cart cart, List<Long> productIds) {
         List<Product> products = cart.getProducts();
         List<Product> newProductsList = products == null ? new ArrayList<>() : new ArrayList<>(products);
@@ -86,13 +86,28 @@ public class CartServiceImpl implements CartService {
     }
 
     @Override
-    @jakarta.transaction.Transactional
-    public void deleteProduct(Cart cart, List<Long> productIds) {
+    @Transactional
+    public void deleteAllIdenticalProduct(Cart cart, List<Long> productIds) {
         List<Product> products = cart.getProducts();
         List<Product> newProductsList = products == null ? new ArrayList<>() : new ArrayList<>(products);
         newProductsList.removeAll(getCollectRefProductsByIds(productIds));
         cart.setProducts(newProductsList);
         cartRepository.save(cart);
+    }
+
+    @Override
+    @Transactional
+    public void deleteOneProduct(Cart cart, List<Long> productIds) {
+        List<Product> products = cart.getProducts();
+        List<Product> newProductsList = products == null ? new ArrayList<>() : new ArrayList<>(products);
+        if (newProductsList.size() > 1) {
+            newProductsList.remove(newProductsList.stream().findFirst().get());
+        } else {
+            newProductsList.removeAll(getCollectRefProductsByIds(productIds));
+        }
+        cart.setProducts(newProductsList);
+        cartRepository.save(cart);
+
     }
 
 

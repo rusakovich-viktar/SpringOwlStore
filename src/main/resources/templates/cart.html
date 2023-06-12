@@ -16,6 +16,7 @@
     <tr>
         <th></th>
         <th>Название</th>
+        <th>-</th>
         <th>Количество</th>
         <th>Цена</th>
         <th>Итого</th>
@@ -29,10 +30,11 @@
                  th:src="@{/images/{imagePath}(imagePath=${detail.imagePath})}"
                  style="max-width: 100px;"></a></td>
         <td><a th:href="@{/product/{productId}(productId=${detail.productId})}" th:text="${detail.name}">name</a></td>
+        <td><a th:href="@{/cart/{id}/delete-one(id=${detail.productId})}" class="btn btn-danger btn-sm">-</a></td>
         <td th:text="${detail.amount}">2</td>
         <td th:text="${detail.price}">11.0</td>
         <td th:text="${detail.sum}">22</td>
-        <td><a th:href="@{/cart/{id}/delete(id=${detail.productId})}" class="btn btn-danger btn-sm">Удалить</a></td>
+        <td><a th:href="@{/cart/{id}/delete(id=${detail.productId})}" class="btn btn-danger btn-sm">Очистить</a></td>
     </tr>
     <tr>
         <td colspan="3"></td>

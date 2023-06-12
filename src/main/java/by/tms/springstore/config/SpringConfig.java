@@ -9,9 +9,11 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 public class SpringConfig implements WebMvcConfigurer {
 ////    private final Environment environment;
 
+    @Override
     public void addViewControllers(ViewControllerRegistry registry) {
         registry.addRedirectViewController("/", "/home");
         registry.addRedirectViewController("", "/home");
+//        registry.addRedirectViewController("/login", "/auth/login");
     }
 
 }
