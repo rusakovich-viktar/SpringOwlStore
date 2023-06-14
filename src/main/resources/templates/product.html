@@ -12,9 +12,10 @@
 <div th:if="${oneProduct != null}" class="container-fluid">
     <h2 class="text-center" th:text="${oneProduct.name}"></h2><br>
 
-    <img class="mx-auto d-block" style="height:auto; max-width: 400px;"
-         th:src="@{/images/{imagePath}(imagePath=${oneProduct.imagePath})}"
-         th:alt="${oneProduct.imagePath}">
+    <img class="mx-auto d-block" style="height:auto; max-width: 300px;"
+         th:src="@{/images/__${#strings.toLowerCase(#strings.replace(oneProduct.category.name, ' ', '-'))}__/__${#strings.toLowerCase(oneProduct.name)}__.jpg}"
+         th:alt="${oneProduct.name}">
+
 
     <br>
     <div class="container">
@@ -30,7 +31,8 @@
             <tr>
                 <td th:text="${oneProduct.description}"></td>
                 <td class="text-center" style="vertical-align: middle" th:text="${oneProduct.price}"></td>
-                <td><a th:href="@{/product/{id}/add(id=${oneProduct.id})}" class="btn btn-success btn-sm">Add to cart</a></td>
+                <td><a th:href="@{/product/{id}/add(id=${oneProduct.id})}" class="btn btn-success btn-sm">Add to
+                    cart</a></td>
             </tr>
             </tbody>
         </table>

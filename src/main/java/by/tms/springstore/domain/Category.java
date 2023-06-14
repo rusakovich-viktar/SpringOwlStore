@@ -31,8 +31,8 @@ public class Category {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String name;
-    @Column(name = "image_path")
-    private String imagePath;
+//    @Column(name = "image_path")
+//    private String imagePath;
 
     @OneToMany(mappedBy = "category", orphanRemoval = true, cascade = CascadeType.ALL)
     private List<Product> productList;

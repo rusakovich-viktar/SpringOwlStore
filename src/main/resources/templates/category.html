@@ -27,9 +27,12 @@
                 <a th:href="@{'/product/' + ${product.id}}">
                     <div class="image-container d-flex flex-column">
                         <a th:href="@{'/product/' + ${product.id}}">
-                            <img class="card-img-top flex-shrink-0"
-                                 th:src="@{'/images/' + ${product.imagePath}}"
-                                 alt th:text="${product.name}">
+                            <!--                            <img class="card-img-top flex-shrink-0"-->
+                            <!--                                 th:src="@{'/images/' + ${product.imagePath}}"-->
+                            <!--                                 alt th:text="${product.name}">-->
+                            <img class="card-img-top top flex-shrink-0"
+                                 th:src="@{/images/__${#strings.toLowerCase(#strings.replace(product.category.name, ' ', '-'))}__/__${#strings.toLowerCase(product.name)}__.jpg}"
+                                 th:alt="${product.name}">
                         </a>
                     </div>
                 </a>

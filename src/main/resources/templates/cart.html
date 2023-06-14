@@ -5,22 +5,26 @@
     <div th:block th:insert="~{bootstrap-basic.html}"></div>
     <link rel="stylesheet" th:href="@{/css/style.css}">
 
+    <style>
+        .center-table {
+            margin: 0 auto;
+        }
+    </style>
 </head>
 <body>
 <div th:block th:insert="~{header.html}"></div>
 
 <div th:if="${#lists.size(cart.cartDetails) < 1}" class="empty-cart">
     <a th:href="@{/home}">
-        <img class="card-img-top img-fluid" th:src="@{/images/static/void.jpg}">
+        <img class="card-img-top img-fluid" th:src="@{/images/other-pic/void.jpg}">
     </a>
 </div>
 
 
-<table class="table table-striped table-hover table-bordered center-text" th:if="${#lists.size(cart.cartDetails) > 0}">
+<table class="table table-striped table-hover table-bordered center-text center-table" th:if="${#lists.size(cart.cartDetails) > 0}">
     <h2>Корзина</h2>
     <thead>
     <tr>
-        <th></th>
         <th>Название</th>
         <th></th>
         <th>Количество</th>
@@ -32,10 +36,6 @@
     </thead>
     <tbody>
     <tr th:each="detail: ${cart.cartDetails}">
-        <td><a th:href="@{/product/{productId}(productId=${detail.productId})}">
-            <img class="card-img-top img-fluid rounded"
-                 th:src="@{/images/{imagePath}(imagePath=${detail.imagePath})}"
-                 style="max-width: 100px;"></a></td>
         <td><a th:href="@{/product/{productId}(productId=${detail.productId})}" th:text="${detail.name}">name</a>
         </td>
         <td><a th:href="@{/cart/delete-one/{id}(id=${detail.productId})}" class="btn btn-info btn-sm">-</a></td>
@@ -47,7 +47,7 @@
         </td>
     </tr>
     <tr>
-        <td colspan="5"></td>
+        <td colspan="4"></td>
         <th>Итого:</th>
         <td colspan="1" class="font-weight-bold" th:text="${cart.sum}"></td>
         <td></td>

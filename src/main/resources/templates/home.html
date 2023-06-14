@@ -19,28 +19,10 @@
                     <a th:href="@{/category/{id}(id=${category.id})}">
                         <div>
                             <span th:text="${category.name}"></span>
-                            <img class="card-img-top" th:src="@{/images/__${category.imagePath}__}"
-                                 style="width:150px;height:120px" alt="Card image"/>
-                        </div>
-                    </a>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-
-<div class="container-fluid">
-    <div th:if="${categories != null}">
-        <div class="row card-deck">
-            <div th:each="category : ${categories}" class="card w-25 m-1" type="category">
-                <div class="card-body">
-                    <a th:href="@{/category/{id}(id=${category.id})}">
-                        <div>
-                            <span th:text="${category.name}"></span>
-                            <img class="card-img-top"
-                                 th:src="@{/images/__${category.imagePath}__}"
+                            <img class="card-img-top img"
+                                 th:src="@{/images/categories/__${#strings.toLowerCase(category.name)}__.jpg}"
                                  style="width:150px;height:120px"
-                                 alt="Card image"/>
+                                 th:alt="${category.name}">
                         </div>
                     </a>
                 </div>
@@ -50,8 +32,8 @@
 </div>
 
 <!--<img class="card-img-top" style="max-height: 20rem"-->
-<!--     th:src="@{/images/__${#strings.toLowerCase(product.category)}__/__${product.name}__.jpg}"-->
-<!--     th:alt="${product.name}">-->
+<!--     th:src="@{/images/category/__${#strings.toLowerCase(category.name)}__.jpg}"-->
+<!--     th:alt="${category.name}">-->
 
 
 </body>

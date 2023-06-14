@@ -29,8 +29,8 @@ public class Product {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @Column(name = "image_path")
-    private String imagePath;
+//    @Column(name = "image_path")
+//    private String imagePath;
     private String name;
     private String description;
     private BigDecimal price;
