@@ -5,6 +5,7 @@ import by.tms.springstore.dto.UserDto;
 import by.tms.springstore.exceptions.NotFoundException;
 import by.tms.springstore.repository.UserRepository;
 import by.tms.springstore.service.UserService;
+import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
@@ -26,13 +27,13 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    @jakarta.transaction.Transactional
+    @Transactional
     public void addNewUser(User user) {
         userRepository.saveAndFlush(user);
-//        userRepository.addNewUser(user);
     }
+
     @Override
-    @jakarta.transaction.Transactional
+    @Transactional
     public void updateUser(UserDto userDto) {
         User user = userRepository.findById(userDto.getId())
                 .orElseThrow(() -> new NotFoundException("User not found"));
@@ -58,11 +59,10 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public User findByUsername(String username) {
-        return userRepository.findFirstByUsername(username);
+        return userRepository.findByUsername(username);
     }
 
     @Override
-    @jakarta.transaction.Transactional
     public void save(User user) {
         userRepository.save(user);
     }

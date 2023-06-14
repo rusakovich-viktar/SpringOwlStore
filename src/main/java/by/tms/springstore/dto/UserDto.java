@@ -24,26 +24,25 @@ import java.time.LocalDate;
 @NoArgsConstructor
 @AllArgsConstructor
 public class UserDto {
-//    @UniqueElements
+    //    @UniqueElements
 //    @NotNull
     private Long id;
-    @NotEmpty
+    @NotEmpty(message = "Поле не должно быть пустым")
     @Size(min = 2, max = 30, message = "Name should not be between 2 and 30 character")
     private String username;
     private String name;
     private String surname;
     private String gender;
-//    @Past(message = "Birthday should not be magic date")
+    //    @Past(message = "Birthday should not be magic date")
     private String birthday;
     @Email(message = "Invalid email address")
-    @NotEmpty
+    @NotEmpty(message = "Поле не должно быть пустым")
     private String email;
     private LocalDate registrationDate;
 
     ///
     private String password;
     private String matchingPassword;
-
 
 
     public UserDto(Long id, String username, String name, String surname, String gender, String birthday, String email, LocalDate registrationDate) {

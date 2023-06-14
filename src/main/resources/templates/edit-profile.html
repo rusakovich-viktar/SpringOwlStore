@@ -15,7 +15,7 @@
 <div th:block th:insert="~{header.html}"></div>
 <div class="container">
   <h1>Редактирование данных пользователя</h1>
-  <form action="profile" th:object="${userDto}" method="post">
+  <form th:action="@{/profile}" th:object="${userDto}" th:method="post">
     <div class="form-group">
       <label for="username">Username:</label>
       <input type="text" th:field="*{username}" readonly="readonly" class="form-control" id="username" title="Неизменяемое поле">
