@@ -10,7 +10,6 @@ import by.tms.springstore.service.UserService;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import lombok.Setter;
-import org.jetbrains.annotations.NotNull;
 import org.springframework.stereotype.Service;
 
 import java.util.Collections;
@@ -51,7 +50,6 @@ public class ProductServiceImpl implements ProductService {
         }
     }
 
-    @NotNull
     private User getUser(String username) {
         User user = userService.findByUsername(username);
         if (user == null) {

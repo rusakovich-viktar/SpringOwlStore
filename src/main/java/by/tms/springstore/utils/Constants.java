@@ -46,6 +46,7 @@ public class Constants {
     @UtilityClass
     public class PagePath {
         public static final String SIGN_IN = "signin";
+        public static final String LOGIN = "login";
         public static final String SIGN_UP = "signup";
 
         public static final String HOME = "home";

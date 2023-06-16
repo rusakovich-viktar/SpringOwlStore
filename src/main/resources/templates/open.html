@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity6">
+
+<head>
+    <meta charset="UTF-8">
+    <title>open page</title>
+
+</head>
+<body>
+open page
+<div sec:authorize="isAuthenticated()">
+    Содержимое, которое должно быть видно только для аутентифицированных пользователей
+</div>
+<div sec:authorize="!isAuthenticated()">
+    Содержимое, которое должно быть видно только для неаутентифицированных пользователей
+</div>
+<div sec:authorize="hasRole('USER')">
+    Содержимое, которое должно быть видно только для пользователей с ролью "USER"
+</div>
+<div sec:authorize="hasRole('ADMIN')">
+    Содержимое, которое должно быть видно только для пользователей с ролью "ADMIN"
+</div>
+
+</body>
+</html>

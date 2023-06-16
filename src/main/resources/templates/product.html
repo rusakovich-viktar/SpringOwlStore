@@ -12,7 +12,7 @@
 <div th:if="${oneProduct != null}" class="container-fluid">
     <h2 class="text-center" th:text="${oneProduct.name}"></h2><br>
 
-    <img class="mx-auto d-block" style="height:auto; max-width: 300px;"
+    <img class="mx-auto d-block" style="height:auto; max-width: 290px;"
          th:src="@{/images/__${#strings.toLowerCase(#strings.replace(oneProduct.category.name, ' ', '-'))}__/__${#strings.toLowerCase(oneProduct.name)}__.jpg}"
          th:alt="${oneProduct.name}">
 

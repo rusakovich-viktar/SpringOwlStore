@@ -7,7 +7,7 @@ public interface UserService {
 
     User getUserByLoginAndPassword(String login, String password);
 
-    void addNewUser(User user);
+    void registrationNewUser(User user);
 
     void updateUser(UserDto userDto);
 

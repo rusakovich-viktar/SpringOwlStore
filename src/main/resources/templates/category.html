@@ -40,10 +40,6 @@
                     <h5 class="card-title">
                         <a th:href="@{'/product/' + ${product.id}}" th:text="${product.name}"></a>
                     </h5>
-                    <div class="d-flex flex-column flex-grow-1">
-                        <b>Описание:</b>
-                        <p class="card-text flex-grow-1" th:text="${product.description}"></p>
-                    </div>
                     <b>Цена:</b>
                     <p class="card-text" th:text="${product.price}"></p>
                 </div>

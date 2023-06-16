@@ -1,5 +1,6 @@
 package by.tms.springstore.service.impl;
 
+import by.tms.springstore.domain.Role;
 import by.tms.springstore.domain.User;
 import by.tms.springstore.dto.UserDto;
 import by.tms.springstore.exceptions.NotFoundException;
@@ -8,6 +9,7 @@ import by.tms.springstore.service.UserService;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.Optional;
@@ -18,6 +20,7 @@ import java.util.Optional;
 public class UserServiceImpl implements UserService {
 
     private final UserRepository userRepository;
+    private final PasswordEncoder passwordEncoder;
 
 
     @Override
@@ -28,8 +31,10 @@ public class UserServiceImpl implements UserService {
 
     @Override
     @Transactional
-    public void addNewUser(User user) {
-        userRepository.saveAndFlush(user);
+    public void registrationNewUser(User user) {
+        user.setPassword(passwordEncoder.encode(user.getPassword()));
+        user.setRole(Role.ROLE_USER);
+        userRepository.save(user);
     }
 
     @Override

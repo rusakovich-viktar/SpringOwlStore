@@ -22,11 +22,10 @@ import java.time.LocalDate;
 
 @Getter
 @Setter
-@EqualsAndHashCode(callSuper = false)
-@SuperBuilder(toBuilder = true)
 @Entity
 @Table(name = "users", schema = "online-store")
 @NoArgsConstructor
+@SuperBuilder(toBuilder = true)
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -41,8 +40,9 @@ public class User {
     @Column(name = "registration_date")
     private LocalDate registrationDate;
     private String password;
-//    @Enumerated(EnumType.STRING)
-//    private Role role;
+    @Enumerated(EnumType.STRING)
+    @Column(name = "role")
+    private Role role;
     @OneToOne(cascade = CascadeType.REMOVE)
     private Cart cart;
 

@@ -13,7 +13,7 @@ public class SpringConfig implements WebMvcConfigurer {
     public void addViewControllers(ViewControllerRegistry registry) {
         registry.addRedirectViewController("/", "/home");
         registry.addRedirectViewController("", "/home");
-//        registry.addRedirectViewController("/login", "/auth/login");
+//        registry.addViewController("/login").setViewName("auth/login");
     }
 
 }

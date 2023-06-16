@@ -11,9 +11,9 @@
         <div class="col-lg-auto">
             <div class="card">
                 <div class="card-body">
-                    <h3 class="card-title text-right">Register panel</h3>
+                    <h3 class="card-title text-right">Registration panel</h3>
                     <h4 class="card-subtitle mb-4 text-center">Для регистрации заполните следующую информацию:</h4>
-                    <form id="registrationForm" th:method="post" th:action="@{/signup}" th:object="${user}">
+                    <form id="registrationForm" th:method="post" th:action="@{/auth/registration}" th:object="${user}">
                         <div class="mb-3">
                             <label for="email" class="form-label">Введите Email</label>
                             <input id="email" type="email" class="form-control" placeholder="Email" name="email"
@@ -41,7 +41,7 @@
                             <button id="regFormSignUpBtn" type="submit" class="btn btn-primary">Register</button>
                         </div>
                     </form>
-                    <p class="text-center mt-4">Already have an account? <a th:href="@{/home}">Login here</a>
+                    <p class="text-center mt-4">Already have an account? <a th:href="@{/auth/login}">Login here</a>
                     </p>
                 </div>
             </div>

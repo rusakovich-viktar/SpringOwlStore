@@ -14,7 +14,6 @@ import org.springframework.web.servlet.ModelAndView;
 
 import static by.tms.springstore.utils.Constants.Attributes.ONE_PRODUCT;
 import static by.tms.springstore.utils.Constants.Attributes.USER_DTO;
-import static by.tms.springstore.utils.Constants.RequestParams.PRODUCT_ID;
 import static by.tms.springstore.utils.Utils.isUserLogIn;
 
 @RequiredArgsConstructor
@@ -29,14 +28,14 @@ public class ProductController {
             HttpServletRequest request, ModelAndView modelAndView) {
         HttpSession session = request.getSession();
         UserDto userDto = (UserDto) session.getAttribute(USER_DTO);
-        if (isUserLogIn(userDto)) {
+//        if (isUserLogIn(userDto)) {
 //            long productId = Long.parseLong(request.getParameter(PRODUCT_ID));
             Product product = productService.getProductById(productId);
             request.setAttribute(ONE_PRODUCT, product);
             modelAndView.setViewName("product");
-        } else {
-            modelAndView.setViewName("signin");
-        }
+//        } else {
+//            modelAndView.setViewName("login");
+//        }
         return modelAndView;
     }
 
