@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.ModelAndView;
 
 @RequiredArgsConstructor
 @Controller
@@ -31,13 +32,21 @@ public class AuthController {
     }
 
     @PostMapping("/registration")
-    public String performRegistration(@ModelAttribute("user") @Valid User user,
-                                      BindingResult bindingResult) {
+    public ModelAndView performRegistration(@ModelAttribute("user") @Valid User user,
+                                            BindingResult bindingResult, ModelAndView modelAndView) {
         userValidator.validate(user, bindingResult);
-        if (bindingResult.hasErrors())
-            return "/auth/registration";
-        userService.registrationNewUser(user);
-        return "redirect:/auth/login";
+        if (bindingResult.hasErrors()) {
+            modelAndView.setViewName("/auth/registration");
+        } else {
+            boolean registrationSuccess = userService.registrationNewUser(user);
+            if (registrationSuccess) {
+                modelAndView.addObject("successRegistration", true);
+//                modelAndView.setViewName("redirect:/auth/login?success=true");
+            } else {
+                modelAndView.addObject("errorRegistration", true);
+            }
+        }
+        return modelAndView;
     }
-
+//            modelAndView.setViewName("redirect:/auth/login");
 }
