@@ -55,7 +55,6 @@ public class CartController {
         return "redirect:/cart";
     }
 
-
     @PostMapping()
     public String commitCart(Principal principal) {
         if (principal != null) {

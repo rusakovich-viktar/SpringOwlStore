@@ -41,12 +41,10 @@ public class AuthController {
             boolean registrationSuccess = userService.registrationNewUser(user);
             if (registrationSuccess) {
                 modelAndView.addObject("successRegistration", true);
-//                modelAndView.setViewName("redirect:/auth/login?success=true");
             } else {
                 modelAndView.addObject("errorRegistration", true);
             }
         }
         return modelAndView;
     }
-//            modelAndView.setViewName("redirect:/auth/login");
 }
