@@ -76,7 +76,6 @@ public class ProductServiceImpl implements ProductService {
         if (cart != null) {
             cartService.deleteOneProduct(cart, Collections.singletonList(productId));
         }
-
     }
 
 

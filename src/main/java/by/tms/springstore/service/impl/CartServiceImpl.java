@@ -18,6 +18,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 
 
 @Service
@@ -76,13 +77,11 @@ public class CartServiceImpl implements CartService {
         }
         cartDto.setCartDetails(new ArrayList<>(mapByProductId.values()));
         cartDto.aggregate();
-
         return cartDto;
     }
 
     @Override
     public void commitCartToOrder(String username) {
-
     }
 
     @Override
@@ -100,15 +99,12 @@ public class CartServiceImpl implements CartService {
     public void deleteOneProduct(Cart cart, List<Long> productIds) {
         List<Product> products = cart.getProducts();
         List<Product> newProductsList = products == null ? new ArrayList<>() : new ArrayList<>(products);
-        if (newProductsList.size() > 1) {
-            newProductsList.remove(newProductsList.stream().findFirst().get());
-        } else {
-            newProductsList.removeAll(getCollectRefProductsByIds(productIds));
-        }
+
+        Optional<Product> productToRemove = newProductsList.stream()
+                .filter(product -> productIds.contains(product.getId()))
+                .findFirst();
+        productToRemove.ifPresent(newProductsList::remove);
         cart.setProducts(newProductsList);
         cartRepository.save(cart);
-
     }
-
-
 }

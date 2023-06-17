@@ -2,6 +2,7 @@ package by.tms.springstore.controller;
 
 import by.tms.springstore.domain.User;
 import by.tms.springstore.service.UserService;
+import by.tms.springstore.utils.Constants;
 import by.tms.springstore.utils.UserValidator;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
@@ -13,6 +14,12 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+import static by.tms.springstore.utils.Constants.Attributes.ERROR_REGISTRATION;
+import static by.tms.springstore.utils.Constants.Attributes.SUCCESS_REGISTRATION;
+import static by.tms.springstore.utils.Constants.Attributes.USER;
+import static by.tms.springstore.utils.Constants.PagePath.AUTH_LOGIN;
+import static by.tms.springstore.utils.Constants.PagePath.AUTH_REGISTRATION;
+
 @RequiredArgsConstructor
 @Controller
 @RequestMapping("/auth")
@@ -23,26 +30,26 @@ public class AuthController {
 
     @GetMapping("/login")
     public String loginPage() {
-        return "auth/login";
+        return AUTH_LOGIN;
     }
 
     @GetMapping("/registration")
-    public String registrationPage(@ModelAttribute("user") User user) {
-        return "auth/registration";
+    public String registrationPage(@ModelAttribute(USER) User user) {
+        return AUTH_REGISTRATION;
     }
 
     @PostMapping("/registration")
-    public ModelAndView performRegistration(@ModelAttribute("user") @Valid User user,
+    public ModelAndView performRegistration(@ModelAttribute(USER) @Valid User user,
                                             BindingResult bindingResult, ModelAndView modelAndView) {
         userValidator.validate(user, bindingResult);
         if (bindingResult.hasErrors()) {
-            modelAndView.setViewName("/auth/registration");
+            modelAndView.setViewName(AUTH_REGISTRATION);
         } else {
             boolean registrationSuccess = userService.registrationNewUser(user);
             if (registrationSuccess) {
-                modelAndView.addObject("successRegistration", true);
+                modelAndView.addObject(SUCCESS_REGISTRATION, true);
             } else {
-                modelAndView.addObject("errorRegistration", true);
+                modelAndView.addObject(ERROR_REGISTRATION, true);
             }
         }
         return modelAndView;

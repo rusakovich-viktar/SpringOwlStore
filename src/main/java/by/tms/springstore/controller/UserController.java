@@ -46,16 +46,17 @@ public class UserController {
     }
 
     @GetMapping("/edit")
-    public String editUserProfileInfo(Authentication authentication, Model model) {
+    public ModelAndView editUserProfileInfo(Authentication authentication, ModelAndView modelAndView) {
         String username = authentication.getName();
         User user = userService.findByUsername(username);
         UserDto userDto = userMapper.convertToUserDto(user);
-        model.addAttribute("userDto", userDto);
-        return "edit-profile";
+        modelAndView.addObject(USER_DTO, userDto);
+        modelAndView.setViewName(EDIT_PROFILE);
+        return modelAndView;
     }
 
     @PostMapping("/profile")
-    public ModelAndView updateProfile(@ModelAttribute("userDto") @Valid UserDto userDto,
+    public ModelAndView updateProfile(@ModelAttribute(USER_DTO) @Valid UserDto userDto,
                                       BindingResult bindingResult,
                                       ModelAndView modelAndView) {
         if (bindingResult.hasErrors()) {
