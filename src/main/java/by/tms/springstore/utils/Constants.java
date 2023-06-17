@@ -53,6 +53,8 @@ public class Constants {
         public static final String CART = "cart";
         public static final String REDIRECT_TO_HOME = "redirect:/home";
         public static final String PROFILE = "profile";
+        public static final String REDIRECT_TO_PROFILE = "redirect:/profile";
+
         public static final String EDIT_PROFILE = "edit-profile";
 
     }

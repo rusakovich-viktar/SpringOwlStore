@@ -6,6 +6,7 @@ import by.tms.springstore.service.ProductService;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -26,25 +27,16 @@ public class ProductController {
     @GetMapping("/{productId}")
     public ModelAndView showProduct(@PathVariable Long productId,
             HttpServletRequest request, ModelAndView modelAndView) {
-        HttpSession session = request.getSession();
-        UserDto userDto = (UserDto) session.getAttribute(USER_DTO);
-//        if (isUserLogIn(userDto)) {
-//            long productId = Long.parseLong(request.getParameter(PRODUCT_ID));
             Product product = productService.getProductById(productId);
             request.setAttribute(ONE_PRODUCT, product);
             modelAndView.setViewName("product");
-//        } else {
-//            modelAndView.setViewName("login");
-//        }
         return modelAndView;
     }
 
 
     @GetMapping("/{productId}/add")
-    public String addCart(@PathVariable Long productId, HttpSession session) {
-        UserDto userDto = (UserDto) session.getAttribute(USER_DTO);
-        productService.addToUserCart(productId, userDto.getUsername());
+    public String addCart(@PathVariable Long productId, Authentication authentication) {
+        productService.addToUserCart(productId, authentication.getName());
         return "redirect:/product/" + productId;
-
     }
 }

@@ -39,5 +39,20 @@
     </div>
 </div>
 
+<!-- Всплывающее окно добавления товара в корзину -->
+<div id="cartNotificationModal" class="modal fade" th:if="${addedToCart}">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Уведомление о добавлении товара в корзину</h5>
+            </div>
+            <div class="modal-body">
+                <p>Товар успешно добавлен в корзину!</p>
+                <p>Перейти в корзину: <a href="/cart">Корзина</a></p>
+            </div>
+        </div>
+    </div>
+</div>
+
 </body>
 </html>

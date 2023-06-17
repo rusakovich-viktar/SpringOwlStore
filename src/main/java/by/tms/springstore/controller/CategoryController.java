@@ -33,18 +33,11 @@ public class CategoryController {
             /*@RequestParam(CATEGORY_ID) long categoryId,
                                        @RequestParam(Constants.RequestParams.NAME_CATEGORY) String nameCategory,*/
                                        HttpServletRequest request, ModelAndView modelAndView) {
-        HttpSession session = request.getSession();
-        UserDto userDto = (UserDto) session.getAttribute(USER_DTO);
-//        if (isUserLogIn(userDto)) {
             String nameCategory = request.getParameter(NAME_CATEGORY);
-
             List<Product> categoryProducts = productService.getAllProductsByCategoryId(categoryId);
             modelAndView.addObject(PRODUCTS, categoryProducts);
             modelAndView.addObject(Constants.Attributes.NAME_CATEGORY, nameCategory);
             modelAndView.setViewName("category");
-//        } else {
-//            modelAndView.setViewName("login");
-//        }
         return modelAndView;
     }
 

@@ -24,8 +24,7 @@ import java.time.LocalDate;
 @NoArgsConstructor
 @AllArgsConstructor
 public class UserDto {
-    //    @UniqueElements
-//    @NotNull
+
     private Long id;
     @NotEmpty(message = "Поле не должно быть пустым")
     @Size(min = 2, max = 30, message = "Name should not be between 2 and 30 character")
@@ -44,15 +43,4 @@ public class UserDto {
     private String password;
     private String matchingPassword;
 
-
-    public UserDto(Long id, String username, String name, String surname, String gender, String birthday, String email, LocalDate registrationDate) {
-        this.id = id;
-        this.username = username;
-        this.name = name;
-        this.surname = surname;
-        this.gender = gender;
-        this.birthday = birthday;
-        this.email = email;
-        this.registrationDate = registrationDate;
-    }
 }
