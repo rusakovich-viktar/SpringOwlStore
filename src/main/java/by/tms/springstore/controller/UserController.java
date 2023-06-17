@@ -33,7 +33,6 @@ import static by.tms.springstore.utils.Constants.PagePath.REDIRECT_TO_PROFILE;
 @RequestMapping("/user")
 public class UserController {
 
-
     private final UserService userService;
     private final UserMapper userMapper;
 
@@ -46,22 +45,6 @@ public class UserController {
         return modelAndView;
     }
 
-//    @GetMapping("/edit")
-//    public ModelAndView editUserProfileInfo(HttpSession session, ModelAndView modelAndView) {
-//        UserDto userDto = из сессии;
-//        modelAndView.setViewName(EDIT_PROFILE);
-//        modelAndView.addObject(USER_DTO, userDto);
-//        return modelAndView;
-//    }
-
-    //    @GetMapping("/edit")
-//    public ModelAndView editUserProfileInfo(@AuthenticationPrincipal CustomUserDetails userDetails, ModelAndView modelAndView) {
-//        UserDto userDto = userMapper.convertToUserDto(userDetails);
-//        System.out.println(userDetails);
-//        modelAndView.setViewName(EDIT_PROFILE);
-//        modelAndView.addObject(USER_DTO, userDto);
-//        return modelAndView;
-//    }
     @GetMapping("/edit")
     public String editUserProfileInfo(Authentication authentication, Model model) {
         String username = authentication.getName();
@@ -75,12 +58,11 @@ public class UserController {
     public ModelAndView updateProfile(@ModelAttribute("userDto") @Valid UserDto userDto,
                                       BindingResult bindingResult,
                                       ModelAndView modelAndView) {
-//        if (bindingResult.hasErrors()) {
-//            modelAndView.setViewName(PROFILE);
-//            return modelAndView;
-//        }
+        if (bindingResult.hasErrors()) {
+            modelAndView.setViewName(PROFILE);
+            return modelAndView;
+        }
         userService.updateUser(userDto);
-//        modelAndView.addObject(USER_DTO, userDto);
         modelAndView.setViewName(PROFILE);
         return modelAndView;
     }
