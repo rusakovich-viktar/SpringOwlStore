@@ -3,7 +3,6 @@ package by.tms.springstore.service;
 import by.tms.springstore.domain.Product;
 
 import java.util.List;
-import java.util.Optional;
 
 public interface ProductService {
     List<Product> getProducts();
@@ -14,6 +13,9 @@ public interface ProductService {
 
     void addToUserCart(Long productId, String username);
 
-    @jakarta.transaction.Transactional
-    void removeFromUserCart(Long productId, String username);
+    void removeAllIdenticalProductsFromUserCart(Long productId, String username);
+
+    void removeOneIdenticalProductFromUserCart(Long productId, String username);
+
+    List<Product> searchProducts(String query);
 }

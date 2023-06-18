@@ -18,6 +18,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 
 
 @Service
@@ -28,7 +29,7 @@ public class CartServiceImpl implements CartService {
     private final UserService userService;
 
     @Override
-    @jakarta.transaction.Transactional
+    @Transactional
     public Cart createCart(User user, List<Long> productIds) {
         Cart cart = new Cart();
         cart.setUser(user);
@@ -46,7 +47,7 @@ public class CartServiceImpl implements CartService {
     }
 
     @Override
-    @jakarta.transaction.Transactional
+    @Transactional
     public void addProducts(Cart cart, List<Long> productIds) {
         List<Product> products = cart.getProducts();
         List<Product> newProductsList = products == null ? new ArrayList<>() : new ArrayList<>(products);
@@ -76,18 +77,16 @@ public class CartServiceImpl implements CartService {
         }
         cartDto.setCartDetails(new ArrayList<>(mapByProductId.values()));
         cartDto.aggregate();
-
         return cartDto;
     }
 
     @Override
     public void commitCartToOrder(String username) {
-
     }
 
     @Override
-    @jakarta.transaction.Transactional
-    public void deleteProduct(Cart cart, List<Long> productIds) {
+    @Transactional
+    public void deleteAllIdenticalProduct(Cart cart, List<Long> productIds) {
         List<Product> products = cart.getProducts();
         List<Product> newProductsList = products == null ? new ArrayList<>() : new ArrayList<>(products);
         newProductsList.removeAll(getCollectRefProductsByIds(productIds));
@@ -95,5 +94,17 @@ public class CartServiceImpl implements CartService {
         cartRepository.save(cart);
     }
 
+    @Override
+    @Transactional
+    public void deleteOneProduct(Cart cart, List<Long> productIds) {
+        List<Product> products = cart.getProducts();
+        List<Product> newProductsList = products == null ? new ArrayList<>() : new ArrayList<>(products);
 
+        Optional<Product> productToRemove = newProductsList.stream()
+                .filter(product -> productIds.contains(product.getId()))
+                .findFirst();
+        productToRemove.ifPresent(newProductsList::remove);
+        cart.setProducts(newProductsList);
+        cartRepository.save(cart);
+    }
 }

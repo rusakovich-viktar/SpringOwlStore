@@ -5,10 +5,9 @@ import org.springframework.web.servlet.config.annotation.ViewControllerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 @Configuration
-//@RequiredArgsConstructor
 public class SpringConfig implements WebMvcConfigurer {
-////    private final Environment environment;
 
+    @Override
     public void addViewControllers(ViewControllerRegistry registry) {
         registry.addRedirectViewController("/", "/home");
         registry.addRedirectViewController("", "/home");

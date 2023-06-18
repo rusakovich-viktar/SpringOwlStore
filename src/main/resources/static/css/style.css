@@ -89,4 +89,48 @@ li a:hover {
 
 /*___________________*/
 
+.center-text {
+    text-align: center;
+}
 
+.empty-cart {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+}
+
+.image-container {
+    height: 300px; /* Высота контейнера изображения */
+    overflow: hidden; /* Скрытие лишней части изображения */
+}
+
+/*ПОисковая строка*/
+.search-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#search-input {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 15px;
+    margin-right: 5px;
+    width: 250px;
+}
+
+#search-button {
+    padding: 12px 20px;
+    background-color: #007bff;
+    border: none;
+    border-radius: 5px;
+    color: #fff;
+    font-size: 14px;
+    cursor: pointer;
+}
+
+#search-button:hover {
+    background-color: #0056b3;
+}

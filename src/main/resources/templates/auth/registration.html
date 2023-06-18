@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Страница регистрации</title>
+    <link rel="stylesheet" th:href="@{/css/registration.css}">
+    <div th:block th:insert="~{bootstrap-basic.html}"></div>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</head>
+<body>
+<div class="container d-flex justify-content-center align-items-center vh-100">
+    <div class="row">
+        <div class="col-lg-auto">
+            <div class="card">
+                <div class="card-body">
+                    <h3 class="card-title text-right">Registration panel</h3>
+                    <h4 class="card-subtitle mb-4 text-center">Для регистрации заполните следующую информацию:</h4>
+                    <form id="registrationForm" th:method="post" th:action="@{/auth/registration}" th:object="${user}">
+                        <div class="mb-3">
+                            <label for="email" class="form-label">Введите Email</label>
+                            <input id="email" type="email" class="form-control" placeholder="Email" name="email"
+                                   th:field="*{email}" required>
+                            <div style="color:red" th:if="${#fields.hasErrors('email')}" th:errors="*{email}">Email
+                                Error
+                            </div>
+                        </div>
+                        <div class="mb-3">
+                            <label for="username" class="form-label">Введите Username</label>
+                            <input id="username" type="text" class="form-control" placeholder="Enter username"
+                                   autocomplete="off" name="username" th:field="*{username}" required>
+                            <div style="color:red" th:if="${#fields.hasErrors('username')}" th:errors="*{username}">
+                                Username Error
+                            </div>
+                        </div>
+                        <div class="mb-3">
+                            <label for="password" class="form-label">Введите Password</label>
+                            <input id="password" type="password" class="form-control" name="password" autocomplete="off"
+                                   th:field="*{password}" required>
+                            <div style="color:red" th:if="${#fields.hasErrors('password')}" th:errors="*{password}">
+                                Password Error
+                            </div>
+                        </div>
+                        <div class="mb-3">
+                            <label for="repeatPswd" class="form-label">Повторите Password</label>
+                            <input id="repeatPswd" type="password" class="form-control" required name="repeatPass"
+                                   autocomplete="off">
+                        </div>
+                        <div class="text-center">
+                            <button id="regFormSignUpBtn" type="submit" class="btn btn-primary">Register</button>
+                        </div>
+                    </form>
+                    <p class="text-center mt-4">Already have an account? <a th:href="@{/auth/login}">Login here</a></p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Всплывающее окно успешной регистрации -->
+<div id="notificationModal" class="modal fade" th:if="${successRegistration}">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Уведомление об успешной регистрации</h5>
+            </div>
+            <div class="modal-body">
+                <p>Вы успешно зарегистрированы!</p>
+                <p>Перейти на страницу входа: <a href="/auth/login">Войти</a></p>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Всплывающее окно неуспешной регистрации -->
+<div id="errorNotificationModal" class="modal fade" th:if="${errorRegistration}">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Уведомление об неуспешной регистрации</h5>
+            </div>
+            <div class="modal-body">
+                <p>Регистрация не удалась. Пожалуйста, проверьте введенные данные и попробуйте снова.</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    $(document).ready(function () {
+        // Показать модальное окно успешной регистрации
+        $('#notificationModal').modal('show');
+
+        // Показать модальное окно неуспешной регистрации
+        $('#errorNotificationModal').modal('show');
+    });
+</script>
+
+</body>
+</html>

@@ -16,6 +16,7 @@ import java.util.List;
 public class CartDto {
     private long amountProducts;
     private BigDecimal sum;
+    @Builder.Default
     private List<CartDetailDto> cartDetails = new ArrayList<>();
 
     public void aggregate() {

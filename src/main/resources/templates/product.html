@@ -12,9 +12,10 @@
 <div th:if="${oneProduct != null}" class="container-fluid">
     <h2 class="text-center" th:text="${oneProduct.name}"></h2><br>
 
-    <img class="mx-auto d-block" style="height:auto; max-width: 400px;"
-         th:src="@{/images/{imagePath}(imagePath=${oneProduct.imagePath})}"
-         th:alt="${oneProduct.imagePath}">
+    <img class="mx-auto d-block" style="height:auto; max-width: 290px;"
+         th:src="@{/images/__${#strings.toLowerCase(#strings.replace(oneProduct.category.name, ' ', '-'))}__/__${#strings.toLowerCase(oneProduct.name)}__.jpg}"
+         th:alt="${oneProduct.name}">
+
 
     <br>
     <div class="container">
@@ -30,11 +31,26 @@
             <tr>
                 <td th:text="${oneProduct.description}"></td>
                 <td class="text-center" style="vertical-align: middle" th:text="${oneProduct.price}"></td>
-<!--                <td><a th:href="@{/product/{id}/cart(id=${product.id})}">Add to cart</a></td>-->
-                <td><a th:href="@{/product/{id}/cart(id=${oneProduct.id})}">Add to cart</a></td>
+                <td><a th:href="@{/product/{id}/add(id=${oneProduct.id})}" class="btn btn-success btn-sm">Add to
+                    cart</a></td>
             </tr>
             </tbody>
         </table>
+    </div>
+</div>
+
+<!-- Всплывающее окно добавления товара в корзину -->
+<div id="cartNotificationModal" class="modal fade" th:if="${addedToCart}">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Уведомление о добавлении товара в корзину</h5>
+            </div>
+            <div class="modal-body">
+                <p>Товар успешно добавлен в корзину!</p>
+                <p>Перейти в корзину: <a href="/cart">Корзина</a></p>
+            </div>
+        </div>
     </div>
 </div>
 

@@ -18,14 +18,12 @@ public class CategoryServiceImpl implements CategoryService {
     @Override
     public List<Category> getCategories() {
         return categoryRepository.findAllCategories();
-//        return categoryRepository.getCategories();
     }
 
     @Override
     public Category getCategoryById(Long id) {
         return categoryRepository.findById(id);
     }
-//        return categoryRepository.getCategory(id);
 
     @Override
     public Category getCategoryByName(String name) {
