@@ -11,7 +11,7 @@
 
 <ul xmlns:sec="http://www.w3.org/1999/xhtml">
     <li>
-        <a class="active" href="/home"><i class="fa fa-lg fa-fw fa-home"></i> Главная</a>
+        <a class="active" th:href="@{/home}"><i class="fa fa-lg fa-fw fa-home"></i> Главная</a>
     </li>
     <li style="float:right">
         <a href="/auth/logout">
@@ -31,8 +31,8 @@
     </li>
     <li style="float:none ">
         <div class="search-container">
-            <input type="text" id="search-input" placeholder="Введите название продукта">
-            <button id="search-button">Найти</button>
+            <input type="text" id="search-input"  class="animated-search" placeholder="Введите название продукта">
+                        <button id="search-button">Найти</button>
         </div>
     </li>
 

@@ -9,6 +9,8 @@ import jakarta.persistence.JoinTable;
 import jakarta.persistence.ManyToMany;
 import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -19,11 +21,11 @@ import java.util.List;
 
 @Getter
 @Setter
-@EqualsAndHashCode(callSuper = false)
-@SuperBuilder(toBuilder = true)
+@Builder
 @Entity
 @Table(name = "cart", schema = "online-store")
 @NoArgsConstructor
+@AllArgsConstructor
 public class Cart {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

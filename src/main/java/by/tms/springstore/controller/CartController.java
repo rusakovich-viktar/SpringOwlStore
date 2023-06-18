@@ -46,7 +46,7 @@ public class CartController {
         return REDIRECT_TO_CART;
     }
 
-    @GetMapping("/{productId}/add")
+    @GetMapping("/{productId}/add") ///POST
     public String addCart(@PathVariable("productId") Long productId, Principal principal) {
         productService.addToUserCart(productId, principal.getName());
         return REDIRECT_TO_CART;

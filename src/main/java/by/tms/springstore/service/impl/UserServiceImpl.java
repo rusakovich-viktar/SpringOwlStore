@@ -43,15 +43,12 @@ public class UserServiceImpl implements UserService {
     public void updateUser(UserDto userDto) {
         User user = userRepository.findById(userDto.getId())
                 .orElseThrow(() -> new NotFoundException("User not found"));
-        userRepository.saveAndFlush(
-                user.toBuilder()
-                        .name(userDto.getName())
-                        .surname(userDto.getSurname())
-                        .birthday(userDto.getBirthday())
-                        .gender(userDto.getGender())
-                        .email(userDto.getEmail())
-                        .build()
-        );
+        user.setName(userDto.getName());
+        user.setSurname(userDto.getSurname());
+        user.setBirthday(userDto.getBirthday());
+        user.setGender(userDto.getGender());
+        user.setEmail(userDto.getEmail());
+        userRepository.saveAndFlush(user);
     }
 
     @Override

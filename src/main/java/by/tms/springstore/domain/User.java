@@ -8,14 +8,13 @@ import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
 import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
-import lombok.EqualsAndHashCode;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import lombok.experimental.SuperBuilder;
 import org.hibernate.annotations.CreationTimestamp;
 
 import java.time.LocalDate;
@@ -25,7 +24,7 @@ import java.time.LocalDate;
 @Entity
 @Table(name = "users", schema = "online-store")
 @NoArgsConstructor
-@SuperBuilder(toBuilder = true)
+@AllArgsConstructor
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -45,5 +44,6 @@ public class User {
     private Role role;
     @OneToOne(cascade = CascadeType.REMOVE)
     private Cart cart;
+
 
 }

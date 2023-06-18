@@ -7,6 +7,8 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -19,8 +21,8 @@ import java.time.LocalDateTime;
 
 @Setter
 @Getter
-@SuperBuilder
-@EqualsAndHashCode
+//@Builder
+@AllArgsConstructor
 @Entity
 @Table(name = "orders", schema = "online-store")
 @NoArgsConstructor

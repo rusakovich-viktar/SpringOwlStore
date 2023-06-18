@@ -1,57 +1,22 @@
-.buttonAddProduct {
-    background-color: #366cb2;
-    border: 0;
-    color: white;
-    padding: 14px 18px;
-    font-size: 14px;
-    cursor: pointer;
-    margin: 0 auto;
-    display: block;
-}
+/*.buttonAddProduct {*/
+/*    background-color: #366cb2;*/
+/*    border: 0;*/
+/*    color: white;*/
+/*    padding: 14px 18px;*/
+/*    font-size: 14px;*/
+/*    cursor: pointer;*/
+/*    margin: 0 auto;*/
+/*    display: block;*/
+/*}*/
 
-.buttonAddProduct:hover {
-    background-color: #5881c4;
-}
+/*.buttonAddProduct:hover {*/
+/*    background-color: #5881c4;*/
+/*}*/
 
 .mx-auto d-block {
     text-align: center;
-    max-width: 250px;
-    height: 350px;
 }
 
-.buttonDelete {
-    background-color: #DC143C;
-    border: 0;
-    color: white;
-    padding: 12px 16px;
-    font-size: 13px;
-    cursor: pointer;
-}
-
-.buttonDelete:hover {
-    background-color: #FF0000;
-}
-
-.buttonQuit {
-    background-color: #008B8B;
-    border: 0;
-    color: white;
-    padding: 12px 16px;
-    font-size: 13px;
-    cursor: pointer;
-    position: relative;
-    margin: 0 auto;
-    display: block;
-}
-
-.buttonQuit:hover {
-    background-color: #20B2AA;
-}
-
-.responsive {
-    max-width: 100%;
-    height: auto;
-}
 
 body {
     font-family: Arial, Helvetica, sans-serif;
@@ -87,7 +52,7 @@ li a:hover {
     background-color: #366cb2;
 }
 
-/*___________________*/
+/*____корзина____________*/
 
 .center-text {
     text-align: center;
@@ -105,6 +70,7 @@ li a:hover {
     overflow: hidden; /* Скрытие лишней части изображения */
 }
 
+
 /*ПОисковая строка*/
 .search-container {
     display: flex;
@@ -112,25 +78,37 @@ li a:hover {
     justify-content: center;
 }
 
-#search-input {
-    padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    font-size: 15px;
-    margin-right: 5px;
-    width: 250px;
-}
 
 #search-button {
-    padding: 12px 20px;
-    background-color: #007bff;
+    padding: 15px 18px;
+    background-color: #366cb2;
     border: none;
-    border-radius: 5px;
+    /*border-radius: 5px;*/
     color: #fff;
     font-size: 14px;
     cursor: pointer;
 }
 
 #search-button:hover {
-    background-color: #0056b3;
+    background-color: #000;
+    text-decoration: none;
+    color: #c7f30d;
+}
+
+.animated-search {
+    width: 130px;
+    box-sizing: border-box;
+    border: 2px solid #ccc;
+    border-radius: 2px;
+    font-size: 16px;
+    background-color: white;
+    background-position: 10px 10px;
+    background-repeat: no-repeat;
+    padding: 12px 20px 12px 40px;
+    -webkit-transition: width 0.4s ease-in-out;
+    transition: width 0.4s ease-in-out;
+}
+
+.animated-search:focus {
+    width: 100%;
 }
