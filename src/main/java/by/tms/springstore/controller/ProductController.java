@@ -9,7 +9,10 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
+
+import java.util.List;
 
 import static by.tms.springstore.utils.Constants.Attributes.ONE_PRODUCT;
 import static by.tms.springstore.utils.Constants.PagePath.PRODUCT;
@@ -24,10 +27,10 @@ public class ProductController {
 
     @GetMapping("/{productId}")
     public ModelAndView showProduct(@PathVariable("productId") Long productId,
-            HttpServletRequest request, ModelAndView modelAndView) {
-            Product product = productService.getProductById(productId);
-            request.setAttribute(ONE_PRODUCT, product);
-            modelAndView.setViewName(PRODUCT);
+                                    HttpServletRequest request, ModelAndView modelAndView) {
+        Product product = productService.getProductById(productId);
+        request.setAttribute(ONE_PRODUCT, product);
+        modelAndView.setViewName(PRODUCT);
         return modelAndView;
     }
 
@@ -35,6 +38,14 @@ public class ProductController {
     @GetMapping("/{productId}/add")
     public String addCart(@PathVariable("productId") Long productId, Authentication authentication) {
         productService.addToUserCart(productId, authentication.getName());
-        return REDIRECT_TO_PRODUCT + "/"+ productId;
+        return REDIRECT_TO_PRODUCT + "/" + productId;
+    }
+
+    @GetMapping("/search")
+    public ModelAndView searchProducts(@RequestParam("query") String query, ModelAndView modelAndView) {
+        List<Product> searchResults = productService.searchProducts(query);
+        modelAndView.addObject("searchResults", searchResults);
+        modelAndView.setViewName("search-results");
+        return modelAndView;
     }
 }

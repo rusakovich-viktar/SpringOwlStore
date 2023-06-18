@@ -17,4 +17,5 @@ public interface ProductService {
 
     void removeOneIdenticalProductFromUserCart(Long productId, String username);
 
+    List<Product> searchProducts(String query);
 }

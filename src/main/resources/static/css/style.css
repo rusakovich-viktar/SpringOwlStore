@@ -105,15 +105,32 @@ li a:hover {
     overflow: hidden; /* Скрытие лишней части изображения */
 }
 
-/*.image-container img {*/
-/*    object-fit: cover; !* Растяжение изображения для заполнения контейнера *!*/
-/*    height: 100%; !* Растягиваем изображение на всю высоту контейнера *!*/
-/*    width: 100%; !* Растягиваем изображение на всю ширину контейнера *!*/
-/*}*/
+/*ПОисковая строка*/
+.search-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
 
-/*img {*/
-/*    max-width: 100%;*/
-/*    max-height: 100%;*/
-/*    width: auto;*/
-/*    max-width: 250px; !* ограничение максимальной ширины в 600 пикселей *!*/
-/*}*/
+#search-input {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 15px;
+    margin-right: 5px;
+    width: 250px;
+}
+
+#search-button {
+    padding: 12px 20px;
+    background-color: #007bff;
+    border: none;
+    border-radius: 5px;
+    color: #fff;
+    font-size: 14px;
+    cursor: pointer;
+}
+
+#search-button:hover {
+    background-color: #0056b3;
+}

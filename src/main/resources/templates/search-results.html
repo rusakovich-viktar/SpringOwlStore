@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Результаты поиска</title>
+</head>
+<body>
+<ul>
+    <li th:each="product : ${searchResults}">
+        <a th:href="@{/product/{productId}(productId=${product.id})}" th:text="${product.name}"></a>
+    </li>
+</ul>
+</body>
+</html>
