@@ -1,6 +1,6 @@
 <ul xmlns:sec="http://www.w3.org/1999/xhtml">
     <li><a class="active" href="/home"><i class="fa fa-lg fa-fw fa-home"></i> Главная</a></li>
-    <li style="float:right"><a href="/logout"><i class="fa fa-lg fa-fw fa-sign-in"></i> Завершить сеанс,
+    <li style="float:right"><a href="/auth/logout"><i class="fa fa-lg fa-fw fa-sign-in"></i> Завершить сеанс,
         <span th:remove="tag" sec:authentication="principal.username">thymeleaf</span>
     </a></li>
     <li style="float:right"><a th:href="@{/cart}"><i class="fa fa-lg fa-fw fa-shopping-basket"></i> Корзина</a>

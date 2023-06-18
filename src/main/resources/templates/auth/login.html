@@ -10,8 +10,7 @@
 <div id="wrapper">
     <h1>Sign In Form</h1>
     <form method="post" id="signin" autocomplete="on">
-        <!--        <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}"/>-->
-
+        <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}"/>
         <input type="text" class="violet" id="user" name="username" placeholder="username" required/>
         <input type="password" id="password" name="password" placeholder="password" required/>
         <button type="submit">&#xf0da;</button>

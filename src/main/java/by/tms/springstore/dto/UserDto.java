@@ -38,9 +38,7 @@ public class UserDto {
     @NotEmpty(message = "Поле не должно быть пустым")
     private String email;
     private LocalDate registrationDate;
-
-    ///
     private String password;
-    private String matchingPassword;
+//    private String matchingPassword;
 
 }

@@ -3,7 +3,6 @@ package by.tms.springstore.config;
 import org.springframework.boot.autoconfigure.security.servlet.PathRequest;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -17,7 +16,8 @@ public class SecurityConfig {
 
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
-        return http.csrf(httpSecurityCsrfConfigurer -> httpSecurityCsrfConfigurer.disable())
+        return http
+//                .csrf(httpSecurityCsrfConfigurer -> httpSecurityCsrfConfigurer.disable())
                 .authorizeHttpRequests((auth) ->
                                 auth
 
@@ -33,8 +33,7 @@ public class SecurityConfig {
                                 .loginPage("/auth/login")
                                 .defaultSuccessUrl("/home", true)
                 ).logout((logout) ->
-                        logout
-
+                        logout.logoutUrl("/auth/logout")
                                 .logoutSuccessUrl("/auth/login")
                                 .permitAll())
                 .build();
@@ -45,12 +44,3 @@ public class SecurityConfig {
         return new BCryptPasswordEncoder();
     }
 }
-//
-//    //    создаем если без провайдера (тут версия без шифрования)
-//    @Bean
-//    public PasswordEncoder getPasswordEncoder() {
-//        return NoOpPasswordEncoder.getInstance();
-//    }
-
-
-//}
