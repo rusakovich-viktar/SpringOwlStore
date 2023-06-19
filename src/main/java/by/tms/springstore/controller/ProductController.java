@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import java.security.Principal;
 import java.util.List;
 
 import static by.tms.springstore.utils.Constants.Attributes.ONE_PRODUCT;
@@ -36,11 +37,19 @@ public class ProductController {
     }
 
 
-    @GetMapping("/{productId}/add") ///POST
-    public String addCart(@PathVariable("productId") Long productId, Authentication authentication) {
-        productService.addToUserCart(productId, authentication.getName());
+//    @GetMapping("/{productId}/add") ///POST
+//    public String addCart(@PathVariable("productId") Long productId, Authentication authentication) {
+//        productService.addToUserCart(productId, authentication.getName());
+//        return REDIRECT_TO_PRODUCT + "/" + productId;
+//    }
+
+
+    @PostMapping("/add")
+    public String addCart(@RequestParam("productId") Long productId, Principal principal) {
+        productService.addToUserCart(productId, principal.getName());
         return REDIRECT_TO_PRODUCT + "/" + productId;
     }
+
 
     @GetMapping("/search")
     public ModelAndView searchProducts(@RequestParam("query") String query, ModelAndView modelAndView) {

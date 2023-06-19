@@ -31,8 +31,12 @@
             <tr>
                 <td th:text="${oneProduct.description}"></td>
                 <td class="text-center" style="vertical-align: middle" th:text="${oneProduct.price}"></td>
-                <td><a th:href="@{/product/{id}/add(id=${oneProduct.id})}" class="btn btn-success btn-sm">Add to
-                    cart</a></td>
+                <td>
+                    <form method="post" th:action="@{/product/add}" th:object="${oneProduct}">
+                        <input type="hidden" th:name="productId" th:value="${oneProduct.id}" />
+                        <button type="submit" class="btn btn-info btn-sm">Add to cart</button>
+                    </form>
+                </td>
             </tr>
             </tbody>
         </table>

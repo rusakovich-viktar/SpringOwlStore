@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import java.security.Principal;
@@ -25,6 +26,9 @@ public class CartController {
 
     private final CartService cartService;
     private final ProductService productService;
+
+
+
 
     @GetMapping()
     public ModelAndView showCart(ModelAndView modelAndView, Principal principal) {
@@ -46,8 +50,8 @@ public class CartController {
         return REDIRECT_TO_CART;
     }
 
-    @GetMapping("/{productId}/add") ///POST
-    public String addCart(@PathVariable("productId") Long productId, Principal principal) {
+    @PostMapping("/add")
+    public String addCart(@RequestParam("productId") Long productId, Principal principal) {
         productService.addToUserCart(productId, principal.getName());
         return REDIRECT_TO_CART;
     }
