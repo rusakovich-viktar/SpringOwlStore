@@ -10,7 +10,7 @@ public class TransliterationMapper {
     static final String CYRILLIC_TO_LATIN = "Russian-Latin/BGN";
 
     public static void main(String[] args) {
-        String st = "привет мир";
+        String st = "привет я учусь в тичмискилл";
 
         Transliterator toLatinTrans = Transliterator.getInstance(CYRILLIC_TO_LATIN);
         String result = toLatinTrans.transliterate(st);

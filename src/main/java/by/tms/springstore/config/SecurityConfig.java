@@ -20,9 +20,9 @@ public class SecurityConfig {
 //                .csrf(httpSecurityCsrfConfigurer -> httpSecurityCsrfConfigurer.disable())
                 .authorizeHttpRequests((auth) ->
                                 auth
-
+//                                        .anyRequest().permitAll()
                                         .requestMatchers("/admin").hasRole("ADMIN")
-                                        .requestMatchers("/auth/login", "/auth/registration", "/open").permitAll()
+                                        .requestMatchers("/auth/login", "/auth/registration", "/open", "/test").permitAll()
                                         .requestMatchers(PathRequest.toStaticResources().atCommonLocations()).permitAll()
                                         .anyRequest().hasAnyRole("USER", "ADMIN")
 //                                        .anyRequest().authenticated()

@@ -39,10 +39,11 @@
                             <div style="color:red" th:if="${#fields.hasErrors('password')}" th:errors="*{password}">
                                 Password Error
                             </div>
+
                         </div>
                         <div class="mb-3">
-                            <label for="repeatPswd" class="form-label">Повторите Password</label>
-                            <input id="repeatPswd" type="password" class="form-control" required name="repeatPass"
+                            <label for="verifyPassword" class="form-label">Повторите Password</label>
+                            <input id="verifyPassword" type="password" class="form-control" required name="verifyPassword"
                                    autocomplete="off">
                         </div>
                         <div class="text-center">
@@ -96,3 +97,38 @@
 
 </body>
 </html>
+
+
+
+<!--<!DOCTYPE html>-->
+<!--<html lang="en" xmlns:th="http://www.thymeleaf.org">-->
+<!--<head>-->
+<!--    <meta charset="UTF-8">-->
+<!--    <title>New person</title>-->
+<!--</head>-->
+<!--<body>-->
+
+<!--<form th:method="POST" th:action="@{/auth/registration}" th:object="${user}">-->
+<!--    <label for="username">Enter username: </label>-->
+<!--    <input type="text" th:field="*{username}" id="username"/>-->
+<!--    <div style="color:red" th:if="${#fields.hasErrors('username')}" th:errors="*{username}">username Error</div>-->
+<!--    <br/>-->
+<!--    <label for="password">Enter password: </label>-->
+<!--    <input type="password" th:field="*{password}" id="password"/>-->
+<!--    <div style="color:red" th:if="${#fields.hasErrors('password')}" th:errors="*{password}">password Error</div>-->
+<!--    <br/>-->
+<!--    <label for="email">Enter email: </label>-->
+<!--    <input type="text" th:field="*{email}" id="email"/>-->
+<!--    <div style="color:red" th:if="${#fields.hasErrors('email')}" th:errors="*{email}">Email Error</div>-->
+<!--    <br/>-->
+<!--    <label for="verifyPassword">verifyPassword password: </label>-->
+<!--    <input type="password" th:field="*{verifyPassword}" id="verifyPassword"/>-->
+<!--    <div style="color:red" th:if="${#fields.hasErrors('verifyPassword')}" th:errors="*{verifyPassword}">password Error</div>-->
+<!--    <br/>-->
+
+
+<!--    <input type="submit" value="Create!"/>-->
+<!--</form>-->
+
+<!--</body>-->
+<!--</html>-->

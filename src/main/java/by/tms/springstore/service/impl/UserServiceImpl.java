@@ -70,4 +70,10 @@ public class UserServiceImpl implements UserService {
         userRepository.save(user);
     }
 
+    @Override
+    public Optional<User> getVerifyUser(String login, String email) {
+        return userRepository.findUserByUsernameOrEmail(login, email);
+    }
+
+
 }

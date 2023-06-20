@@ -11,3 +11,6 @@ values ('qwer', 1991, 'qwer', 'ROLE_USER');
 
 insert into person (username, year_of_birth, password)
 values ('qwer', 2000, 'qwer');
+
+alter table "online-store".users
+    add unique (email);

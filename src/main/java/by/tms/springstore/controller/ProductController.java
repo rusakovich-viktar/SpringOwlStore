@@ -17,6 +17,7 @@ import java.security.Principal;
 import java.util.List;
 
 import static by.tms.springstore.utils.Constants.Attributes.ONE_PRODUCT;
+import static by.tms.springstore.utils.Constants.Attributes.SUCCESS_REGISTRATION;
 import static by.tms.springstore.utils.Constants.PagePath.PRODUCT;
 import static by.tms.springstore.utils.Constants.PagePath.REDIRECT_TO_PRODUCT;
 
@@ -45,10 +46,13 @@ public class ProductController {
 
 
     @PostMapping("/add")
-    public String addCart(@RequestParam("productId") Long productId, Principal principal) {
+    public ModelAndView addCart(@RequestParam("productId") Long productId, Principal principal, ModelAndView modelAndView) {
         productService.addToUserCart(productId, principal.getName());
-        return REDIRECT_TO_PRODUCT + "/" + productId;
+        modelAndView.setViewName("redirect:/product/" + productId + "?added=true");
+//        modelAndView.setViewName(REDIRECT_TO_PRODUCT + "/" + productId);
+        return modelAndView;
     }
+
 
 
     @GetMapping("/search")
