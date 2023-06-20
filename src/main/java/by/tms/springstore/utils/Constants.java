@@ -20,15 +20,16 @@ public class Constants {
         public static final String PRODUCT = "product";
         public static final String USER_DTO = "userDto";
         public static final String USER_ID = "userId";
+
         public static final String USER = "user";
         public static final String TOTAL_PRICE = "totalPrice";
     }
 
     @UtilityClass
     public class RequestParams {
+        public static final String PRODUCT_ID = "productId";
         public static final String USERNAME = "username";
         public static final String PASSWORD = "password";
-        public static final String PRODUCT_ID = "productId";
         public static final String REPEAT_PASS = "repeatPass";
         public static final String SURNAME = "surname";
         public static final String BIRTHDAY = "date";

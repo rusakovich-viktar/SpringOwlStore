@@ -40,17 +40,27 @@
     <tr th:each="detail: ${cart.cartDetails}">
         <td><a th:href="@{/product/{productId}(productId=${detail.productId})}" th:text="${detail.name}">name</a>
         </td>
-        <td><a th:href="@{/cart/delete-one/{id}(id=${detail.productId})}" class="btn btn-info btn-sm">-</a></td>
+        <td>
+            <!--            <a th:href="@{/cart/delete-one/{id}(id=${detail.productId})}" class="btn btn-info btn-sm">-</a>-->
+            <form method="post" th:action="@{/cart/delete-one}" th:object="${detail}">
+                <input type="hidden" th:name="productId" th:value="${detail.productId}"/>
+                <button type="submit" class="btn btn-info btn-sm">-</button>
+            </form>
+        </td>
         <td th:text="${detail.amount}" style="text-align:center">amount</td>
         <td>
             <form method="post" th:action="@{/cart/add}" th:object="${detail}">
-                <input type="hidden" th:name="productId" th:value="${detail.productId}" />
+                <input type="hidden" th:name="productId" th:value="${detail.productId}"/>
                 <button type="submit" class="btn btn-info btn-sm">+</button>
             </form>
         </td>
         <td th:text="${detail.price}">price</td>
         <td th:text="${detail.sum}">sum</td>
-        <td><a th:href="@{/cart/delete/{id}(id=${detail.productId})}" class="btn btn-danger btn-sm">Очистить</a>
+        <td>
+            <form method="post" th:action="@{/cart/delete-all}" th:object="${detail}">
+                <input type="hidden" th:name="productId" th:value="${detail.productId}"/>
+                <button type="submit" class="btn btn-info btn-sm">Очистить</button>
+            </form>
         </td>
     </tr>
     <tr>

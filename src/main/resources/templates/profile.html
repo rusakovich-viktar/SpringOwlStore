@@ -8,20 +8,6 @@
 <body>
 <div th:block th:insert="~{header.html}"></div>
 <br>
-<!--<h3 class="text-center">Личный кабинет пользователя <b class="font-italic" th:text="${session.userDto.username}"></b></h3>-->
-<!--<div>-->
-<!--    <p class="text-left">имя : <b class="font-italic" th:text="${session.userDto.name}"></b></p>-->
-<!--    <p class="text-left">фамилия: <b class="font-italic" th:text="${session.userDto.surname}"></b></p>-->
-<!--    <p class="text-left">гендер: <b class="font-italic" th:text="${session.userDto.gender}"></b></p>-->
-<!--    <p class="text-left">дата рождения: <b class="font-italic" th:text="${session.userDto.birthday}"></b></p>-->
-<!--    <p class="text-left">электронная почта: <b class="font-italic" th:text="${session.userDto.email}"></b></p>-->
-<!--    <p class="text-left">дата регистрации: <b class="font-italic" th:text="${session.userDto.registrationDate}"></b></p>-->
-<!--    <br>-->
-<!--    <button>-->
-<!--        <a class="fa fa-sign-out fa-lg" th:href="@{/user/edit}" style="padding: 10px 20px;"><i>Edit</i></a>-->
-<!--    </button>-->
-<!--</div>-->
-
 <div class="container">
     <h3 class="text-center">Личный кабинет пользователя <b class="font-italic" th:text="${userDto.username}"></b></h3>
     <div class="row">

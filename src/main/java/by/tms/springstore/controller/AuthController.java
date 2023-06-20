@@ -3,8 +3,6 @@ package by.tms.springstore.controller;
 import by.tms.springstore.domain.User;
 import by.tms.springstore.service.UserService;
 import by.tms.springstore.utils.UserValidator;
-import jakarta.servlet.http.HttpServletRequest;
-import jakarta.servlet.http.HttpSession;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
@@ -20,8 +18,6 @@ import static by.tms.springstore.utils.Constants.Attributes.SUCCESS_REGISTRATION
 import static by.tms.springstore.utils.Constants.Attributes.USER;
 import static by.tms.springstore.utils.Constants.PagePath.AUTH_LOGIN;
 import static by.tms.springstore.utils.Constants.PagePath.AUTH_REGISTRATION;
-import static by.tms.springstore.utils.Constants.PagePath.LOGIN;
-import static by.tms.springstore.utils.Constants.PagePath.SIGN_IN;
 
 @RequiredArgsConstructor
 @Controller
