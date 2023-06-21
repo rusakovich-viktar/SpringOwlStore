@@ -3,7 +3,7 @@ package by.tms.springstore.controller;
 import by.tms.springstore.dto.UserDtoFromRegistrationForm;
 import by.tms.springstore.mapper.UserMapper;
 import by.tms.springstore.service.UserService;
-import by.tms.springstore.utils.UserValidator;
+import by.tms.springstore.utils.UserValidatorRegistration;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.validation.BindingResult;
@@ -26,7 +26,7 @@ import static by.tms.springstore.utils.Constants.PagePath.AUTH_REGISTRATION;
 public class AuthController {
 
     private final UserService userService;
-    private final UserValidator userValidator;
+    private final UserValidatorRegistration userValidatorRegistration;
     private final UserMapper userMapper;
 
     @GetMapping("/login")
@@ -42,10 +42,9 @@ public class AuthController {
     @PostMapping("/registration")
     public ModelAndView performRegistration(@ModelAttribute(USER) @Valid UserDtoFromRegistrationForm user,
                                             BindingResult bindingResult, ModelAndView modelAndView) {
-        userValidator.validate(user, bindingResult);
+        userValidatorRegistration.validate(user, bindingResult);
         if (bindingResult.hasErrors()) {
             modelAndView.setViewName(AUTH_REGISTRATION);
-            modelAndView.addObject(ERROR_REGISTRATION, true);
         } else {
             boolean registrationSuccess = userService.registrationNewUser(userMapper.convertToUser(user));
             if (registrationSuccess) {

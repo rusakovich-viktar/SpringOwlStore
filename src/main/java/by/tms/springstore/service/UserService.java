@@ -19,5 +19,7 @@ public interface UserService {
 
     void save(User user);
 
-    Optional<User> getVerifyUser(String login, String email);
+    Optional<User> getVerifyUserByUsernameOrEmail(String login, String email);
+
+    Optional<User> getVerifyUserByEmail(String email);
 }

@@ -4,6 +4,8 @@ import by.tms.springstore.domain.User;
 import by.tms.springstore.dto.UserDto;
 import by.tms.springstore.mapper.UserMapper;
 import by.tms.springstore.service.UserService;
+import by.tms.springstore.utils.UserValidatorEditProfile;
+import by.tms.springstore.utils.UserValidatorRegistration;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.Authentication;
@@ -24,6 +26,7 @@ import static by.tms.springstore.utils.Constants.PagePath.PROFILE;
 @RequiredArgsConstructor
 @RequestMapping("/user")
 public class UserController {
+    private final UserValidatorEditProfile userValidatorEditProfile;
 
     private final UserService userService;
     private final UserMapper userMapper;
@@ -51,12 +54,14 @@ public class UserController {
     public ModelAndView updateProfile(@ModelAttribute(USER_DTO) @Valid UserDto userDto,
                                       BindingResult bindingResult,
                                       ModelAndView modelAndView) {
-        if (bindingResult.hasErrors()) {
+        userValidatorEditProfile.validate(userDto, bindingResult);
+        if (!bindingResult.hasErrors()) {
+            userService.updateUser(userDto);
             modelAndView.setViewName(PROFILE);
-            return modelAndView;
+        } else {
+            modelAndView.setViewName(EDIT_PROFILE);
         }
-        userService.updateUser(userDto);
-        modelAndView.setViewName(PROFILE);
         return modelAndView;
+
     }
 }

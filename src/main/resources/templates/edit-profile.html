@@ -25,18 +25,16 @@
             <label for="name">Name:</label>
             <input type="text" th:field="*{name}" class="form-control blue-text" id="name"
                    placeholder="Введите ваше имя">
+            <span th:if="${#fields.hasErrors('name')}" style="color:red"
+                  th:errors="*{name}"></span>
         </div>
         <div class="form-group">
             <label for="surname">Surname:</label>
             <input type="text" th:field="*{surname}" class="form-control blue-text" id="surname"
                    placeholder="Введите вашу фамилию">
+            <span th:if="${#fields.hasErrors('surname')}" style="color:red"
+                  th:errors="*{surname}"></span>
         </div>
-<!--        <div class="form-group">-->
-<!--            <label for="birthday">Birthday date:</label>-->
-<!--            <input type="hidden" th:field="*{birthday}" class="form-control blue-text"-->
-<!--                   id="birthday" th:value="${userDto.getBirthday()}"-->
-<!--                   placeholder="Введите дату рождения">-->
-<!--        </div>-->
         <div class="form-group">
             <label>Gender:</label>
             <div class="form-check">
@@ -56,6 +54,8 @@
             <label for="email">Email:</label>
             <input type="text" th:field="*{email}" class="form-control blue-text" id="email"
                    placeholder="Введите ваш email">
+            <span th:if="${#fields.hasErrors('email')}" style="color:red"
+                  th:errors="*{email}"></span>
         </div>
         <input type="hidden" th:field="*{id}">
         <input type="hidden" th:field="*{registrationDate}">

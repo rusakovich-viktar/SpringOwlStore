@@ -12,8 +12,6 @@ import org.modelmapper.ModelMapper;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
 import java.util.Optional;
 
 @Service
@@ -73,9 +71,13 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public Optional<User> getVerifyUser(String login, String email) {
+    public Optional<User> getVerifyUserByUsernameOrEmail(String login, String email) {
         return userRepository.findUserByUsernameOrEmail(login, email);
     }
 
+    @Override
+    public Optional<User> getVerifyUserByEmail(String email) {
+        return userRepository.findUserByEmail(email);
+    }
 
 }

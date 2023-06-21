@@ -28,11 +28,15 @@ public class UserDto {
 
     private Long id;
     private String username;
+    @Size(max = 30, message = "Name should not be more 30 character")
     private String name;
+    @Size(max = 30, message = "Surname should not be more 30 character")
     private String surname;
+    @Email(message = "Invalid email address")
+    @NotEmpty(message = "Поле не должно быть пустым")
+    private String email;
     private String gender;
     private LocalDate birthday;
-    private String email;
     private LocalDate registrationDate;
     private String password;
 
