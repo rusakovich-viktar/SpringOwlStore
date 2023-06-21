@@ -33,7 +33,7 @@ public class User {
     private String name;
     private String surname;
     private String gender;
-    private String birthday;
+    private LocalDate birthday;
     private String email;
     @CreationTimestamp
     @Column(name = "registration_date")

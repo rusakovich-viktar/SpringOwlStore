@@ -1,13 +1,11 @@
 package by.tms.springstore.controller;
 
-import by.tms.springstore.domain.User;
-import by.tms.springstore.dto.UserFormDTO_;
+import by.tms.springstore.dto.UserDtoFromRegistrationForm;
 import by.tms.springstore.mapper.UserMapper;
 import by.tms.springstore.service.UserService;
 import by.tms.springstore.utils.UserValidator;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
-import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -37,16 +35,17 @@ public class AuthController {
     }
 
     @GetMapping("/registration")
-    public ModelAndView registrationPage(@ModelAttribute(USER) UserFormDTO_ user) {
+    public ModelAndView registrationPage(@ModelAttribute(USER) UserDtoFromRegistrationForm user) {
         return new ModelAndView(AUTH_REGISTRATION);
     }
 
     @PostMapping("/registration")
-    public ModelAndView performRegistration(@ModelAttribute(USER) @Valid UserFormDTO_ user,
+    public ModelAndView performRegistration(@ModelAttribute(USER) @Valid UserDtoFromRegistrationForm user,
                                             BindingResult bindingResult, ModelAndView modelAndView) {
         userValidator.validate(user, bindingResult);
         if (bindingResult.hasErrors()) {
             modelAndView.setViewName(AUTH_REGISTRATION);
+            modelAndView.addObject(ERROR_REGISTRATION, true);
         } else {
             boolean registrationSuccess = userService.registrationNewUser(userMapper.convertToUser(user));
             if (registrationSuccess) {
@@ -59,8 +58,8 @@ public class AuthController {
     }
 
     @GetMapping("/logout")
-    public String logout() {
-        return AUTH_LOGIN;
+    public ModelAndView logout() {
+        return new ModelAndView(AUTH_LOGIN);
     }
 
 }

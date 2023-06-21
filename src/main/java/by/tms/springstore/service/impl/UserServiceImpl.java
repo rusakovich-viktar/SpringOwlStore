@@ -12,6 +12,8 @@ import org.modelmapper.ModelMapper;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.Optional;
 
 @Service
@@ -45,7 +47,7 @@ public class UserServiceImpl implements UserService {
                 .orElseThrow(() -> new NotFoundException("User not found"));
         user.setName(userDto.getName());
         user.setSurname(userDto.getSurname());
-        user.setBirthday(userDto.getBirthday());
+//        user.setBirthday(userDto.getBirthday() == null ? null : LocalDate.parse(userDto.getBirthday().format(DateTimeFormatter.ISO_DATE), DateTimeFormatter.ISO_DATE));
         user.setGender(userDto.getGender());
         user.setEmail(userDto.getEmail());
         userRepository.saveAndFlush(user);

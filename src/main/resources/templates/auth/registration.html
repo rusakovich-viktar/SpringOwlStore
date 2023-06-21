@@ -17,6 +17,13 @@
                     <h4 class="card-subtitle mb-4 text-center">Для регистрации заполните следующую информацию:</h4>
                     <form id="registrationForm" th:method="post" th:action="@{/auth/registration}" th:object="${user}">
                         <div class="mb-3">
+                            <div class="form-group">
+                                <label for="birthday">Birthday date:</label>
+                                <input type="date" th:field="*{birthday}" class="form-control" id="birthday"
+                                       placeholder="Введите дату рождения" required>
+                                <span th:if="${#fields.hasErrors('birthday')}" style="color:red"
+                                      th:errors="*{birthday}"></span>
+                            </div>
                             <label for="email" class="form-label">Введите Email</label>
                             <input id="email" type="email" class="form-control" placeholder="Email" name="email"
                                    th:field="*{email}" required>
@@ -43,7 +50,8 @@
                         </div>
                         <div class="mb-3">
                             <label for="verifyPassword" class="form-label">Повторите Password</label>
-                            <input id="verifyPassword" type="password" class="form-control" required name="verifyPassword"
+                            <input id="verifyPassword" type="password" class="form-control" required
+                                   name="verifyPassword"
                                    autocomplete="off">
                         </div>
                         <div class="text-center">
@@ -97,7 +105,6 @@
 
 </body>
 </html>
-
 
 
 <!--<!DOCTYPE html>-->

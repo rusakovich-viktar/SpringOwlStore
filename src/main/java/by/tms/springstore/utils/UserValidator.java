@@ -1,11 +1,10 @@
 package by.tms.springstore.utils;
 
 import by.tms.springstore.domain.User;
-import by.tms.springstore.dto.UserFormDTO_;
+import by.tms.springstore.dto.UserDtoFromRegistrationForm;
 import by.tms.springstore.service.UserService;
 import by.tms.springstore.service.impl.CustomUserDetailsService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Component;
 import org.springframework.validation.Errors;
 import org.springframework.validation.Validator;
@@ -23,12 +22,12 @@ public class UserValidator implements Validator {
 
     @Override
     public boolean supports(Class<?> aClass) {
-        return UserFormDTO_.class.equals(aClass);
+        return UserDtoFromRegistrationForm.class.equals(aClass);
     }
 
     @Override
     public void validate(Object o, Errors errors) {
-        UserFormDTO_ user = (UserFormDTO_) o;
+        UserDtoFromRegistrationForm user = (UserDtoFromRegistrationForm) o;
         checkUserLoginAndEmail(errors, user);
         checkPasswordInputVerify(errors, user);
 //        try {
@@ -39,7 +38,7 @@ public class UserValidator implements Validator {
 //        errors.rejectValue(USERNAME, "", "Человек с таким именем пользователя уже существует");
     }
 
-    private void checkUserLoginAndEmail(Errors errors, UserFormDTO_ testUser) {
+    private void checkUserLoginAndEmail(Errors errors, UserDtoFromRegistrationForm testUser) {
         Optional<User> user = userService.getVerifyUser(testUser.getUsername(), testUser.getEmail());
         if (user.isPresent()) {
             User foundUser = user.get();
@@ -48,21 +47,21 @@ public class UserValidator implements Validator {
         }
     }
 
-    private void checkUserByEmail(Errors errors, UserFormDTO_ testUser, User foundUser) {
+    private void checkUserByEmail(Errors errors, UserDtoFromRegistrationForm testUser, User foundUser) {
         if (foundUser.getEmail().equals(testUser.getEmail())) {
-            errors.rejectValue("email", "", "EXISTING_EMAIL already USED");
+            errors.rejectValue("email", "", "Пользователь с такой электронной почтой уже существует");
         }
     }
 
-    private void checkUserByLogin(Errors errors, UserFormDTO_ testUser, User foundUser) {
+    private void checkUserByLogin(Errors errors, UserDtoFromRegistrationForm testUser, User foundUser) {
         if (foundUser.getUsername().equals(testUser.getUsername())) {
-            errors.rejectValue(USERNAME, "", "EXISTING_USER already Used");
+            errors.rejectValue(USERNAME, "", "Пользователь с таким username уже существует");
         }
     }
 
-    private void checkPasswordInputVerify(Errors errors, UserFormDTO_ user) {
+    private void checkPasswordInputVerify(Errors errors, UserDtoFromRegistrationForm user) {
         if (!user.getPassword().equals(user.getVerifyPassword())) {
-            errors.rejectValue("password", "", "PASSWORDS_not_MATCHING");
+            errors.rejectValue("password", "", "Пароли не совпадают");
         }
     }
 }
