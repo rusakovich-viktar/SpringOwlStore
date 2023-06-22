@@ -2,7 +2,6 @@ package by.tms.springstore.utils;
 
 import by.tms.springstore.domain.User;
 import by.tms.springstore.dto.UserDto;
-import by.tms.springstore.dto.UserDtoFromRegistrationForm;
 import by.tms.springstore.service.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
@@ -24,20 +23,19 @@ public class UserValidatorEditProfile implements Validator {
 
     @Override
     public void validate(Object o, Errors errors) {
-        UserDto user = (UserDto) o;
-        checkUserLoginAndEmail(errors, user);
+        UserDto checkUserFromForm = (UserDto) o;
+        checkUserInFormByEmail(errors, checkUserFromForm);
     }
 
-    private void checkUserLoginAndEmail(Errors errors, UserDto testUser) {
-        Optional<User> user = userService.getVerifyUserByEmail(testUser.getEmail());
+    private void checkUserInFormByEmail(Errors errors, UserDto checkUserFromForm) {
+        Optional<User> user = userService.getVerifyUserByEmail(checkUserFromForm.getEmail());
         if (user.isPresent()) {
-            User foundUser = user.get();
-            checkUserByEmail(errors, testUser, foundUser);
+            User foundedUser = user.get();
+            comparisonUsersById(errors, checkUserFromForm, foundedUser);
         }
     }
-//TODO Добавить проверку если пользователь не меняет почту
-    private void checkUserByEmail(Errors errors, UserDto testUser, User foundUser) {
-        if (foundUser.getEmail().equals(testUser.getEmail())) {
+    private void comparisonUsersById(Errors errors, UserDto checkUserFromForm, User foundedUser) {
+        if (!foundedUser.getId().equals(checkUserFromForm.getId())) {
             errors.rejectValue("email", "", "Пользователь с такой электронной почтой уже существует");
         }
     }
