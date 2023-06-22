@@ -39,7 +39,7 @@ public class ProductController {
     @PostMapping("/add")
     public ModelAndView addCart(@RequestParam("productId") Long productId, Principal principal, ModelAndView modelAndView) {
         productService.addToUserCart(productId, principal.getName());
-        modelAndView.setViewName(REDIRECT_TO_PRODUCT + productId + "?added=true");
+        modelAndView.setViewName("redirect:/product/" + productId + "?added=true");
         return modelAndView;
     }
 

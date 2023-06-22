@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title>Home page</title>
+    <title>Profile</title>
     <div th:block th:insert="~{bootstrap-basic.html}"></div>
     <link rel="stylesheet" th:href="@{/css/style.css}">
 </head>
@@ -19,8 +19,8 @@
             <p><strong>Электронная почта:</strong> <span class="font-italic" th:text="${userDto.email}"></span></p>
             <p><strong>Дата регистрации:</strong> <span class="font-italic" th:text="${userDto.registrationDate}"></span></p>
             <br>
-            <a class="btn btn-primary" th:href="@{/user/edit}">
-                <i class="fa fa-pencil"></i> Редактировать
+            <a class="btn btn-info" th:href="@{/user/edit}">
+                <i class="fa  fa-pencil"></i> Редактировать
             </a>
         </div>
     </div>

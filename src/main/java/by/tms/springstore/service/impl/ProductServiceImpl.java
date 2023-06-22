@@ -10,6 +10,9 @@ import by.tms.springstore.service.UserService;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import lombok.Setter;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.Collections;
@@ -81,6 +84,11 @@ public class ProductServiceImpl implements ProductService {
     @Override
     public List<Product> searchProducts(String query) {
         return productRepository.findByNameContainingIgnoreCase(query);
+    }
+
+    @Override
+    public Page<Product> getAllProductsByCategoryId(Long categoryId, Pageable pageable) {
+        return productRepository.findAllByCategoryId(categoryId, pageable);
     }
 
 }
