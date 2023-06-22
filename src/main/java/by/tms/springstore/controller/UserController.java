@@ -5,7 +5,6 @@ import by.tms.springstore.dto.UserDto;
 import by.tms.springstore.mapper.UserMapper;
 import by.tms.springstore.service.UserService;
 import by.tms.springstore.utils.UserValidatorEditProfile;
-import by.tms.springstore.utils.UserValidatorRegistration;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.Authentication;

@@ -17,7 +17,6 @@ import java.util.List;
 
 import static by.tms.springstore.utils.Constants.Attributes.ONE_PRODUCT;
 import static by.tms.springstore.utils.Constants.PagePath.PRODUCT;
-import static by.tms.springstore.utils.Constants.PagePath.REDIRECT_TO_PRODUCT;
 
 @RequiredArgsConstructor
 @RequestMapping("/product")
@@ -42,7 +41,6 @@ public class ProductController {
         modelAndView.setViewName("redirect:/product/" + productId + "?added=true");
         return modelAndView;
     }
-
 
 
     @GetMapping("/search")

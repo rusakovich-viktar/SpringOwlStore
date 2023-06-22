@@ -8,7 +8,6 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -16,9 +15,9 @@ import org.springframework.web.servlet.ModelAndView;
 
 import java.security.Principal;
 
-import static by.tms.springstore.utils.Constants.RequestParams.PRODUCT_ID;
 import static by.tms.springstore.utils.Constants.PagePath.CART;
 import static by.tms.springstore.utils.Constants.PagePath.REDIRECT_TO_CART;
+import static by.tms.springstore.utils.Constants.RequestParams.PRODUCT_ID;
 
 @Controller
 @RequiredArgsConstructor
