@@ -6,6 +6,8 @@ import by.tms.springstore.service.UserService;
 import by.tms.springstore.utils.UserValidatorRegistration;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -58,6 +60,10 @@ public class AuthController {
 
     @GetMapping("/logout")
     public ModelAndView logout() {
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        if (authentication != null) {
+            SecurityContextHolder.clearContext();
+        }
         return new ModelAndView(AUTH_LOGIN);
     }
 

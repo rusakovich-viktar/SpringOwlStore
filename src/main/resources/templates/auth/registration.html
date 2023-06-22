@@ -4,11 +4,12 @@
     <title>Страница регистрации</title>
     <link rel="stylesheet" th:href="@{/css/registration.css}">
     <div th:block th:insert="~{bootstrap-basic.html}"></div>
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+
 </head>
+
 <body>
-<div class="container d-flex justify-content-center align-items-center vh-100">
+<div class="container d-flex justify-content-center align-items-center min-vh-100">
     <div class="row">
         <div class="col-lg-auto">
             <div class="card">
@@ -18,7 +19,8 @@
                     <form id="registrationForm" th:method="post" th:action="@{/auth/registration}" th:object="${user}">
                         <div class="mb-3">
                             <div class="form-group">
-                                <label for="birthday">Birthday date:</label>
+                                <label for="birthday">Birthday date (допускаются только совершеннолетние
+                                    пользователи):</label>
                                 <input type="date" th:field="*{birthday}" class="form-control" id="birthday"
                                        placeholder="Введите дату рождения" required>
                                 <span th:if="${#fields.hasErrors('birthday')}" style="color:red"
@@ -39,21 +41,42 @@
                                 Username Error
                             </div>
                         </div>
-                        <div class="mb-3">
+                        <div class="mb-3 password-input-wrapper">
                             <label for="password" class="form-label">Введите Password</label>
-                            <input id="password" type="password" class="form-control" name="password" autocomplete="off"
-                                   th:field="*{password}" required>
+                            <div class="password-input-container">
+                                <input id="password" type="password" class="form-control" name="password"
+                                       autocomplete="off"
+                                       th:field="*{password}" required>
+                                <input type="checkbox" id="showPasswordToggle">
+                                <label for="showPasswordToggle" id="showPasswordLabel">
+                                    <i class="fa fa-eye"></i>
+                                </label>
+                            </div>
                             <div style="color:red" th:if="${#fields.hasErrors('password')}" th:errors="*{password}">
                                 Password Error
                             </div>
-
                         </div>
                         <div class="mb-3">
                             <label for="verifyPassword" class="form-label">Повторите Password</label>
                             <input id="verifyPassword" type="password" class="form-control" required
-                                   name="verifyPassword"
-                                   autocomplete="off">
+                                   name="verifyPassword" autocomplete="off">
                         </div>
+
+
+                        <div><p>
+                            <input type="checkbox" required>
+                            С <a href="#" id="openModalLink">пользовательским соглашением</a> ознакомился и согласен
+                            согласен
+                        </p>
+                        </div>
+
+                        <div id="myModal" class="modal">
+                            <div class="modal-content">
+                                <span class="close">&times;</span>
+                                <div id="modalContentPlaceholder"></div>
+                            </div>
+                        </div>
+
                         <div class="text-center">
                             <button id="regFormSignUpBtn" type="submit" class="btn btn-primary">Register</button>
                         </div>
@@ -64,6 +87,7 @@
         </div>
     </div>
 </div>
+
 
 <!-- Всплывающее окно успешной регистрации -->
 <div id="notificationModal" class="modal fade" th:if="${successRegistration}">
@@ -103,39 +127,50 @@
     });
 </script>
 
+<script>
+    // Получаем ссылку и модальное окно
+    var openModalLink = document.getElementById("openModalLink");
+    var modal = document.getElementById("myModal");
+    var modalContentPlaceholder = document.getElementById("modalContentPlaceholder");
+
+    // Получаем элемент для закрытия модального окна
+    var closeBtn = document.getElementsByClassName("close")[0];
+
+    // Обработчик события при клике на ссылку
+    openModalLink.onclick = function () {
+        // Загрузка содержимого сообщения из файла message.html
+        fetch("/user-agreement")
+            .then(response => response.text())
+            .then(data => {
+                modalContentPlaceholder.innerHTML = data;
+                modal.style.display = "block";
+            });
+    }
+    // Обработчик события при клике на кнопку закрытия
+    closeBtn.onclick = function () {
+        modal.style.display = "none";
+    }
+</script>
+
+<script>
+    // Пароль
+    const showPasswordToggle = document.getElementById('showPasswordToggle');
+    const passwordInput = document.getElementById('password');
+    const verifyPasswordInput = document.getElementById('verifyPassword');
+
+    const showPasswordLabel = document.getElementById('showPasswordLabel');
+
+    showPasswordToggle.addEventListener('change', function () {
+        if (showPasswordToggle.checked) {
+            passwordInput.type = 'text';
+            verifyPasswordInput.type = 'text';
+            showPasswordLabel.innerHTML = '<i class="fa fa-eye"></i>';
+        } else {
+            passwordInput.type = 'password';
+            verifyPasswordInput.type = 'password';
+            showPasswordLabel.innerHTML = '<i class="fa fa-eye-slash"></i>';
+        }
+    });
+</script>
 </body>
 </html>
-
-
-<!--<!DOCTYPE html>-->
-<!--<html lang="en" xmlns:th="http://www.thymeleaf.org">-->
-<!--<head>-->
-<!--    <meta charset="UTF-8">-->
-<!--    <title>New person</title>-->
-<!--</head>-->
-<!--<body>-->
-
-<!--<form th:method="POST" th:action="@{/auth/registration}" th:object="${user}">-->
-<!--    <label for="username">Enter username: </label>-->
-<!--    <input type="text" th:field="*{username}" id="username"/>-->
-<!--    <div style="color:red" th:if="${#fields.hasErrors('username')}" th:errors="*{username}">username Error</div>-->
-<!--    <br/>-->
-<!--    <label for="password">Enter password: </label>-->
-<!--    <input type="password" th:field="*{password}" id="password"/>-->
-<!--    <div style="color:red" th:if="${#fields.hasErrors('password')}" th:errors="*{password}">password Error</div>-->
-<!--    <br/>-->
-<!--    <label for="email">Enter email: </label>-->
-<!--    <input type="text" th:field="*{email}" id="email"/>-->
-<!--    <div style="color:red" th:if="${#fields.hasErrors('email')}" th:errors="*{email}">Email Error</div>-->
-<!--    <br/>-->
-<!--    <label for="verifyPassword">verifyPassword password: </label>-->
-<!--    <input type="password" th:field="*{verifyPassword}" id="verifyPassword"/>-->
-<!--    <div style="color:red" th:if="${#fields.hasErrors('verifyPassword')}" th:errors="*{verifyPassword}">password Error</div>-->
-<!--    <br/>-->
-
-
-<!--    <input type="submit" value="Create!"/>-->
-<!--</form>-->
-
-<!--</body>-->
-<!--</html>-->

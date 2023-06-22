@@ -22,7 +22,8 @@ public class SecurityConfig {
                                 auth
 //                                        .anyRequest().permitAll()
                                         .requestMatchers("/admin").hasRole("ADMIN")
-                                        .requestMatchers("/auth/login", "/auth/registration", "/open", "/test").permitAll()
+                                        .requestMatchers("/auth/login", "/auth/registration", "/open", "/user-agreement").permitAll()
+//                                        .requestMatchers("/home", "/category").permitAll()
                                         .requestMatchers(PathRequest.toStaticResources().atCommonLocations()).permitAll()
                                         .anyRequest().hasAnyRole("USER", "ADMIN")
 //                                        .anyRequest().authenticated()
@@ -34,7 +35,8 @@ public class SecurityConfig {
                                 .defaultSuccessUrl("/home", true)
                 ).logout((logout) ->
                         logout.logoutUrl("/auth/logout")
-                                .logoutSuccessUrl("/auth/login")
+                                .logoutSuccessUrl("/auth/login?logout")
+                                .deleteCookies("JSESSIONID")
                                 .permitAll())
                 .build();
     }
