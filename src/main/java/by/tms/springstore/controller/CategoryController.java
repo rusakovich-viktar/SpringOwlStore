@@ -12,6 +12,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import java.util.List;
 
+import static by.tms.springstore.utils.Constants.Attributes.NAME_CATEGORY;
 import static by.tms.springstore.utils.Constants.Attributes.PRODUCTS;
 import static by.tms.springstore.utils.Constants.PagePath.CATEGORY;
 
@@ -25,15 +26,14 @@ public class CategoryController {
     @GetMapping("/category/{categoryId}")
     public ModelAndView showCategories
             (@PathVariable("categoryId") Long categoryId,
-            /*@RequestParam(CATEGORY_ID) long categoryId,
-                                       @RequestParam(Constants.RequestParams.NAME_CATEGORY) String nameCategory,*/
-                                       HttpServletRequest request, ModelAndView modelAndView) {
-            String nameCategory = request.getParameter(Constants.RequestParams.NAME_CATEGORY);
-            List<Product> categoryProducts = productService.getAllProductsByCategoryId(categoryId);
-            modelAndView.addObject(PRODUCTS, categoryProducts);
-            modelAndView.addObject(Constants.Attributes.NAME_CATEGORY, nameCategory);
-            modelAndView.setViewName(CATEGORY);
+             HttpServletRequest request, ModelAndView modelAndView) {
+        String nameCategory = request.getParameter(Constants.RequestParams.NAME_CATEGORY);
+        List<Product> categoryProducts = productService.getAllProductsByCategoryId(categoryId);
+        modelAndView.addObject(PRODUCTS, categoryProducts);
+        modelAndView.addObject(NAME_CATEGORY, nameCategory);
+        modelAndView.setViewName(CATEGORY);
         return modelAndView;
     }
+
 
 }

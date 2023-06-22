@@ -4,7 +4,6 @@ import by.tms.springstore.domain.Product;
 import by.tms.springstore.service.ProductService;
 import jakarta.servlet.http.HttpServletRequest;
 import lombok.RequiredArgsConstructor;
-import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -17,7 +16,6 @@ import java.security.Principal;
 import java.util.List;
 
 import static by.tms.springstore.utils.Constants.Attributes.ONE_PRODUCT;
-import static by.tms.springstore.utils.Constants.Attributes.SUCCESS_REGISTRATION;
 import static by.tms.springstore.utils.Constants.PagePath.PRODUCT;
 import static by.tms.springstore.utils.Constants.PagePath.REDIRECT_TO_PRODUCT;
 
@@ -38,18 +36,10 @@ public class ProductController {
     }
 
 
-//    @GetMapping("/{productId}/add") ///POST
-//    public String addCart(@PathVariable("productId") Long productId, Authentication authentication) {
-//        productService.addToUserCart(productId, authentication.getName());
-//        return REDIRECT_TO_PRODUCT + "/" + productId;
-//    }
-
-
     @PostMapping("/add")
     public ModelAndView addCart(@RequestParam("productId") Long productId, Principal principal, ModelAndView modelAndView) {
         productService.addToUserCart(productId, principal.getName());
-        modelAndView.setViewName("redirect:/product/" + productId + "?added=true");
-//        modelAndView.setViewName(REDIRECT_TO_PRODUCT + "/" + productId);
+        modelAndView.setViewName(REDIRECT_TO_PRODUCT + productId + "?added=true");
         return modelAndView;
     }
 
