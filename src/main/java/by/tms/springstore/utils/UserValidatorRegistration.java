@@ -29,8 +29,9 @@ public class UserValidatorRegistration implements Validator {
         UserDtoFromRegistrationForm user = (UserDtoFromRegistrationForm) o;
         checkUserLoginAndEmail(errors, user);
         checkPasswordInputVerify(errors, user);
-        checkUserByAgeMoreEighteen(errors, user);
+        checkUserByAgeMoreFourteen(errors, user);
     }
+
 
     private void checkUserLoginAndEmail(Errors errors, UserDtoFromRegistrationForm testUser) {
         Optional<User> user = userService.getVerifyUserByUsernameOrEmail(testUser.getUsername(), testUser.getEmail());
@@ -54,12 +55,12 @@ public class UserValidatorRegistration implements Validator {
         }
     }
 
-    private void checkUserByAgeMoreEighteen(Errors errors, UserDtoFromRegistrationForm user) {
+    private void checkUserByAgeMoreFourteen(Errors errors, UserDtoFromRegistrationForm user) {
         LocalDate birthday = (user.getBirthday());
         LocalDate currentDate = LocalDate.now();
         Period period = Period.between(birthday, currentDate);
-        if (period.getYears() < 18) {
-            errors.rejectValue("birthday", "", "Вы должны быть старше 18 лет");
+        if (period.getYears() < 14) {
+            errors.rejectValue("birthday", "", "Вы должны быть старше 14 лет");
         }
     }
 
