@@ -4,6 +4,7 @@ import by.tms.springstore.domain.Role;
 import by.tms.springstore.domain.User;
 import by.tms.springstore.dto.UserDto;
 import by.tms.springstore.exceptions.NotFoundException;
+import by.tms.springstore.mapper.UserMapper;
 import by.tms.springstore.repository.UserRepository;
 import by.tms.springstore.service.UserService;
 import jakarta.transaction.Transactional;
@@ -21,6 +22,7 @@ public class UserServiceImpl implements UserService {
 
     private final UserRepository userRepository;
     private final PasswordEncoder passwordEncoder;
+    private final UserMapper userMapper;
 
 
     @Override
@@ -64,6 +66,13 @@ public class UserServiceImpl implements UserService {
     public User findByUsername(String username) {
         return userRepository.findByUsername(username);
     }
+
+    @Override
+    public UserDto findUserDtoByUsername(String username) {
+        User user = userRepository.findByUsername(username);
+        return userMapper.convertToUserDto(user);
+    }
+
 
     @Override
     public void save(User user) {

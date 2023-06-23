@@ -28,7 +28,6 @@ public class UserController {
     private final UserValidatorEditProfile userValidatorEditProfile;
 
     private final UserService userService;
-    private final UserMapper userMapper;
 
     @GetMapping("/profile/{userId}")
     public ModelAndView showUserProfile(@PathVariable("userId") Long id,
@@ -42,8 +41,7 @@ public class UserController {
     @GetMapping("/edit")
     public ModelAndView editUserProfileInfo(Authentication authentication, ModelAndView modelAndView) {
         String username = authentication.getName();
-        User user = userService.findByUsername(username);
-        UserDto userDto = userMapper.convertToUserDto(user);
+        UserDto userDto = userService.findUserDtoByUsername(username);
         modelAndView.addObject(USER_DTO, userDto);
         modelAndView.setViewName(EDIT_PROFILE);
         return modelAndView;
