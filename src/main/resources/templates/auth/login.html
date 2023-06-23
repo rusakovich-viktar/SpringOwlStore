@@ -32,6 +32,10 @@
     <p>Нет аккаунта? <a href="/auth/registration">Зарегистрироваться</a></p>
 </div>
 
+<div th:if="${param.logout != null}" class="alert alert-success">
+    Вы успешно вышли из системы.
+</div>
+
 <script>
     const showPasswordToggle = document.getElementById('showPasswordToggle');
     const passwordInput = document.getElementById('password');

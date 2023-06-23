@@ -13,11 +13,13 @@
     <li>
         <a class="active" th:href="@{/home}"><i class="fa fa-lg fa-fw fa-home"></i> Главная</a>
     </li>
-    <li style="float:right">
-        <a th:href="@{/auth/logout}">
-            <i class="fa fa-lg fa-fw fa-sign-in"></i> Выйти
-        </a>
-    </li>
+
+        <form th:action="@{/auth/logout}" method="post">
+            <button type="submit" style="float:right;" id="logout">
+                <i class="fa fa-lg fa-fw fa-sign-in"></i> Выйти
+            </button>
+        </form>
+
     <li style="float:right">
         <a th:href="@{/cart}">
             <i class="fa fa-lg fa-fw fa-shopping-basket"></i> Корзина
@@ -31,11 +33,20 @@
     </li>
     <li style="float:none ">
         <div class="search-container">
-            <input type="text" id="search-input" class="animated-search" placeholder="Введите название продукта">
+            <input type="text" id="search-input" class="animated-search" placeholder="Введите название продукта" onkeydown="handleKeyPress(event)">
             <button id="search-button">Найти</button>
         </div>
     </li>
 </ul>
 <div id="search-results-container"></div>
+
+<script>
+    document.getElementById("search-input").addEventListener("keydown", function(event) {
+        if (event.key === "Enter") {
+            event.preventDefault();
+            document.getElementById("search-button").click();
+        }
+    });
+</script>
 
 

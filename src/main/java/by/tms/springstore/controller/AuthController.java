@@ -58,13 +58,13 @@ public class AuthController {
         return modelAndView;
     }
 
-    @GetMapping("/logout")
+    @PostMapping("/logout")
     public ModelAndView logout() {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         if (authentication != null) {
             SecurityContextHolder.clearContext();
         }
-        return new ModelAndView(AUTH_LOGIN);
+        return new ModelAndView("redirect:/auth/login?logout");
     }
 
 }

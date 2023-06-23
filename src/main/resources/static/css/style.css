@@ -161,3 +161,18 @@ li a:hover {
     text-decoration: none;
     color: #c7f30d;
 }
+
+#logout {
+    padding: 14px 16px;
+    background-color: #333;
+    border: none;
+    color: #fff;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+#logout:hover {
+    background-color: #000;
+    text-decoration: none;
+    color: #c7f30d;
+}
