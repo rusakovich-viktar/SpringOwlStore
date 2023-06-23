@@ -8,31 +8,31 @@
     <link rel="stylesheet" th:href="@{/css/style.css}">
 </head>
 <body>
-<div th:block th:insert="~{header.html}"></div>
+<div th:block th:insert="~{elements/header.html}"></div>
+<main>
+    <br>
+    <h2>All categories</h2>
 
-
-<br>
-<h2>All categories</h2>
-
-<div class="container-fluid">
-    <div th:if="${categories != null}">
-        <div class="row card-deck">
-            <div th:each="category : ${categories}" class="card w-25 m-1" type="category">
-                <div class="card-body">
-                    <a th:href="@{/category/{id}(id=${category.id})}">
-                        <div>
-                            <span th:text="${category.name}"></span>
-                            <img class="card-img-top img"
-                                 th:src="@{/images/categories/__${#strings.toLowerCase(category.name)}__.jpg}"
-                                 style="width:150px;height:120px"
-                                 th:alt="${category.name}">
-                        </div>
-                    </a>
+    <div class="container-fluid">
+        <div th:if="${categories != null}">
+            <div class="row card-deck">
+                <div th:each="category : ${categories}" class="card w-25 m-1" type="category">
+                    <div class="card-body">
+                        <a th:href="@{/category/{id}(id=${category.id})}">
+                            <div>
+                                <span th:text="${category.name}"></span>
+                                <img class="card-img-top img"
+                                     th:src="@{/images/categories/__${#strings.toLowerCase(category.name)}__.jpg}"
+                                     style="width:150px;height:120px"
+                                     th:alt="${category.name}">
+                            </div>
+                        </a>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
-</div>
-
+</main>
+<div th:block th:insert="~{elements/footer.html}"></div>
 </body>
 </html>

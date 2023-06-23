@@ -17,7 +17,7 @@
 </head>
 <body>
 
-<div th:block th:insert="~{header.html}"></div>
+<div th:block th:insert="~{elements/header.html}"></div>
 
 <div class="container">
     <h2><span th:text="${nameCategory}"></span></h2>
@@ -59,6 +59,6 @@
         </li>
     </ul>
 </div>
-
+<div th:block th:insert="~{elements/footer.html}"></div>
 </body>
 </html>

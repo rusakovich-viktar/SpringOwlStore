@@ -7,7 +7,7 @@
 </head>
 <body>
 
-<div th:block th:insert="~{header.html}"></div>
+<div th:block th:insert="~{elements/header.html}"></div>
 
 <div th:if="${oneProduct != null}" class="container-fluid">
     <h2 class="text-center" th:text="${oneProduct.name}"></h2><br>
@@ -77,6 +77,6 @@
         }
     }
 </script>
-
+<div th:block th:insert="~{elements/footer.html}"></div>
 </body>
 </html>

@@ -13,7 +13,7 @@
 
 </head>
 <body>
-<div th:block th:insert="~{header.html}"></div>
+<div th:block th:insert="~{elements/header.html}"></div>
 
 <div th:if="${#lists.size(cart.cartDetails) < 1}" class="empty-cart">
     <a th:href="@{/home}">
@@ -71,5 +71,6 @@
     </tr>
     </tbody>
 </table>
+<div th:block th:insert="~{elements/footer.html}"></div>
 </body>
 </html>

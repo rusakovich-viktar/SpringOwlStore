@@ -9,5 +9,6 @@
         <a th:href="@{/product/{productId}(productId=${product.id})}" th:text="${product.name}"></a>
     </li>
 </ul>
+<div th:block th:insert="~{elements/footer.html}"></div>
 </body>
 </html>

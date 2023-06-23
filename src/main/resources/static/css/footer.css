@@ -1,0 +1,31 @@
+/*Футер*/
+html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+}
+
+main {
+    flex-grow: 1;
+}
+
+footer {
+    background-color: #f1f1f1;
+    text-align: center;
+    margin-top: auto;
+    width: 100%;
+    /*position: fixed;*/
+    bottom: 0;
+    left: 0;
+    /*height: 5px;*/
+
+}
+
+.my-container {
+    height: 3px;
+}
