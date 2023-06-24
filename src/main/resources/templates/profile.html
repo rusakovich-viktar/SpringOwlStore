@@ -7,17 +7,22 @@
 </head>
 <body>
 <div th:block th:insert="~{elements/header.html}"></div>
+
 <br>
 <div class="container">
-    <h3 class="text-center">Личный кабинет пользователя <b class="font-italic" th:text="${userDto.username}"></b></h3>
+    <h3 class="text-center">Личный кабинет пользователя <b class="font-italic"
+                                                           th:text="${userDto.username}"></b></h3>
     <div class="row">
         <div class="col-lg-6">
             <p><strong>Имя:</strong> <span class="font-italic" th:text="${userDto.name}"></span></p>
             <p><strong>Фамилия:</strong> <span class="font-italic" th:text="${userDto.surname}"></span></p>
             <p><strong>Гендер:</strong> <span class="font-italic" th:text="${userDto.gender}"></span></p>
-            <p><strong>Дата рождения:</strong> <span class="font-italic" th:text="${userDto.birthday}"></span></p>
-            <p><strong>Электронная почта:</strong> <span class="font-italic" th:text="${userDto.email}"></span></p>
-            <p><strong>Дата регистрации:</strong> <span class="font-italic" th:text="${userDto.registrationDate}"></span></p>
+            <p><strong>Дата рождения:</strong> <span class="font-italic"
+                                                     th:text="${userDto.birthday}"></span></p>
+            <p><strong>Электронная почта:</strong> <span class="font-italic"
+                                                         th:text="${userDto.email}"></span></p>
+            <p><strong>Дата регистрации:</strong> <span class="font-italic"
+                                                        th:text="${userDto.registrationDate}"></span></p>
             <br>
             <a class="btn btn-info" th:href="@{/user/edit}">
                 <i class="fa  fa-pencil"></i> Редактировать
@@ -25,6 +30,8 @@
         </div>
     </div>
 </div>
+
+<div th:block th:insert="~{elements/waves.html}"></div>
 <div th:block th:insert="~{elements/footer.html}"></div>
 </body>
 </html>

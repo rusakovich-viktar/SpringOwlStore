@@ -9,40 +9,43 @@
 
 <div th:block th:insert="~{elements/header.html}"></div>
 
-<div th:if="${oneProduct != null}" class="container-fluid">
-    <h2 class="text-center" th:text="${oneProduct.name}"></h2><br>
-
-    <!--    <img class="mx-auto d-block" style="height:auto; max-width: 330px; "-->
-    <img class="mx-auto d-block" style="height:auto; max-width: 14rem; "
-         th:src="@{/images/__${#strings.toLowerCase(#strings.replace(oneProduct.category.name, ' ', '-'))}__/__${#strings.toLowerCase(oneProduct.name)}__.jpg}"
-         th:alt="${oneProduct.name}">
+            <div th:if="${oneProduct != null}" class="container-fluid">
+                <h2 class="text-center" th:text="${oneProduct.name}"></h2><br>
 
 
-    <br>
-    <div class="container">
-        <h2>Product description:</h2>
-        <table class="table table-bordered">
-            <thead>
-            <tr>
-                <th class="text-center" style="vertical-align: middle">Description</th>
-                <th class="text-center" style="vertical-align: middle">Price руб</th>
-            </tr>
-            </thead>
-            <tbody>
-            <tr>
-                <td th:text="${oneProduct.description}"></td>
-                <td class="text-center" style="vertical-align: middle" th:text="${oneProduct.price}"></td>
-                <td>
-                    <form method="post" th:action="@{/product/add}" th:object="${oneProduct}" onsubmit="showPopup()">
-                        <input type="hidden" th:name="productId" th:value="${oneProduct.id}"/>
-                        <button type="submit" class="btn btn-info btn-sm">Add to cart</button>
-                    </form>
-                </td>
-            </tr>
-            </tbody>
-        </table>
-    </div>
-</div>
+                <img class="mx-auto d-block" style="height:auto; max-width: 14rem; "
+                     th:src="@{/images/__${#strings.toLowerCase(#strings.replace(oneProduct.category.name, ' ', '-'))}__/__${#strings.toLowerCase(oneProduct.name)}__.jpg}"
+                     th:alt="${oneProduct.name}">
+
+
+                <br>
+                <div class="container">
+                    <h2>Product description:</h2>
+                    <table class="table table-bordered">
+                        <thead>
+                        <tr>
+                            <th class="text-center" style="vertical-align: middle">Description</th>
+                            <th class="text-center" style="vertical-align: middle">Price руб</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr>
+                            <td th:text="${oneProduct.description}"></td>
+                            <td class="text-center" style="vertical-align: middle" th:text="${oneProduct.price}"></td>
+                            <td>
+                                <form method="post" th:action="@{/product/add}" th:object="${oneProduct}"
+                                      onsubmit="showPopup()">
+                                    <input type="hidden" th:name="productId" th:value="${oneProduct.id}"/>
+                                    <button type="submit" class="btn btn-info btn-sm">Add to cart</button>
+                                </form>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+    <div th:block th:insert="~{elements/waves.html}"></div>
 
 <script>
     function showPopup() {
@@ -77,6 +80,7 @@
         }
     }
 </script>
+
 <div th:block th:insert="~{elements/footer.html}"></div>
 </body>
 </html>

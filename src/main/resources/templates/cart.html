@@ -5,22 +5,14 @@
     <div th:block th:insert="~{bootstrap-basic.html}"></div>
     <link rel="stylesheet" th:href="@{/css/style.css}">
 
-    <style>
-        .center-table {
-            margin: 0 auto;
-        }
-    </style>
-
 </head>
 <body>
 <div th:block th:insert="~{elements/header.html}"></div>
-
 <div th:if="${#lists.size(cart.cartDetails) < 1}" class="empty-cart">
     <a th:href="@{/home}">
         <img class="card-img-top img-fluid" th:src="@{/images/other-pic/void.jpg}">
     </a>
 </div>
-
 
 <table class="table table-striped table-hover table-bordered center-text center-table"
        th:if="${#lists.size(cart.cartDetails) > 0}">
@@ -71,6 +63,7 @@
     </tr>
     </tbody>
 </table>
+<div th:block th:insert="~{elements/waves.html}"></div>
 <div th:block th:insert="~{elements/footer.html}"></div>
 </body>
 </html>

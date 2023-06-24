@@ -18,7 +18,6 @@
 <body>
 
 <div th:block th:insert="~{elements/header.html}"></div>
-
 <div class="container">
     <h2><span th:text="${nameCategory}"></span></h2>
     <div class="row row-cols-1 row-cols-md-3 align-items-stretch">
@@ -48,17 +47,21 @@
 <div th:if="${totalPages > 1}" class="pagination-container">
     <ul class="pagination">
         <li th:if="${currentPage > 0}">
-            <a th:href="@{/category/{categoryId}(categoryId=${categoryId},page=${currentPage - 1})}">&laquo; Назад</a>
+            <a th:href="@{/category/{categoryId}(categoryId=${categoryId},page=${currentPage - 1})}">&laquo;
+                Назад</a>
         </li>
         <li th:each="page : ${#numbers.sequence(0, totalPages - 1)}"
             th:class="${page == currentPage} ? 'active'">
-            <a th:href="@{/category/{categoryId}(categoryId=${categoryId},page=${page})}" th:text="${page + 1}"></a>
+            <a th:href="@{/category/{categoryId}(categoryId=${categoryId},page=${page})}"
+               th:text="${page + 1}"></a>
         </li>
         <li th:if="${currentPage < totalPages - 1}">
-            <a th:href="@{/category/{categoryId}(categoryId=${categoryId},page=${currentPage + 1})}">Вперед &raquo;</a>
+            <a th:href="@{/category/{categoryId}(categoryId=${categoryId},page=${currentPage + 1})}">Вперед
+                &raquo;</a>
         </li>
     </ul>
 </div>
+<div th:block th:insert="~{elements/waves.html}"></div>
 <div th:block th:insert="~{elements/footer.html}"></div>
 </body>
 </html>

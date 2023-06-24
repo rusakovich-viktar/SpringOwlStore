@@ -9,10 +9,10 @@
 </head>
 <body>
 <div th:block th:insert="~{elements/header.html}"></div>
+
 <main>
     <br>
     <h2>All categories</h2>
-
     <div class="container-fluid">
         <div th:if="${categories != null}">
             <div class="row card-deck">
@@ -23,7 +23,7 @@
                                 <span th:text="${category.name}"></span>
                                 <img class="card-img-top img"
                                      th:src="@{/images/categories/__${#strings.toLowerCase(category.name)}__.jpg}"
-                                     style="width:150px;height:120px"
+                                     style="width:120px;height:100px"
                                      th:alt="${category.name}">
                             </div>
                         </a>
@@ -33,6 +33,8 @@
         </div>
     </div>
 </main>
+
+<div th:block th:insert="~{elements/waves.html}"></div>
 <div th:block th:insert="~{elements/footer.html}"></div>
 </body>
 </html>

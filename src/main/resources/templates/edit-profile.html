@@ -13,6 +13,7 @@
 </head>
 <body>
 <div th:block th:insert="~{elements/header.html}"></div>
+
 <div class="container">
     <h1>Редактирование данных пользователя</h1>
     <form th:action="@{/user/profile}" th:object="${userDto}" th:method="post">
@@ -42,11 +43,13 @@
                 <label class="form-check-label" for="male">Male</label>
             </div>
             <div class="form-check">
-                <input type="radio" th:field="*{gender}" class="form-check-input" id="female" value="female">
+                <input type="radio" th:field="*{gender}" class="form-check-input" id="female"
+                       value="female">
                 <label class="form-check-label" for="female">Female</label>
             </div>
             <div class="form-check">
-                <input type="radio" th:field="*{gender}" class="form-check-input" id="non-binary" value="non-binary">
+                <input type="radio" th:field="*{gender}" class="form-check-input" id="non-binary"
+                       value="non-binary">
                 <label class="form-check-label" for="non-binary">Non-binary</label>
             </div>
         </div>
@@ -63,6 +66,7 @@
         <button type="submit" class="btn btn-primary">Изменить</button>
     </form>
 </div>
+<div th:block th:insert="~{elements/waves.html}"></div>
 <div th:block th:insert="~{elements/footer.html}"></div>
 </body>
 </html>
