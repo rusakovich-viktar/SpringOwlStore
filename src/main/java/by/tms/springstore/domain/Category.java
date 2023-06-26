@@ -7,6 +7,8 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -17,9 +19,8 @@ import java.util.List;
 
 @Setter
 @Getter
-@SuperBuilder
-//@ToString
-@EqualsAndHashCode
+//@Builder
+@AllArgsConstructor
 @Entity
 @Table(name = "categories", schema = "online-store")
 @NoArgsConstructor

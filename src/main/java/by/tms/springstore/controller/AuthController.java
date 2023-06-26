@@ -1,18 +1,19 @@
 package by.tms.springstore.controller;
 
-import by.tms.springstore.domain.User;
+import by.tms.springstore.dto.UserDtoFromRegistrationForm;
+import by.tms.springstore.mapper.UserMapper;
 import by.tms.springstore.service.UserService;
-import by.tms.springstore.utils.UserValidator;
-import jakarta.servlet.http.HttpServletRequest;
-import jakarta.servlet.http.HttpSession;
+import by.tms.springstore.utils.UserValidatorRegistration;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
-import org.springframework.stereotype.Controller;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
 import static by.tms.springstore.utils.Constants.Attributes.ERROR_REGISTRATION;
@@ -20,35 +21,34 @@ import static by.tms.springstore.utils.Constants.Attributes.SUCCESS_REGISTRATION
 import static by.tms.springstore.utils.Constants.Attributes.USER;
 import static by.tms.springstore.utils.Constants.PagePath.AUTH_LOGIN;
 import static by.tms.springstore.utils.Constants.PagePath.AUTH_REGISTRATION;
-import static by.tms.springstore.utils.Constants.PagePath.LOGIN;
-import static by.tms.springstore.utils.Constants.PagePath.SIGN_IN;
 
 @RequiredArgsConstructor
-@Controller
+@RestController
 @RequestMapping("/auth")
 public class AuthController {
 
     private final UserService userService;
-    private final UserValidator userValidator;
+    private final UserValidatorRegistration userValidatorRegistration;
+    private final UserMapper userMapper;
 
     @GetMapping("/login")
-    public String loginPage() {
-        return AUTH_LOGIN;
+    public ModelAndView loginPage() {
+        return new ModelAndView(AUTH_LOGIN);
     }
 
     @GetMapping("/registration")
-    public String registrationPage(@ModelAttribute(USER) User user) {
-        return AUTH_REGISTRATION;
+    public ModelAndView registrationPage(@ModelAttribute(USER) UserDtoFromRegistrationForm user) {
+        return new ModelAndView(AUTH_REGISTRATION);
     }
 
     @PostMapping("/registration")
-    public ModelAndView performRegistration(@ModelAttribute(USER) @Valid User user,
+    public ModelAndView performRegistration(@ModelAttribute(USER) @Valid UserDtoFromRegistrationForm user,
                                             BindingResult bindingResult, ModelAndView modelAndView) {
-        userValidator.validate(user, bindingResult);
+        userValidatorRegistration.validate(user, bindingResult);
         if (bindingResult.hasErrors()) {
             modelAndView.setViewName(AUTH_REGISTRATION);
         } else {
-            boolean registrationSuccess = userService.registrationNewUser(user);
+            boolean registrationSuccess = userService.registrationNewUser(userMapper.convertToUser(user));
             if (registrationSuccess) {
                 modelAndView.addObject(SUCCESS_REGISTRATION, true);
             } else {
@@ -58,9 +58,13 @@ public class AuthController {
         return modelAndView;
     }
 
-    @GetMapping("/logout")
-    public String logout() {
-        return AUTH_LOGIN;
+    @PostMapping("/logout")
+    public ModelAndView logout() {
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        if (authentication != null) {
+            SecurityContextHolder.clearContext();
+        }
+        return new ModelAndView("redirect:/auth/login?logout");
     }
 
 }

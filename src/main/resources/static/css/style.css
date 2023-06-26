@@ -1,60 +1,12 @@
-.buttonAddProduct {
-    background-color: #366cb2;
-    border: 0;
-    color: white;
-    padding: 14px 18px;
-    font-size: 14px;
-    cursor: pointer;
-    margin: 0 auto;
-    display: block;
-}
-
-.buttonAddProduct:hover {
-    background-color: #5881c4;
-}
+@import url(//fonts.googleapis.com/css?family=Lato:300:400);
 
 .mx-auto d-block {
     text-align: center;
-    max-width: 250px;
-    height: 350px;
-}
-
-.buttonDelete {
-    background-color: #DC143C;
-    border: 0;
-    color: white;
-    padding: 12px 16px;
-    font-size: 13px;
-    cursor: pointer;
-}
-
-.buttonDelete:hover {
-    background-color: #FF0000;
-}
-
-.buttonQuit {
-    background-color: #008B8B;
-    border: 0;
-    color: white;
-    padding: 12px 16px;
-    font-size: 13px;
-    cursor: pointer;
-    position: relative;
-    margin: 0 auto;
-    display: block;
-}
-
-.buttonQuit:hover {
-    background-color: #20B2AA;
-}
-
-.responsive {
-    max-width: 100%;
-    height: auto;
 }
 
 body {
-    font-family: Arial, Helvetica, sans-serif;
+    font-family: Lato, Helvetica, sans-serif;
+    background: linear-gradient(60deg, rgba(84,58,183,1) 0%, rgba(0,172,193,1) 100%);
 }
 
 ul {
@@ -63,6 +15,8 @@ ul {
     padding: 0;
     overflow: hidden;
     background-color: #333;
+
+
 }
 
 li {
@@ -87,7 +41,7 @@ li a:hover {
     background-color: #366cb2;
 }
 
-/*___________________*/
+/*____корзина____________*/
 
 .center-text {
     text-align: center;
@@ -105,6 +59,11 @@ li a:hover {
     overflow: hidden; /* Скрытие лишней части изображения */
 }
 
+.center-table {
+    margin: 0 auto;
+}
+
+
 /*ПОисковая строка*/
 .search-container {
     display: flex;
@@ -112,25 +71,234 @@ li a:hover {
     justify-content: center;
 }
 
-#search-input {
-    padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    font-size: 15px;
-    margin-right: 5px;
-    width: 250px;
-}
 
 #search-button {
-    padding: 12px 20px;
-    background-color: #007bff;
+    padding: 15px 18px;
+    background-color: #366cb2;
     border: none;
-    border-radius: 5px;
+    /*border-radius: 5px;*/
     color: #fff;
     font-size: 14px;
     cursor: pointer;
 }
 
 #search-button:hover {
-    background-color: #0056b3;
+    background-color: #000;
+    text-decoration: none;
+    color: #c7f30d;
+}
+
+.animated-search {
+    width: 130px;
+    box-sizing: border-box;
+    border: 2px solid #ccc;
+    border-radius: 2px;
+    font-size: 16px;
+    background-color: white;
+    background-position: 10px 10px;
+    background-repeat: no-repeat;
+    padding: 12px 20px 12px 40px;
+    -webkit-transition: width 0.4s ease-in-out;
+    transition: width 0.4s ease-in-out;
+}
+
+.animated-search:focus {
+    width: 100%;
+}
+
+/*_popup_*/
+.popup {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #f9f9f9;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    padding: 25px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    z-index: 9999;
+}
+
+.popup-content {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+.close {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    cursor: pointer;
+}
+
+/*Пагинация*/
+.pagination-container {
+    text-align: center;
+}
+
+.pagination {
+    display: inline-block;
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+.pagination li {
+    display: inline;
+    margin-right: 5px;
+}
+
+.pagination li a {
+    text-decoration: none;
+    padding: 5px 10px;
+    /*border: 1px solid #ccc;*/
+    color: #ccc;
+    /*color: #c7f30d;*/
+}
+
+.pagination li.active a {
+    background-color: #366cb2;
+    color: white;
+
+}
+
+.pagination li a:hover {
+    background-color: #000;
+    text-decoration: none;
+    color: #c7f30d;
+}
+
+#logout {
+    padding: 14px 16px;
+    background-color: #333;
+    border: none;
+    color: #fff;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+#logout:hover {
+    background-color: #000;
+    text-decoration: none;
+    color: #c7f30d;
+}
+
+
+/*_waves*/
+
+body {
+    /*margin: 0;*/
+}
+
+h1 {
+    font-family: 'Lato', sans-serif;
+    font-weight: 300;
+    letter-spacing: 2px;
+    font-size: 16px;
+}
+
+p {
+    /*font-family: 'Lato', sans-serif;*/
+    /*letter-spacing: 1px;*/
+    /*font-size: 14px;*/
+    /*color: #333333;*/
+}
+
+.header {
+    position: relative;
+    text-align: center;
+    background: linear-gradient(60deg, rgba(84, 58, 183, 1) 0%, rgba(0, 172, 193, 1) 100%);
+    color: white;
+}
+
+/*.logo {*/
+/*    width: 50px;*/
+/*    fill: white;*/
+/*    padding-right: 15px;*/
+/*    display: inline-block;*/
+/*    vertical-align: middle;*/
+/*}*/
+
+.inner-header {
+    height: 65vh;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+.flex { /*Flexbox for containers*/
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+.waves {
+    position: relative;
+    width: 100%;
+    height: 15vh;
+    margin-bottom: -7px; /*Fix for safari gap*/
+    min-height: 100px;
+    max-height: 150px;
+}
+
+.content {
+    position: relative;
+    height: 20vh;
+    text-align: center;
+    background-color: white;
+}
+
+/* Animation */
+
+.parallax > use {
+    animation: move-forever 25s cubic-bezier(.55, .5, .45, .5) infinite;
+}
+
+.parallax > use:nth-child(1) {
+    animation-delay: -2s;
+    animation-duration: 7s;
+}
+
+.parallax > use:nth-child(2) {
+    animation-delay: -3s;
+    animation-duration: 10s;
+}
+
+.parallax > use:nth-child(3) {
+    animation-delay: -4s;
+    animation-duration: 13s;
+}
+
+.parallax > use:nth-child(4) {
+    animation-delay: -5s;
+    animation-duration: 20s;
+}
+
+@keyframes move-forever {
+    0% {
+        transform: translate3d(-90px, 0, 0);
+    }
+    100% {
+        transform: translate3d(85px, 0, 0);
+    }
+}
+
+/*Shrinking for mobile*/
+@media (max-width: 768px) {
+    .waves {
+        height: 40px;
+        min-height: 40px;
+    }
+
+    .content {
+        height: 30vh;
+    }
+
+    h1 {
+        font-size: 16px;
+    }
 }

@@ -1,18 +1,25 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity6">
->
+
 <head>
-    <title>Title</title>
+    <title>LoginPage</title>
     <div th:block th:insert="~{bootstrap-basic.html}"></div>
     <link rel="stylesheet" th:href="@{/css/login.css}">
 </head>
 <body>
 <div id="wrapper">
-    <h1>Sign In Form</h1>
+    <h1>Добро пожаловать</h1>
     <form method="post" id="signin" autocomplete="on">
+
         <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}"/>
         <input type="text" class="violet" id="user" name="username" placeholder="username" required/>
         <input type="password" id="password" name="password" placeholder="password" required/>
+
+        <div>
+            <input type="checkbox" id="showPasswordToggle">
+            <label for="showPasswordToggle" id="showPasswordLabel" th:size="10">Показать пароль</label>
+        </div>
+
         <button type="submit">&#xf0da;</button>
 
         <div th:if="${param.error}" style="color: red">
@@ -24,5 +31,25 @@
     <br>
     <p>Нет аккаунта? <a href="/auth/registration">Зарегистрироваться</a></p>
 </div>
+
+<div th:if="${param.logout != null}" class="alert alert-success">
+    Вы успешно вышли из системы.
+</div>
+
+<script>
+    const showPasswordToggle = document.getElementById('showPasswordToggle');
+    const passwordInput = document.getElementById('password');
+    const showPasswordLabel = document.getElementById('showPasswordLabel');
+
+    showPasswordToggle.addEventListener('change', function() {
+        if (showPasswordToggle.checked) {
+            passwordInput.type = 'text';
+            showPasswordLabel.textContent = 'Скрыть пароль';
+        } else {
+            passwordInput.type = 'password';
+            showPasswordLabel.textContent = 'Показать пароль';
+        }
+    });
+</script>
 </body>
 </html>

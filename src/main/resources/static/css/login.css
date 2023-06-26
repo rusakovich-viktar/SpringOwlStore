@@ -6,13 +6,13 @@
 }
 
 body {
-    background: rgb(52, 56, 61);
+    background: rgb(204, 200, 200);
     padding: 80px;
 }
 
 h1 {
-    color: rgb(196, 238, 25);
-    padding-bottom: 50px;
+    color: rgb(54, 108, 178);
+    padding-bottom: 10px;
     text-align: center;
 }
 
@@ -65,8 +65,8 @@ h2 {
 
 #signin input[type="text"], #signin input[type="password"], #signin button[type="submit"] {
     background: rgb(255, 255, 255);
-    box-shadow: inset -100px -100px 0 rgb(28, 33, 30); /*Prevent yellow autofill color*/
-    color: rgb(196, 238, 25);
+    box-shadow: inset -100px -100px 0 rgb(157, 157, 164); /*Prevent yellow autofill color*/
+    color: rgb(54, 108, 178);
 }
 
 #signin input[type="text"], #signin input[type="password"] {
@@ -96,7 +96,7 @@ h2 {
     z-index: 2;
     top: 19px;
     right: -24px;
-    border: 6px solid rgb(52, 56, 61);
+    border: 6px solid #366CB2FF;
     font-size: 25px;
     text-indent: 0px;
     padding-left: 9px;
@@ -111,7 +111,7 @@ h2 {
 }
 
 #signin p {
-    color: rgb(105, 112, 129);
+    color: rgb(157, 157, 164);
     padding: 0 20px;
     font-weight: 700;
     font-size: 12px;
@@ -148,4 +148,23 @@ h2 {
 
 #okno:target {
     display: block;
+}
+
+#showPasswordToggle {
+    display: none;
+}
+
+#showPasswordLabel {
+    cursor: pointer;
+    color: blue;
+    text-decoration: underline;
+    font-size: 14px;
+}
+
+#showPasswordLabel:hover {
+    color: darkblue;
+}
+
+#showPasswordToggle:checked + #showPasswordLabel {
+    color: red; /* Цвет метки при активированном чекбоксе */
 }

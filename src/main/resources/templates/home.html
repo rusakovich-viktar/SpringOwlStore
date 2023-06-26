@@ -6,39 +6,35 @@
     <title>Home page</title>
     <div th:block th:insert="~{bootstrap-basic.html}"></div>
     <link rel="stylesheet" th:href="@{/css/style.css}">
-
 </head>
 <body>
-<div th:block th:insert="~{header.html}"></div>
+<div th:block th:insert="~{elements/header.html}"></div>
 
-
-<br>
-<h2>All categories</h2>
-
-<div class="container-fluid">
-    <div th:if="${categories != null}">
-        <div class="row card-deck">
-            <div th:each="category : ${categories}" class="card w-25 m-1" type="category">
-                <div class="card-body">
-                    <a th:href="@{/category/{id}(id=${category.id})}">
-                        <div>
-                            <span th:text="${category.name}"></span>
-                            <img class="card-img-top img"
-                                 th:src="@{/images/categories/__${#strings.toLowerCase(category.name)}__.jpg}"
-                                 style="width:150px;height:120px"
-                                 th:alt="${category.name}">
-                        </div>
-                    </a>
+<main>
+    <br>
+    <h2>All categories</h2>
+    <div class="container-fluid">
+        <div th:if="${categories != null}">
+            <div class="row card-deck">
+                <div th:each="category : ${categories}" class="card w-25 m-1" type="category">
+                    <div class="card-body">
+                        <a th:href="@{/category/{id}(id=${category.id})}">
+                            <div>
+                                <span th:text="${category.name}"></span>
+                                <img class="card-img-top img"
+                                     th:src="@{/images/categories/__${#strings.toLowerCase(category.name)}__.jpg}"
+                                     style="width:120px;height:100px"
+                                     th:alt="${category.name}">
+                            </div>
+                        </a>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
-</div>
+</main>
 
-<!--<img class="card-img-top" style="max-height: 20rem"-->
-<!--     th:src="@{/images/category/__${#strings.toLowerCase(category.name)}__.jpg}"-->
-<!--     th:alt="${category.name}">-->
-
-
+<div th:block th:insert="~{elements/waves.html}"></div>
+<div th:block th:insert="~{elements/footer.html}"></div>
 </body>
 </html>

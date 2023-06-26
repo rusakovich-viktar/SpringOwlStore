@@ -6,6 +6,7 @@ import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Past;
 import jakarta.validation.constraints.Size;
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -26,19 +27,17 @@ import java.time.LocalDate;
 public class UserDto {
 
     private Long id;
-    @NotEmpty(message = "Поле не должно быть пустым")
-    @Size(min = 2, max = 30, message = "Name should not be between 2 and 30 character")
     private String username;
+    @Size(max = 30, message = "Name should not be more 30 character")
     private String name;
+    @Size(max = 30, message = "Surname should not be more 30 character")
     private String surname;
-    private String gender;
-    //    @Past(message = "Birthday should not be magic date")
-    private String birthday;
     @Email(message = "Invalid email address")
     @NotEmpty(message = "Поле не должно быть пустым")
     private String email;
+    private String gender;
+    private LocalDate birthday;
     private LocalDate registrationDate;
     private String password;
-//    private String matchingPassword;
 
 }

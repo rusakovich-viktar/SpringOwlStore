@@ -4,6 +4,7 @@ import by.tms.springstore.domain.Role;
 import by.tms.springstore.domain.User;
 import by.tms.springstore.dto.UserDto;
 import by.tms.springstore.exceptions.NotFoundException;
+import by.tms.springstore.mapper.UserMapper;
 import by.tms.springstore.repository.UserRepository;
 import by.tms.springstore.service.UserService;
 import jakarta.transaction.Transactional;
@@ -21,6 +22,7 @@ public class UserServiceImpl implements UserService {
 
     private final UserRepository userRepository;
     private final PasswordEncoder passwordEncoder;
+    private final UserMapper userMapper;
 
 
     @Override
@@ -43,15 +45,12 @@ public class UserServiceImpl implements UserService {
     public void updateUser(UserDto userDto) {
         User user = userRepository.findById(userDto.getId())
                 .orElseThrow(() -> new NotFoundException("User not found"));
-        userRepository.saveAndFlush(
-                user.toBuilder()
-                        .name(userDto.getName())
-                        .surname(userDto.getSurname())
-                        .birthday(userDto.getBirthday())
-                        .gender(userDto.getGender())
-                        .email(userDto.getEmail())
-                        .build()
-        );
+        user.setName(userDto.getName());
+        user.setSurname(userDto.getSurname());
+//        user.setBirthday(userDto.getBirthday() == null ? null : LocalDate.parse(userDto.getBirthday().format(DateTimeFormatter.ISO_DATE), DateTimeFormatter.ISO_DATE));
+        user.setGender(userDto.getGender());
+        user.setEmail(userDto.getEmail());
+        userRepository.saveAndFlush(user);
     }
 
     @Override
@@ -69,8 +68,25 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
+    public UserDto findUserDtoByUsername(String username) {
+        User user = userRepository.findByUsername(username);
+        return userMapper.convertToUserDto(user);
+    }
+
+
+    @Override
     public void save(User user) {
         userRepository.save(user);
+    }
+
+    @Override
+    public Optional<User> getVerifyUserByUsernameOrEmail(String login, String email) {
+        return userRepository.findUserByUsernameOrEmail(login, email);
+    }
+
+    @Override
+    public Optional<User> getVerifyUserByEmail(String email) {
+        return userRepository.findUserByEmail(email);
     }
 
 }

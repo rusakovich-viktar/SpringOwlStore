@@ -20,9 +20,9 @@ public class SecurityConfig {
 //                .csrf(httpSecurityCsrfConfigurer -> httpSecurityCsrfConfigurer.disable())
                 .authorizeHttpRequests((auth) ->
                                 auth
-
                                         .requestMatchers("/admin").hasRole("ADMIN")
-                                        .requestMatchers("/auth/login", "/auth/registration", "/open").permitAll()
+                                        .requestMatchers("/auth/login", "/auth/registration", "/open", "/user-agreement").permitAll()
+//                                        .requestMatchers("/home", "/category").permitAll()
                                         .requestMatchers(PathRequest.toStaticResources().atCommonLocations()).permitAll()
                                         .anyRequest().hasAnyRole("USER", "ADMIN")
 //                                        .anyRequest().authenticated()
@@ -33,8 +33,10 @@ public class SecurityConfig {
                                 .loginPage("/auth/login")
                                 .defaultSuccessUrl("/home", true)
                 ).logout((logout) ->
-                        logout.logoutUrl("/auth/logout")
-                                .logoutSuccessUrl("/auth/login")
+                        logout
+                                .logoutUrl("/auth/logout")
+                                .logoutSuccessUrl("/auth/login?logout")
+                                .deleteCookies("JSESSIONID")
                                 .permitAll())
                 .build();
     }
