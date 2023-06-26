@@ -1,45 +1,45 @@
-@import url(//fonts.googleapis.com/css?family=Lato:300:400);
+/*@import url(//fonts.googleapis.com/css?family=Lato:300:400);*/
 
-.mx-auto d-block {
-    text-align: center;
-}
+/*.mx-auto d-block {*/
+/*    text-align: center;*/
+/*}*/
 
 body {
     font-family: Lato, Helvetica, sans-serif;
-    background: linear-gradient(60deg, rgba(84,58,183,1) 0%, rgba(0,172,193,1) 100%);
+    background: linear-gradient(180deg, white 0%, white 60%, rgb(69, 78, 183) 90%);
 }
 
-ul {
-    list-style-type: none;
-    margin: 0;
-    padding: 0;
-    overflow: hidden;
-    background-color: #333;
+/*ul {*/
+/*    list-style-type: none;*/
+/*    margin: 0;*/
+/*    padding: 0;*/
+/*    overflow: hidden;*/
+/*    background-color: #333;*/
 
 
-}
+/*}*/
 
-li {
-    float: left;
-}
+/*li {*/
+/*    float: left;*/
+/*}*/
 
-li a {
-    display: block;
-    color: white;
-    text-align: center;
-    padding: 14px 16px;
-    text-decoration: none;
-}
+/*li a {*/
+/*    display: block;*/
+/*    color: white;*/
+/*    text-align: center;*/
+/*    padding: 14px 16px;*/
+/*    text-decoration: none;*/
+/*}*/
 
-li a:hover {
-    background-color: #000;
-    text-decoration: none;
-    color: #c7f30d;
-}
+/*li a:hover {*/
+/*    background-color: #000;*/
+/*    text-decoration: none;*/
+/*    color: #c7f30d;*/
+/*}*/
 
-.active {
-    background-color: #366cb2;
-}
+/*.active {*/
+/*    background-color: #366cb2;*/
+/*}*/
 
 /*____корзина____________*/
 
@@ -112,12 +112,13 @@ li a:hover {
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    background-color: #f9f9f9;
+    background-color: rgba(102, 102, 253, 0.81);
     border: 1px solid #ddd;
     border-radius: 5px;
     padding: 25px;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
     z-index: 9999;
+    font-size: 28px;
 }
 
 .popup-content {
@@ -171,20 +172,20 @@ li a:hover {
     color: #c7f30d;
 }
 
-#logout {
-    padding: 14px 16px;
-    background-color: #333;
-    border: none;
-    color: #fff;
-    font-size: 16px;
-    cursor: pointer;
-}
+/*#logout {*/
+/*    padding: 14px 16px;*/
+/*    background-color: #333;*/
+/*    border: none;*/
+/*    color: #fff;*/
+/*    font-size: 16px;*/
+/*    cursor: pointer;*/
+/*}*/
 
-#logout:hover {
-    background-color: #000;
-    text-decoration: none;
-    color: #c7f30d;
-}
+/*#logout:hover {*/
+/*    background-color: #000;*/
+/*    text-decoration: none;*/
+/*    color: #c7f30d;*/
+/*}*/
 
 
 /*_waves*/
@@ -302,3 +303,6 @@ p {
         font-size: 16px;
     }
 }
+
+
+

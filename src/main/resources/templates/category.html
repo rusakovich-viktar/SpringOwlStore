@@ -2,7 +2,7 @@
 <html xmlns:th="http://www.thymeleaf.org" lang="ru">
 <head>
     <title>Products</title>
-    <div th:block th:insert="~{bootstrap-basic.html}"></div>
+<!--    <div th:block th:insert="~{/elements/bootstrap-basic.html}"></div>-->
     <link rel="stylesheet" th:href="@{/css/style.css}">
     <style>
         .product-card {
@@ -17,7 +17,10 @@
 </head>
 <body>
 
-<div th:block th:insert="~{elements/header.html}"></div>
+<div th:block th:insert="~{elements/navbar.html}"></div>
+<main>
+    <br>
+
 <div class="container">
     <h2><span th:text="${nameCategory}"></span></h2>
     <div class="row row-cols-1 row-cols-md-3 align-items-stretch">
@@ -60,7 +63,7 @@
                 &raquo;</a>
         </li>
     </ul>
-</div>
+</div></main>
 <div th:block th:insert="~{elements/waves.html}"></div>
 <div th:block th:insert="~{elements/footer.html}"></div>
 </body>

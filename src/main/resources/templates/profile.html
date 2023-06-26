@@ -2,12 +2,13 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <title>Profile</title>
-    <div th:block th:insert="~{bootstrap-basic.html}"></div>
+<!--    <div th:block th:insert="~{/elements/bootstrap-basic.html}"></div>-->
     <link rel="stylesheet" th:href="@{/css/style.css}">
+
 </head>
 <body>
-<div th:block th:insert="~{elements/header.html}"></div>
-
+<div th:block th:insert="~{elements/navbar.html}"></div>
+<main>
 <br>
 <div class="container">
     <h3 class="text-center">Личный кабинет пользователя <b class="font-italic"
@@ -30,7 +31,7 @@
         </div>
     </div>
 </div>
-
+</main>
 <div th:block th:insert="~{elements/waves.html}"></div>
 <div th:block th:insert="~{elements/footer.html}"></div>
 </body>

@@ -1,0 +1,99 @@
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity6">
+
+<!-- Подключение CSS-файлов -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+<link rel="stylesheet" href="/css/navbar.css">
+
+<!-- Подключение JavaScript-файлов -->
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+<script src="/js/navbar.js"></script>
+
+<header>
+    <nav class="navbar">
+        <div class="container navbar-expand">
+            <div class="navbar-header navbar-brand">
+                <button class="navbar-toggler" data-toggle="collapse" data-target="#open-navbar1">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+                <a th:href="@{/home}"><span class="logo">
+    <img src="/images/parts/logo-owl.png" alt="O">WLstore</span> </a>
+            </div>
+            <div class="navbar-menu" id="open-navbar1">
+                <ul class="navbar-nav">
+
+                    <li style="float:none ">
+                        <div class="search-container">
+                            <input type="text" id="search-input" class="animated-search"
+                                   placeholder="Введите название продукта"
+                                   onkeydown="handleKeyPress(event)">
+                            <button id="search-button">Найти</button>
+                        </div>
+                    </li>
+
+                    <li class="active"><a href="#">Home</a></li>
+
+
+                    <li><a href="#">About</a></li>
+
+
+                    <li><a href="#">Contact</a></li>
+                    <th:block sec:authorize="!isAuthenticated()">
+                        <li><a th:href="@{/auth/login}" style="color: lawngreen" class="fa-sign-in">Sign in</a></li>
+                    </th:block>
+                    <li><a th:href="@{/cart}">Cart</a></li>
+                    <th:block sec:authorize="isAuthenticated()">
+                        <li class="navbar-dropdown">
+                            <a class="dropdown-toggler" href="#" id="navbarDropdownMenuLink" role="button"
+                               data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                Welcome, <span th:remove="tag" sec:authentication="principal.username">thymeleaf</span>
+                                <i
+                                        class="fa fa-angle-down"></i>
+                            </a>
+                            <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                                <a class="dropdown-item"
+                                   th:href="@{'/user/profile/' + ${#authentication.principal.user.id}}">Profile</a>
+                                <a class="dropdown-item" href="#">Что-то еще здесь</a>
+                                <form class="dropdown-item" th:action="@{/auth/logout}" method="post"
+                                      style="width: 100%; ">
+                                    <button type="submit"
+                                            style="border: none; background: none; padding: 0; color: inherit; text-align: left; width: 100%;">
+                                        <i class="fa fa-lg fa-fw fa-sign-in"></i> Выйти
+                                    </button>
+                                </form>
+                            </div>
+                        </li>
+                    </th:block>
+                </ul>
+            </div>
+        </div>
+        <div id="search-results-container"></div>
+    </nav>
+
+</header>
+
+<!--Поиск-->
+<script>
+    $(document).ready(function () {
+        $("#search-button").click(function () {
+            var query = $("#search-input").val();
+            $.get("/product/search?query=" + query, function (data) {
+                $("#search-results-container").html(data);
+            });
+        });
+    });
+</script>
+
+<!--Enter-->
+<script>
+    document.getElementById("search-input").addEventListener("keydown", function (event) {
+        if (event.key === "Enter") {
+            event.preventDefault();
+            document.getElementById("search-button").click();
+        }
+    });
+</script>
