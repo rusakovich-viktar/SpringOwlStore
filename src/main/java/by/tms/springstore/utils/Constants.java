@@ -12,6 +12,8 @@ public class Constants {
         public static final String CATEGORIES = "categories";
         public static final String PRODUCTS = "products";
         public static final String NAME_CATEGORY = "nameCategory";
+        public static final String CATEGORY_ID = "categoryId";
+
         public static final String MY_PRODUCTS = "myProducts";
         public static final String SUCCESS_REGISTRATION = "successRegistration";
         public static final String ERROR_REGISTRATION = "errorRegistration";

@@ -15,6 +15,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import java.util.List;
 
+import static by.tms.springstore.utils.Constants.Attributes.CATEGORY_ID;
 import static by.tms.springstore.utils.Constants.Attributes.NAME_CATEGORY;
 import static by.tms.springstore.utils.Constants.Attributes.PRODUCTS;
 import static by.tms.springstore.utils.Constants.PagePath.CATEGORY;
@@ -43,14 +44,16 @@ public class CategoryController {
             @PathVariable("categoryId") Long categoryId,
             @RequestParam(value = "page", defaultValue = "0") int page,
             @RequestParam(value = "size", defaultValue = "3") int size,
-            HttpServletRequest request, ModelAndView modelAndView) {
-        String nameCategory = request.getParameter(Constants.RequestParams.NAME_CATEGORY);
+//            HttpServletRequest request,
+            ModelAndView modelAndView) {
+//        String nameCategory = request.getParameter(Constants.RequestParams.NAME_CATEGORY);
 
         Page<Product> categoryProductsPage = productService.getAllProductsByCategoryId(categoryId, PageRequest.of(page, size));
         List<Product> categoryProducts = categoryProductsPage.getContent();
 
         modelAndView.addObject(PRODUCTS, categoryProducts);
-        modelAndView.addObject(NAME_CATEGORY, nameCategory);
+//        modelAndView.addObject(NAME_CATEGORY, nameCategory);
+//        modelAndView.addObject(CATEGORY_ID, categoryId);
         modelAndView.addObject("currentPage", page);
         modelAndView.addObject("totalPages", categoryProductsPage.getTotalPages());
         modelAndView.addObject("totalItems", categoryProductsPage.getTotalElements());

@@ -71,41 +71,6 @@ body {
     justify-content: center;
 }
 
-
-#search-button {
-    padding: 15px 18px;
-    background-color: #366cb2;
-    border: none;
-    /*border-radius: 5px;*/
-    color: #fff;
-    font-size: 14px;
-    cursor: pointer;
-}
-
-#search-button:hover {
-    background-color: #000;
-    text-decoration: none;
-    color: #c7f30d;
-}
-
-.animated-search {
-    width: 130px;
-    box-sizing: border-box;
-    border: 2px solid #ccc;
-    border-radius: 2px;
-    font-size: 16px;
-    background-color: white;
-    background-position: 10px 10px;
-    background-repeat: no-repeat;
-    padding: 12px 20px 12px 40px;
-    -webkit-transition: width 0.4s ease-in-out;
-    transition: width 0.4s ease-in-out;
-}
-
-.animated-search:focus {
-    width: 100%;
-}
-
 /*_popup_*/
 .popup {
     position: fixed;
@@ -137,11 +102,11 @@ body {
 
 /*Пагинация*/
 .pagination-container {
-    text-align: center;
+    display: flex;
+    justify-content: center;
 }
 
 .pagination {
-    display: inline-block;
     list-style-type: none;
     padding: 0;
     margin: 0;
@@ -155,22 +120,18 @@ body {
 .pagination li a {
     text-decoration: none;
     padding: 5px 10px;
-    /*border: 1px solid #ccc;*/
-    color: #ccc;
-    /*color: #c7f30d;*/
+    border: 1px solid #ccc;
+    color: #333;
+    opacity: 1; /* Устанавливаем непрозрачность */
+    background-color: white;
+
 }
 
 .pagination li.active a {
-    background-color: #366cb2;
-    color: white;
-
+    background-color: #333;
+    color: #fff;
 }
 
-.pagination li a:hover {
-    background-color: #000;
-    text-decoration: none;
-    color: #c7f30d;
-}
 
 /*#logout {*/
 /*    padding: 14px 16px;*/
@@ -303,6 +264,46 @@ p {
         font-size: 16px;
     }
 }
+
+/* Search */
+.btn-15 {
+    /*background: #b621fe;*/
+    border: none;
+    z-index: 1;
+    font-family: "Roboto", sans-serif;
+    font-size: 0.925rem;
+    background-color: white;
+}
+.btn-15:after {
+    position: absolute;
+    content: "";
+    width: 0;
+    height: 100%;
+    top: 0;
+    right: 0;
+    z-index: -1;
+    background-color: #663dff;
+    border-radius: 5px;
+    box-shadow:inset 2px 2px 2px 0px rgb(255, 255, 255),
+    7px 7px 20px 0px rgba(0,0,0,.1),
+    4px 4px 5px 0px rgba(0,0,0,.1);
+    transition: all 0.3s ease;
+
+}
+.btn-15:hover {
+    color: #fff;
+}
+.btn-15:hover:after {
+    right: 0;
+    width: 100%;
+    background-color: rgba(102, 61, 255, 0.4); /* Прозрачность 0.5 */
+}
+.btn-15:active {
+    top: 2px;
+}
+
+
+
 
 
 

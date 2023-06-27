@@ -215,14 +215,14 @@ a {
 }
 
 .logo {
-    font-size: 28px; /* Размер текста */
+    font-size: 28px;
     display: inline-block;
 }
 
 .logo img {
-    vertical-align: top; /* Выравнивание по нижней границе */
+    vertical-align: top; /* Выравнивание по верх границе */
     width: 32px; /* Ширина изображения */
     height: 32px; /* Высота изображения */
-    margin-right: -7px; /* Отступ справа между изображением и текстом */
+    margin-right: -3px; /* Отступ справа между изображением и текстом */
 
 }
