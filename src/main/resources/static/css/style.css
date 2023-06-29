@@ -3,10 +3,14 @@
 /*.mx-auto d-block {*/
 /*    text-align: center;*/
 /*}*/
+main {
+    font-family: Lato, Helvetica, sans-serif;
+    background: linear-gradient(180deg, white 0%, white 50%, rgba(4, 77, 182, 0.45) 100%);
+}
 
 body {
     font-family: Lato, Helvetica, sans-serif;
-    background: linear-gradient(180deg, white 0%, white 60%, rgb(69, 78, 183) 90%);
+    /*background: linear-gradient(180deg, white 0%, white 60%, rgb(69, 78, 183) 90%);*/
 }
 
 /*ul {*/
@@ -104,6 +108,8 @@ body {
 .pagination-container {
     display: flex;
     justify-content: center;
+    text-shadow: none;
+
 }
 
 .pagination {
@@ -151,9 +157,9 @@ body {
 
 /*_waves*/
 
-body {
-    /*margin: 0;*/
-}
+/*body {*/
+/*    !*margin: 0;*!*/
+/*}*/
 
 h1 {
     font-family: 'Lato', sans-serif;
@@ -199,9 +205,11 @@ p {
 }
 
 .waves {
+    /*position: fixed;*/
+    bottom: 0;
     position: relative;
     width: 100%;
-    height: 15vh;
+    /*height: 15vh;*/
     margin-bottom: -7px; /*Fix for safari gap*/
     min-height: 100px;
     max-height: 150px;
@@ -282,7 +290,7 @@ p {
     top: 0;
     right: 0;
     z-index: -1;
-    background-color: #663dff;
+    background-color: rgba(102, 61, 255, 0.44);
     border-radius: 5px;
     box-shadow:inset 2px 2px 2px 0px rgb(255, 255, 255),
     7px 7px 20px 0px rgba(0,0,0,.1),

@@ -20,16 +20,20 @@ public class Constants {
 
         public static final String ONE_PRODUCT = "oneProduct";
         public static final String PRODUCT = "product";
+        public static final String SEARCH_RESULTS = "searchResults";
         public static final String USER_DTO = "userDto";
         public static final String USER_ID = "userId";
 
         public static final String USER = "user";
         public static final String TOTAL_PRICE = "totalPrice";
+        public static final int MINIMUM_QUERY_LENGTH_TO_SEARCH = 2;
+
     }
 
     @UtilityClass
     public class RequestParams {
         public static final String PRODUCT_ID = "productId";
+        public static final String QUERY = "query";
         public static final String USERNAME = "username";
         public static final String PASSWORD = "password";
         public static final String REPEAT_PASS = "repeatPass";
@@ -53,6 +57,7 @@ public class Constants {
     @UtilityClass
     public class PagePath {
         public static final String SIGN_IN = "signin";
+        public static final String SEARCH_RESULTS = "search-results";
         public static final String LOGIN = "login";
         public static final String AUTH_LOGIN = "auth/login";
         public static final String AUTH_REGISTRATION = "auth/registration";
