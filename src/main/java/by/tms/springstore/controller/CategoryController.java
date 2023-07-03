@@ -2,8 +2,6 @@ package by.tms.springstore.controller;
 
 import by.tms.springstore.domain.Product;
 import by.tms.springstore.service.ProductService;
-import by.tms.springstore.utils.Constants;
-import jakarta.servlet.http.HttpServletRequest;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -15,10 +13,15 @@ import org.springframework.web.servlet.ModelAndView;
 
 import java.util.List;
 
-import static by.tms.springstore.utils.Constants.Attributes.CATEGORY_ID;
-import static by.tms.springstore.utils.Constants.Attributes.NAME_CATEGORY;
+import static by.tms.springstore.utils.Constants.Attributes.CURRENT_PAGE;
 import static by.tms.springstore.utils.Constants.Attributes.PRODUCTS;
+import static by.tms.springstore.utils.Constants.Attributes.TOTAL_ITEMS;
+import static by.tms.springstore.utils.Constants.Attributes.TOTAL_PAGES;
 import static by.tms.springstore.utils.Constants.PagePath.CATEGORY;
+import static by.tms.springstore.utils.Constants.RequestParams.PAGE;
+import static by.tms.springstore.utils.Constants.RequestParams.SIZE;
+import static by.tms.springstore.utils.Constants.VariableValues.PAGE_NUMBER_REQUESTED;
+import static by.tms.springstore.utils.Constants.VariableValues.SIZE_OF_THE_ELEMENTS_ON_THE_PAGE;
 
 @Controller
 @RequiredArgsConstructor
@@ -42,8 +45,8 @@ public class CategoryController {
     @GetMapping("/category/{categoryId}")
     public ModelAndView showCategoriesWithPagination(
             @PathVariable("categoryId") Long categoryId,
-            @RequestParam(value = "page", defaultValue = "0") int page,
-            @RequestParam(value = "size", defaultValue = "3") int size,
+            @RequestParam(value = PAGE, defaultValue = PAGE_NUMBER_REQUESTED) int page,
+            @RequestParam(value = SIZE, defaultValue = SIZE_OF_THE_ELEMENTS_ON_THE_PAGE) int size,
 //            HttpServletRequest request,
             ModelAndView modelAndView) {
 //        String nameCategory = request.getParameter(Constants.RequestParams.NAME_CATEGORY);
@@ -54,9 +57,9 @@ public class CategoryController {
         modelAndView.addObject(PRODUCTS, categoryProducts);
 //        modelAndView.addObject(NAME_CATEGORY, nameCategory);
 //        modelAndView.addObject(CATEGORY_ID, categoryId);
-        modelAndView.addObject("currentPage", page);
-        modelAndView.addObject("totalPages", categoryProductsPage.getTotalPages());
-        modelAndView.addObject("totalItems", categoryProductsPage.getTotalElements());
+        modelAndView.addObject(CURRENT_PAGE, page);
+        modelAndView.addObject(TOTAL_PAGES, categoryProductsPage.getTotalPages());
+        modelAndView.addObject(TOTAL_ITEMS, categoryProductsPage.getTotalElements());
         modelAndView.setViewName(CATEGORY);
 
         return modelAndView;

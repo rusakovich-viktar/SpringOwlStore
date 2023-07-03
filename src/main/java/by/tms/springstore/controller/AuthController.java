@@ -3,7 +3,7 @@ package by.tms.springstore.controller;
 import by.tms.springstore.dto.UserDtoFromRegistrationForm;
 import by.tms.springstore.mapper.UserMapper;
 import by.tms.springstore.service.UserService;
-import by.tms.springstore.utils.UserValidatorRegistration;
+import by.tms.springstore.validate.UserValidatorRegistration;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.Authentication;

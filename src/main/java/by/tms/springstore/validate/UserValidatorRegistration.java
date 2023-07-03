@@ -1,4 +1,4 @@
-package by.tms.springstore.utils;
+package by.tms.springstore.validate;
 
 import by.tms.springstore.domain.User;
 import by.tms.springstore.dto.UserDtoFromRegistrationForm;
@@ -12,7 +12,11 @@ import java.time.LocalDate;
 import java.time.Period;
 import java.util.Optional;
 
+import static by.tms.springstore.utils.Constants.Attributes.EMAIL;
+import static by.tms.springstore.utils.Constants.Attributes.PASSWORD;
 import static by.tms.springstore.utils.Constants.Attributes.USERNAME;
+import static by.tms.springstore.utils.Constants.Attributes.BIRTHDAY;
+import static by.tms.springstore.utils.Constants.VariableValues.MINIMUM_AGE_TO_REGISTRATION;
 
 @Component
 @RequiredArgsConstructor
@@ -29,9 +33,8 @@ public class UserValidatorRegistration implements Validator {
         UserDtoFromRegistrationForm user = (UserDtoFromRegistrationForm) o;
         checkUserLoginAndEmail(errors, user);
         checkPasswordInputVerify(errors, user);
-        checkUserByAgeMoreFourteen(errors, user);
+        checkMinimumAgeOfUser(errors, user);
     }
-
 
     private void checkUserLoginAndEmail(Errors errors, UserDtoFromRegistrationForm testUser) {
         Optional<User> user = userService.getVerifyUserByUsernameOrEmail(testUser.getUsername(), testUser.getEmail());
@@ -45,7 +48,7 @@ public class UserValidatorRegistration implements Validator {
 
     private void checkUserByEmail(Errors errors, UserDtoFromRegistrationForm testUser, User foundUser) {
         if (foundUser.getEmail().equals(testUser.getEmail())) {
-            errors.rejectValue("email", "", "Пользователь с такой электронной почтой уже существует");
+            errors.rejectValue(EMAIL, "", "Пользователь с такой электронной почтой уже существует");
         }
     }
 
@@ -55,21 +58,18 @@ public class UserValidatorRegistration implements Validator {
         }
     }
 
-    private void checkUserByAgeMoreFourteen(Errors errors, UserDtoFromRegistrationForm user) {
+    private void checkMinimumAgeOfUser(Errors errors, UserDtoFromRegistrationForm user) {
         LocalDate birthday = (user.getBirthday());
         LocalDate currentDate = LocalDate.now();
         Period period = Period.between(birthday, currentDate);
-        if (period.getYears() < 14) {
-            errors.rejectValue("birthday", "", "Вы должны быть старше 14 лет");
+        if (period.getYears() < MINIMUM_AGE_TO_REGISTRATION) {
+            errors.rejectValue(BIRTHDAY, "", "Вы должны быть старше " + MINIMUM_AGE_TO_REGISTRATION + " лет");
         }
     }
-
 
     private void checkPasswordInputVerify(Errors errors, UserDtoFromRegistrationForm user) {
         if (!user.getPassword().equals(user.getVerifyPassword())) {
-            errors.rejectValue("password", "", "Пароли не совпадают");
+            errors.rejectValue(PASSWORD, "", "Пароли не совпадают");
         }
     }
-
-
 }

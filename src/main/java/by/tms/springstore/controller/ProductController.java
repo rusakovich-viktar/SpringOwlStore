@@ -16,7 +16,7 @@ import org.springframework.web.servlet.ModelAndView;
 import java.security.Principal;
 import java.util.List;
 
-import static by.tms.springstore.utils.Constants.Attributes.MINIMUM_QUERY_LENGTH_TO_SEARCH;
+import static by.tms.springstore.utils.Constants.VariableValues.MINIMUM_QUERY_LENGTH_TO_SEARCH;
 import static by.tms.springstore.utils.Constants.Attributes.ONE_PRODUCT;
 import static by.tms.springstore.utils.Constants.PagePath.PRODUCT;
 import static by.tms.springstore.utils.Constants.PagePath.SEARCH_RESULTS;

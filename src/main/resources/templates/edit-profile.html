@@ -1,7 +1,7 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml" lang="en">
 <head>
-<!--    <div th:block th:insert="~{/elements/bootstrap-basic.html}"></div>-->
+    <!--    <div th:block th:insert="~{/elements/bootstrap-basic.html}"></div>-->
     <link rel="stylesheet" th:href="@{/css/style.css}">
 
     <title>Edit user</title>
@@ -40,17 +40,20 @@
                 <label>Gender:</label>
                 <div class="form-check">
                     <input type="radio" th:field="*{gender}" class="form-check-input" id="male" value="male">
-                    <label class="form-check-label" for="male">Male <i class="fa fa-mars" aria-hidden="true"></i></label>
+                    <label class="form-check-label" for="male">Male <i class="fa fa-mars"
+                                                                       aria-hidden="true"></i></label>
                 </div>
                 <div class="form-check">
                     <input type="radio" th:field="*{gender}" class="form-check-input" id="female"
                            value="female">
-                    <label class="form-check-label" for="female">Female <i class="fa fa-venus" aria-hidden="true"></i></label>
+                    <label class="form-check-label" for="female">Female <i class="fa fa-venus"
+                                                                           aria-hidden="true"></i></label>
                 </div>
                 <div class="form-check">
                     <input type="radio" th:field="*{gender}" class="form-check-input" id="non-binary"
                            value="non-binary">
-                    <label class="form-check-label" for="non-binary">Non-binary <i class="fa fa-transgender" aria-hidden="true"></i></label>
+                    <label class="form-check-label" for="non-binary">Non-binary <i class="fa fa-transgender"
+                                                                                   aria-hidden="true"></i></label>
                 </div>
             </div>
             <div class="form-group">
@@ -60,10 +63,26 @@
                 <span th:if="${#fields.hasErrors('email')}" style="color:red"
                       th:errors="*{email}"></span>
             </div>
-            <input type="hidden" th:field="*{id}">
-            <input type="hidden" th:field="*{registrationDate}">
-            <input type="hidden" th:field="*{birthday}"/>
-            <button type="submit" class="btn btn-primary">Изменить</button>
+
+
+            <div class="form-group" sec:authorize="hasRole('ADMIN')">
+                <label>Authority:</label>
+                <div class="form-check">
+                    <input type="radio" th:field="*{role}" class="form-check-input" id="admin" value="ROLE_ADMIN">
+                    <label class="form-check-label" for="admin">admin <i class="fa fa-universal-access"
+                                                                         aria-hidden="true"></i></label>
+                </div>
+                <div class="form-check">
+                    <input type="radio" th:field="*{role}" class="form-check-input" id="user" value="ROLE_USER">
+                    <label class="form-check-label" for="user">user <i class="fa fa-user"
+                                                                       aria-hidden="true"></i></label>
+                </div>
+            </div>
+            <div class="form-group">
+                <input type="hidden" th:field="*{id}">
+                <input type="hidden" th:field="*{registrationDate}">
+                <input type="hidden" th:field="*{birthday}"/>
+                <button type="submit" class="btn btn-primary">Изменить</button>
         </form>
     </div>
 </main>

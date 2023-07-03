@@ -1,5 +1,9 @@
 package by.tms.springstore.dto;
 
+import by.tms.springstore.domain.Role;
+import jakarta.persistence.Column;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
@@ -39,5 +43,9 @@ public class UserDto {
     private LocalDate birthday;
     private LocalDate registrationDate;
     private String password;
+
+    @Enumerated(EnumType.STRING)
+    @Column(name = "role")
+    private Role role;
 
 }

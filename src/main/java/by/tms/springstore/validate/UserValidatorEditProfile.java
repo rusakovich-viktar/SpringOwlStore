@@ -1,4 +1,4 @@
-package by.tms.springstore.utils;
+package by.tms.springstore.validate;
 
 import by.tms.springstore.domain.User;
 import by.tms.springstore.dto.UserDto;

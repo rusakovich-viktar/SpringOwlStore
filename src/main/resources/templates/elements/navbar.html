@@ -36,8 +36,8 @@
                         <button class="btn-15" id="search-button" type="submit">Search</button>
                     </form>
                 </div>
-
             </div>
+
             <a href="tel:+375447764751"> <i class="fa fa-lg fa-mobile" aria-hidden="true"></i> +375 (44)
                 776-46-51</a>
 
@@ -56,6 +56,10 @@
                                 class="fa fa-sign-in" aria-hidden="true"></i>Sign in</a></li>
                     </th:block>
                     <li><a th:href="@{/cart}"><i class="fa fa-2x fa-fw fa-shopping-basket"></i> Cart</a></li>
+
+                    <th:block sec:authorize="hasRole('ADMIN')">
+                        <li><a href="/admin"><i class="fa fa-3x fa-lock" aria-hidden="true" style="color: red"></i> AdminPanel</a></li>
+                    </th:block>
                     <th:block sec:authorize="isAuthenticated()">
                         <li class="navbar-dropdown">
                             <a class="dropdown-toggler" href="#" id="navbarDropdownMenuLink" role="button"
@@ -67,6 +71,7 @@
                                                 class="fa fa-angle-down"></i>
         </span></div>
                             </a>
+
                             <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
                                 <a class="dropdown-item"
                                    th:href="@{'/user/profile/' + ${#authentication.principal.user.id}}">

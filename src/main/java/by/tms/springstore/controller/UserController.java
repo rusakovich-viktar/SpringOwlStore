@@ -1,14 +1,15 @@
 package by.tms.springstore.controller;
 
-import by.tms.springstore.domain.User;
 import by.tms.springstore.dto.UserDto;
-import by.tms.springstore.mapper.UserMapper;
 import by.tms.springstore.service.UserService;
-import by.tms.springstore.utils.UserValidatorEditProfile;
+import by.tms.springstore.validate.UserValidatorEditProfile;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.Authentication;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -17,9 +18,12 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+import java.security.Principal;
+
 import static by.tms.springstore.utils.Constants.Attributes.USER_DTO;
 import static by.tms.springstore.utils.Constants.PagePath.EDIT_PROFILE;
 import static by.tms.springstore.utils.Constants.PagePath.PROFILE;
+import static by.tms.springstore.utils.Constants.PagePath.REDIRECT_TO_PROFILE;
 
 @Controller
 @RequiredArgsConstructor
@@ -31,14 +35,24 @@ public class UserController {
 
     @GetMapping("/profile/{userId}")
     public ModelAndView showUserProfile(@PathVariable("userId") Long id,
-                                        ModelAndView modelAndView) {
+                                        ModelAndView modelAndView,
+                                        @AuthenticationPrincipal UserDetails userDetails) {
+        String loggedInUsername = userDetails.getUsername(); // Получаем имя текущего пользователя
+        boolean isAdmin = userDetails.getAuthorities().stream()
+                .anyMatch(auth -> auth.getAuthority().equals("ROLE_ADMIN"));
+
         UserDto newUserDto = userService.findUserDtoById(id);
-        modelAndView.addObject(USER_DTO, newUserDto);
-        modelAndView.setViewName(PROFILE);
+
+        if (newUserDto != null && loggedInUsername.equals(newUserDto.getUsername()) || isAdmin) {
+            modelAndView.addObject(USER_DTO, newUserDto);
+            modelAndView.setViewName(PROFILE);
+        } else {
+            modelAndView.setViewName("error-403");
+        }
         return modelAndView;
     }
 
-    @GetMapping("/edit")
+    @PostMapping("/edit")
     public ModelAndView editUserProfileInfo(Authentication authentication, ModelAndView modelAndView) {
         String username = authentication.getName();
         UserDto userDto = userService.findUserDtoByUsername(username);
@@ -59,6 +73,6 @@ public class UserController {
             modelAndView.setViewName(EDIT_PROFILE);
         }
         return modelAndView;
-
     }
+
 }

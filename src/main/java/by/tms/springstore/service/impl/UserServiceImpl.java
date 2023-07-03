@@ -13,6 +13,7 @@ import org.modelmapper.ModelMapper;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -47,9 +48,11 @@ public class UserServiceImpl implements UserService {
                 .orElseThrow(() -> new NotFoundException("User not found"));
         user.setName(userDto.getName());
         user.setSurname(userDto.getSurname());
-//        user.setBirthday(userDto.getBirthday() == null ? null : LocalDate.parse(userDto.getBirthday().format(DateTimeFormatter.ISO_DATE), DateTimeFormatter.ISO_DATE));
         user.setGender(userDto.getGender());
         user.setEmail(userDto.getEmail());
+        if (userDto.getRole() != null) {
+            user.setRole(userDto.getRole());
+        }
         userRepository.saveAndFlush(user);
     }
 
@@ -87,6 +90,19 @@ public class UserServiceImpl implements UserService {
     @Override
     public Optional<User> getVerifyUserByEmail(String email) {
         return userRepository.findUserByEmail(email);
+    }
+
+    @Override
+    public List<User> findAll() {
+        return userRepository.findAll();
+    }
+
+    @Override
+    public void changeUserRole(Long userId, Role role) {
+        User user = userRepository.findById(userId).orElseThrow(() -> new IllegalArgumentException("Invalid user Id: " + userId));
+        user.setRole(role);
+        userRepository.save(user);
+
     }
 
 }
