@@ -29,6 +29,4 @@ public interface UserService {
 
     List<User> findAll();
 
-    void changeUserRole(Long userId, Role role);
-
 }

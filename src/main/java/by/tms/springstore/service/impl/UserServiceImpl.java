@@ -96,13 +96,4 @@ public class UserServiceImpl implements UserService {
     public List<User> findAll() {
         return userRepository.findAll();
     }
-
-    @Override
-    public void changeUserRole(Long userId, Role role) {
-        User user = userRepository.findById(userId).orElseThrow(() -> new IllegalArgumentException("Invalid user Id: " + userId));
-        user.setRole(role);
-        userRepository.save(user);
-
-    }
-
 }
