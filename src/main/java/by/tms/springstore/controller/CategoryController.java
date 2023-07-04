@@ -1,7 +1,9 @@
 package by.tms.springstore.controller;
 
+import by.tms.springstore.domain.Category;
 import by.tms.springstore.domain.Product;
 import by.tms.springstore.service.ProductService;
+import by.tms.springstore.utils.Constants;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -14,6 +16,7 @@ import org.springframework.web.servlet.ModelAndView;
 import java.util.List;
 
 import static by.tms.springstore.utils.Constants.Attributes.CURRENT_PAGE;
+import static by.tms.springstore.utils.Constants.Attributes.NAME_CATEGORY;
 import static by.tms.springstore.utils.Constants.Attributes.PRODUCTS;
 import static by.tms.springstore.utils.Constants.Attributes.TOTAL_ITEMS;
 import static by.tms.springstore.utils.Constants.Attributes.TOTAL_PAGES;
@@ -30,6 +33,7 @@ public class CategoryController {
 
     private final ProductService productService;
 
+//    без пагинации
 //    @GetMapping("/category/{categoryId}")
 //    public ModelAndView showCategories
 //            (@PathVariable("categoryId") Long categoryId,
@@ -42,20 +46,18 @@ public class CategoryController {
 //        return modelAndView;
 //    }
 
-    @GetMapping("/category/{categoryId}")
+    @GetMapping("/category/{categoryId}/{nameCategory}")
     public ModelAndView showCategoriesWithPagination(
             @PathVariable("categoryId") Long categoryId,
+            @PathVariable("nameCategory") String nameCategory,
             @RequestParam(value = PAGE, defaultValue = PAGE_NUMBER_REQUESTED) int page,
             @RequestParam(value = SIZE, defaultValue = SIZE_OF_THE_ELEMENTS_ON_THE_PAGE) int size,
-//            HttpServletRequest request,
             ModelAndView modelAndView) {
-//        String nameCategory = request.getParameter(Constants.RequestParams.NAME_CATEGORY);
-
         Page<Product> categoryProductsPage = productService.getAllProductsByCategoryId(categoryId, PageRequest.of(page, size));
         List<Product> categoryProducts = categoryProductsPage.getContent();
 
         modelAndView.addObject(PRODUCTS, categoryProducts);
-//        modelAndView.addObject(NAME_CATEGORY, nameCategory);
+        modelAndView.addObject(NAME_CATEGORY, nameCategory);
 //        modelAndView.addObject(CATEGORY_ID, categoryId);
         modelAndView.addObject(CURRENT_PAGE, page);
         modelAndView.addObject(TOTAL_PAGES, categoryProductsPage.getTotalPages());

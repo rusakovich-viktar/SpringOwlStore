@@ -14,6 +14,19 @@
 <body>
 <div th:block th:insert="~{elements/navbar.html}"></div>
 <main>
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="/home">Главная</a></li>
+            <li class="breadcrumb-item">
+                                <a th:href="@{'/user/profile/'+ ${#authentication.principal.user.id}}"
+                                   th:text="Профиль">Профиль</a></li>
+
+            <li class="breadcrumb-item active" aria-current="page">
+                <span th:text="Редактирование"></span>
+            </li>
+        </ol>
+    </nav>
+    <br>
     <div class="container">
         <h1>Редактирование данных пользователя</h1>
         <form th:action="@{/user/profile}" th:object="${userDto}" th:method="post">

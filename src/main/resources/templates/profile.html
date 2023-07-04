@@ -9,6 +9,18 @@
 <body>
 <div th:block th:insert="~{elements/navbar.html}"></div>
 <main>
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="/home">Главная</a></li>
+            <li class="breadcrumb-item active" aria-current="page">
+                <span th:text="Профиль"></span>
+            </li>
+        </ol>
+    </nav>
+
+
+
+
 <br>
 <div class="container">
     <h3 class="text-center">Личный кабинет пользователя <b class="font-italic"

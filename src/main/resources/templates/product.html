@@ -3,12 +3,25 @@
 <head>
     <title>Product Details</title>
     <link rel="stylesheet" th:href="@{/css/style.css}">
-<!--    <div th:block th:insert="~{/elements/bootstrap-basic.html}"></div>-->
+    <!--    <div th:block th:insert="~{/elements/bootstrap-basic.html}"></div>-->
 </head>
 <body>
 
 <div th:block th:insert="~{elements/navbar.html}"></div>
 <main>
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="/home">Главная</a></li>
+            <li class="breadcrumb-item">
+                <a th:href="@{/category/{id}/{name}(id=${oneProduct.category.id}, name=${oneProduct.category.name})}"
+                                           th:text="${oneProduct.category.name}">Имя категории</a></li>
+
+            <li class="breadcrumb-item active" aria-current="page">
+                <span th:text="${oneProduct.name}"></span>
+            </li>
+        </ol>
+    </nav>
+    <br>
     <div th:if="${oneProduct != null}" class="container-fluid">
         <h2 class="text-center" th:text="${oneProduct.name}"></h2><br>
 

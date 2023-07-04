@@ -20,7 +20,9 @@
             <div class="row card-deck">
                 <div th:each="category : ${categories}" class="card w-25 m-1" type="category">
                     <div class="card-body">
-                        <a th:href="@{/category/{id}(id=${category.id})}">
+                        <a th:href="@{/category/{id}/{name}(id=${category.id}, name=${category.name})}">
+
+<!--                        <a th:href="@{/category/{id}(id=${category.id})}">-->
                             <div>
                                 <span th:text="${category.name}"></span>
                                 <img class="card-img-top img"
