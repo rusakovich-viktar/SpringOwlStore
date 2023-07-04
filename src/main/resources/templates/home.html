@@ -1,10 +1,8 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org"
-      xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity6">
 
 <head>
     <title>Home page</title>
-    <!--    <div th:block th:insert="~{/elements/bootstrap5.html}"></div>-->
     <link rel="stylesheet" th:href="@{/css/style.css}">
 
 </head>
@@ -14,7 +12,7 @@
 <main>
     <br>
 
-    <h2>All categories</h2>
+    <h2>HomePage</h2>
     <div class="container-fluid">
         <div th:if="${categories != null}">
             <div class="row card-deck">

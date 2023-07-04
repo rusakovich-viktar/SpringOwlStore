@@ -58,16 +58,16 @@
     <div th:if="${totalPages > 1}" class="pagination-container">
         <ul class="pagination">
             <li th:if="${currentPage > 0}">
-                <a th:href="@{/category/{categoryId}(categoryId=${categoryId},page=${currentPage - 1})}">&laquo;
+                <a th:href="@{/category/{categoryId}/{nameCategory}(categoryId=${categoryId},nameCategory=${nameCategory}, page=${currentPage - 1})}">&laquo;
                     Назад</a>
             </li>
             <li th:each="page : ${#numbers.sequence(0, totalPages - 1)}"
                 th:class="${page == currentPage} ? 'active'">
-                <a th:href="@{/category/{categoryId}(categoryId=${categoryId},page=${page})}"
+                <a th:href="@{/category/{categoryId}/{nameCategory}(categoryId=${categoryId},nameCategory=${nameCategory},page=${page})}"
                    th:text="${page + 1}"></a>
             </li>
             <li th:if="${currentPage < totalPages - 1}">
-                <a th:href="@{/category/{categoryId}(categoryId=${categoryId},page=${currentPage + 1})}">Вперед&raquo;</a>
+                <a th:href="@{/category/{categoryId}/{nameCategory}(categoryId=${categoryId},nameCategory=${nameCategory},page=${currentPage + 1})}">Вперед&raquo;</a>
             </li>
         </ul>
     </div>
