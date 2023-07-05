@@ -6,18 +6,14 @@ import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotEmpty;
-import jakarta.validation.constraints.NotNull;
-import jakarta.validation.constraints.Past;
 import jakarta.validation.constraints.Size;
 import lombok.AllArgsConstructor;
-import lombok.Builder;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
 import lombok.experimental.SuperBuilder;
-import org.hibernate.validator.constraints.UniqueElements;
 
 import java.time.LocalDate;
 
@@ -47,5 +43,6 @@ public class UserDto {
     @Enumerated(EnumType.STRING)
     @Column(name = "role")
     private Role role;
+    private boolean active;
 
 }

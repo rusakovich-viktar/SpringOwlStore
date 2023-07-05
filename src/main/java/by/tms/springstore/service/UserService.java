@@ -1,6 +1,5 @@
 package by.tms.springstore.service;
 
-import by.tms.springstore.domain.Role;
 import by.tms.springstore.domain.User;
 import by.tms.springstore.dto.UserDto;
 
@@ -29,4 +28,7 @@ public interface UserService {
 
     List<User> findAll();
 
+    boolean activateUser(String code);
+
+    void accountEnableStatus(UserDto userDto);
 }

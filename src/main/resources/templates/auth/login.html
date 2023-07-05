@@ -3,11 +3,13 @@
 
 <head>
     <title>LoginPage</title>
-    <div th:block th:insert="~{/elements/bootstrap-basic.html}"></div>
     <link rel="stylesheet" th:href="@{/css/login.css}">
 </head>
 <body>
 <div id="wrapper">
+    <div th:if="${message}" class="message">
+        <p th:text="${message}"></p>
+    </div>
     <h1>Добро пожаловать</h1>
     <form method="post" id="signin" autocomplete="on">
 
