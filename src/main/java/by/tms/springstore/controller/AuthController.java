@@ -3,7 +3,7 @@ package by.tms.springstore.controller;
 import by.tms.springstore.dto.UserDtoFromRegistrationForm;
 import by.tms.springstore.mapper.UserMapper;
 import by.tms.springstore.service.UserService;
-import by.tms.springstore.utils.UserValidatorRegistration;
+import by.tms.springstore.validate.UserValidatorRegistration;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.Authentication;
@@ -11,6 +11,7 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -21,6 +22,7 @@ import static by.tms.springstore.utils.Constants.Attributes.SUCCESS_REGISTRATION
 import static by.tms.springstore.utils.Constants.Attributes.USER;
 import static by.tms.springstore.utils.Constants.PagePath.AUTH_LOGIN;
 import static by.tms.springstore.utils.Constants.PagePath.AUTH_REGISTRATION;
+import static by.tms.springstore.utils.Constants.PagePath.LOGIN;
 
 @RequiredArgsConstructor
 @RestController
@@ -57,6 +59,19 @@ public class AuthController {
         }
         return modelAndView;
     }
+
+    @GetMapping("/activate/{code}")
+    public ModelAndView activate(ModelAndView modelAndView, @PathVariable String code) {
+        boolean isActivated = userService.activateUser(code);
+        modelAndView.setViewName(AUTH_LOGIN);
+        if (isActivated) {
+            modelAndView.addObject("message", "Поздравляю. Активация прошла успешно. Теперь вы можете войти.");
+        } else {
+            modelAndView.addObject("message", "Ошибка активации. Пожалуйста, свяжитесь с администратором.");
+        }
+        return modelAndView;
+    }
+
 
     @PostMapping("/logout")
     public ModelAndView logout() {

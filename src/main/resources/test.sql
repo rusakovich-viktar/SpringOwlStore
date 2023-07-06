@@ -6,7 +6,7 @@ create table person
     password      varchar      not null
 );
 
-insert into person (username, year_of_birth, password,role)
+insert into person (username, year_of_birth, password, role)
 values ('qwer', 1991, 'qwer', 'ROLE_USER');
 
 insert into person (username, year_of_birth, password)

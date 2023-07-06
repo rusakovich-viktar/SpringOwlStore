@@ -3,6 +3,7 @@ package by.tms.springstore.config;
 import org.springframework.boot.autoconfigure.security.servlet.PathRequest;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -11,7 +12,7 @@ import org.springframework.security.web.SecurityFilterChain;
 
 @Configuration
 @EnableWebSecurity
-
+@EnableMethodSecurity
 public class SecurityConfig {
 
     @Bean
@@ -20,8 +21,8 @@ public class SecurityConfig {
 //                .csrf(httpSecurityCsrfConfigurer -> httpSecurityCsrfConfigurer.disable())
                 .authorizeHttpRequests((auth) ->
                                 auth
-                                        .requestMatchers("/admin").hasRole("ADMIN")
-                                        .requestMatchers("/auth/login", "/auth/registration", "/open", "/user-agreement").permitAll()
+                                        .requestMatchers("/admin/**").hasRole("ADMIN")
+                                        .requestMatchers("/auth/**", "/open", "/user-agreement", "/activate/**").permitAll()
 //                                        .requestMatchers("/home", "/category").permitAll()
                                         .requestMatchers(PathRequest.toStaticResources().atCommonLocations()).permitAll()
                                         .anyRequest().hasAnyRole("USER", "ADMIN")

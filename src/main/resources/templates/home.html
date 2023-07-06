@@ -1,24 +1,26 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org"
-      xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity6">
+<html xmlns:th="http://www.thymeleaf.org">
 
 <head>
     <title>Home page</title>
-    <div th:block th:insert="~{bootstrap-basic.html}"></div>
     <link rel="stylesheet" th:href="@{/css/style.css}">
+
 </head>
 <body>
-<div th:block th:insert="~{elements/header.html}"></div>
+<div th:block th:insert="~{elements/navbar.html}"></div>
 
 <main>
     <br>
-    <h2>All categories</h2>
+
+    <h2>HomePage</h2>
     <div class="container-fluid">
         <div th:if="${categories != null}">
             <div class="row card-deck">
                 <div th:each="category : ${categories}" class="card w-25 m-1" type="category">
                     <div class="card-body">
-                        <a th:href="@{/category/{id}(id=${category.id})}">
+                        <a th:href="@{/category/{id}/{name}(id=${category.id}, name=${category.name})}">
+
+<!--                        <a th:href="@{/category/{id}(id=${category.id})}">-->
                             <div>
                                 <span th:text="${category.name}"></span>
                                 <img class="card-img-top img"

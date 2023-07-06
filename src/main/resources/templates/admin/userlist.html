@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title>Home page</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+    <style>
+        table {
+            border-collapse: collapse;
+            width: 100%;
+        }
+
+        th, td {
+            text-align: left;
+            padding: 8px;
+        }
+
+        th {
+            background-color: #f2f2f2;
+        }
+
+        tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 6px 12px;
+            margin-bottom: 0;
+            font-size: 14px;
+            font-weight: normal;
+            line-height: 1.42857143;
+            text-align: center;
+            white-space: nowrap;
+            vertical-align: middle;
+            -ms-touch-action: manipulation;
+            touch-action: manipulation;
+            cursor: pointer;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+            background-image: none;
+            border: 1px solid transparent;
+            border-radius: 4px;
+        }
+
+        .btn-info {
+            color: #fff;
+            background-color: #5bc0de;
+            border-color: #46b8da;
+        }
+
+        .btn-primary {
+            color: #fff;
+            background-color: #337ab7;
+            border-color: #2e6da4;
+        }
+
+        .fa-lg {
+            font-size: 1.33333333em;
+            line-height: 0.75em;
+            vertical-align: -15%;
+        }
+    </style>
+
+</head>
+<body>
+<div th:block th:insert="~{elements/navbar.html}"></div>
+
+<nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item "><a href="/home">Главная</a></li>
+        <li class="breadcrumb-item">
+            <a href="/admin">Админ панель</a></li>
+        <li class="breadcrumb-item active" aria-current="page">
+            <a href="/admin/all">Все пользователи</a></li>
+    </ol>
+</nav>
+<table>
+    <thead>
+    <tr>
+        <th>USERNAME</th>
+        <th>ROLE</th>
+        <th></th>
+        <th>isActive</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="user : ${users}">
+        <td th:text="${user.username}"></td>
+        <td th:text="${user.role}"></td>
+        <td>
+            <form method="post" th:action="@{/admin/edit/{id}(id=${user.id})}">
+                <button type="submit" class="btn btn-info btn-sm">
+                    <i class="fa fa-lg fa-pencil-square-o" aria-hidden="true"></i>
+                    Редактировать
+                </button>
+            </form>
+        </td>
+        <td>
+            <form method="post" th:action="@{/admin/active/{id}(id=${user.id})}">
+                <input type="checkbox" name="active" th:checked="${user.active}"/>
+                <button type="submit" class="btn btn-primary btn-sm">Сохранить</button>
+            </form>
+        </td>
+    </tr>
+    </tbody>
+</table>
+</body>
+
+</html>
