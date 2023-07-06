@@ -1,5 +1,6 @@
 package by.tms.springstore.service.impl;
 
+import by.tms.springstore.service.EmailService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.mail.SimpleMailMessage;
@@ -8,7 +9,7 @@ import org.springframework.stereotype.Service;
 
 @Service
 @RequiredArgsConstructor
-public class EmailService {
+public class EmailServiceImpl implements EmailService {
     private final JavaMailSender javaMailSender;
 
     @Value("${spring.mail.username}")
@@ -16,8 +17,8 @@ public class EmailService {
 
     public void sendEmail(String emailTo, String subject, String text) {
         SimpleMailMessage message = new SimpleMailMessage();
-        message.setFrom(username); // Адрес отправителя
-        message.setTo(emailTo); // Адрес получателя
+        message.setFrom(username);
+        message.setTo(emailTo);
         message.setSubject(subject);
         message.setText(text);
         javaMailSender.send(message);

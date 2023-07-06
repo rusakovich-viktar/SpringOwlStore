@@ -6,6 +6,7 @@ import by.tms.springstore.dto.UserDto;
 import by.tms.springstore.exceptions.NotFoundException;
 import by.tms.springstore.mapper.UserMapper;
 import by.tms.springstore.repository.UserRepository;
+import by.tms.springstore.service.EmailService;
 import by.tms.springstore.service.UserService;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
@@ -26,7 +27,7 @@ public class UserServiceImpl implements UserService {
     private final UserRepository userRepository;
     private final PasswordEncoder passwordEncoder;
     private final UserMapper userMapper;
-    private final EmailService customMailSender;
+    private final EmailService emailService;
 
     @Override
     public User getUserByLoginAndPassword(String login, String password) {
@@ -49,7 +50,7 @@ public class UserServiceImpl implements UserService {
                             "Welcome to owlSTORE. Please visit the following link to activate your account: http://localhost:8080/auth/activate/%s",
                     user.getUsername(), user.getActivationCode()
             );
-            customMailSender.sendEmail(user.getEmail(), "Activation code", message);
+            emailService.sendEmail(user.getEmail(), "Activation code", message);
         }
         return true;
     }
