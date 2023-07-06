@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title>О нас</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+
+</head>
+<body>
+<div th:block th:insert="~{elements/navbar.html}"></div>
+<main>
+    <div class="container mt-4">
+        <h1>О нас</h1>
+        <p>Спасибо, что нашли время и зашли на эту страницу!</p>
+
+        <p>Можно ли нам доверять и почему именно в нашем интернет-магазине вам стоит сделать покупку? Это действительно
+            важные
+            вопросы!</p>
+
+        <p>Можно!</p>
+
+        <p>Мы привезем товар в любую точку Беларуси с удобной для вас формой оплаты или предоставим рассрочку до 36
+            месяцев
+            на любой товар.</p>
+
+        <p>Добро пожаловать в наш магазин</p>
+
+        <p>С уважением,<br>Команда OWLstore</p>
+
+        <div class="row mt-4">
+            <div class="col-md-6">
+                <img th:src="@{/images/parts/logo-owl.png}" alt="Image 1" class="img-fluid" style="width: 313px">
+            </div>
+            <div class="col-md-6">
+                <img th:src="@{/images/parts/dBlue.png}" alt="Image 2" class="img-fluid" style="width: 300px">
+            </div>
+
+        </div>
+    </div>
+</main>
+<div th:block th:insert="~{elements/waves.html}"></div>
+<div th:block th:insert="~{elements/footer.html}"></div>
+
+</body>
+
+</html>

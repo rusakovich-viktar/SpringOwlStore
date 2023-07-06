@@ -40,8 +40,7 @@ public class AdminController {
 
     @GetMapping("/all")
     public ModelAndView userList(Model model) {
-        List<User> users = userService.findAll()
-                .stream()
+        List<User> users = userService.findAll().stream()
                 .sorted(Comparator.comparing(User::getUsername))
                 .collect(Collectors.toList());
         model.addAttribute("users", users);
@@ -56,7 +55,6 @@ public class AdminController {
     @PostMapping("/active/{id}")
     public ModelAndView active(@ModelAttribute("userDto") UserDto userDto, @PathVariable("id") Long id) {
         userService.accountEnableStatus(userDto);
-        System.out.println(userDto.toString());
         return new ModelAndView("redirect:/admin/all");
     }
 }

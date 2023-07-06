@@ -4,11 +4,28 @@
     <title>Cart</title>
     <!--    <div th:block th:insert="~{/elements/bootstrap-basic.html}"></div>-->
     <link rel="stylesheet" th:href="@{/css/style.css}">
+    <style>
+        .img {
+            background-image: url("images/parts/lYel.png");
+            background-repeat: no-repeat;
+            background-position: left bottom;
+            background-size: cover;
+            height: 280px;
+            width: 300px;
+            position: fixed;
+            bottom: 20px;
+            left: 20px;
+            margin-bottom: 100px;
+            z-index: -1; /* Добавляем отрицательное значение z-index */
+        }
+    </style>
 </head>
 <body>
 <!--<div class="row">-->
     <div th:block th:insert="~{elements/navbar.html}"></div>
     <main>
+        <div class="img"></div>
+
         <nav aria-label="breadcrumb">
             <ol class="breadcrumb">
                 <li class="breadcrumb-item"><a href="/home">Главная</a></li>

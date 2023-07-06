@@ -14,9 +14,24 @@
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
 <script src="/js/navbar.js"></script>
+<style>
+    .owl {
+        background-image: url("images/parts/rPink.png");
+        background-repeat: no-repeat;
+        background-position: right bottom;
+        background-size: cover;
+        height: 150px;
+        width: 150px;
+        position: fixed;
+        bottom: 0px;
+        right: 0px;
+        margin-bottom: 0px;
+        z-index: 1; /* Добавляем отрицательное значение z-index */
+    }
+</style>
 <header>
     <nav class="navbar">
-
+        <div class="owl"></div>
         <div class="container navbar-expand">
             <div class="navbar-header navbar-brand">
                 <button class="navbar-toggler" data-toggle="collapse" data-target="#open-navbar1">
@@ -44,10 +59,10 @@
 
                     <li><a th:href="@{/home}"> <i class="fa fa-2x fa-home" aria-hidden="true"></i> Home</a></li>
 
-                    <li><a href="#"><i class="fa fa-2x fa-address-card-o" aria-hidden="true"></i> About!</a></li>
+                    <li><a th:href="@{/about-us}"><i class="fa fa-2x fa-address-card-o" aria-hidden="true"></i> About us</a></li>
 
 
-                    <li><a href="#"><i class="fa fa-2x fa-envelope-o" aria-hidden="true"></i> Contact</a></li>
+                    <li><a href="/contacts"><i class="fa fa-2x fa-envelope-o" aria-hidden="true"></i> Contact</a></li>
                     <th:block sec:authorize="!isAuthenticated()">
                         <li><a th:href="@{/auth/login}" style="color: lawngreen" class="fa-sign-in"> <i
                                 class="fa fa-sign-in" aria-hidden="true"></i>Sign in</a></li>

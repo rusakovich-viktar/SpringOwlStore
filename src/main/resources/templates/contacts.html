@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title>Contacts</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+<div th:block th:insert="~{elements/navbar.html}"></div>
+<main>
+            <div class="col-md">
+                <br>
+                <div class="row mb-3 text-center">
+                    <div class="col-sm-3">
+                        <h5 class="column-title"><i class="fa fa-lg fa-map-marker" aria-hidden="true"></i> Адрес</h5>
+                        <div class="column-content">Город, Улица, Дом</div>
+                    </div>
+                    <div class="col-sm-3">
+                        <h5 class="column-title"><i class="fa fa-lg fa-clock-o" aria-hidden="true"></i> Время работы
+                            техподдержки</h5>
+                        <div class="column-content">Понедельник-Суббота: 9:00-17:00<br>
+                        </div>
+                    </div>
+                    <div class="col-sm-3">
+                        <h5 class="column-title"><i class="fa fa-lg fa-phone" aria-hidden="true"></i> Телефон</h5>
+                        <a href="tel:+375447764751"> <i class="fa fa-lg fa-mobile" aria-hidden="true"></i> +375 (44)
+                            776-46-51</a>
+                    </div>
+                    <div class="col-sm-3">
+                        <h5 class="column-title"><i class="fa fa-lg fa-envelope-o" aria-hidden="true"></i> Почта</h5>
+                        <div class="column-content">testowllogin@yandex.ru</div>
+                    </div>
+                </div>
+
+                <div class="mt-2 mb-3 blue-bg p-4 mx-auto"
+                     style="max-width: 50%; border: 1px solid black; border-radius: 5px;">
+                    <h3 class="text-center">Остались вопросы? Напишите нам</h3>
+                    <p th:if="${successMessage}" th:text="${successMessage}" class="alert alert-success"></p>
+                    <form th:action="@{/contact-form}" method="post" th:object="${contactForm}">
+                        <div class="form-group">
+                            <label for="phone" class="mb-0">Введите ваш контактный телефон для обратной связи:</label>
+                            <input type="text" class="form-control mt-2 mb-3" id="phone" th:field="*{phone}"
+                                   placeholder="Введите номер в международном формате с +375" required>
+                        </div>
+                        <p th:if="${#fields.hasErrors('phone')}" th:errors="*{phone}" class="text-danger">Error</p>
+                        <div class="form-group">
+                            <label for="email" class="mb-0">Введите ваш Email для обратной связи:</label>
+                            <input type="email" class="form-control mt-2 mb-3" id="email" name="email"
+                                   th:field="*{email}" placeholder="some@some.com" required>
+                            <p th:if="${#fields.hasErrors('email')}" th:errors="*{email}" class="text-danger">Error</p>
+                        </div>
+                        <div class="form-group">
+                            <label for="message" class="mb-0">Введите ваш текст:</label>
+                            <textarea class="form-control mt-2 mb-3" id="message" name="message" rows="3"
+                                      th:field="*{message}" required
+                                      placeholder="Введите сюда любой вопрос, мы обязательно на него ответим"></textarea>
+                        </div>
+                        <button type="submit" class="mt-2 btn btn-primary btn-block">Отправить</button>
+                    </form>
+                </div>
+            </div>
+</main>
+<div th:block th:insert="~{elements/waves.html}"></div>
+
+<div th:block th:insert="~{elements/footer.html}"></div>
+
+</body>
+</html>
