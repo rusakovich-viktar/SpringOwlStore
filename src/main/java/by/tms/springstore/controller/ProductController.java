@@ -49,12 +49,12 @@ public class ProductController {
 
 
     @GetMapping("/search")
-    public ModelAndView searchProducts(@RequestParam(QUERY) String query, ModelAndView modelAndView) {
+    public ModelAndView searchProducts(@RequestParam("query") String query, ModelAndView modelAndView) {
+        modelAndView.setViewName("search-results");
         if (query.length() >= MINIMUM_QUERY_LENGTH_TO_SEARCH) {
             List<Product> searchResults = productService.searchProducts(query);
-            modelAndView.addObject(SEARCH_RESULTS, searchResults);
+            modelAndView.addObject("searchResults", searchResults);
         }
-        modelAndView.setViewName(SEARCH_RESULTS);
         return modelAndView;
     }
 }

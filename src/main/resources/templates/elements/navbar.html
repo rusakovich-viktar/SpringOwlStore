@@ -16,10 +16,10 @@
         height: 150px;
         width: 150px;
         position: fixed;
-        bottom: 0px;
-        right: 0px;
-        margin-bottom: 0px;
-        z-index: 1; /* Добавляем отрицательное значение z-index */
+        bottom: 0;
+        right: 0;
+        margin-bottom: 0;
+        z-index: 1;
     }
 </style>
 <header>
@@ -52,7 +52,8 @@
 
                     <li><a th:href="@{/home}"> <i class="fa fa-2x fa-home" aria-hidden="true"></i> Home</a></li>
 
-                    <li><a th:href="@{/about-us}"><i class="fa fa-2x fa-address-card-o" aria-hidden="true"></i> About us</a></li>
+                    <li><a th:href="@{/about-us}"><i class="fa fa-2x fa-address-card-o" aria-hidden="true"></i> About us</a>
+                    </li>
 
 
                     <li><a href="/contacts"><i class="fa fa-2x fa-envelope-o" aria-hidden="true"></i> Contact</a></li>
@@ -100,35 +101,17 @@
         <div id="search-results-container"></div>
     </nav>
 
-
     <!--Поиск-->
     <script>
-        function handleKeyPress(event) {
-            console.log('Функция handleKeyPress() вызвана');
-
-            if (event.key === "Enter") {
-                console.log('Нажата клавиша Enter');
-
-                event.preventDefault();
-                var query = $("#search-input").val();
-                console.log('Значение введенного запроса:', query);
-
-                // Дополнительная логика по обработке поискового запроса
-
-                console.log('Обработка поискового запроса выполнена');
-            }
-        }
-
         $(document).ready(function () {
             $("#search-button").click(function (event) {
                 event.preventDefault(); // Предотвращает перезагрузку страницы
+
                 var query = $("#search-input").val();
-                console.log("Search button clicked"); // Отладочное сообщение
                 $.get("/product/search?query=" + query, function (data) {
                     $("#search-results-container").html(data);
                 });
             });
         });
-
     </script>
 </header>
