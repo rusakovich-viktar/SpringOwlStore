@@ -20,25 +20,90 @@
         <input type="password" id="password" name="password" placeholder="password" required/>
 
         <div>
-            <input type="checkbox" id="showPasswordToggle">
-            <label for="showPasswordToggle" id="showPasswordLabel" th:size="10">Показать пароль</label>
+            <div>
+                <input type="checkbox" id="showPasswordToggle">
+                <label for="showPasswordToggle" id="showPasswordLabel" th:size="10">Показать пароль</label>
+            </div>
         </div>
 
         <button type="submit">&#xf0da;</button>
 
         <div th:if="${param.error}" style="color: red">
-            Неправильные имя или пароль из login.html
+            Введены некорректные данные, проверьте их и попробуйте заново
         </div>
     </form>
     <br>
     <br>
     <br>
+    <p>Забыли пароль? <a href="/forgot-password">Восстановить</a></p>
+
+    <p>Забыли пароль? <a href="#" id="forgotPasswordLink">Восстановить</a></p>
+
     <p>Нет аккаунта? <a href="/auth/registration">Зарегистрироваться</a></p>
 </div>
 
 <div th:if="${param.logout != null}" class="alert alert-success">
     Вы успешно вышли из системы.
 </div>
+
+<!-- Всплывающее окно -->
+<div id="popup" class="popup">
+    <main class="flex-grow-1">
+        <div class="container d-flex justify-content-center h-75 align-items-center">
+            <div class="col-md-5">
+                <div class="text-center">
+                    <h3>Сброс пароля</h3>
+                </div>
+                <div class="text-center">
+                    <p>Напомните адрес электронной почты, который вы указывали при регистрации</p>
+                </div>
+                <form th:action="@{/reset-password}" method="post">
+                    <div class="form-outline mb-4">
+                        <label class="form-label" for="email">Адрес электронной почты:</label>
+                        <input type="email" id="email" class="form-control" name="email" placeholder="some@some.com" required/>
+                    </div>
+                    <br>
+                    <button type="submit" class="btn btn-primary btn-block mb-4">Сбросить пароль</button>
+                </form>
+                <button id="closePopup" class="btn btn-secondary btn-block">Закрыть</button>
+            </div>
+        </div>
+    </main>
+</div>
+
+<script>
+    // Получите ссылку на кнопку "Восстановить"
+    var forgotPasswordLink = document.getElementById('forgotPasswordLink');
+
+    // Получите ссылку на всплывающее окно
+    var popup = document.getElementById('popup');
+
+    // Получите ссылку на кнопку "Закрыть"
+    var closePopupButton = document.getElementById('closePopup');
+
+    // Добавьте обработчик события для клика по кнопке "Восстановить"
+    forgotPasswordLink.addEventListener('click', function(event) {
+        event.preventDefault(); // Предотвратите переход по ссылке
+
+        // Показать всплывающее окно
+        popup.style.display = 'block';
+    });
+
+    // Добавьте обработчик события для клика по кнопке "Закрыть"
+    closePopupButton.addEventListener('click', function() {
+        // Скрыть всплывающее окно
+        popup.style.display = 'none';
+    });
+
+    // Добавьте обработчик события для клика по всплывающему окну, чтобы закрыть его при клике вне окна
+    popup.addEventListener('click', function(event) {
+        // Проверяем, является ли элемент, по которому был совершен клик, самим всплывающим окном
+        if (event.target === popup) {
+            // Скрыть всплывающее окно
+            popup.style.display = 'none';
+        }
+    });
+</script>
 
 <script>
     const showPasswordToggle = document.getElementById('showPasswordToggle');

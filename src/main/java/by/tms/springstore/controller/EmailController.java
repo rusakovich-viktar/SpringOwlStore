@@ -14,7 +14,7 @@ public class EmailController {
     @GetMapping("/send-test-email")
     public String sendTestEmail1() {
 
-        emailService.sendEmail("testowllogin@yandex.ru","Тестовое письмо","Привет, это тестовое письмо.");
+        emailService.send("testowllogin@yandex.ru","Тестовое письмо","Привет, это тестовое письмо.");
         return "Test email sent";
     }
 }

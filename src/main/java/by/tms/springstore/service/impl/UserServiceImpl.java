@@ -3,7 +3,8 @@ package by.tms.springstore.service.impl;
 import by.tms.springstore.domain.Role;
 import by.tms.springstore.domain.User;
 import by.tms.springstore.dto.UserDto;
-import by.tms.springstore.exceptions.NotFoundException;
+import by.tms.springstore.exceptions.UserNotFoundByEmailException;
+import by.tms.springstore.exceptions.UserNotFoundException;
 import by.tms.springstore.mapper.UserMapper;
 import by.tms.springstore.repository.UserRepository;
 import by.tms.springstore.service.EmailService;
@@ -50,7 +51,7 @@ public class UserServiceImpl implements UserService {
                             "Welcome to owlSTORE. Please visit the following link to activate your account: http://localhost:8080/auth/activate/%s",
                     user.getUsername(), user.getActivationCode()
             );
-            emailService.sendEmail(user.getEmail(), "Activation code", message);
+            emailService.send(user.getEmail(), "Activation code", message);
         }
         return true;
     }
@@ -59,7 +60,7 @@ public class UserServiceImpl implements UserService {
     @Transactional
     public void updateUser(UserDto userDto) {
         User user = userRepository.findById(userDto.getId())
-                .orElseThrow(() -> new NotFoundException("User not found"));
+                .orElseThrow(() -> new UserNotFoundException("User not found"));
         user.setName(userDto.getName());
         user.setSurname(userDto.getSurname());
         user.setGender(userDto.getGender());
@@ -127,11 +128,31 @@ public class UserServiceImpl implements UserService {
     @Transactional
     public void accountEnableStatus(UserDto userDto) {
         User user = userRepository.findById(userDto.getId())
-                .orElseThrow(() -> new NotFoundException("User not found"));
+                .orElseThrow(() -> new UserNotFoundException("User not found"));
         boolean active = userDto.isActive();
         user.setActive(active);
         userDto.setActive(user.isActive());
         userRepository.saveAndFlush(user);
     }
+
+    @Override
+    @Transactional
+    public void updatePassword(String email, String newPassword) {
+        User user = findBy(email, "Пользователь c почтой " + email + " не найден");
+        user.setPassword(passwordEncoder.encode(newPassword));
+    }
+
+    private <SC> User findBy(SC searchCriteria, String errorMessage) {
+        if (searchCriteria instanceof String) {
+            return userRepository.findUserByEmail((String) searchCriteria)
+                    .orElseThrow(() -> new UserNotFoundByEmailException(errorMessage));
+        }
+        if (searchCriteria instanceof Long) {
+            return userRepository.findById((Long) searchCriteria)
+                    .orElseThrow(() -> new UserNotFoundException(errorMessage));
+        }
+        throw new IllegalArgumentException("Неподдерживаемый тип репозитория: " + userRepository.getClass());
+    }
+
 
 }

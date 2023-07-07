@@ -22,7 +22,7 @@ public class SecurityConfig {
                 .authorizeHttpRequests((auth) ->
                                 auth
                                         .requestMatchers("/admin/**").hasRole("ADMIN")
-                                        .requestMatchers("/auth/**", "/open", "/user-agreement", "/activate/**").permitAll()
+                                        .requestMatchers("/auth/**", "/open", "/user-agreement", "/activate/**", "/forgot-password", "/reset-password").permitAll()
 //                                        .requestMatchers("/home", "/category").permitAll()
                                         .requestMatchers(PathRequest.toStaticResources().atCommonLocations()).permitAll()
                                         .anyRequest().hasAnyRole("USER", "ADMIN")

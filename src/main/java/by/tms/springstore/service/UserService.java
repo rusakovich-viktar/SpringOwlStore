@@ -31,4 +31,6 @@ public interface UserService {
     boolean activateUser(String code);
 
     void accountEnableStatus(UserDto userDto);
+
+    void updatePassword(String email, String newPassword);
 }

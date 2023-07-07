@@ -5,6 +5,7 @@ import by.tms.springstore.service.EmailService;
 import jakarta.mail.MessagingException;
 import jakarta.mail.internet.MimeMessage;
 import lombok.RequiredArgsConstructor;
+import org.modelmapper.internal.bytebuddy.utility.RandomString;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
@@ -23,7 +24,7 @@ public class EmailServiceImpl implements EmailService {
     @Value("${spring.mail.username}")
     private String username;
 
-    public void sendEmail(String emailTo, String subject, String text) {
+    public void send(String emailTo, String subject, String text) {
         SimpleMailMessage message = new SimpleMailMessage();
         message.setFrom(username);
         message.setTo(emailTo);
@@ -35,19 +36,44 @@ public class EmailServiceImpl implements EmailService {
     @Override
     public void sendContactForm(ContactForm contactForm) {
         CompletableFuture.runAsync(() -> {
-            MimeMessage mailSenderMimeMessage = javaMailSender.createMimeMessage();
-            MimeMessageHelper mimeMessageHelper = new MimeMessageHelper(mailSenderMimeMessage);
+            MimeMessage message = javaMailSender.createMimeMessage();
+            MimeMessageHelper mailMessage = new MimeMessageHelper(message);
             try {
-                mimeMessageHelper.setFrom(username);
-                mimeMessageHelper.setTo(SUPPORT_EMAIL);
-                mimeMessageHelper.setSubject(SUPPORT_SUBJECT);
-                mimeMessageHelper.setText("Email пользователя: <b>" + contactForm.getEmail() + "</b><br>" +
+                mailMessage.setFrom(username);
+                mailMessage.setTo(SUPPORT_EMAIL);
+                mailMessage.setSubject(SUPPORT_SUBJECT);
+                mailMessage.setText("Email пользователя: <b>" + contactForm.getEmail() + "</b><br>" +
                         "Номер телефона: " + contactForm.getPhone() + "<br><br>" +
                         "<b>Текст сообщения: </b>" + contactForm.getMessage(), true);
             } catch (MessagingException e) {
                 e.printStackTrace();
             }
-            javaMailSender.send(mailSenderMimeMessage);
+            javaMailSender.send(message);
         });
+    }
+
+    @Override
+    public String sendPasswordReset(String userEmail) {
+        // Генерация нового пароля
+        String newPassword = RandomString.make(8);
+
+        // Подготовка и асинхронная отправка письма с паролем (без задержки на странице)
+        CompletableFuture.runAsync(() -> {
+            MimeMessage message = javaMailSender.createMimeMessage();
+            MimeMessageHelper mailMessage = new MimeMessageHelper(message);
+            try {
+                mailMessage.setFrom(SUPPORT_EMAIL);
+                mailMessage.setTo(userEmail);
+                mailMessage.setSubject("Сброс пароля");
+                mailMessage.setText("<h2>Здравствуйте!</h2>" +
+                        "<p>Ваш новый пароль для доступа к OWLstore: <b>" + newPassword + "</b><br><br>" +
+                        "<h4>После входа в аккаунт рекомендуем изменить пароль в личном кабинете.</h4>" +
+                        "Если вы считаете, что данное сообщение отправлено вам по ошибке, проигнорируйте его.</p>", true);
+            } catch (MessagingException e) {
+                e.printStackTrace();
+            }
+            javaMailSender.send(message);
+        });
+        return newPassword;
     }
 }
