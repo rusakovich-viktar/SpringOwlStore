@@ -3,7 +3,7 @@
 <head>
     <!--    <div th:block th:insert="~{/elements/bootstrap-basic.html}"></div>-->
     <link rel="stylesheet" th:href="@{/css/style.css}">
-
+    <link rel="icon" type="image/x-icon" href="/icon/favicon.ico"/>
     <title>Edit user</title>
     <style>
         .blue-text {
@@ -18,8 +18,8 @@
         <ol class="breadcrumb">
             <li class="breadcrumb-item"><a href="/home">Главная</a></li>
             <li class="breadcrumb-item">
-                                <a th:href="@{'/user/profile/'+ ${#authentication.principal.user.id}}"
-                                   th:text="Профиль">Профиль</a></li>
+                <a th:href="@{'/user/profile/'+ ${#authentication.principal.user.id}}"
+                   th:text="Профиль">Профиль</a></li>
 
             <li class="breadcrumb-item active" aria-current="page">
                 <span th:text="Редактирование"></span>

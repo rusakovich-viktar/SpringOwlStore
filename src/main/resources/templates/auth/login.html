@@ -4,6 +4,8 @@
 <head>
     <title>LoginPage</title>
     <link rel="stylesheet" th:href="@{/css/login.css}">
+    <link rel="icon" type="image/x-icon" href="/icon/favicon.ico"/>
+
 </head>
 <body>
 <div id="wrapper">
@@ -43,7 +45,7 @@
     const passwordInput = document.getElementById('password');
     const showPasswordLabel = document.getElementById('showPasswordLabel');
 
-    showPasswordToggle.addEventListener('change', function() {
+    showPasswordToggle.addEventListener('change', function () {
         if (showPasswordToggle.checked) {
             passwordInput.type = 'text';
             showPasswordLabel.textContent = 'Скрыть пароль';

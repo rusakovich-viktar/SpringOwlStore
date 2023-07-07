@@ -55,7 +55,6 @@ public class ProductController {
             modelAndView.addObject(SEARCH_RESULTS, searchResults);
         }
         modelAndView.setViewName(SEARCH_RESULTS);
-
         return modelAndView;
     }
 }
