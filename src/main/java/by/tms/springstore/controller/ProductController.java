@@ -31,7 +31,7 @@ public class ProductController {
     private final ProductService productService;
 
     @GetMapping("/{productId}")
-    public ModelAndView showProduct(@PathVariable("productId") Long productId,
+    public ModelAndView showProduct(@PathVariable Long productId,
                                     HttpServletRequest request, ModelAndView modelAndView) {
         Product product = productService.getProductById(productId);
         request.setAttribute(ONE_PRODUCT, product);
@@ -53,10 +53,9 @@ public class ProductController {
         if (query.length() >= MINIMUM_QUERY_LENGTH_TO_SEARCH) {
             List<Product> searchResults = productService.searchProducts(query);
             modelAndView.addObject(SEARCH_RESULTS, searchResults);
-            modelAndView.setViewName(SEARCH_RESULTS);
-        } else {
-            modelAndView.setViewName(SEARCH_RESULTS);
         }
+        modelAndView.setViewName(SEARCH_RESULTS);
+
         return modelAndView;
     }
 }

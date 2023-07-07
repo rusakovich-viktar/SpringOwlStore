@@ -30,7 +30,7 @@ public class AdminController {
     private final UserService userService;
 
     @PostMapping("/edit/{id}")
-    public ModelAndView editUserProfileInfo(@PathVariable("id") Long id,
+    public ModelAndView editUserProfileInfo(@PathVariable Long id,
                                             ModelAndView modelAndView) {
         UserDto userDto = userService.findUserDtoById(id);
         modelAndView.addObject(USER_DTO, userDto);

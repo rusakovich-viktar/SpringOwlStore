@@ -48,8 +48,8 @@ public class CategoryController {
 
     @GetMapping("/category/{categoryId}/{nameCategory}")
     public ModelAndView showCategoriesWithPagination(
-            @PathVariable("categoryId") Long categoryId,
-            @PathVariable("nameCategory") String nameCategory,
+            @PathVariable Long categoryId,
+            @PathVariable String nameCategory,
             @RequestParam(value = PAGE, defaultValue = PAGE_NUMBER_REQUESTED) int page,
             @RequestParam(value = SIZE, defaultValue = SIZE_OF_THE_ELEMENTS_ON_THE_PAGE) int size,
             ModelAndView modelAndView) {
