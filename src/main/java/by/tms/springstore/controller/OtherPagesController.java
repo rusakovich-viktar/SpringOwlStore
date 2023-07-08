@@ -1,6 +1,6 @@
 package by.tms.springstore.controller;
 
-import by.tms.springstore.dto.ContactForm;
+import by.tms.springstore.dto.UserDtoFromContactForm;
 import by.tms.springstore.service.EmailService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
@@ -26,18 +26,18 @@ public class OtherPagesController {
     @GetMapping("/contacts")
     public ModelAndView showContacts() {
         ModelAndView modelAndView = new ModelAndView("contacts.html");
-        modelAndView.addObject("contactForm", new ContactForm());
+        modelAndView.addObject("contactForm", new UserDtoFromContactForm());
         return modelAndView;
     }
 
     @PostMapping("/contact-form")
-    public ModelAndView sendContactForm(@ModelAttribute("contactForm") @Valid ContactForm contactForm, BindingResult result) {
+    public ModelAndView sendContactForm(@ModelAttribute("contactForm") @Valid UserDtoFromContactForm userDtoFromContactForm, BindingResult result) {
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName("contacts.html");
         if (result.hasErrors()) {
-            modelAndView.addObject("contactForm", contactForm);
+            modelAndView.addObject("contactForm", userDtoFromContactForm);
         } else {
-            emailService.sendContactForm(contactForm);
+            emailService.sendContactForm(userDtoFromContactForm);
             modelAndView.addObject("successMessage", "Ваше сообщение успешно отправлено!");
         }
         return modelAndView;

@@ -1,6 +1,6 @@
 package by.tms.springstore.service.impl;
 
-import by.tms.springstore.dto.ContactForm;
+import by.tms.springstore.dto.UserDtoFromContactForm;
 import by.tms.springstore.service.EmailService;
 import jakarta.mail.MessagingException;
 import jakarta.mail.internet.MimeMessage;
@@ -34,7 +34,7 @@ public class EmailServiceImpl implements EmailService {
     }
 
     @Override
-    public void sendContactForm(ContactForm contactForm) {
+    public void sendContactForm(UserDtoFromContactForm userDtoFromContactForm) {
         CompletableFuture.runAsync(() -> {
             MimeMessage message = javaMailSender.createMimeMessage();
             MimeMessageHelper mailMessage = new MimeMessageHelper(message);
@@ -42,9 +42,9 @@ public class EmailServiceImpl implements EmailService {
                 mailMessage.setFrom(username);
                 mailMessage.setTo(SUPPORT_EMAIL);
                 mailMessage.setSubject(SUPPORT_SUBJECT);
-                mailMessage.setText("Email пользователя: <b>" + contactForm.getEmail() + "</b><br>" +
-                        "Номер телефона: " + contactForm.getPhone() + "<br><br>" +
-                        "<b>Текст сообщения: </b>" + contactForm.getMessage(), true);
+                mailMessage.setText("Email пользователя: <b>" + userDtoFromContactForm.getEmail() + "</b><br>" +
+                        "Номер телефона: " + userDtoFromContactForm.getPhone() + "<br><br>" +
+                        "<b>Текст сообщения: </b>" + userDtoFromContactForm.getMessage(), true);
             } catch (MessagingException e) {
                 e.printStackTrace();
             }
