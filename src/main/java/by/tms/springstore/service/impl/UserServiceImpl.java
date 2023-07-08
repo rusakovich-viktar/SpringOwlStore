@@ -3,6 +3,7 @@ package by.tms.springstore.service.impl;
 import by.tms.springstore.domain.Role;
 import by.tms.springstore.domain.User;
 import by.tms.springstore.dto.UserDto;
+import by.tms.springstore.exceptions.InvalidUserPasswordException;
 import by.tms.springstore.exceptions.UserNotFoundByEmailException;
 import by.tms.springstore.exceptions.UserNotFoundException;
 import by.tms.springstore.mapper.UserMapper;
@@ -29,6 +30,8 @@ public class UserServiceImpl implements UserService {
     private final PasswordEncoder passwordEncoder;
     private final UserMapper userMapper;
     private final EmailService emailService;
+
+    private final CustomUserDetailsService customUserDetailsService;
 
     @Override
     public User getUserByLoginAndPassword(String login, String password) {
@@ -141,6 +144,18 @@ public class UserServiceImpl implements UserService {
         User user = findBy(email, "Пользователь c почтой " + email + " не найден");
         user.setPassword(passwordEncoder.encode(newPassword));
     }
+
+    @Override
+    @Transactional
+    public void changePassword(String username, String oldPassword, String newPassword) {
+        User user = userRepository.findByUsername(username);
+        if (passwordEncoder.matches(oldPassword, user.getPassword())) {
+            user.setPassword(passwordEncoder.encode(newPassword));
+        } else {
+            throw new InvalidUserPasswordException("Введенный действующий пароль некорректен");
+        }
+    }
+
 
     private <SC> User findBy(SC searchCriteria, String errorMessage) {
         if (searchCriteria instanceof String) {

@@ -21,7 +21,7 @@ public class CustomUserDetailsService implements UserDetailsService {
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         Optional<User> user = userRepository.findFirstByUsername(username);
         if (user.isEmpty()) {
-            throw new UsernameNotFoundException("user not found");
+            throw new UsernameNotFoundException("user " + username + " not found");
         } else {
             return new CustomUserDetails(user.get());
         }

@@ -15,7 +15,7 @@
                 <div class="mt-2 mb-3 blue-bg p-4 mx-auto"
                      style="max-width: 50%; border: 1px solid black; border-radius: 5px;">
                     <p th:if="${successMessage}" th:text="${successMessage}" class="alert alert-success"></p>
-                    <form th:action="@{/contact-form}" method="post" th:object="${userDtoFromContactForm}">
+                    <form th:action="@{/contact-form}" method="post" th:object="${contactForm}">
                         <div class="form-group">
                             <label for="phone" class="mb-0">Введите ваш контактный телефон для обратной связи:</label>
                             <input type="text" class="form-control mt-2 mb-3" id="phone" th:field="*{phone}"

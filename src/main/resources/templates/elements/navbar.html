@@ -62,7 +62,8 @@
                     </li>
 
 
-                    <li><a href="/contacts"><i class="fa fa-2x fa-envelope-o" aria-hidden="true"></i> Contact us</a></li>
+                    <li><a href="/contacts"><i class="fa fa-2x fa-envelope-o" aria-hidden="true"></i> Contact us</a>
+                    </li>
                     <th:block sec:authorize="!isAuthenticated()">
                         <li><a th:href="@{/auth/login}" style="color: lawngreen" class="fa-sign-in"> <i
                                 class="fa fa-sign-in" aria-hidden="true"></i>Sign in</a></li>
@@ -89,7 +90,9 @@
                                 <a class="dropdown-item"
                                    th:href="@{'/user/profile/' + ${#authentication.principal.user.id}}">
                                     <i class="fa fa-user" aria-hidden="true"></i> Profile</a>
-                                <a class="dropdown-item" href="#">Что-то еще здесь</a>
+
+                                <a class="dropdown-item" th:href="@{/change-password}"><i class="fa fa-key"
+                                                                                          aria-hidden="true"></i>Изменить пароль</a>
                                 <hr class="dropdown-divider">
                                 <form class="dropdown-item active" th:action="@{/auth/logout}" method="post"
                                       style="width: 100%; ">

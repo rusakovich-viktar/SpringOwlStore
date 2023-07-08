@@ -33,4 +33,7 @@ public interface UserService {
     void accountEnableStatus(UserDto userDto);
 
     void updatePassword(String email, String newPassword);
+
+    void changePassword(String username, String oldPassword, String newPassword);
+
 }

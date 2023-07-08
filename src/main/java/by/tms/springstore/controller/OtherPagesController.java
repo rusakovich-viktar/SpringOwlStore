@@ -33,7 +33,7 @@ public class OtherPagesController {
     @PostMapping("/contact-form")
     public ModelAndView sendContactForm(@ModelAttribute("contactForm") @Valid UserDtoFromContactForm userDtoFromContactForm, BindingResult result) {
         ModelAndView modelAndView = new ModelAndView();
-        modelAndView.setViewName("contacts.html");
+        modelAndView.setViewName("contacts");
         if (result.hasErrors()) {
             modelAndView.addObject("contactForm", userDtoFromContactForm);
         } else {
