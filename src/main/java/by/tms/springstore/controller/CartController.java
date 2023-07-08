@@ -27,7 +27,6 @@ public class CartController {
     private final CartService cartService;
     private final ProductService productService;
 
-
     @GetMapping()
     public ModelAndView showCart(ModelAndView modelAndView, Principal principal) {
         CartDto cartDto = cartService.getCartByUsername(principal.getName());

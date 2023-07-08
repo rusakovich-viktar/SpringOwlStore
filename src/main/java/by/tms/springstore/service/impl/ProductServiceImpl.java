@@ -18,6 +18,8 @@ import org.springframework.stereotype.Service;
 import java.util.Collections;
 import java.util.List;
 
+import static by.tms.springstore.utils.Constants.Attributes.NOT_FOUND;
+
 @Setter
 @Service
 @RequiredArgsConstructor
@@ -56,7 +58,7 @@ public class ProductServiceImpl implements ProductService {
     private User getUser(String username) {
         User user = userService.findByUsername(username);
         if (user == null) {
-            throw new RuntimeException("User not found. " + username);
+            throw new RuntimeException("User " + username + NOT_FOUND);
         }
         return user;
     }

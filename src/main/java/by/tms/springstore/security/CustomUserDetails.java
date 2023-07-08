@@ -15,7 +15,6 @@ import java.util.Collections;
 
 @ToString
 @RequiredArgsConstructor
-//получаем данные аутентифицированного пользователя
 @Getter
 
 public class CustomUserDetails implements UserDetails {
@@ -23,9 +22,7 @@ public class CustomUserDetails implements UserDetails {
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-//        return
-//        null;
-//                Collections.singletonList(new SimpleGrantedAuthority(user.getRole()));
+//           return Collections.singletonList(new SimpleGrantedAuthority(user.getRole()));
         Role role = user.getRole();
         String roleName = role.name(); // Получить имя роли из перечисления
         GrantedAuthority authority = new SimpleGrantedAuthority(roleName);

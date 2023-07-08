@@ -10,6 +10,8 @@ import org.springframework.validation.Validator;
 
 import java.util.Optional;
 
+import static by.tms.springstore.utils.Constants.Attributes.EMAIL;
+
 @Component
 @RequiredArgsConstructor
 public class UserValidatorEditProfile implements Validator {
@@ -36,7 +38,7 @@ public class UserValidatorEditProfile implements Validator {
     }
     private void comparisonUsersById(Errors errors, UserDto checkUserFromForm, User foundedUser) {
         if (!foundedUser.getId().equals(checkUserFromForm.getId())) {
-            errors.rejectValue("email", "", "Пользователь с такой электронной почтой уже существует");
+            errors.rejectValue(EMAIL, "", "Пользователь с такой электронной почтой уже существует");
         }
     }
 }

@@ -2,7 +2,6 @@ package by.tms.springstore.controller;
 
 import by.tms.springstore.domain.Product;
 import by.tms.springstore.service.ProductService;
-import by.tms.springstore.utils.Constants;
 import jakarta.servlet.http.HttpServletRequest;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
@@ -16,12 +15,15 @@ import org.springframework.web.servlet.ModelAndView;
 import java.security.Principal;
 import java.util.List;
 
-import static by.tms.springstore.utils.Constants.VariableValues.MINIMUM_QUERY_LENGTH_TO_SEARCH;
 import static by.tms.springstore.utils.Constants.Attributes.ONE_PRODUCT;
+import static by.tms.springstore.utils.Constants.Attributes.SEARCH_RESULTS;
+import static by.tms.springstore.utils.Constants.PagePath.ADDED_TRUE;
 import static by.tms.springstore.utils.Constants.PagePath.PRODUCT;
-import static by.tms.springstore.utils.Constants.PagePath.SEARCH_RESULTS;
+import static by.tms.springstore.utils.Constants.PagePath.REDIRECT_PRODUCT;
+import static by.tms.springstore.utils.Constants.PagePath.SEARCH_RESULTS_PATH;
 import static by.tms.springstore.utils.Constants.RequestParams.PRODUCT_ID;
 import static by.tms.springstore.utils.Constants.RequestParams.QUERY;
+import static by.tms.springstore.utils.Constants.VariableValues.MINIMUM_QUERY_LENGTH_TO_SEARCH;
 
 @RequiredArgsConstructor
 @RequestMapping("/product")
@@ -39,21 +41,20 @@ public class ProductController {
         return modelAndView;
     }
 
-
     @PostMapping("/add")
     public ModelAndView addCart(@RequestParam(PRODUCT_ID) Long productId, Principal principal, ModelAndView modelAndView) {
         productService.addToUserCart(productId, principal.getName());
-        modelAndView.setViewName("redirect:/product/" + productId + "?added=true");
+        modelAndView.setViewName(REDIRECT_PRODUCT + productId + ADDED_TRUE);
         return modelAndView;
     }
 
 
     @GetMapping("/search")
-    public ModelAndView searchProducts(@RequestParam("query") String query, ModelAndView modelAndView) {
-        modelAndView.setViewName("search-results");
+    public ModelAndView searchProducts(@RequestParam(QUERY) String query) {
+        ModelAndView modelAndView = new ModelAndView(SEARCH_RESULTS_PATH);
         if (query.length() >= MINIMUM_QUERY_LENGTH_TO_SEARCH) {
             List<Product> searchResults = productService.searchProducts(query);
-            modelAndView.addObject("searchResults", searchResults);
+            modelAndView.addObject(SEARCH_RESULTS, searchResults);
         }
         return modelAndView;
     }

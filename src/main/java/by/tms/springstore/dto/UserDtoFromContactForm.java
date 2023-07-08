@@ -7,16 +7,19 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import static by.tms.springstore.utils.Constants.Attributes.EMAIL_PATTERN;
+import static by.tms.springstore.utils.Constants.Attributes.PHONE_PATTERN;
+
 @Getter
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
 public class UserDtoFromContactForm {
 
-    @Email(regexp = "^[\\w!#$%&amp;'*+/=?`{|}~^-]+(?:\\.[\\w!#$%&amp;'*+/=?`{|}~^-]+)*@(?:[a-zA-Z0-9-]+\\.)+[a-zA-Z]{2,6}$", message = "Неверный формат электронной почты")
+    @Email(regexp = EMAIL_PATTERN, message = "Неверный формат электронной почты")
     private String email;
 
-    @Pattern(regexp = "^\\+375(17|25|29|33|44)[0-9]{3}[0-9]{2}[0-9]{2}$", message = "Введите номер в международном формате: +375291112233")
+    @Pattern(regexp = PHONE_PATTERN, message = "Введите номер в международном формате: +375291112233")
     private String phone;
 
     private String message;

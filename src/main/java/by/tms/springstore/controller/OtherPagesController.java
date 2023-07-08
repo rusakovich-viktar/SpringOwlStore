@@ -11,40 +11,45 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+import static by.tms.springstore.utils.Constants.Attributes.CONTACT_FORM;
+import static by.tms.springstore.utils.Constants.Attributes.MESSAGE_SEND_SUCCESS;
+import static by.tms.springstore.utils.Constants.Attributes.SUCCESS_MESSAGE;
+import static by.tms.springstore.utils.Constants.PagePath.ABOUT_US;
+import static by.tms.springstore.utils.Constants.PagePath.AUTH_USER_AGREEMENT;
+import static by.tms.springstore.utils.Constants.PagePath.CONTACTS;
+
 @Controller
 @RequiredArgsConstructor
 public class OtherPagesController {
 
     private final EmailService emailService;
 
-
     @GetMapping("/user-agreement")
     public ModelAndView userAgreementPage() {
-        return new ModelAndView("auth/user-agreement");
+        return new ModelAndView(AUTH_USER_AGREEMENT);
     }
 
     @GetMapping("/contacts")
     public ModelAndView showContacts() {
-        ModelAndView modelAndView = new ModelAndView("contacts.html");
-        modelAndView.addObject("contactForm", new UserDtoFromContactForm());
+        ModelAndView modelAndView = new ModelAndView(CONTACTS);
+        modelAndView.addObject(CONTACT_FORM, new UserDtoFromContactForm());
         return modelAndView;
     }
 
     @PostMapping("/contact-form")
-    public ModelAndView sendContactForm(@ModelAttribute("contactForm") @Valid UserDtoFromContactForm userDtoFromContactForm, BindingResult result) {
-        ModelAndView modelAndView = new ModelAndView();
-        modelAndView.setViewName("contacts");
+    public ModelAndView sendContactForm(@ModelAttribute(CONTACT_FORM) @Valid UserDtoFromContactForm userDtoFromContactForm, BindingResult result) {
+        ModelAndView modelAndView = new ModelAndView(CONTACTS);
         if (result.hasErrors()) {
-            modelAndView.addObject("contactForm", userDtoFromContactForm);
+            modelAndView.addObject(CONTACT_FORM, userDtoFromContactForm);
         } else {
             emailService.sendContactForm(userDtoFromContactForm);
-            modelAndView.addObject("successMessage", "Ваше сообщение успешно отправлено!");
+            modelAndView.addObject(SUCCESS_MESSAGE, MESSAGE_SEND_SUCCESS);
         }
         return modelAndView;
     }
 
     @GetMapping("/about-us")
-    public String showAboutUsInfo() {
-        return "about-us";
+    public ModelAndView showAboutUsInfo() {
+        return new ModelAndView(ABOUT_US);
     }
 }

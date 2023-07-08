@@ -12,6 +12,8 @@ import org.springframework.stereotype.Service;
 
 import java.util.Optional;
 
+import static by.tms.springstore.utils.Constants.Attributes.NOT_FOUND;
+
 @Service
 @RequiredArgsConstructor
 public class CustomUserDetailsService implements UserDetailsService {
@@ -21,7 +23,7 @@ public class CustomUserDetailsService implements UserDetailsService {
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         Optional<User> user = userRepository.findFirstByUsername(username);
         if (user.isEmpty()) {
-            throw new UsernameNotFoundException("user " + username + " not found");
+            throw new UsernameNotFoundException("user " + username + NOT_FOUND);
         } else {
             return new CustomUserDetails(user.get());
         }

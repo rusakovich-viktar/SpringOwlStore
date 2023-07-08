@@ -18,11 +18,14 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
 import static by.tms.springstore.utils.Constants.Attributes.ERROR_REGISTRATION;
+import static by.tms.springstore.utils.Constants.Attributes.MESSAGE;
+import static by.tms.springstore.utils.Constants.Attributes.MESSAGE_ACTIVATION_ERROR;
+import static by.tms.springstore.utils.Constants.Attributes.MESSAGE_ACTIVATION_SUCCESS;
 import static by.tms.springstore.utils.Constants.Attributes.SUCCESS_REGISTRATION;
 import static by.tms.springstore.utils.Constants.Attributes.USER;
 import static by.tms.springstore.utils.Constants.PagePath.AUTH_LOGIN;
 import static by.tms.springstore.utils.Constants.PagePath.AUTH_REGISTRATION;
-import static by.tms.springstore.utils.Constants.PagePath.LOGIN;
+import static by.tms.springstore.utils.Constants.PagePath.REDIRECT_AUTH_LOGIN_LOGOUT;
 
 @RequiredArgsConstructor
 @RestController
@@ -65,16 +68,12 @@ public class AuthController {
         boolean isActivated = userService.activateUser(code);
         modelAndView.setViewName(AUTH_LOGIN);
         if (isActivated) {
-            modelAndView.addObject("message", "Поздравляю. Активация прошла успешно. Теперь вы можете войти.");
+            modelAndView.addObject(MESSAGE, MESSAGE_ACTIVATION_SUCCESS);
         } else {
-            modelAndView.addObject("message", "Ошибка активации. Пожалуйста, свяжитесь с администратором.");
+            modelAndView.addObject(MESSAGE, MESSAGE_ACTIVATION_ERROR);
         }
         return modelAndView;
     }
-
-
-
-
 
     @PostMapping("/logout")
     public ModelAndView logout() {
@@ -82,7 +81,7 @@ public class AuthController {
         if (authentication != null) {
             SecurityContextHolder.clearContext();
         }
-        return new ModelAndView("redirect:/auth/login?logout");
+        return new ModelAndView(REDIRECT_AUTH_LOGIN_LOGOUT);
     }
 
 }

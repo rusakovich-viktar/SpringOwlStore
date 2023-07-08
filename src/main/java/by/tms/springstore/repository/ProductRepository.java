@@ -10,8 +10,6 @@ import java.util.Optional;
 
 public interface ProductRepository extends JpaRepository<Product, Integer> {
 
-    List<Product> findAll();
-
     Product findById(Long id);
 
     List<Product> findByIdIn(Iterable<Long> ids);

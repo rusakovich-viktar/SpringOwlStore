@@ -6,7 +6,6 @@ import by.tms.springstore.service.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -18,8 +17,12 @@ import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import static by.tms.springstore.utils.Constants.Attributes.USERS;
 import static by.tms.springstore.utils.Constants.Attributes.USER_DTO;
+import static by.tms.springstore.utils.Constants.PagePath.ADMIN_ADMINPANEL;
+import static by.tms.springstore.utils.Constants.PagePath.ADMIN_USERLIST;
 import static by.tms.springstore.utils.Constants.PagePath.EDIT_PROFILE;
+import static by.tms.springstore.utils.Constants.PagePath.REDIRECT_ADMIN_ALL;
 
 @Controller
 @RequiredArgsConstructor
@@ -33,28 +36,27 @@ public class AdminController {
     public ModelAndView editUserProfileInfo(@PathVariable Long id,
                                             ModelAndView modelAndView) {
         UserDto userDto = userService.findUserDtoById(id);
-        modelAndView.addObject(USER_DTO, userDto);
-        modelAndView.setViewName(EDIT_PROFILE);
+        modelAndView.addObject(USER_DTO, userDto).setViewName(EDIT_PROFILE);
         return modelAndView;
     }
 
     @GetMapping("/all")
-    public ModelAndView userList(Model model) {
+    public ModelAndView showUserList(ModelAndView modelAndView) {
         List<User> users = userService.findAll().stream()
                 .sorted(Comparator.comparing(User::getUsername))
                 .collect(Collectors.toList());
-        model.addAttribute("users", users);
-        return new ModelAndView("/admin/userlist");
+        modelAndView.addObject(USERS, users).setViewName(ADMIN_USERLIST);
+        return modelAndView;
     }
 
     @GetMapping
-    public ModelAndView adminPage() {
-        return new ModelAndView("/admin/admin-panel");
+    public ModelAndView showAdminPage() {
+        return new ModelAndView(ADMIN_ADMINPANEL);
     }
 
     @PostMapping("/active/{id}")
-    public ModelAndView active(@ModelAttribute("userDto") UserDto userDto, @PathVariable("id") Long id) {
+    public ModelAndView accountActivation(@ModelAttribute(USER_DTO) UserDto userDto) {
         userService.accountEnableStatus(userDto);
-        return new ModelAndView("redirect:/admin/all");
+        return new ModelAndView(REDIRECT_ADMIN_ALL);
     }
 }

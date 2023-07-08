@@ -22,6 +22,7 @@ import java.security.Principal;
 
 import static by.tms.springstore.utils.Constants.Attributes.USER_DTO;
 import static by.tms.springstore.utils.Constants.PagePath.EDIT_PROFILE;
+import static by.tms.springstore.utils.Constants.PagePath.ERROR_403;
 import static by.tms.springstore.utils.Constants.PagePath.PROFILE;
 import static by.tms.springstore.utils.Constants.PagePath.REDIRECT_TO_PROFILE;
 
@@ -47,7 +48,7 @@ public class UserController {
             modelAndView.addObject(USER_DTO, newUserDto);
             modelAndView.setViewName(PROFILE);
         } else {
-            modelAndView.setViewName("error-403");
+            modelAndView.setViewName(ERROR_403);
         }
         return modelAndView;
     }

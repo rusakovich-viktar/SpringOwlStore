@@ -21,6 +21,9 @@ import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
+import static by.tms.springstore.utils.Constants.Attributes.NOT_FOUND;
+import static by.tms.springstore.utils.Constants.Attributes.USER_NOT_FOUND;
+
 @Service
 @RequiredArgsConstructor
 
@@ -131,7 +134,7 @@ public class UserServiceImpl implements UserService {
     @Transactional
     public void accountEnableStatus(UserDto userDto) {
         User user = userRepository.findById(userDto.getId())
-                .orElseThrow(() -> new UserNotFoundException("User not found"));
+                .orElseThrow(() -> new UserNotFoundException(USER_NOT_FOUND));
         boolean active = userDto.isActive();
         user.setActive(active);
         userDto.setActive(user.isActive());
@@ -141,7 +144,7 @@ public class UserServiceImpl implements UserService {
     @Override
     @Transactional
     public void updatePassword(String email, String newPassword) {
-        User user = findBy(email, "Пользователь c почтой " + email + " не найден");
+        User user = findBy(email, "User with email " + email + NOT_FOUND);
         user.setPassword(passwordEncoder.encode(newPassword));
     }
 
