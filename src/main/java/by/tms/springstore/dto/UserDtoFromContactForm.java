@@ -12,7 +12,6 @@ import static by.tms.springstore.utils.Constants.Attributes.PHONE_PATTERN;
 
 @Getter
 @Setter
-@AllArgsConstructor
 @NoArgsConstructor
 public class UserDtoFromContactForm {
 

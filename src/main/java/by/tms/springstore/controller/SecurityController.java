@@ -42,10 +42,12 @@ public class SecurityController {
     }
 
     @PostMapping("/change-password")
-    public ModelAndView changePassword(@ModelAttribute(PASSWORD_FORM) @Valid UserDtoFromChangePasswordForm userDtoFromChangePasswordForm, BindingResult result) {
+    public ModelAndView changePassword(@ModelAttribute(PASSWORD_FORM) @Valid UserDtoFromChangePasswordForm userDtoFromChangePasswordForm,
+                                       BindingResult result) {
         ModelAndView modelAndView = new ModelAndView();
         String username = getContext().getAuthentication().getName();
         if (result.hasErrors()) {
+            modelAndView.addObject("errors", result.getAllErrors());
             modelAndView.setViewName(AUTH_CHANGE_PASSWORD);
         } else {
             userService.changePassword(username, userDtoFromChangePasswordForm.getOldPassword(), userDtoFromChangePasswordForm.getNewPassword());

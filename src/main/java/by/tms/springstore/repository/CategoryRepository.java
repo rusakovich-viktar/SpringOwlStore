@@ -11,5 +11,4 @@ public interface CategoryRepository extends JpaRepository<Category, Integer> {
     @Query("from Category")
     List<Category> findAllCategories();
 
-    Category findById(Long id);
 }

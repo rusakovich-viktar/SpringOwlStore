@@ -16,6 +16,8 @@ import org.modelmapper.ModelMapper;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
+import org.springframework.web.bind.annotation.ExceptionHandler;
+import org.springframework.web.servlet.ModelAndView;
 
 import java.util.List;
 import java.util.Optional;
@@ -35,11 +37,6 @@ public class UserServiceImpl implements UserService {
     private final EmailService emailService;
 
     private final CustomUserDetailsService customUserDetailsService;
-
-    @Override
-    public User getUserByLoginAndPassword(String login, String password) {
-        return userRepository.findByUsernameAndPassword(login, password);
-    }
 
     @Override
     @Transactional
@@ -155,10 +152,9 @@ public class UserServiceImpl implements UserService {
         if (passwordEncoder.matches(oldPassword, user.getPassword())) {
             user.setPassword(passwordEncoder.encode(newPassword));
         } else {
-            throw new InvalidUserPasswordException("Введенный действующий пароль некорректен");
+            throw new InvalidUserPasswordException("Введенный старый пароль некорректен");
         }
     }
-
 
     private <SC> User findBy(SC searchCriteria, String errorMessage) {
         if (searchCriteria instanceof String) {

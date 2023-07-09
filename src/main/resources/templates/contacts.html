@@ -9,6 +9,14 @@
 <body>
 <div th:block th:insert="~{elements/navbar.html}"></div>
 <main>
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="/home">Главная</a></li>
+            <li class="breadcrumb-item active" aria-current="page">
+                <span th:text="Contacts"></span>
+            </li>
+        </ol>
+    </nav>
     <br>
     <h3 class="text-center">Остались вопросы? Напишите нам</h3>
 
@@ -36,7 +44,7 @@
                         </div>
                         <button type="submit" class="mt-2 btn btn-primary btn-block">Отправить</button>
                     </form>
-                </div>
+                </div><br>
             </div>
 </main>
 <div th:block th:insert="~{elements/waves.html}"></div>

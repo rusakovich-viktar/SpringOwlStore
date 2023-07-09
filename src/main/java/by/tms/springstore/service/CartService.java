@@ -15,7 +15,7 @@ public interface CartService {
 
     void commitCartToOrder(String username);
 
-
     void deleteAllIdenticalProduct(Cart cart, List<Long> productIds);
+
     void deleteOneProduct(Cart cart, List<Long> productIds);
 }

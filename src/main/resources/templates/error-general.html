@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Error</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+<div th:block th:insert="~{elements/navbar.html}"></div>
+<main class="flex-grow-1">
+    <div class="container mt-5">
+        <div class="row">
+            <div class="d-flex align-items-center justify-content-center">
+                <div class="text-center">
+                    <h2>Ошибка</h2>
+                    <p class="fs-3"><span class="text-danger">Ой!</span> Что-то пошло не так!</p>
+
+                    нужен <p class="fs-3" th:text="${userNotFoundException}"></p>
+
+                    <p class="fs-3" th:text="${usernameNotFoundException}"></p>
+
+                    <p class="fs-3" th:text="${invalidOrderStatusException}"></p>
+
+                    <p class="fs-3" th:text="${orderNotFoundException}"></p>
+
+                    нужен <p class="fs-3" th:text="${productNotFoundException}"></p>
+
+                    нужен <p class="fs-3" th:text="${userNotFoundByEmailException}"></p>
+
+                    делаю в своем вью <p class="text-danger" th:text="${invalidOldPasswordException}"></p>
+
+                    <p class="text-danger" th:text="${invalidNewPasswordException}"></p>
+
+
+                    <p class="lead">
+                        Пожалуйста, вернитесь на главную страницу.
+                    </p>
+                    <a th:href="@{/home}" class="btn btn-primary">На главную</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+</body>
+</html>

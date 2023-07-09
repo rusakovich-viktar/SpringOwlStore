@@ -8,8 +8,6 @@ import java.util.Optional;
 
 public interface UserService {
 
-    User getUserByLoginAndPassword(String login, String password);
-
     boolean registrationNewUser(User user);
 
     void updateUser(UserDto userDto);

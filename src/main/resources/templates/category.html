@@ -31,6 +31,7 @@
     <br>
     <div class="container">
         <h2><span th:text="${nameCategory}"></span></h2>
+        <br>
         <div class="row row-cols-1 row-cols-md-3 align-items-stretch">
             <div class="col mb-4" th:each="product : ${products}">
                 <div class="card h-100 product-card">
@@ -72,6 +73,7 @@
             </li>
         </ul>
     </div>
+    <br>
 </main>
 <div th:block th:insert="~{elements/waves.html}"></div>
 <div th:block th:insert="~{elements/footer.html}"></div>

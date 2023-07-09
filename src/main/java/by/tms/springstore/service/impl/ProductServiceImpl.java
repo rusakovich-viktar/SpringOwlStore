@@ -3,6 +3,7 @@ package by.tms.springstore.service.impl;
 import by.tms.springstore.domain.Cart;
 import by.tms.springstore.domain.Product;
 import by.tms.springstore.domain.User;
+import by.tms.springstore.exceptions.UserNotFoundException;
 import by.tms.springstore.repository.ProductRepository;
 import by.tms.springstore.service.CartService;
 import by.tms.springstore.service.ProductService;
@@ -28,18 +29,10 @@ public class ProductServiceImpl implements ProductService {
     private final UserService userService;
     private final CartService cartService;
 
-
-    public List<Product> getProducts() {
-        return productRepository.findAll();
-    }
-
     public Product getProductById(Long id) {
         return productRepository.findById(id);
     }
 
-    public List<Product> getAllProductsByCategoryId(Long categoryId) {
-        return productRepository.findAllByCategoryId(categoryId);
-    }
 
     @Override
     @Transactional
@@ -58,7 +51,7 @@ public class ProductServiceImpl implements ProductService {
     private User getUser(String username) {
         User user = userService.findByUsername(username);
         if (user == null) {
-            throw new RuntimeException("User " + username + NOT_FOUND);
+            throw new UserNotFoundException("User " + username + NOT_FOUND);
         }
         return user;
     }
