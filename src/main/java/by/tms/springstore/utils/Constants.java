@@ -73,7 +73,10 @@ public class Constants {
         public static final String AUTH_RESET_PASSWORD = "/auth/reset-password";
         public static final String AUTH_CHANGE_PASSWORD = "/auth/change-password";
         public static final String AUTH_CHANGE_PASSWORD_SUCCESS = "/auth/change-password-success";
-        public static final String ERROR_403 = "error-403";
+        public static final String ERROR_403 = "/error/error-403";
+        public static final String ERROR_500 = "/error/error-500";
+        public static final String ERROR = "redirect:/error-general";
+
     }
 
     @UtilityClass

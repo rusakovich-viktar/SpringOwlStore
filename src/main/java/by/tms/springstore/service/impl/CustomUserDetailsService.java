@@ -1,18 +1,16 @@
 package by.tms.springstore.service.impl;
 
+import static by.tms.springstore.utils.Constants.Attributes.NOT_FOUND;
 
 import by.tms.springstore.domain.User;
 import by.tms.springstore.repository.UserRepository;
 import by.tms.springstore.security.CustomUserDetails;
+import java.util.Optional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
-
-import java.util.Optional;
-
-import static by.tms.springstore.utils.Constants.Attributes.NOT_FOUND;
 
 @Service
 @RequiredArgsConstructor

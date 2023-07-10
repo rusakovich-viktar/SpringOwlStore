@@ -16,64 +16,26 @@
     <description>spring-store</description>
     <properties>
         <java.version>17</java.version>
-        <spotbugs.maven.plugin.version>4.7.3.4</spotbugs.maven.plugin.version>
-        <spotbugs.version>4.7.3</spotbugs.version>
-        <checkstyle.maven.plugin.version>3.2.2</checkstyle.maven.plugin.version>
-        <checkstyle.version>10.11.0</checkstyle.version>
-        <pmd.maven.plugin.version>3.20.0</pmd.maven.plugin.version>
         <pmd.version>6.55.0</pmd.version>
+        <maven-pmd-plugin.version>3.20.0</maven-pmd-plugin.version>
+        <checkstyle.version>10.11.0</checkstyle.version>
+        <maven-checkstyle-plugin.version>3.3.0</maven-checkstyle-plugin.version>
+        <spotbugs-maven-plugin.version>4.7.3.2</spotbugs-maven-plugin.version>
         <commons-lang3.verson>3.12.0</commons-lang3.verson>
         <!--        <maven.compiler.source>17</maven.compiler.source>-->
         <maven.compiler.target>17</maven.compiler.target>
-        <jsp-api.version>2.2</jsp-api.version>
-        <jstl.version>1.2</jstl.version>
+        <!--        <jsp-api.version>2.2</jsp-api.version>-->
+        <!--        <jstl.version>1.2</jstl.version>-->
         <flyway.version>9.19.1</flyway.version>
         <mapstruct.version>1.5.5.Final</mapstruct.version>
-        <jakarta.transaction-api.version>2.0.1</jakarta.transaction-api.version>
+        <!--        <jakarta.transaction-api.version>2.0.1</jakarta.transaction-api.version>-->
         <snakeyaml.version>2.0</snakeyaml.version>
         <modelmapper.version>3.1.1</modelmapper.version>
-        <jakarta.servlet-api.version>6.0.0</jakarta.servlet-api.version>
+        <!--        <jakarta.servlet-api.version>6.0.0</jakarta.servlet-api.version>-->
         <lombok-mapstruct-binding.version>0.2.0</lombok-mapstruct-binding.version>
 
     </properties>
     <dependencies>
-<!--        <dependency>-->
-<!--            <groupId>com.ibm.icu</groupId>-->
-<!--            <artifactId>icu4j</artifactId>-->
-<!--            <version>73.2</version>-->
-<!--        </dependency>-->
-        <dependency>
-            <groupId>org.mapstruct</groupId>
-            <artifactId>mapstruct</artifactId>
-            <version>${mapstruct.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>jakarta.transaction</groupId>
-            <artifactId>jakarta.transaction-api</artifactId>
-            <version>${jakarta.transaction-api.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>org.yaml</groupId>
-            <artifactId>snakeyaml</artifactId>
-            <version>${snakeyaml.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-thymeleaf</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.thymeleaf.extras</groupId>
-            <artifactId>thymeleaf-extras-springsecurity6</artifactId>
-        </dependency>
-
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-data-jpa</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-validation</artifactId>
-        </dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
@@ -82,21 +44,16 @@
                     <groupId>org.springframework.boot</groupId>
                     <artifactId>spring-boot-starter-logging</artifactId>
                 </exclusion>
-<!--                <exclusion>-->
-<!--                    <groupId>org.slf4j</groupId>-->
-<!--                    <artifactId>slf4j-log4j12</artifactId>-->
-<!--                </exclusion>-->
-<!--                <exclusion>-->
-<!--                    <groupId>log4j</groupId>-->
-<!--                    <artifactId>log4j</artifactId>-->
-<!--                </exclusion>-->
+                <exclusion>
+                    <groupId>org.slf4j</groupId>
+                    <artifactId>slf4j-log4j12</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>log4j</groupId>
+                    <artifactId>log4j</artifactId>
+                </exclusion>
             </exclusions>
         </dependency>
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-security</artifactId>
-        </dependency>
-
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-log4j2</artifactId>
@@ -111,6 +68,44 @@
                 </exclusion>
             </exclusions>
         </dependency>
+
+
+        <dependency>
+            <groupId>org.mapstruct</groupId>
+            <artifactId>mapstruct</artifactId>
+            <version>${mapstruct.version}</version>
+        </dependency>
+        <!--        <dependency>-->
+        <!--            <groupId>jakarta.transaction</groupId>-->
+        <!--            <artifactId>jakarta.transaction-api</artifactId>-->
+        <!--            <version>${jakarta.transaction-api.version}</version>-->
+        <!--        </dependency>-->
+        <dependency>
+            <groupId>org.yaml</groupId>
+            <artifactId>snakeyaml</artifactId>
+            <version>${snakeyaml.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.thymeleaf.extras</groupId>
+            <artifactId>thymeleaf-extras-springsecurity6</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-data-jpa</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-validation</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-security</artifactId>
+        </dependency>
+
+
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-devtools</artifactId>
@@ -127,11 +122,11 @@
             <artifactId>lombok</artifactId>
             <optional>true</optional>
         </dependency>
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-tomcat</artifactId>
-            <scope>provided</scope>
-        </dependency>
+        <!--        <dependency>-->
+        <!--            <groupId>org.springframework.boot</groupId>-->
+        <!--            <artifactId>spring-boot-starter-tomcat</artifactId>-->
+        <!--            <scope>provided</scope>-->
+        <!--        </dependency>-->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-test</artifactId>
@@ -143,16 +138,20 @@
             <version>${modelmapper.version}</version>
         </dependency>
         <dependency>
-            <groupId>jakarta.servlet</groupId>
-            <artifactId>jakarta.servlet-api</artifactId>
-            <version>${jakarta.servlet-api.version}</version>
-            <scope>provided</scope>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-thymeleaf</artifactId>
         </dependency>
-<!--        <dependency>-->
-<!--            <artifactId>jstl</artifactId>-->
-<!--            <groupId>jstl</groupId>-->
-<!--            <version>${jstl.version}</version>-->
-<!--        </dependency>-->
+        <!--        <dependency>-->
+        <!--            <groupId>jakarta.servlet</groupId>-->
+        <!--            <artifactId>jakarta.servlet-api</artifactId>-->
+        <!--            <version>${jakarta.servlet-api.version}</version>-->
+        <!--            <scope>provided</scope>-->
+        <!--        </dependency>-->
+        <!--        <dependency>-->
+        <!--            <artifactId>jstl</artifactId>-->
+        <!--            <groupId>jstl</groupId>-->
+        <!--            <version>${jstl.version}</version>-->
+        <!--        </dependency>-->
         <!--        <dependency>-->
         <!--            <artifactId>jsp-api</artifactId>-->
         <!--            <groupId>javax.servlet.jsp</groupId>-->
@@ -164,11 +163,11 @@
             <artifactId>flyway-core</artifactId>
             <version>${flyway.version}</version>
         </dependency>
-<!--        <dependency>-->
-<!--            <groupId>org.springframework</groupId>-->
-<!--            <artifactId>spring-context-support</artifactId>-->
-<!--            <version>5.3.20</version>-->
-<!--        </dependency>-->
+        <!--        <dependency>-->
+        <!--            <groupId>org.springframework</groupId>-->
+        <!--            <artifactId>spring-context-support</artifactId>-->
+        <!--            <version>5.3.20</version>-->
+        <!--        </dependency>-->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-mail</artifactId>
@@ -222,106 +221,120 @@
                     </compilerArgs>
                 </configuration>
             </plugin>
-            <!--            <plugin>-->
-            <!--                <groupId>com.github.spotbugs</groupId>-->
-            <!--                <artifactId>spotbugs-maven-plugin</artifactId>-->
-            <!--                <version>${spotbugs.maven.plugin.version}</version>-->
-            <!--                <configuration>-->
-            <!--                    <effort>Max</effort>-->
-            <!--                    <threshold>Medium</threshold>-->
-            <!--                    <onlyAnalyze>com.-</onlyAnalyze>-->
-            <!--                    <maxHeap>1024</maxHeap>-->
-            <!--                </configuration>-->
-            <!--                <executions>-->
-            <!--                    <execution>-->
-            <!--                        <phase>compile</phase>-->
-            <!--                        <goals>-->
-            <!--                            <goal>check</goal>-->
-            <!--                        </goals>-->
-            <!--                    </execution>-->
-            <!--                </executions>-->
-            <!--                <dependencies>-->
-            <!--                    <dependency>-->
-            <!--                        <groupId>com.github.spotbugs</groupId>-->
-            <!--                        <artifactId>spotbugs</artifactId>-->
-            <!--                        <version>${spotbugs.version}</version>-->
-            <!--                    </dependency>-->
-            <!--                </dependencies>-->
-            <!--            </plugin>-->
-            <!--            <plugin>-->
-            <!--                <groupId>org.apache.maven.plugins</groupId>-->
-            <!--                <artifactId>maven-pmd-plugin</artifactId>-->
-            <!--                <version>${pmd.maven.plugin.version}</version>-->
-            <!--                <executions>-->
-            <!--                    <execution>-->
-            <!--                        <phase>compile</phase>-->
-            <!--                        <goals>-->
-            <!--                            <goal>check</goal>-->
-            <!--                        </goals>-->
-            <!--                    </execution>-->
-            <!--                </executions>-->
-            <!--                <configuration>-->
-            <!--                    <failOnViolation>false</failOnViolation>-->
-            <!--                    <printFailingErrors>true</printFailingErrors>-->
-            <!--                    <rulesets>-->
-            <!--                        <ruleset>./codequality/pmd-ruleset.xml</ruleset>-->
-            <!--                        <ruleset>./codequality/rulesets.xml</ruleset>-->
-            <!--                    </rulesets>-->
-            <!--                    <targetJdk>${maven.compiler.target}</targetJdk>-->
-            <!--                    <linkXRef>false</linkXRef>-->
-            <!--                    <excludeRoots>-->
-            <!--                        <excludeRoot>target/generated-sources</excludeRoot>-->
-            <!--                    </excludeRoots>-->
-            <!--                </configuration>-->
-            <!--                <dependencies>-->
-            <!--                    <dependency>-->
-            <!--                        <groupId>net.sourceforge.pmd</groupId>-->
-            <!--                        <artifactId>pmd-core</artifactId>-->
-            <!--                        <version>${pmd.version}</version>-->
-            <!--                    </dependency>-->
-            <!--                    <dependency>-->
-            <!--                        <groupId>net.sourceforge.pmd</groupId>-->
-            <!--                        <artifactId>pmd-java</artifactId>-->
-            <!--                        <version>${pmd.version}</version>-->
-            <!--                    </dependency>-->
-            <!--                    <dependency>-->
-            <!--                        <groupId>net.sourceforge.pmd</groupId>-->
-            <!--                        <artifactId>pmd-javascript</artifactId>-->
-            <!--                        <version>${pmd.version}</version>-->
-            <!--                    </dependency>-->
-            <!--                    <dependency>-->
-            <!--                        <groupId>net.sourceforge.pmd</groupId>-->
-            <!--                        <artifactId>pmd-jsp</artifactId>-->
-            <!--                        <version>${pmd.version}</version>-->
-            <!--                    </dependency>-->
-            <!--                </dependencies>-->
-            <!--            </plugin>-->
-            <!--            <plugin>-->
-            <!--                <groupId>org.apache.maven.plugins</groupId>-->
-            <!--                <artifactId>maven-checkstyle-plugin</artifactId>-->
-            <!--                <version>${checkstyle.maven.plugin.version}</version>-->
-            <!--                <dependencies>-->
-            <!--                    <dependency>-->
-            <!--                        <groupId>com.puppycrawl.tools</groupId>-->
-            <!--                        <artifactId>checkstyle</artifactId>-->
-            <!--                        <version>${checkstyle.version}</version>-->
-            <!--                    </dependency>-->
-            <!--                </dependencies>-->
-            <!--                <executions>-->
-            <!--                    <execution>-->
-            <!--                        <id>validate-files</id>-->
-            <!--                        <phase>validate</phase>-->
-            <!--                        <goals>-->
-            <!--                            <goal>check</goal>-->
-            <!--                        </goals>-->
-            <!--                        <configuration>-->
-            <!--                            <configLocation>codequality/checkstyle.xml</configLocation>-->
-            <!--                            <consoleOutput>true</consoleOutput>-->
-            <!--                            <failsOnError>true</failsOnError>-->
-            <!--                        </configuration>-->
-            <!--                    </execution>-->
-            <!--                </executions>-->
-            <!--            </plugin>-->
+<!--            <plugin>-->
+<!--                <groupId>org.apache.maven.plugins</groupId>-->
+<!--                <artifactId>maven-pmd-plugin</artifactId>-->
+<!--                <version>${maven-pmd-plugin.version}</version>-->
+<!--                <configuration>-->
+<!--                    <failOnViolation>false</failOnViolation>-->
+<!--                    <printFailingErrors>true</printFailingErrors>-->
+<!--                    <targetJdk>${java.version}</targetJdk>-->
+<!--                    <linkXRef>false</linkXRef>-->
+<!--                    <excludeRoots>-->
+<!--                        <excludeRoot>target/generated-sources</excludeRoot>-->
+<!--                    </excludeRoots>-->
+<!--                    <rulesets>-->
+<!--                        <ruleset>${basedir}/config/pmd/rulesets.xml</ruleset>-->
+<!--                    </rulesets>-->
+<!--                </configuration>-->
+<!--                <executions>-->
+<!--                    <execution>-->
+<!--                        <id>pmd-check</id>-->
+<!--                        <phase>test</phase>-->
+<!--                        <goals>-->
+<!--                            <goal>check</goal>-->
+<!--                        </goals>-->
+<!--                        <configuration>-->
+<!--                            <excludeFromFailureFile>${basedir}/config/pmd/exclude-pmd.properties-->
+<!--                            </excludeFromFailureFile>-->
+<!--                        </configuration>-->
+<!--                    </execution>-->
+<!--                    <execution>-->
+<!--                        <id>pmd-cpd-check</id>-->
+<!--                        <phase>test</phase>-->
+<!--                        <goals>-->
+<!--                            <goal>cpd-check</goal>-->
+<!--                        </goals>-->
+<!--                        <configuration>-->
+<!--                            <excludeFromFailureFile>${basedir}/config/pmd/exclude-cpd.properties-->
+<!--                            </excludeFromFailureFile>-->
+<!--                        </configuration>-->
+<!--                    </execution>-->
+<!--                </executions>-->
+<!--                <dependencies>-->
+<!--                    <dependency>-->
+<!--                        <groupId>net.sourceforge.pmd</groupId>-->
+<!--                        <artifactId>pmd-core</artifactId>-->
+<!--                        <version>${pmd.version}</version>-->
+<!--                    </dependency>-->
+<!--                    <dependency>-->
+<!--                        <groupId>net.sourceforge.pmd</groupId>-->
+<!--                        <artifactId>pmd-java</artifactId>-->
+<!--                        <version>${pmd.version}</version>-->
+<!--                    </dependency>-->
+<!--                    <dependency>-->
+<!--                        <groupId>net.sourceforge.pmd</groupId>-->
+<!--                        <artifactId>pmd-javascript</artifactId>-->
+<!--                        <version>${pmd.version}</version>-->
+<!--                    </dependency>-->
+<!--                    <dependency>-->
+<!--                        <groupId>net.sourceforge.pmd</groupId>-->
+<!--                        <artifactId>pmd-jsp</artifactId>-->
+<!--                        <version>${pmd.version}</version>-->
+<!--                    </dependency>-->
+<!--                </dependencies>-->
+<!--            </plugin>-->
+<!--            <plugin>-->
+<!--                <groupId>com.github.spotbugs</groupId>-->
+<!--                <artifactId>spotbugs-maven-plugin</artifactId>-->
+<!--                <version>${spotbugs-maven-plugin.version}</version>-->
+<!--                <configuration>-->
+<!--                    <effort>Max</effort>-->
+<!--                    <threshold>Medium</threshold>-->
+<!--                    <excludeFilterFile>${basedir}/config/spotbugs/spotbugs-exclude.xml</excludeFilterFile>-->
+<!--                    <maxHeap>1024</maxHeap>-->
+<!--                </configuration>-->
+<!--                <executions>-->
+<!--                    <execution>-->
+<!--                        <id>spotbugs-check</id>-->
+<!--                        <phase>test</phase>-->
+<!--                        <goals>-->
+<!--                            <goal>check</goal>-->
+<!--                        </goals>-->
+<!--                    </execution>-->
+<!--                </executions>-->
+<!--            </plugin>-->
+<!--            <plugin>-->
+<!--                <groupId>org.apache.maven.plugins</groupId>-->
+<!--                <artifactId>maven-checkstyle-plugin</artifactId>-->
+<!--                <version>${maven-checkstyle-plugin.version}</version>-->
+<!--                <dependencies>-->
+<!--                    <dependency>-->
+<!--                        <groupId>com.puppycrawl.tools</groupId>-->
+<!--                        <artifactId>checkstyle</artifactId>-->
+<!--                        <version>${checkstyle.version}</version>-->
+<!--                    </dependency>-->
+<!--                </dependencies>-->
+<!--                <executions>-->
+<!--                    <execution>-->
+<!--                        <id>validate-files</id>-->
+<!--                        <phase>validate</phase>-->
+<!--                        <goals>-->
+<!--                            <goal>check</goal>-->
+<!--                        </goals>-->
+<!--                        <configuration>-->
+<!--                            <includes>**/*</includes>-->
+<!--                            <configLocation>config/checkstyle/checkstyle.xml</configLocation>-->
+<!--                            <suppressionsLocation>config/checkstyle/suppressions.xml</suppressionsLocation>-->
+<!--                            <inputEncoding>UTF-8</inputEncoding>-->
+<!--                            <consoleOutput>true</consoleOutput>-->
+<!--                            <failsOnError>true</failsOnError>-->
+<!--                            <failOnViolation>true</failOnViolation>-->
+<!--                            <logViolationsToConsole>true</logViolationsToConsole>-->
+<!--                        </configuration>-->
+<!--                    </execution>-->
+<!--                </executions>-->
+<!--            </plugin>-->
 
             <plugin>
                 <groupId>org.flywaydb</groupId>

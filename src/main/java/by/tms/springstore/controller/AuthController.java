@@ -1,5 +1,15 @@
 package by.tms.springstore.controller;
 
+import static by.tms.springstore.utils.Constants.Attributes.ERROR_REGISTRATION;
+import static by.tms.springstore.utils.Constants.Attributes.MESSAGE;
+import static by.tms.springstore.utils.Constants.Attributes.MESSAGE_ACTIVATION_ERROR;
+import static by.tms.springstore.utils.Constants.Attributes.MESSAGE_ACTIVATION_SUCCESS;
+import static by.tms.springstore.utils.Constants.Attributes.SUCCESS_REGISTRATION;
+import static by.tms.springstore.utils.Constants.Attributes.USER;
+import static by.tms.springstore.utils.Constants.PagePath.AUTH_LOGIN;
+import static by.tms.springstore.utils.Constants.PagePath.AUTH_REGISTRATION;
+import static by.tms.springstore.utils.Constants.PagePath.REDIRECT_AUTH_LOGIN_LOGOUT;
+
 import by.tms.springstore.dto.UserDtoFromRegistrationForm;
 import by.tms.springstore.mapper.UserMapper;
 import by.tms.springstore.service.UserService;
@@ -16,16 +26,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
-
-import static by.tms.springstore.utils.Constants.Attributes.ERROR_REGISTRATION;
-import static by.tms.springstore.utils.Constants.Attributes.MESSAGE;
-import static by.tms.springstore.utils.Constants.Attributes.MESSAGE_ACTIVATION_ERROR;
-import static by.tms.springstore.utils.Constants.Attributes.MESSAGE_ACTIVATION_SUCCESS;
-import static by.tms.springstore.utils.Constants.Attributes.SUCCESS_REGISTRATION;
-import static by.tms.springstore.utils.Constants.Attributes.USER;
-import static by.tms.springstore.utils.Constants.PagePath.AUTH_LOGIN;
-import static by.tms.springstore.utils.Constants.PagePath.AUTH_REGISTRATION;
-import static by.tms.springstore.utils.Constants.PagePath.REDIRECT_AUTH_LOGIN_LOGOUT;
 
 @RequiredArgsConstructor
 @RestController
@@ -47,8 +47,7 @@ public class AuthController {
     }
 
     @PostMapping("/registration")
-    public ModelAndView performRegistration(@ModelAttribute(USER) @Valid UserDtoFromRegistrationForm user,
-                                            BindingResult bindingResult, ModelAndView modelAndView) {
+    public ModelAndView performRegistration(@ModelAttribute(USER) @Valid UserDtoFromRegistrationForm user, BindingResult bindingResult, ModelAndView modelAndView) {
         userValidatorRegistration.validate(user, bindingResult);
         if (bindingResult.hasErrors()) {
             modelAndView.setViewName(AUTH_REGISTRATION);

@@ -1,5 +1,12 @@
 package by.tms.springstore.controller;
 
+import static by.tms.springstore.utils.Constants.Attributes.PASSWORD_FORM;
+import static by.tms.springstore.utils.Constants.PagePath.AUTH_CHANGE_PASSWORD;
+import static by.tms.springstore.utils.Constants.PagePath.AUTH_CHANGE_PASSWORD_SUCCESS;
+import static by.tms.springstore.utils.Constants.PagePath.AUTH_RESET_PASSWORD;
+import static by.tms.springstore.utils.Constants.RequestParams.EMAIL;
+import static org.springframework.security.core.context.SecurityContextHolder.getContext;
+
 import by.tms.springstore.dto.UserDtoFromChangePasswordForm;
 import by.tms.springstore.service.EmailService;
 import by.tms.springstore.service.UserService;
@@ -12,13 +19,6 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
-
-import static by.tms.springstore.utils.Constants.Attributes.PASSWORD_FORM;
-import static by.tms.springstore.utils.Constants.PagePath.AUTH_CHANGE_PASSWORD;
-import static by.tms.springstore.utils.Constants.PagePath.AUTH_CHANGE_PASSWORD_SUCCESS;
-import static by.tms.springstore.utils.Constants.PagePath.AUTH_RESET_PASSWORD;
-import static by.tms.springstore.utils.Constants.RequestParams.EMAIL;
-import static org.springframework.security.core.context.SecurityContextHolder.getContext;
 
 @Controller
 @RequiredArgsConstructor

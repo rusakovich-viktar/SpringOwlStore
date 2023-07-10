@@ -19,7 +19,7 @@ public class SecurityConfig {
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         return http
 //                .csrf(httpSecurityCsrfConfigurer -> httpSecurityCsrfConfigurer.disable())
-                .authorizeHttpRequests((auth) ->
+                .authorizeHttpRequests(auth ->
                                 auth
                                         .requestMatchers("/admin/**").hasRole("ADMIN")
                                         .requestMatchers("/auth/**", "/open", "/user-agreement", "/activate/**", "/forgot-password", "/reset-password").permitAll()

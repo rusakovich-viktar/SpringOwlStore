@@ -1,5 +1,7 @@
 package by.tms.springstore.service.impl;
 
+import static by.tms.springstore.utils.Constants.Attributes.NOT_FOUND;
+
 import by.tms.springstore.domain.Cart;
 import by.tms.springstore.domain.Product;
 import by.tms.springstore.domain.User;
@@ -9,17 +11,13 @@ import by.tms.springstore.service.CartService;
 import by.tms.springstore.service.ProductService;
 import by.tms.springstore.service.UserService;
 import jakarta.transaction.Transactional;
+import java.util.Collections;
+import java.util.List;
 import lombok.RequiredArgsConstructor;
 import lombok.Setter;
 import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
-
-import java.util.Collections;
-import java.util.List;
-
-import static by.tms.springstore.utils.Constants.Attributes.NOT_FOUND;
 
 @Setter
 @Service

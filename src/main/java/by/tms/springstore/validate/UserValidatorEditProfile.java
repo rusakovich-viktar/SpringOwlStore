@@ -1,16 +1,15 @@
 package by.tms.springstore.validate;
 
+import static by.tms.springstore.utils.Constants.Attributes.EMAIL;
+
 import by.tms.springstore.domain.User;
 import by.tms.springstore.dto.UserDto;
 import by.tms.springstore.service.UserService;
+import java.util.Optional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 import org.springframework.validation.Errors;
 import org.springframework.validation.Validator;
-
-import java.util.Optional;
-
-import static by.tms.springstore.utils.Constants.Attributes.EMAIL;
 
 @Component
 @RequiredArgsConstructor
@@ -36,6 +35,7 @@ public class UserValidatorEditProfile implements Validator {
             comparisonUsersById(errors, checkUserFromForm, foundedUser);
         }
     }
+
     private void comparisonUsersById(Errors errors, UserDto checkUserFromForm, User foundedUser) {
         if (!foundedUser.getId().equals(checkUserFromForm.getId())) {
             errors.rejectValue(EMAIL, "", "Пользователь с такой электронной почтой уже существует");

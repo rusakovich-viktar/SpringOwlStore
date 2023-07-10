@@ -1,5 +1,8 @@
 package by.tms.springstore.service.impl;
 
+import static by.tms.springstore.utils.Constants.Attributes.NOT_FOUND;
+import static by.tms.springstore.utils.Constants.Attributes.USER_NOT_FOUND;
+
 import by.tms.springstore.domain.Role;
 import by.tms.springstore.domain.User;
 import by.tms.springstore.dto.UserDto;
@@ -11,20 +14,14 @@ import by.tms.springstore.repository.UserRepository;
 import by.tms.springstore.service.EmailService;
 import by.tms.springstore.service.UserService;
 import jakarta.transaction.Transactional;
+import java.util.List;
+import java.util.Optional;
+import java.util.UUID;
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
-import org.springframework.web.bind.annotation.ExceptionHandler;
-import org.springframework.web.servlet.ModelAndView;
-
-import java.util.List;
-import java.util.Optional;
-import java.util.UUID;
-
-import static by.tms.springstore.utils.Constants.Attributes.NOT_FOUND;
-import static by.tms.springstore.utils.Constants.Attributes.USER_NOT_FOUND;
 
 @Service
 @RequiredArgsConstructor

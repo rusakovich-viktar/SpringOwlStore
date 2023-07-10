@@ -1,5 +1,12 @@
 package by.tms.springstore.controller;
 
+import static by.tms.springstore.utils.Constants.Attributes.CONTACT_FORM;
+import static by.tms.springstore.utils.Constants.Attributes.MESSAGE_SEND_SUCCESS;
+import static by.tms.springstore.utils.Constants.Attributes.SUCCESS_MESSAGE;
+import static by.tms.springstore.utils.Constants.PagePath.ABOUT_US;
+import static by.tms.springstore.utils.Constants.PagePath.AUTH_USER_AGREEMENT;
+import static by.tms.springstore.utils.Constants.PagePath.CONTACTS;
+
 import by.tms.springstore.dto.UserDtoFromContactForm;
 import by.tms.springstore.service.EmailService;
 import jakarta.validation.Valid;
@@ -10,13 +17,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.ModelAndView;
-
-import static by.tms.springstore.utils.Constants.Attributes.CONTACT_FORM;
-import static by.tms.springstore.utils.Constants.Attributes.MESSAGE_SEND_SUCCESS;
-import static by.tms.springstore.utils.Constants.Attributes.SUCCESS_MESSAGE;
-import static by.tms.springstore.utils.Constants.PagePath.ABOUT_US;
-import static by.tms.springstore.utils.Constants.PagePath.AUTH_USER_AGREEMENT;
-import static by.tms.springstore.utils.Constants.PagePath.CONTACTS;
 
 @Controller
 @RequiredArgsConstructor

@@ -1,22 +1,21 @@
 package by.tms.springstore.validate;
 
+import static by.tms.springstore.utils.Constants.Attributes.BIRTHDAY;
+import static by.tms.springstore.utils.Constants.Attributes.EMAIL;
+import static by.tms.springstore.utils.Constants.Attributes.PASSWORD;
+import static by.tms.springstore.utils.Constants.Attributes.USERNAME;
+import static by.tms.springstore.utils.Constants.VariableValues.MINIMUM_AGE_TO_REGISTRATION;
+
 import by.tms.springstore.domain.User;
 import by.tms.springstore.dto.UserDtoFromRegistrationForm;
 import by.tms.springstore.service.UserService;
+import java.time.LocalDate;
+import java.time.Period;
+import java.util.Optional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 import org.springframework.validation.Errors;
 import org.springframework.validation.Validator;
-
-import java.time.LocalDate;
-import java.time.Period;
-import java.util.Optional;
-
-import static by.tms.springstore.utils.Constants.Attributes.EMAIL;
-import static by.tms.springstore.utils.Constants.Attributes.PASSWORD;
-import static by.tms.springstore.utils.Constants.Attributes.USERNAME;
-import static by.tms.springstore.utils.Constants.Attributes.BIRTHDAY;
-import static by.tms.springstore.utils.Constants.VariableValues.MINIMUM_AGE_TO_REGISTRATION;
 
 @Component
 @RequiredArgsConstructor

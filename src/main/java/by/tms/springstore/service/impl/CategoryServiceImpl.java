@@ -3,11 +3,9 @@ package by.tms.springstore.service.impl;
 import by.tms.springstore.domain.Category;
 import by.tms.springstore.repository.CategoryRepository;
 import by.tms.springstore.service.CategoryService;
+import java.util.List;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
-
-import java.util.List;
-import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor

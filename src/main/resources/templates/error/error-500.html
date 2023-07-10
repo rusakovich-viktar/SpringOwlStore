@@ -1,16 +1,16 @@
-<!--Тестовый период, не обращать внимание-->
-
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>INTERNAL_SERVER_ERROR</title>
-    <div th:block th:insert="~{/elements/bootstrap-basic.html}"></div>
     <link rel="stylesheet" th:href="@{/css/style.css}">
 </head>
 <body>
 <div th:block th:insert="~{elements/navbar.html}"></div>
-<h1 class="text-center mt-5">ERROR 500 INTERNAL_SERVER_ERROR</h1>
-
+<h1 class="text-center mt-1">ERROR 500 INTERNAL_SERVER_ERROR</h1>
+<div class="text-center">
+    <img class="card-img-top w-50" th:src="@{/images/error/500.jpg}" alt="error-500">
+</div>
+<p th:text="${message}"></p>
 </body>
 </html>

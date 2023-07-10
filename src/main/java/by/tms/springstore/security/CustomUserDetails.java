@@ -1,17 +1,15 @@
 package by.tms.springstore.security;
 
-
 import by.tms.springstore.domain.Role;
 import by.tms.springstore.domain.User;
+import java.util.Collection;
+import java.util.Collections;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import lombok.ToString;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
-
-import java.util.Collection;
-import java.util.Collections;
 
 @ToString
 @RequiredArgsConstructor

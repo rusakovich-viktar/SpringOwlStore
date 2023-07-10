@@ -1,5 +1,9 @@
 package by.tms.springstore.controller;
 
+import static by.tms.springstore.utils.Constants.PagePath.CART;
+import static by.tms.springstore.utils.Constants.PagePath.REDIRECT_TO_CART;
+import static by.tms.springstore.utils.Constants.RequestParams.PRODUCT_ID;
+
 import by.tms.springstore.dto.CartDto;
 import by.tms.springstore.service.CartService;
 import by.tms.springstore.service.ProductService;
@@ -12,12 +16,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
-
 import java.security.Principal;
-
-import static by.tms.springstore.utils.Constants.PagePath.CART;
-import static by.tms.springstore.utils.Constants.PagePath.REDIRECT_TO_CART;
-import static by.tms.springstore.utils.Constants.RequestParams.PRODUCT_ID;
 
 @Controller
 @RequiredArgsConstructor
@@ -34,6 +33,8 @@ public class CartController {
         modelAndView.setViewName(CART);
         return modelAndView;
     }
+
+
 
     @PostMapping("/delete-all")
     public String deleteAllIdenticalProductsFromCart

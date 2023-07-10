@@ -15,22 +15,13 @@
                     <h2>Ошибка</h2>
                     <p class="fs-3"><span class="text-danger">Ой!</span> Что-то пошло не так!</p>
 
-                    нужен <p class="fs-3" th:text="${userNotFoundException}"></p>
+                    <p class="fs-3" th:text="${userNotFoundException}"></p>
 
-                    <p class="fs-3" th:text="${usernameNotFoundException}"></p>
+                    <p class="fs-3" th:text="${productNotFoundException}"></p>
 
-                    <p class="fs-3" th:text="${invalidOrderStatusException}"></p>
+                    <p class="fs-3" th:text="${userNotFoundByEmailException}"></p>
 
-                    <p class="fs-3" th:text="${orderNotFoundException}"></p>
-
-                    нужен <p class="fs-3" th:text="${productNotFoundException}"></p>
-
-                    нужен <p class="fs-3" th:text="${userNotFoundByEmailException}"></p>
-
-                    делаю в своем вью <p class="text-danger" th:text="${invalidOldPasswordException}"></p>
-
-                    <p class="text-danger" th:text="${invalidNewPasswordException}"></p>
-
+                    <p th:text="${message}"></p>
 
                     <p class="lead">
                         Пожалуйста, вернитесь на главную страницу.

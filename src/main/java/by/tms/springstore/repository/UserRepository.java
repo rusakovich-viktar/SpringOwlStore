@@ -1,17 +1,12 @@
 package by.tms.springstore.repository;
 
 import by.tms.springstore.domain.User;
-import by.tms.springstore.exceptions.InvalidUserPasswordException;
-import by.tms.springstore.exceptions.UserNotFoundByEmailException;
-import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.web.bind.annotation.ExceptionHandler;
-import org.springframework.web.servlet.ModelAndView;
-
 import java.util.Optional;
+import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface UserRepository extends JpaRepository<User, Long> {
 
-    User saveAndFlush(User user);
+//    User saveAndFlush(User user);
 
     Optional<User> findById(Long id);
 

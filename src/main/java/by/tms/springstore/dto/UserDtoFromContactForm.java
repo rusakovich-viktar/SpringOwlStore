@@ -1,14 +1,13 @@
 package by.tms.springstore.dto;
 
+import static by.tms.springstore.utils.Constants.Attributes.EMAIL_PATTERN;
+import static by.tms.springstore.utils.Constants.Attributes.PHONE_PATTERN;
+
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.Pattern;
-import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-
-import static by.tms.springstore.utils.Constants.Attributes.EMAIL_PATTERN;
-import static by.tms.springstore.utils.Constants.Attributes.PHONE_PATTERN;
 
 @Getter
 @Setter
