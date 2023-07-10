@@ -4,6 +4,8 @@
 <head>
     <title>Home page</title>
     <link rel="stylesheet" th:href="@{/css/style.css}">
+    <link rel="icon" type="image/x-icon" href="/icon/favicon.ico"/>
+
     <style>
         table {
             border-collapse: collapse;
@@ -81,6 +83,7 @@
     <thead>
     <tr>
         <th>USERNAME</th>
+        <th>Email</th>
         <th>ROLE</th>
         <th></th>
         <th>isActive</th>
@@ -89,6 +92,7 @@
     <tbody>
     <tr th:each="user : ${users}">
         <td th:text="${user.username}"></td>
+        <td th:text="${user.email}"></td>
         <td th:text="${user.role}"></td>
         <td>
             <form method="post" th:action="@{/admin/edit/{id}(id=${user.id})}">

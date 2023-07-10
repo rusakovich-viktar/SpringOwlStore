@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title>Contacts</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+    <link rel="icon" type="image/x-icon" href="/icon/favicon.ico"/>
+</head>
+<body>
+<div th:block th:insert="~{elements/navbar.html}"></div>
+<main>
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="/home">Главная</a></li>
+            <li class="breadcrumb-item active" aria-current="page">
+                <span th:text="Contacts"></span>
+            </li>
+        </ol>
+    </nav>
+    <br>
+    <h3 class="text-center">Остались вопросы? Напишите нам</h3>
+
+                <div class="mt-2 mb-3 blue-bg p-4 mx-auto"
+                     style="max-width: 50%; border: 1px solid black; border-radius: 5px;">
+                    <p th:if="${successMessage}" th:text="${successMessage}" class="alert alert-success"></p>
+                    <form th:action="@{/contact-form}" method="post" th:object="${contactForm}">
+                        <div class="form-group">
+                            <label for="phone" class="mb-0">Введите ваш контактный телефон для обратной связи:</label>
+                            <input type="text" class="form-control mt-2 mb-3" id="phone" th:field="*{phone}"
+                                   placeholder="в международном формате начинающийся с +375" required>
+                        </div>
+                        <p th:if="${#fields.hasErrors('phone')}" th:errors="*{phone}" class="text-danger">Error</p>
+                        <div class="form-group">
+                            <label for="email" class="mb-0">Введите ваш Email для обратной связи:</label>
+                            <input type="email" class="form-control mt-2 mb-3" id="email" name="email"
+                                   th:field="*{email}" placeholder="some@some.com" required>
+                            <p th:if="${#fields.hasErrors('email')}" th:errors="*{email}" class="text-danger">Error</p>
+                        </div>
+                        <div class="form-group">
+                            <label for="message" class="mb-0">Введите ваш текст:</label>
+                            <textarea class="form-control mt-2 mb-3" id="message" name="message" rows="3"
+                                      th:field="*{message}" required
+                                      placeholder="Введите сюда любой вопрос, мы обязательно на него ответим"></textarea>
+                        </div>
+                        <button type="submit" class="mt-2 btn btn-primary btn-block">Отправить</button>
+                    </form>
+                </div><br>
+            </div>
+</main>
+<div th:block th:insert="~{elements/waves.html}"></div>
+
+<div th:block th:insert="~{elements/footer.html}"></div>
+
+</body>
+</html>

@@ -1,16 +1,15 @@
-<!--Тестовый период, не обращать внимание-->
-
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>Not Found</title>
-    <div th:block th:insert="~{/elements/bootstrap-basic.html}"></div>
     <link rel="stylesheet" th:href="@{/css/style.css}">
 </head>
 <body>
 <div th:block th:insert="~{elements/navbar.html}"></div>
-<h1 class="text-center mt-5">HTTP 403 Forbidden Доступ запрещен </h1>
-
+<div class="text-center">
+    <img class="card-img-top w-50" th:src="@{/images/error/403.jpg}" alt="error-403">
+</div>
+<p th:text="${message}"></p>
 </body>
 </html>

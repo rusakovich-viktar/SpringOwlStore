@@ -1,22 +1,23 @@
 package by.tms.springstore.service.impl;
 
+import static by.tms.springstore.utils.Constants.Attributes.NOT_FOUND;
+
 import by.tms.springstore.domain.Cart;
 import by.tms.springstore.domain.Product;
 import by.tms.springstore.domain.User;
+import by.tms.springstore.exceptions.UserNotFoundException;
 import by.tms.springstore.repository.ProductRepository;
 import by.tms.springstore.service.CartService;
 import by.tms.springstore.service.ProductService;
 import by.tms.springstore.service.UserService;
 import jakarta.transaction.Transactional;
+import java.util.Collections;
+import java.util.List;
 import lombok.RequiredArgsConstructor;
 import lombok.Setter;
 import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
-
-import java.util.Collections;
-import java.util.List;
 
 @Setter
 @Service
@@ -26,17 +27,8 @@ public class ProductServiceImpl implements ProductService {
     private final UserService userService;
     private final CartService cartService;
 
-
-    public List<Product> getProducts() {
-        return productRepository.findAll();
-    }
-
     public Product getProductById(Long id) {
         return productRepository.findById(id);
-    }
-
-    public List<Product> getAllProductsByCategoryId(Long categoryId) {
-        return productRepository.findAllByCategoryId(categoryId);
     }
 
     @Override
@@ -56,7 +48,7 @@ public class ProductServiceImpl implements ProductService {
     private User getUser(String username) {
         User user = userService.findByUsername(username);
         if (user == null) {
-            throw new RuntimeException("User not found. " + username);
+            throw new UserNotFoundException("User " + username + NOT_FOUND);
         }
         return user;
     }

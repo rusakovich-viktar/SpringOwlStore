@@ -4,6 +4,8 @@
     <title>Products</title>
     <!--    <div th:block th:insert="~{/elements/bootstrap-basic.html}"></div>-->
     <link rel="stylesheet" th:href="@{/css/style.css}">
+    <link rel="icon" type="image/x-icon" href="/icon/favicon.ico"/>
+
     <style>
         .product-card {
             width: 18rem;
@@ -16,7 +18,6 @@
     </style>
 </head>
 <body>
-
 <div th:block th:insert="~{elements/navbar.html}"></div>
 <main>
     <nav aria-label="breadcrumb">
@@ -30,6 +31,7 @@
     <br>
     <div class="container">
         <h2><span th:text="${nameCategory}"></span></h2>
+        <br>
         <div class="row row-cols-1 row-cols-md-3 align-items-stretch">
             <div class="col mb-4" th:each="product : ${products}">
                 <div class="card h-100 product-card">
@@ -46,7 +48,7 @@
                         <h5 class="card-title">
                             <a th:href="@{'/product/' + ${product.id}}" th:text="${product.name}"></a>
                         </h5>
-                        <b>Цена:</b>
+                        <b>Цена, руб.:</b>
                         <p class="card-text" th:text="${product.price}"></p>
                     </div>
                 </div>
@@ -71,6 +73,7 @@
             </li>
         </ul>
     </div>
+    <br>
 </main>
 <div th:block th:insert="~{elements/waves.html}"></div>
 <div th:block th:insert="~{elements/footer.html}"></div>

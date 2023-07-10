@@ -7,19 +7,14 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
+import java.util.List;
 import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import lombok.experimental.SuperBuilder;
-
-import java.util.List;
 
 @Setter
 @Getter
-//@Builder
 @AllArgsConstructor
 @Entity
 @Table(name = "categories", schema = "online-store")
@@ -35,6 +30,3 @@ public class Category {
     private List<Product> productList;
 
 }
-
-
-

@@ -4,10 +4,10 @@
     <title>Результаты поиска</title>
 </head>
 <body>
-<ul>
-    <li th:each="product : ${searchResults}">
-        <a th:href="@{/product/{productId}(productId=${product.id})}" th:text="${product.name}"></a>
-    </li>
-</ul>
+<div>
+    <th:block th:each="product : ${searchResults}">
+        <a th:href="@{/product/{productId}(productId=${product.id})}" th:text="${product.name}"></a><br>
+    </th:block>
+</div>
 </body>
 </html>

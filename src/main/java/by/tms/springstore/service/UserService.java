@@ -2,13 +2,10 @@ package by.tms.springstore.service;
 
 import by.tms.springstore.domain.User;
 import by.tms.springstore.dto.UserDto;
-
 import java.util.List;
 import java.util.Optional;
 
 public interface UserService {
-
-    User getUserByLoginAndPassword(String login, String password);
 
     boolean registrationNewUser(User user);
 
@@ -31,4 +28,9 @@ public interface UserService {
     boolean activateUser(String code);
 
     void accountEnableStatus(UserDto userDto);
+
+    void updatePassword(String email, String newPassword);
+
+    void changePassword(String username, String oldPassword, String newPassword);
+
 }

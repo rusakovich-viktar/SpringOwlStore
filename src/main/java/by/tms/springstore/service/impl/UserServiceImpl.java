@@ -1,23 +1,27 @@
 package by.tms.springstore.service.impl;
 
+import static by.tms.springstore.utils.Constants.Attributes.NOT_FOUND;
+import static by.tms.springstore.utils.Constants.Attributes.USER_NOT_FOUND;
+
 import by.tms.springstore.domain.Role;
 import by.tms.springstore.domain.User;
 import by.tms.springstore.dto.UserDto;
-import by.tms.springstore.exceptions.NotFoundException;
+import by.tms.springstore.exceptions.InvalidUserPasswordException;
+import by.tms.springstore.exceptions.UserNotFoundByEmailException;
+import by.tms.springstore.exceptions.UserNotFoundException;
 import by.tms.springstore.mapper.UserMapper;
 import by.tms.springstore.repository.UserRepository;
 import by.tms.springstore.service.EmailService;
 import by.tms.springstore.service.UserService;
 import jakarta.transaction.Transactional;
+import java.util.List;
+import java.util.Optional;
+import java.util.UUID;
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
-
-import java.util.List;
-import java.util.Optional;
-import java.util.UUID;
 
 @Service
 @RequiredArgsConstructor
@@ -29,10 +33,7 @@ public class UserServiceImpl implements UserService {
     private final UserMapper userMapper;
     private final EmailService emailService;
 
-    @Override
-    public User getUserByLoginAndPassword(String login, String password) {
-        return userRepository.findByUsernameAndPassword(login, password);
-    }
+    private final CustomUserDetailsService customUserDetailsService;
 
     @Override
     @Transactional
@@ -50,7 +51,7 @@ public class UserServiceImpl implements UserService {
                             "Welcome to owlSTORE. Please visit the following link to activate your account: http://localhost:8080/auth/activate/%s",
                     user.getUsername(), user.getActivationCode()
             );
-            emailService.sendEmail(user.getEmail(), "Activation code", message);
+            emailService.send(user.getEmail(), "Activation code", message);
         }
         return true;
     }
@@ -59,7 +60,7 @@ public class UserServiceImpl implements UserService {
     @Transactional
     public void updateUser(UserDto userDto) {
         User user = userRepository.findById(userDto.getId())
-                .orElseThrow(() -> new NotFoundException("User not found"));
+                .orElseThrow(() -> new UserNotFoundException("User not found"));
         user.setName(userDto.getName());
         user.setSurname(userDto.getSurname());
         user.setGender(userDto.getGender());
@@ -127,11 +128,41 @@ public class UserServiceImpl implements UserService {
     @Transactional
     public void accountEnableStatus(UserDto userDto) {
         User user = userRepository.findById(userDto.getId())
-                .orElseThrow(() -> new NotFoundException("User not found"));
+                .orElseThrow(() -> new UserNotFoundException(USER_NOT_FOUND));
         boolean active = userDto.isActive();
         user.setActive(active);
         userDto.setActive(user.isActive());
         userRepository.saveAndFlush(user);
+    }
+
+    @Override
+    @Transactional
+    public void updatePassword(String email, String newPassword) {
+        User user = findBy(email, "User with email " + email + NOT_FOUND);
+        user.setPassword(passwordEncoder.encode(newPassword));
+    }
+
+    @Override
+    @Transactional
+    public void changePassword(String username, String oldPassword, String newPassword) {
+        User user = userRepository.findByUsername(username);
+        if (passwordEncoder.matches(oldPassword, user.getPassword())) {
+            user.setPassword(passwordEncoder.encode(newPassword));
+        } else {
+            throw new InvalidUserPasswordException("Введенный старый пароль некорректен");
+        }
+    }
+
+    private <SC> User findBy(SC searchCriteria, String errorMessage) {
+        if (searchCriteria instanceof String) {
+            return userRepository.findUserByEmail((String) searchCriteria)
+                    .orElseThrow(() -> new UserNotFoundByEmailException(errorMessage));
+        }
+        if (searchCriteria instanceof Long) {
+            return userRepository.findById((Long) searchCriteria)
+                    .orElseThrow(() -> new UserNotFoundException(errorMessage));
+        }
+        throw new IllegalArgumentException("Неподдерживаемый тип репозитория: " + userRepository.getClass());
     }
 
 }

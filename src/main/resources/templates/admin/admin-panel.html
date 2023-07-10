@@ -3,8 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <title>admin</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+    <link rel="icon" type="image/x-icon" href="/icon/favicon.ico"/>
+
 </head>
 <body>
+<div th:block th:insert="~{elements/navbar.html}"></div>
+
 very secret admin page
 <br>
 <div><a href="admin/all">ПОЛЬЗОВАТЕЛИ</a></div>

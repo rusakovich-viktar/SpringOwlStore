@@ -19,21 +19,21 @@ public class SecurityConfig {
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         return http
 //                .csrf(httpSecurityCsrfConfigurer -> httpSecurityCsrfConfigurer.disable())
-                .authorizeHttpRequests((auth) ->
+                .authorizeHttpRequests(auth ->
                                 auth
                                         .requestMatchers("/admin/**").hasRole("ADMIN")
-                                        .requestMatchers("/auth/**", "/open", "/user-agreement", "/activate/**").permitAll()
+                                        .requestMatchers("/auth/**", "/open", "/user-agreement", "/activate/**", "/forgot-password", "/reset-password").permitAll()
 //                                        .requestMatchers("/home", "/category").permitAll()
                                         .requestMatchers(PathRequest.toStaticResources().atCommonLocations()).permitAll()
                                         .anyRequest().hasAnyRole("USER", "ADMIN")
 //                                        .anyRequest().authenticated()
                 )
-                .formLogin((formLogin) ->
+                .formLogin(formLogin ->
                         formLogin
 
                                 .loginPage("/auth/login")
                                 .defaultSuccessUrl("/home", true)
-                ).logout((logout) ->
+                ).logout(logout ->
                         logout
                                 .logoutUrl("/auth/logout")
                                 .logoutSuccessUrl("/auth/login?logout")
