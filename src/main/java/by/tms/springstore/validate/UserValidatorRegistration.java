@@ -58,7 +58,7 @@ public class UserValidatorRegistration implements Validator {
     }
 
     private void checkMinimumAgeOfUser(Errors errors, UserDtoFromRegistrationForm user) {
-        LocalDate birthday = (user.getBirthday());
+        LocalDate birthday = user.getBirthday();
         LocalDate currentDate = LocalDate.now();
         Period period = Period.between(birthday, currentDate);
         if (period.getYears() < MINIMUM_AGE_TO_REGISTRATION) {

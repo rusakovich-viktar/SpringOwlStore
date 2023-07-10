@@ -165,5 +165,4 @@ public class UserServiceImpl implements UserService {
         throw new IllegalArgumentException("Неподдерживаемый тип репозитория: " + userRepository.getClass());
     }
 
-
 }

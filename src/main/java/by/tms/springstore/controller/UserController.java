@@ -23,7 +23,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
-
 @Controller
 @RequiredArgsConstructor
 @RequestMapping("/user")
@@ -33,10 +32,9 @@ public class UserController {
     private final UserService userService;
     private final UserRepository userRepository;
 
-
     @GetMapping("/profile/{userId}")
     public ModelAndView showUserProfile(@PathVariable("userId") Long id, ModelAndView modelAndView, @AuthenticationPrincipal UserDetails userDetails) {
-        String loggedInUsername = userDetails.getUsername(); // Получаем имя текущего пользователя
+        String loggedInUsername = userDetails.getUsername();
         boolean isAdmin = userDetails.getAuthorities().stream().anyMatch(auth -> auth.getAuthority().equals("ROLE_ADMIN"));
         UserDto newUserDto = userService.findUserDtoById(id);
         if (newUserDto != null && loggedInUsername.equals(newUserDto.getUsername()) || isAdmin) {

@@ -22,7 +22,7 @@ public class CustomUserDetails implements UserDetails {
     public Collection<? extends GrantedAuthority> getAuthorities() {
 //           return Collections.singletonList(new SimpleGrantedAuthority(user.getRole()));
         Role role = user.getRole();
-        String roleName = role.name(); // Получить имя роли из перечисления
+        String roleName = role.name();
         GrantedAuthority authority = new SimpleGrantedAuthority(roleName);
         return Collections.singletonList(authority);
     }
@@ -56,6 +56,5 @@ public class CustomUserDetails implements UserDetails {
     public boolean isEnabled() {
         return user.isActive();
     }
-
 
 }

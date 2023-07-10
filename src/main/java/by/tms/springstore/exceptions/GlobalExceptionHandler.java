@@ -17,7 +17,6 @@ public class GlobalExceptionHandler {
         return new ModelAndView(ERROR_500);
     }
 
-    //
     //    <SC> User findBy, accountEnableStatus, updateUser,
     @ExceptionHandler(UserNotFoundException.class)
     public ModelAndView handleUserNotFoundException(UserNotFoundException e) {
@@ -30,7 +29,7 @@ public class GlobalExceptionHandler {
     //    <SC> User findBy
     @ExceptionHandler(UserNotFoundByEmailException.class)
     public ModelAndView handleUserNotFoundByEmailException(UserNotFoundByEmailException e) {
-        ModelAndView modelAndView = new ModelAndView("error-general");
+        ModelAndView modelAndView = new ModelAndView("error/error-general");
         modelAndView.addObject("userNotFoundByEmailException", e.getMessage());
         log.error("userNotFoundByEmailException", e);
         return modelAndView;
@@ -39,7 +38,7 @@ public class GlobalExceptionHandler {
     //getCollectRefProductsByIds
     @ExceptionHandler(ProductNotFoundException.class)
     public ModelAndView handleWindowNotFoundException(ProductNotFoundException e) {
-        ModelAndView modelAndView = new ModelAndView("error-general");
+        ModelAndView modelAndView = new ModelAndView("error/error-general");
         modelAndView.addObject("productNotFoundException", e.getMessage());
         log.error("productNotFoundException", e);
         return modelAndView;

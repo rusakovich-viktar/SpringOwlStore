@@ -17,8 +17,8 @@ import org.springframework.stereotype.Service;
 @RequiredArgsConstructor
 public class EmailServiceImpl implements EmailService {
     private final JavaMailSender javaMailSender;
-    private static final String SUPPORT_SUBJECT = "Сообщение от пользователя";
     private static final String SUPPORT_EMAIL = "testowllogin@yandex.ru";
+    private static final String SUPPORT_SUBJECT = "Сообщение от пользователя";
 
     @Value("${spring.mail.username}")
     private String username;

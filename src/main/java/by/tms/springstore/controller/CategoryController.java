@@ -13,6 +13,7 @@ import static by.tms.springstore.utils.Constants.VariableValues.SIZE_OF_THE_ELEM
 
 import by.tms.springstore.domain.Product;
 import by.tms.springstore.service.ProductService;
+import java.util.List;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -21,7 +22,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
-import java.util.List;
 
 @Controller
 @RequiredArgsConstructor

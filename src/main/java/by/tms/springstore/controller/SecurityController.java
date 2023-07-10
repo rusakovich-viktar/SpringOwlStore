@@ -27,7 +27,6 @@ public class SecurityController {
     private final EmailService emailService;
     private final UserService userService;
 
-
     @PostMapping("/reset-password")
     public ModelAndView resetPassword(@RequestParam(EMAIL) String userEmail, ModelAndView modelAndView) {
         String newPassword = emailService.sendPasswordReset(userEmail);
@@ -55,6 +54,5 @@ public class SecurityController {
         }
         return modelAndView;
     }
-
 
 }

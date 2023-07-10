@@ -28,12 +28,12 @@ public class SecurityConfig {
                                         .anyRequest().hasAnyRole("USER", "ADMIN")
 //                                        .anyRequest().authenticated()
                 )
-                .formLogin((formLogin) ->
+                .formLogin(formLogin ->
                         formLogin
 
                                 .loginPage("/auth/login")
                                 .defaultSuccessUrl("/home", true)
-                ).logout((logout) ->
+                ).logout(logout ->
                         logout
                                 .logoutUrl("/auth/logout")
                                 .logoutSuccessUrl("/auth/login?logout")
