@@ -35,6 +35,7 @@ public class Constants {
         public static final String NOT_FOUND = " not found";
         public static final String EMAIL_PATTERN = "^[\\w!#$%&amp;'*+/=?`{|}~^-]+(?:\\.[\\w!#$%&amp;'*+/=?`{|}~^-]+)*@(?:[a-zA-Z0-9-]+\\.)+[a-zA-Z]{2,6}$";
         public static final String PHONE_PATTERN = "^\\+375(17|25|29|33|44)[0-9]{3}[0-9]{2}[0-9]{2}$";
+        public static final String CONVERSATION = "conversation";
 
     }
 
@@ -54,6 +55,8 @@ public class Constants {
         public static final String AUTH_LOGIN = "auth/login";
         public static final String AUTH_REGISTRATION = "auth/registration";
         public static final String HOME = "home";
+        public static final String HOME_CONTROLLER = "/home";
+
         public static final String CART = "cart";
         public static final String PROFILE = "profile";
         public static final String CATEGORY = "category";

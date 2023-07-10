@@ -1,5 +1,8 @@
 package by.tms.springstore.config;
 
+import by.tms.springstore.handler.CustomAuthenticationSuccessHandler;
+import by.tms.springstore.handler.CustomLogoutHandler;
+import lombok.RequiredArgsConstructor;
 import org.springframework.boot.autoconfigure.security.servlet.PathRequest;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -13,7 +16,11 @@ import org.springframework.security.web.SecurityFilterChain;
 @Configuration
 @EnableWebSecurity
 @EnableMethodSecurity
+@RequiredArgsConstructor
 public class SecurityConfig {
+
+    private final CustomAuthenticationSuccessHandler customAuthenticationSuccessHandler;
+    private final CustomLogoutHandler customLogoutHandler;
 
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
@@ -23,19 +30,19 @@ public class SecurityConfig {
                                 auth
                                         .requestMatchers("/admin/**").hasRole("ADMIN")
                                         .requestMatchers("/auth/**", "/open", "/user-agreement", "/activate/**", "/forgot-password", "/reset-password").permitAll()
-//                                        .requestMatchers("/home", "/category").permitAll()
                                         .requestMatchers(PathRequest.toStaticResources().atCommonLocations()).permitAll()
                                         .anyRequest().hasAnyRole("USER", "ADMIN")
 //                                        .anyRequest().authenticated()
                 )
                 .formLogin(formLogin ->
                         formLogin
-
                                 .loginPage("/auth/login")
+                                .successHandler(customAuthenticationSuccessHandler)
                                 .defaultSuccessUrl("/home", true)
                 ).logout(logout ->
                         logout
                                 .logoutUrl("/auth/logout")
+                                .logoutSuccessHandler(customLogoutHandler)
                                 .logoutSuccessUrl("/auth/login?logout")
                                 .deleteCookies("JSESSIONID")
                                 .permitAll())
