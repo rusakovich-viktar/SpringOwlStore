@@ -18,10 +18,10 @@ import org.springframework.stereotype.Service;
 @Service
 @RequiredArgsConstructor
 public class EmailServiceImpl implements EmailService {
-    private final JavaMailSender javaMailSender;
-    private static final String SUPPORT_EMAIL = "testowllogin@yandex.ru";
-    private static final String SUPPORT_SUBJECT = "Сообщение от пользователя";
 
+    private static final String SUPPORT_SUBJECT = "Сообщение от пользователя";
+    private static final String SUPPORT_EMAIL = "testowllogin@yandex.ru";
+    private final JavaMailSender javaMailSender;
     @Value("${spring.mail.username}")
     private String username;
 
@@ -43,9 +43,9 @@ public class EmailServiceImpl implements EmailService {
                 mailMessage.setFrom(username);
                 mailMessage.setTo(SUPPORT_EMAIL);
                 mailMessage.setSubject(SUPPORT_SUBJECT);
-                mailMessage.setText("Email пользователя: <b>" + userDtoFromContactForm.getEmail() + "</b><br>" +
-                        "Номер телефона: " + userDtoFromContactForm.getPhone() + "<br><br>" +
-                        "<b>Текст сообщения: </b>" + userDtoFromContactForm.getMessage(), true);
+                mailMessage.setText("Email пользователя: <b>" + userDtoFromContactForm.getEmail() + "</b><br>"
+                        + "Номер телефона: " + userDtoFromContactForm.getPhone() + "<br><br>"
+                        + "<b>Текст сообщения: </b>" + userDtoFromContactForm.getMessage(), true);
             } catch (MessagingException e) {
                 log.error("sendContactFormException", e);
             }
@@ -64,10 +64,10 @@ public class EmailServiceImpl implements EmailService {
                 mailMessage.setFrom(SUPPORT_EMAIL);
                 mailMessage.setTo(userEmail);
                 mailMessage.setSubject("Сброс пароля");
-                mailMessage.setText("<h2>Здравствуйте!</h2>" +
-                        "<p>Ваш новый пароль для доступа к OWLstore: <b>" + newPassword + "</b><br><br>" +
-                        "<h4>После входа в аккаунт рекомендуем изменить пароль в личном кабинете.</h4>" +
-                        "Если вы считаете, что данное сообщение отправлено вам по ошибке, проигнорируйте его.</p>", true);
+                mailMessage.setText("<h2>Здравствуйте!</h2>"
+                        + "<p>Ваш новый пароль для доступа к OWLstore: <b>" + newPassword + "</b><br><br>"
+                        + "<h4>После входа в аккаунт рекомендуем изменить пароль в личном кабинете.</h4>"
+                        + "Если вы считаете, что данное сообщение отправлено вам по ошибке, проигнорируйте его.</p>", true);
             } catch (MessagingException e) {
                 log.error("sendPasswordResetException", e);
             }

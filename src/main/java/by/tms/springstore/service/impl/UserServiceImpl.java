@@ -47,8 +47,8 @@ public class UserServiceImpl implements UserService {
 
         if (StringUtils.hasText(user.getEmail())) {
             String message = String.format(
-                    "Hello, %s! \n" +
-                            "Welcome to owlSTORE. Please visit the following link to activate your account: http://localhost:8080/auth/activate/%s",
+                    "Hello, %s! \n"
+                            + "Welcome to OWLstore. Please visit the following link to activate your account: http://localhost:8080/auth/activate/%s",
                     user.getUsername(), user.getActivationCode()
             );
             emailService.send(user.getEmail(), "Activation code", message);

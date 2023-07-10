@@ -29,7 +29,7 @@ public class SecurityConfig {
                 .authorizeHttpRequests(auth ->
                                 auth
                                         .requestMatchers("/admin/**").hasRole("ADMIN")
-                                        .requestMatchers("/auth/**", "/open", "/user-agreement", "/activate/**", "/forgot-password", "/reset-password").permitAll()
+                                        .requestMatchers("/", "/auth/**", "/user-agreement", "/activate/**", "/forgot-password", "/reset-password", "/home", "/about-us").permitAll()
                                         .requestMatchers(PathRequest.toStaticResources().atCommonLocations()).permitAll()
                                         .anyRequest().hasAnyRole("USER", "ADMIN")
 //                                        .anyRequest().authenticated()

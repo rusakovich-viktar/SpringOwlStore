@@ -1,7 +1,6 @@
 package by.tms.springstore.handler;
 
 import static by.tms.springstore.utils.Constants.Attributes.CONVERSATION;
-import static by.tms.springstore.utils.Constants.PagePath.HOME;
 import static by.tms.springstore.utils.Constants.PagePath.HOME_CONTROLLER;
 
 import by.tms.springstore.security.CustomUserDetails;

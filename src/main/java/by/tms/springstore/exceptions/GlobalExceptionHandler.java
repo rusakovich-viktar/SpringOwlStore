@@ -53,7 +53,7 @@ public class GlobalExceptionHandler {
         return modelAndView;
     }
 
-    @ExceptionHandler(value = {Exception.class})
+    @ExceptionHandler(value = Exception.class)
     public ModelAndView handleException(Exception e) {
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName("error/error");
