@@ -35,6 +35,7 @@ class ProductServiceImplTest {
     @Nested
     class TestAddToUserCart {
         private String username = "TestUser";
+        private long cardId = 1L;
 
         @Test
         void test_addToUserCart_ifCartNull() {
@@ -48,7 +49,7 @@ class ProductServiceImplTest {
             when(cartService.createCart(eq(user), any())).thenReturn(cart);
             doNothing().when(userService).save(user);
 
-            productService.addToUserCart(1L, username);
+            productService.addToUserCart(cardId, username);
             //then
             verify(userService, atLeastOnce()).findByUsername(username);
             verify(cartService, atLeastOnce()).createCart(eq(user), any());
@@ -60,7 +61,7 @@ class ProductServiceImplTest {
         void test_addToUserCart_ifUserIsNotExist() {
             when(userService.findByUsername(username)).thenReturn(null);
 
-            assertThrows(UserNotFoundException.class, () -> productService.addToUserCart(1L, username));
+            assertThrows(UserNotFoundException.class, () -> productService.addToUserCart(cardId, username));
 
         }
 
@@ -75,7 +76,7 @@ class ProductServiceImplTest {
             when(userService.findByUsername(username)).thenReturn(user);
             doNothing().when(cartService).addProducts(eq(cart), any());
 
-            productService.addToUserCart(1L, username);
+            productService.addToUserCart(cardId, username);
             //then
             verify(userService, atLeastOnce()).findByUsername(username);
             verify(cartService, never()).createCart(eq(user), any());

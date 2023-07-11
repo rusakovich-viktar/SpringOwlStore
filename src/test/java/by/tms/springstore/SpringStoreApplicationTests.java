@@ -79,7 +79,6 @@ class SpringStoreApplicationTests {
         assertThat(productController).isNotNull();
     }
 
-
     @Test
     void test_securityController_isExist() {
         assertThat(securityController).isNotNull();

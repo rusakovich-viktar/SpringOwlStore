@@ -33,8 +33,6 @@ public class UserServiceImpl implements UserService {
     private final UserMapper userMapper;
     private final EmailService emailService;
 
-    private final CustomUserDetailsService customUserDetailsService;
-
     @Override
     @Transactional
     public boolean registrationNewUser(User user) {
@@ -82,6 +80,12 @@ public class UserServiceImpl implements UserService {
     public User findByUsername(String username) {
         return userRepository.findByUsername(username);
     }
+
+    @Override
+    public Optional<User> findFirstByUsername(String username) {
+        return userRepository.findFirstByUsername(username);
+    }
+
 
     @Override
     public UserDto findUserDtoByUsername(String username) {

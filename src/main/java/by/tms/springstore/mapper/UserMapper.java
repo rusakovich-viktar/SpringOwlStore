@@ -13,4 +13,6 @@ public interface UserMapper {
     UserDto convertToUserDto(User user);
 
     User convertToUser(UserDtoFromRegistrationForm userDtoFromRegistrationForm);
+
+    User convertUserDtoToUser(UserDto UserDto);
 }

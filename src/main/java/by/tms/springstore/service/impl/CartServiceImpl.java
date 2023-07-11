@@ -105,4 +105,13 @@ public class CartServiceImpl implements CartService {
         cart.setProducts(newProductsList);
         cartRepository.save(cart);
     }
+
+    @Override
+    @Transactional
+    public void delete(User user) {
+
+        Cart cart = user.getCart();
+        user.setCart(null);
+       cartRepository.delete(cart);
+    }
 }

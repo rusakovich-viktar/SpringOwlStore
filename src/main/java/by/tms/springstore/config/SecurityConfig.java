@@ -25,20 +25,18 @@ public class SecurityConfig {
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         return http
-//                .csrf(httpSecurityCsrfConfigurer -> httpSecurityCsrfConfigurer.disable())
                 .authorizeHttpRequests(auth ->
-                                auth
-                                        .requestMatchers("/admin/**").hasRole("ADMIN")
-                                        .requestMatchers("/", "/auth/**", "/user-agreement", "/activate/**", "/forgot-password", "/reset-password", "/home", "/about-us").permitAll()
-                                        .requestMatchers(PathRequest.toStaticResources().atCommonLocations()).permitAll()
-                                        .anyRequest().hasAnyRole("USER", "ADMIN")
-//                                        .anyRequest().authenticated()
+                        auth
+                                .requestMatchers("/admin/**").hasRole("ADMIN")
+                                .requestMatchers("/", "/auth/**", "/user-agreement", "/activate/**", "/forgot-password", "/reset-password", "/home", "/about-us").permitAll()
+                                .requestMatchers(PathRequest.toStaticResources().atCommonLocations()).permitAll()
+                                .anyRequest().hasAnyRole("USER", "ADMIN")
                 )
                 .formLogin(formLogin ->
                         formLogin
                                 .loginPage("/auth/login")
                                 .successHandler(customAuthenticationSuccessHandler)
-                                .defaultSuccessUrl("/home", true)
+                                .permitAll()
                 ).logout(logout ->
                         logout
                                 .logoutUrl("/auth/logout")
