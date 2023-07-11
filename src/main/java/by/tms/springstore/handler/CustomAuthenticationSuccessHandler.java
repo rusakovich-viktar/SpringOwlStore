@@ -22,10 +22,10 @@ public class CustomAuthenticationSuccessHandler implements AuthenticationSuccess
     @Override
     public void onAuthenticationSuccess(HttpServletRequest request, HttpServletResponse response,
                                         Authentication authentication) throws IOException, ServletException {
-        String userUuid = UUID.randomUUID().toString();
-        MDC.put(CONVERSATION, userUuid);
+        String uuid = UUID.randomUUID().toString();
+        MDC.put(CONVERSATION, uuid);
         CustomUserDetails principal = (CustomUserDetails) authentication.getPrincipal();
-        log.info("The user with a login " + principal.getUser().getUsername() + " is logged in, has been assigned a UUID [" + userUuid + "]");
+        log.info("The user with a login " + principal.getUser().getUsername() + " is logged in, has been assigned a UUID [" + uuid + "]");
         response.sendRedirect(HOME_CONTROLLER);
     }
 }

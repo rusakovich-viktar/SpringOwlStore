@@ -4,8 +4,10 @@ import static by.tms.springstore.utils.Constants.PagePath.ERROR_500;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.dao.DataAccessException;
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
+import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.servlet.ModelAndView;
 
 @ControllerAdvice
@@ -17,7 +19,6 @@ public class GlobalExceptionHandler {
         return new ModelAndView(ERROR_500);
     }
 
-    //    <SC> User findBy, accountEnableStatus, updateUser,
     @ExceptionHandler(UserNotFoundException.class)
     public ModelAndView handleUserNotFoundException(UserNotFoundException e) {
         ModelAndView modelAndView = new ModelAndView("error-general");
@@ -26,7 +27,6 @@ public class GlobalExceptionHandler {
         return modelAndView;
     }
 
-    //    <SC> User findBy
     @ExceptionHandler(UserNotFoundByEmailException.class)
     public ModelAndView handleUserNotFoundByEmailException(UserNotFoundByEmailException e) {
         ModelAndView modelAndView = new ModelAndView("error/error-general");
@@ -35,7 +35,6 @@ public class GlobalExceptionHandler {
         return modelAndView;
     }
 
-    //getCollectRefProductsByIds
     @ExceptionHandler(ProductNotFoundException.class)
     public ModelAndView handleWindowNotFoundException(ProductNotFoundException e) {
         ModelAndView modelAndView = new ModelAndView("error/error-general");
@@ -44,7 +43,6 @@ public class GlobalExceptionHandler {
         return modelAndView;
     }
 
-    //Проверен
     @ExceptionHandler(InvalidUserPasswordException.class)
     public ModelAndView handleInvalidUserPasswordException(InvalidUserPasswordException e) {
         ModelAndView modelAndView = new ModelAndView("/auth/change-password");
