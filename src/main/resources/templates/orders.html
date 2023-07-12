@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
+
+<head>
+    <title>User orders</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+    <link rel="icon" type="image/x-icon" href="/icon/favicon.ico"/>
+</head>
+<body>
+<div th:block th:insert="~{elements/navbar.html}"></div>
+<nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="/home">Главная</a></li>
+        <li class="breadcrumb-item">
+            <a th:href="@{'/user/profile/'+ ${#authentication.principal.user.id}}"
+               th:text="Профиль">Профиль</a></li>
+        <li class="breadcrumb-item active" aria-current="page">
+            <span th:text="Заказы"></span>
+        </li>
+    </ol>
+</nav>
+
+
+
+<h1> Заказы пользователя <span th:remove="tag" sec:authentication="principal.username">thymeleaf</span></h1>
+<table class="table table-striped">
+    <thead>
+    <tr>
+        <th>Order Date</th>
+        <th>Order Sum</th>
+        <th>Product Name</th>
+        <!-- Другие необходимые поля из заказа -->
+    </tr>
+    </thead>
+    <tbody>
+    <!-- Для каждого заказа в списке заказов -->
+    <tr th:each="order : ${orders}">
+        <!-- Отображение свойств заказа -->
+        <td th:text="${order.date}"></td>
+        <td th:text="${order.sum}"></td>
+        <!-- Другие столбцы заказа -->
+
+        <!-- Отображение списка продуктов в заказе -->
+        <td>
+            <table class="table">
+                <!-- Для каждого продукта в списке продуктов заказа -->
+                <tr th:each="product : ${order.products}">
+                    <!-- Отображение свойств продукта -->
+                    <td th:text="${product.name}"></td>
+
+                    <!-- Другие столбцы продукта -->
+                </tr>
+            </table>
+        </td>
+    </tr>
+    </tbody>
+</table>
+</body>
+</html>

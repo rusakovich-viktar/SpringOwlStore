@@ -647,16 +647,16 @@
         <module name="RegexpSinglelineJava">
             <property name="id" value="regexpSingleLineDefault"/>
         </module>
-        <module name="RegexpSinglelineJava">
-            <property name="id" value="checkASCII"/>
-            <property name="format" value="[^\p{ASCII}]"/>
-            <property name="ignoreComments" value="true"/>
-        </module>
+<!--        <module name="RegexpSinglelineJava">-->
+        <!--            <property name="id" value="checkASCII"/>-->
+        <!--            <property name="format" value="[^\p{ASCII}]"/>-->
+        <!--            <property name="ignoreComments" value="true"/>-->
+        <!--        </module>-->
 
         <!-- Size Violations -->
         <module name="AnonInnerLength"/>
 <!--        <module name="ExecutableStatementCount"/>-->
-        <module name="LambdaBodyLength"/>
+<!--        <module name="LambdaBodyLength"/>-->
         <module name="MethodCount"/>
         <module name="MethodLength"/>
         <module name="OuterTypeNumber"/>

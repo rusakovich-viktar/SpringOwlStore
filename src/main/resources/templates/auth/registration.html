@@ -12,20 +12,21 @@
 <div class="container d-flex justify-content-center align-items-center min-vh-100">
     <div class="row">
         <div class="col-lg-auto">
-            <div class="card">
+            <div class="card" style="     background: linear-gradient(180deg, rgba(4, 77, 182, 0.45) 0%, white 50%, white 100%);
+">
                 <div class="card-body">
                     <h3 class="card-title text-right">Registration panel</h3>
                     <h4 class="card-subtitle mb-4 text-center">Для регистрации заполните следующую информацию:</h4>
                     <form id="registrationForm" th:method="post" th:action="@{/auth/registration}" th:object="${user}">
                         <div class="mb-3">
                             <div class="form-group">
-                                <label for="birthday">Birthday date (вам должно быть больше 14 лет):</label>
+                                <label for="birthday">Введите вашу дату рождения (вам должно быть больше 14 лет):</label>
                                 <input type="date" th:field="*{birthday}" class="form-control" id="birthday"
                                        placeholder="Введите дату рождения" required>
                                 <span th:if="${#fields.hasErrors('birthday')}" style="color:red"
                                       th:errors="*{birthday}"></span>
                             </div>
-                            <label for="email" class="form-label">Введите Email</label>
+                            <label for="email" class="form-label">Введите вашу электронную почту</label>
                             <input id="email" type="email" class="form-control" placeholder="some@some.com" name="email"
                                    th:field="*{email}" required>
                             <div style="color:red" th:if="${#fields.hasErrors('email')}" th:errors="*{email}">Email
@@ -33,7 +34,7 @@
                             </div>
                         </div>
                         <div class="mb-3">
-                            <label for="username" class="form-label">Введите Username</label>
+                            <label for="username" class="form-label">Придумайте себе username</label>
                             <input id="username" type="text" class="form-control" placeholder="Enter username"
                                    autocomplete="off" name="username" th:field="*{username}" required>
                             <div style="color:red" th:if="${#fields.hasErrors('username')}" th:errors="*{username}">
@@ -41,7 +42,7 @@
                             </div>
                         </div>
                         <div class="mb-3 password-input-wrapper">
-                            <label for="password" class="form-label">Введите Password</label>
+                            <label for="password" class="form-label">Придумайте пароль (минимум два символа)</label>
                             <div class="password-input-container">
                                 <input id="password" type="password" class="form-control" name="password"
                                        autocomplete="off"
@@ -56,7 +57,7 @@
                             </div>
                         </div>
                         <div class="mb-3">
-                            <label for="verifyPassword" class="form-label">Повторите Password</label>
+                            <label for="verifyPassword" class="form-label">Снова введите пароль (желательно чтобы пароли совпали)</label>
                             <input id="verifyPassword" type="password" class="form-control" required
                                    name="verifyPassword" autocomplete="off">
                         </div>

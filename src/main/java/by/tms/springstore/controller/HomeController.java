@@ -17,6 +17,11 @@ public class HomeController {
 
     private final CategoryService categoryService;
 
+    @GetMapping("/")
+    public ModelAndView redirectToHome() {
+        return new ModelAndView("redirect:/home");
+    }
+
     @GetMapping("/home")
     public ModelAndView getHomePage(ModelAndView modelAndView) {
         List<Category> categories = categoryService.getCategories();

@@ -9,6 +9,7 @@ import jakarta.persistence.JoinTable;
 import jakarta.persistence.ManyToMany;
 import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
+import java.io.Serializable;
 import java.util.List;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -23,7 +24,7 @@ import lombok.Setter;
 @Table(name = "cart", schema = "online-store")
 @NoArgsConstructor
 @AllArgsConstructor
-public class Cart {
+public class Cart implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;

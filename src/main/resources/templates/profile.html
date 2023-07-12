@@ -16,30 +16,88 @@
             </li>
         </ol>
     </nav>
-
-<br>
-<div class="container">
-    <h3 class="text-center">Личный кабинет пользователя <b class="font-italic"
-                                                           th:text="${userDto.username}"></b></h3>
-    <div class="row">
-        <div class="col-lg-6">
-            <p><strong>Имя:</strong> <span class="font-italic" th:text="${userDto.name}"></span></p>
-            <p><strong>Фамилия:</strong> <span class="font-italic" th:text="${userDto.surname}"></span></p>
-            <p><strong>Гендер:</strong> <span class="font-italic" th:text="${userDto.gender}"></span></p>
-            <p><strong>Дата рождения:</strong> <span class="font-italic"
-                                                     th:text="${userDto.birthday}"></span></p>
-            <p><strong>Электронная почта:</strong> <span class="font-italic"
-                                                         th:text="${userDto.email}"></span></p>
-            <p><strong>Дата регистрации:</strong> <span class="font-italic"
-                                                        th:text="${userDto.registrationDate}"></span></p>
-            <br>
-            <form method="post" th:action="@{/user/edit}">
-                <button type="submit" class="btn btn-info btn-sm"><i class="fa fa-lg fa-pencil-square-o" aria-hidden="true"></i>Редактировать</button>
-            </form>
-            <br>
+    <br>
+    <div class="container" th:if="${userDto != null}">
+        <h3 class="text-center">Личный кабинет пользователя <b class="font-italic"
+                                                               th:text="${userDto.username}"></b></h3>
+        <div class="row">
+            <div class="col-lg-6">
+                <p><strong>Имя:</strong> <span class="font-italic" th:text="${userDto.name}"></span></p>
+                <p><strong>Фамилия:</strong> <span class="font-italic" th:text="${userDto.surname}"></span></p>
+                <p><strong>Гендер:</strong> <span class="font-italic" th:text="${userDto.gender}"></span></p>
+                <p><strong>Дата рождения:</strong> <span class="font-italic"
+                                                         th:text="${userDto.birthday}"></span></p>
+                <p><strong>Электронная почта:</strong> <span class="font-italic"
+                                                             th:text="${userDto.email}"></span></p>
+                <p><strong>Дата регистрации:</strong> <span class="font-italic"
+                                                            th:text="${userDto.registrationDate}"></span></p>
+                <br>
+                <form method="post" th:action="@{/user/edit}">
+                    <button type="submit" class="btn btn-info btn-sm"><i class="fa fa-lg fa-pencil-square-o"
+                                                                         aria-hidden="true"></i>Редактировать
+                    </button>
+                </form>
+                <br>
+            </div>
         </div>
     </div>
-</div>
+    <div class="container" th:if="${userDto == null}">
+        <p>Не стоит вручную изменять значения</p>
+    </div>
+    <!--    <div th:if="${userOrder.isEmpty()}" class="card text-center" style="background: #ffffff">-->
+    <!--        <div class="card-header text-center">-->
+    <!--            <h4 style="color: #333; text-shadow: #ff1500 1px 0 2px">The order history is empty</h4>-->
+    <!--        </div>-->
+    <!--    </div>-->
+    <!--    <div class="accordion" id="accordionExample">-->
+    <!--        <div class="card">-->
+    <!--            <div class="card-header" id="headingOne">-->
+    <!--                <h2 class="mb-0">-->
+    <!--                    <button class="btn btn-link btn-block text-left" type="button" data-toggle="collapse"-->
+    <!--                            data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">-->
+    <!--                        Сворачиваемый групповой элемент #1-->
+    <!--                    </button>-->
+    <!--                </h2>-->
+    <!--            </div>-->
+
+    <!--            <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordionExample">-->
+    <!--                <div class="card-body">-->
+    <!--                    Некоторый заполнитель для первой панели аккордеона. Эта панель отображается по умолчанию благодаря-->
+    <!--                    классу <code>.show</code>.-->
+    <!--                </div>-->
+    <!--            </div>-->
+    <!--        </div>-->
+    <!--        <div class="card">-->
+    <!--            <div class="card-header" id="headingTwo">-->
+    <!--                <h2 class="mb-0">-->
+    <!--                    <button class="btn btn-link btn-block text-left collapsed" type="button" data-toggle="collapse"-->
+    <!--                            data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">-->
+    <!--                        Сворачиваемый групповой элемент #2-->
+    <!--                    </button>-->
+    <!--                </h2>-->
+    <!--            </div>-->
+    <!--            <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionExample">-->
+    <!--                <div class="card-body">-->
+    <!--                    Некоторый заполнитель для второй панели аккордеона. По умолчанию эта панель скрыта.-->
+    <!--                </div>-->
+    <!--            </div>-->
+    <!--        </div>-->
+    <!--        <div class="card">-->
+    <!--            <div class="card-header" id="headingThree">-->
+    <!--                <h2 class="mb-0">-->
+    <!--                    <button class="btn btn-link btn-block text-left collapsed" type="button" data-toggle="collapse"-->
+    <!--                            data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">-->
+    <!--                        Сворачиваемый групповой элемент #3-->
+    <!--                    </button>-->
+    <!--                </h2>-->
+    <!--            </div>-->
+    <!--            <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordionExample">-->
+    <!--                <div class="card-body">-->
+    <!--                    И, наконец, заполнитель для третьей и последней панели аккордеона. По умолчанию эта панель скрыта.-->
+    <!--                </div>-->
+    <!--            </div>-->
+    <!--        </div>-->
+    <!--    </div>-->
 </main>
 <div th:block th:insert="~{elements/waves.html}"></div>
 <div th:block th:insert="~{elements/footer.html}"></div>

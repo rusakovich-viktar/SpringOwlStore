@@ -7,6 +7,7 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
+import java.io.Serializable;
 import java.util.List;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -20,7 +21,7 @@ import lombok.Setter;
 @Table(name = "categories", schema = "online-store")
 @NoArgsConstructor
 
-public class Category {
+public class Category implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;

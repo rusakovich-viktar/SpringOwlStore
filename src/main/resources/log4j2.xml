@@ -16,7 +16,7 @@
         </Console>
     </Appenders>
     <Loggers>
-        <Logger name="by.tms" level="WARN" additivity="false">
+        <Logger name="by.tms.eshop.exceptions" level="WARN" additivity="false">
             <AppenderRef ref="WARN_FILE" />
         </Logger>
         <Root level="INFO">

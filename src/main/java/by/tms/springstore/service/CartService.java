@@ -12,9 +12,9 @@ public interface CartService {
 
     CartDto getCartByUsername(String username);
 
-    void commitCartToOrder(String username);
-
     void deleteAllIdenticalProduct(Cart cart, List<Long> productIds);
 
     void deleteOneProduct(Cart cart, List<Long> productIds);
+
+    void delete(User user);
 }

@@ -7,6 +7,7 @@ public class Constants {
     @UtilityClass
     public class Attributes {
         public static final String CART = "cart";
+        public static final String ORDERS = "orders";
         public static final String USERNAME = "username";
         public static final String EMAIL = "email";
         public static final String BIRTHDAY = "birthday";
@@ -35,7 +36,12 @@ public class Constants {
         public static final String NOT_FOUND = " not found";
         public static final String EMAIL_PATTERN = "^[\\w!#$%&amp;'*+/=?`{|}~^-]+(?:\\.[\\w!#$%&amp;'*+/=?`{|}~^-]+)*@(?:[a-zA-Z0-9-]+\\.)+[a-zA-Z]{2,6}$";
         public static final String PHONE_PATTERN = "^\\+375(17|25|29|33|44)[0-9]{3}[0-9]{2}[0-9]{2}$";
-
+        public static final String CONVERSATION = "conversation";
+        public static final String ADMIN = "ADMIN";
+        public static final String USER_NOT_FOUND_EXCEPTION = "userNotFoundException";
+        public static final String USER_NOT_FOUND_BY_EMAIL_EXCEPTION = "userNotFoundByEmailException";
+        public static final String PRODUCT_NOT_FOUND_EXCEPTION = "productNotFoundException";
+        public static final String INVALID_OLD_PASSWORD_EXCEPTION = "invalidOldPasswordException";
     }
 
     @UtilityClass
@@ -54,13 +60,14 @@ public class Constants {
         public static final String AUTH_LOGIN = "auth/login";
         public static final String AUTH_REGISTRATION = "auth/registration";
         public static final String HOME = "home";
+        public static final String HOME_CONTROLLER = "/home";
         public static final String CART = "cart";
         public static final String PROFILE = "profile";
         public static final String CATEGORY = "category";
         public static final String PRODUCT = "product";
-        public static final String REDIRECT_TO_PROFILE = "redirect:/user/profile/";
         public static final String REDIRECT_ADMIN_ALL = "redirect:/admin/all";
         public static final String REDIRECT_TO_CART = "redirect:/cart";
+        public static final String REDIRECT_TO_HOME = "redirect:/home";
         public static final String EDIT_PROFILE = "edit-profile";
         public static final String ADMIN_USERLIST = "/admin/userlist";
         public static final String ADMIN_ADMINPANEL = "/admin/admin-panel";
@@ -75,7 +82,16 @@ public class Constants {
         public static final String AUTH_CHANGE_PASSWORD_SUCCESS = "/auth/change-password-success";
         public static final String ERROR_403 = "/error/error-403";
         public static final String ERROR_500 = "/error/error-500";
-        public static final String ERROR = "redirect:/error-general";
+        public static final String ROOT = "/";
+        public static final String AUTH_ALL = "/auth/**";
+        public static final String ADMIN_ALL = "/admin/**";
+        public static final String ACTIVATE_ALL = "/activate/**";
+        public static final String USER_AGREEMENT = "/user-agreement";
+        public static final String FORGOT_PASSWORD = "/forgot-password";
+        public static final String ABOUT_US_CONTROLLER = "/about-us";
+        public static final String RESET_PASSWORD = "/reset-password";
+        public static final String ERROR_GENERAL_PAGE = "error/error-general";
+        public static final String ORDERS_PAGE = "orders";
 
     }
 

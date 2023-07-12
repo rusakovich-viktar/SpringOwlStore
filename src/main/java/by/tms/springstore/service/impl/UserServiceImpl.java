@@ -33,8 +33,6 @@ public class UserServiceImpl implements UserService {
     private final UserMapper userMapper;
     private final EmailService emailService;
 
-    private final CustomUserDetailsService customUserDetailsService;
-
     @Override
     @Transactional
     public boolean registrationNewUser(User user) {
@@ -47,8 +45,8 @@ public class UserServiceImpl implements UserService {
 
         if (StringUtils.hasText(user.getEmail())) {
             String message = String.format(
-                    "Hello, %s! \n" +
-                            "Welcome to owlSTORE. Please visit the following link to activate your account: http://localhost:8080/auth/activate/%s",
+                    "Hello, %s!%n"
+                            + "Welcome to OWLstore. Please visit the following link to activate your account: http://localhost:8080/auth/activate/%s",
                     user.getUsername(), user.getActivationCode()
             );
             emailService.send(user.getEmail(), "Activation code", message);
@@ -81,6 +79,11 @@ public class UserServiceImpl implements UserService {
     @Override
     public User findByUsername(String username) {
         return userRepository.findByUsername(username);
+    }
+
+    @Override
+    public Optional<User> findFirstByUsername(String username) {
+        return userRepository.findFirstByUsername(username);
     }
 
     @Override

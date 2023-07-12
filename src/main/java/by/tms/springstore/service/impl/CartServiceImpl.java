@@ -79,10 +79,6 @@ public class CartServiceImpl implements CartService {
     }
 
     @Override
-    public void commitCartToOrder(String username) {
-    }
-
-    @Override
     @Transactional
     public void deleteAllIdenticalProduct(Cart cart, List<Long> productIds) {
         List<Product> products = cart.getProducts();
@@ -104,5 +100,14 @@ public class CartServiceImpl implements CartService {
         productToRemove.ifPresent(newProductsList::remove);
         cart.setProducts(newProductsList);
         cartRepository.save(cart);
+    }
+
+    @Override
+    @Transactional
+    public void delete(User user) {
+
+        Cart cart = user.getCart();
+        user.setCart(null);
+        cartRepository.delete(cart);
     }
 }

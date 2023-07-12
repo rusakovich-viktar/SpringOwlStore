@@ -8,7 +8,7 @@ import static by.tms.springstore.utils.Constants.Attributes.SUCCESS_REGISTRATION
 import static by.tms.springstore.utils.Constants.Attributes.USER;
 import static by.tms.springstore.utils.Constants.PagePath.AUTH_LOGIN;
 import static by.tms.springstore.utils.Constants.PagePath.AUTH_REGISTRATION;
-import static by.tms.springstore.utils.Constants.PagePath.REDIRECT_AUTH_LOGIN_LOGOUT;
+import static by.tms.springstore.utils.Constants.PagePath.HOME_CONTROLLER;
 
 import by.tms.springstore.dto.UserDtoFromRegistrationForm;
 import by.tms.springstore.mapper.UserMapper;
@@ -80,7 +80,7 @@ public class AuthController {
         if (authentication != null) {
             SecurityContextHolder.clearContext();
         }
-        return new ModelAndView(REDIRECT_AUTH_LOGIN_LOGOUT);
+        return new ModelAndView(HOME_CONTROLLER);
     }
 
 }

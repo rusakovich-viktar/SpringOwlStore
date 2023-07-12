@@ -52,11 +52,4 @@ public class CartController {
         return REDIRECT_TO_CART;
     }
 
-    @PostMapping
-    public String commitCart(Principal principal) {
-        if (principal != null) {
-            cartService.commitCartToOrder(principal.getName());
-        }
-        return REDIRECT_TO_CART;
-    }
 }

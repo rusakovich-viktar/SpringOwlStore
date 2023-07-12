@@ -34,14 +34,17 @@
                 </button>
                 <a th:href="@{/home}"><span class="logo">
     <img src="/images/parts/logo-owl.png" alt="O">WLstore</span> </a>
-                <div class="navbar navbar-white bg-white">
-                    <form class="form-inline">
-                        <input class="form-control mr-sm-2 animated-search" type="search" placeholder="Поиск"
-                               id="search-input" onkeydown="handleKeyPress(event)"
-                               aria-label="Поиск">
-                        <button class="btn-15" id="search-button" type="submit">Search</button>
-                    </form>
-                </div>
+                <th:block sec:authorize="isAuthenticated()">
+                    <div class="navbar navbar-white bg-white">
+                        <form class="form-inline">
+                            <input class="form-control mr-sm-2 animated-search" type="search" placeholder="Поиск"
+                                   id="search-input" onkeydown="handleKeyPress(event)"
+                                   aria-label="Поиск">
+                            <button class="btn-15" id="search-button" type="submit">Search</button>
+                        </form>
+
+                    </div>
+                </th:block>
             </div>
             <div style="text-align: right;">
                 <a href="tel:+375447764751" style="display: block;">
@@ -65,14 +68,15 @@
                     <li><a href="/contacts"><i class="fa fa-2x fa-envelope-o" aria-hidden="true"></i> Contact us</a>
                     </li>
                     <th:block sec:authorize="!isAuthenticated()">
-                        <li><a th:href="@{/auth/login}" style="color: lawngreen" class="fa-sign-in"> <i
-                                class="fa fa-sign-in" aria-hidden="true"></i>Sign in</a></li>
+                        <li><a th:href="@{/auth/login}" style="color: #af2587">
+                            <i class="fa fa-2x fa-sign-in" aria-hidden="true"></i>Sign in</a></li>
                     </th:block>
-                    <li><a th:href="@{/cart}"><i class="fa fa-2x fa-fw fa-shopping-basket"></i> Cart</a></li>
-
+                    <th:block sec:authorize="isAuthenticated()">
+                        <li><a th:href="@{/cart}"><i class="fa fa-2x fa-fw fa-shopping-basket"></i> Cart</a></li>
+                    </th:block>
                     <th:block sec:authorize="hasRole('ADMIN')">
                         <li><a href="/admin"><i class="fa fa-3x fa-lock" aria-hidden="true" style="color: red"></i>
-                            AdminPanel</a></li>
+                            </a></li>
                     </th:block>
                     <th:block sec:authorize="isAuthenticated()">
                         <li class="navbar-dropdown">
@@ -82,17 +86,19 @@
                                     <span>Welcome,</span>
                                     <span> <i class="fa fa-user-o" aria-hidden="true"></i>
             <span th:remove="tag" sec:authentication="principal.username">thymeleaf</span>  <i
-                                                class="fa fa-angle-down"></i>
-        </span></div>
+                                                class="fa fa-angle-down"></i></span>
+                                </div>
                             </a>
-
                             <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                                <a class="dropdown-item" th:href="@{/order/show}"><i class="fa fa-credit-card"
+                                                                                          aria-hidden="true"></i>Ваши заказы</a>
                                 <a class="dropdown-item"
                                    th:href="@{'/user/profile/' + ${#authentication.principal.user.id}}">
-                                    <i class="fa fa-user" aria-hidden="true"></i> Profile</a>
+                                    <i class="fa fa-user" aria-hidden="true"></i>   Profile</a>
 
                                 <a class="dropdown-item" th:href="@{/change-password}"><i class="fa fa-key"
-                                                                                          aria-hidden="true"></i>Изменить пароль</a>
+                                                                                          aria-hidden="true"></i>Изменить
+                                    пароль</a>
                                 <hr class="dropdown-divider">
                                 <form class="dropdown-item active" th:action="@{/auth/logout}" method="post"
                                       style="width: 100%; ">
