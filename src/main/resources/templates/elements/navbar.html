@@ -76,7 +76,7 @@
                     </th:block>
                     <th:block sec:authorize="hasRole('ADMIN')">
                         <li><a href="/admin"><i class="fa fa-3x fa-lock" aria-hidden="true" style="color: red"></i>
-                            AdminPanel</a></li>
+                            </a></li>
                     </th:block>
                     <th:block sec:authorize="isAuthenticated()">
                         <li class="navbar-dropdown">
@@ -90,9 +90,11 @@
                                 </div>
                             </a>
                             <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                                <a class="dropdown-item" th:href="@{/order/show}"><i class="fa fa-credit-card"
+                                                                                          aria-hidden="true"></i>Ваши заказы</a>
                                 <a class="dropdown-item"
                                    th:href="@{'/user/profile/' + ${#authentication.principal.user.id}}">
-                                    <i class="fa fa-user" aria-hidden="true"></i> Profile</a>
+                                    <i class="fa fa-user" aria-hidden="true"></i>   Profile</a>
 
                                 <a class="dropdown-item" th:href="@{/change-password}"><i class="fa fa-key"
                                                                                           aria-hidden="true"></i>Изменить

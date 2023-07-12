@@ -1,47 +1,53 @@
 package by.tms.springstore.service.impl;
 
-import by.tms.springstore.domain.Cart;
 import by.tms.springstore.domain.Order;
 import by.tms.springstore.domain.Product;
 import by.tms.springstore.domain.User;
 import by.tms.springstore.dto.CartDetailDto;
 import by.tms.springstore.dto.CartDto;
-import by.tms.springstore.mapper.ProductMapper;
-import by.tms.springstore.mapper.UserMapper;
 import by.tms.springstore.repository.OrderRepository;
-import by.tms.springstore.repository.ProductRepository;
-import by.tms.springstore.repository.UserRepository;
 import by.tms.springstore.service.CartService;
 import by.tms.springstore.service.OrderService;
+import by.tms.springstore.service.ProductService;
+import by.tms.springstore.service.UserService;
 import jakarta.transaction.Transactional;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
 @Service
 @RequiredArgsConstructor
 public class OrderServiceImpl implements OrderService {
 
-    private final ProductRepository productRepository;
     private final OrderRepository orderRepository;
     private final CartService cartService;
-    private final ProductMapper productMapper;
-    private final UserMapper userMapper;
+    private final UserService userService;
+    private final ProductService productService;
 
+//    @Override
+    public User getCurrentUser(Authentication authentication) {
+        String username = authentication.getName();
+        return userService.findFirstByUsername(username)
+                .orElseThrow(() -> new UsernameNotFoundException("Пользователь не найден"));
+    }
+
+    @Override
+    public List<Order> findByUser(User user) {
+        return orderRepository.findByUser(user);
+    }
 
     @Override
     public Order createOrder(CartDto cartDto, User user) {
-
         Order order = Order.builder()
                 .sum(cartDto.getSum())
                 .user(user)
                 .date(LocalDateTime.now())
                 .build();
-
-        Order createdOrder = orderRepository.save(order);
-        return createdOrder;
+        return orderRepository.save(order);
     }
 
     @Transactional
@@ -49,7 +55,7 @@ public class OrderServiceImpl implements OrderService {
     public void saveOrder(Order order, List<CartDetailDto> cartDetailDtos) {
         List<Product> products = new ArrayList<>();
         for (CartDetailDto cartDetailDto : cartDetailDtos) {
-            products.add(productRepository.findById(cartDetailDto.getProductId()));
+            products.add(productService.getProductById(cartDetailDto.getProductId()));
         }
         order.setProducts(products);
     }
@@ -59,6 +65,4 @@ public class OrderServiceImpl implements OrderService {
         cartService.delete(user);
     }
 
-//        public void saveOrder(Order order)
-//orderRepository.save(createdOrder)
 }

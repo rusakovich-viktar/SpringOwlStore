@@ -29,5 +29,4 @@ public class UserDtoFromRegistrationForm {
     @NotNull(message = "Поле не должно быть пустым")
     private LocalDate birthday;
 
-
 }

@@ -9,7 +9,13 @@
 </head>
 <body>
 <div th:block th:insert="~{elements/navbar.html}"></div>
-
+<nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item "><a href="/home">Главная</a></li>
+        <li class="breadcrumb-item">
+            <a href="/admin">Админ панель</a></li>
+    </ol>
+</nav>
 very secret admin page
 <br>
 <div><a href="admin/all">ПОЛЬЗОВАТЕЛИ</a></div>

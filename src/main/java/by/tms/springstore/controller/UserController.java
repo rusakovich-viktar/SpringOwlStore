@@ -6,7 +6,6 @@ import static by.tms.springstore.utils.Constants.PagePath.ERROR_403;
 import static by.tms.springstore.utils.Constants.PagePath.PROFILE;
 
 import by.tms.springstore.dto.UserDto;
-import by.tms.springstore.repository.UserRepository;
 import by.tms.springstore.service.UserService;
 import by.tms.springstore.validate.UserValidatorEditProfile;
 import jakarta.validation.Valid;
@@ -30,7 +29,6 @@ public class UserController {
     private final UserValidatorEditProfile userValidatorEditProfile;
 
     private final UserService userService;
-    private final UserRepository userRepository;
 
     @GetMapping("/profile/{userId}")
     public ModelAndView showUserProfile(@PathVariable("userId") Long id, ModelAndView modelAndView, @AuthenticationPrincipal UserDetails userDetails) {

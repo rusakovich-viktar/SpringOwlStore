@@ -176,4 +176,10 @@
     <!-- DetailAST API requires large number of methods -->
     <suppress checks="MethodCount"
               files="[\\/]src[\\/]main[\\/]java[\\/]com[\\/]puppycrawl[\\/]tools[\\/]checkstyle[\\/]DetailAstImpl.java"/>
+
+    <suppress checks="MethodTypeParameterName" files="UserServiceImpl.java" />
+    <suppress checks="MultipleStringLiterals" files="Constants.java" />
+    <suppress checks="ParameterName" files="UserValidatorEditProfile.java" />
+    <suppress checks="ParameterName" files="UserValidatorRegistration.java" />
+
 </suppressions>

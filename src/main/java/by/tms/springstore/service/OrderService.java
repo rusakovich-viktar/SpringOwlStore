@@ -1,20 +1,13 @@
 package by.tms.springstore.service;
 
-import by.tms.springstore.domain.Cart;
 import by.tms.springstore.domain.Order;
 import by.tms.springstore.domain.User;
 import by.tms.springstore.dto.CartDetailDto;
 import by.tms.springstore.dto.CartDto;
-import by.tms.springstore.dto.UserDto;
-import jakarta.transaction.Transactional;
 import java.util.List;
+import org.springframework.security.core.Authentication;
 
 public interface OrderService {
-
-//    void createOrder(CartDto cart, String username);
-
-//    void createOrderd(CartDto cartDto, User user);
-
 
     Order createOrder(CartDto cartDto, User user);
 
@@ -22,5 +15,8 @@ public interface OrderService {
 
     void deleteCartAfterBuy(User user);
 
-//    void createOrderFromCart(CartDto cart);
+    User getCurrentUser(Authentication authentication);
+
+    List<Order> findByUser(User user);
+
 }

@@ -1,13 +1,17 @@
 package by.tms.springstore.exceptions;
 
+import static by.tms.springstore.utils.Constants.Attributes.INVALID_OLD_PASSWORD_EXCEPTION;
+import static by.tms.springstore.utils.Constants.Attributes.PRODUCT_NOT_FOUND_EXCEPTION;
+import static by.tms.springstore.utils.Constants.Attributes.USER_NOT_FOUND_BY_EMAIL_EXCEPTION;
+import static by.tms.springstore.utils.Constants.Attributes.USER_NOT_FOUND_EXCEPTION;
+import static by.tms.springstore.utils.Constants.PagePath.AUTH_CHANGE_PASSWORD;
 import static by.tms.springstore.utils.Constants.PagePath.ERROR_500;
+import static by.tms.springstore.utils.Constants.PagePath.ERROR_GENERAL_PAGE;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.dao.DataAccessException;
-import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
-import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.servlet.ModelAndView;
 
 @ControllerAdvice
@@ -21,33 +25,33 @@ public class GlobalExceptionHandler {
 
     @ExceptionHandler(UserNotFoundException.class)
     public ModelAndView handleUserNotFoundException(UserNotFoundException e) {
-        ModelAndView modelAndView = new ModelAndView("error-general");
-        modelAndView.addObject("userNotFoundException", e.getMessage());
-        log.error("UserNotFoundException", e);
+        ModelAndView modelAndView = new ModelAndView(ERROR_GENERAL_PAGE);
+        modelAndView.addObject(USER_NOT_FOUND_EXCEPTION, e.getMessage());
+        log.error(USER_NOT_FOUND_EXCEPTION, e);
         return modelAndView;
     }
 
     @ExceptionHandler(UserNotFoundByEmailException.class)
     public ModelAndView handleUserNotFoundByEmailException(UserNotFoundByEmailException e) {
-        ModelAndView modelAndView = new ModelAndView("error/error-general");
-        modelAndView.addObject("userNotFoundByEmailException", e.getMessage());
-        log.error("userNotFoundByEmailException", e);
+        ModelAndView modelAndView = new ModelAndView(ERROR_GENERAL_PAGE);
+        modelAndView.addObject(USER_NOT_FOUND_BY_EMAIL_EXCEPTION, e.getMessage());
+        log.error(USER_NOT_FOUND_BY_EMAIL_EXCEPTION, e);
         return modelAndView;
     }
 
     @ExceptionHandler(ProductNotFoundException.class)
     public ModelAndView handleWindowNotFoundException(ProductNotFoundException e) {
-        ModelAndView modelAndView = new ModelAndView("error/error-general");
-        modelAndView.addObject("productNotFoundException", e.getMessage());
-        log.error("productNotFoundException", e);
+        ModelAndView modelAndView = new ModelAndView(ERROR_GENERAL_PAGE);
+        modelAndView.addObject(PRODUCT_NOT_FOUND_EXCEPTION, e.getMessage());
+        log.error(PRODUCT_NOT_FOUND_EXCEPTION, e);
         return modelAndView;
     }
 
     @ExceptionHandler(InvalidUserPasswordException.class)
     public ModelAndView handleInvalidUserPasswordException(InvalidUserPasswordException e) {
-        ModelAndView modelAndView = new ModelAndView("/auth/change-password");
-        modelAndView.addObject("invalidOldPasswordException", e.getMessage());
-        log.error("invalidOldPasswordException", e);
+        ModelAndView modelAndView = new ModelAndView(AUTH_CHANGE_PASSWORD);
+        modelAndView.addObject(INVALID_OLD_PASSWORD_EXCEPTION, e.getMessage());
+        log.error(INVALID_OLD_PASSWORD_EXCEPTION, e);
         return modelAndView;
     }
 

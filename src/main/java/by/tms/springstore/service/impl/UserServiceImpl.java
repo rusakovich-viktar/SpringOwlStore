@@ -45,7 +45,7 @@ public class UserServiceImpl implements UserService {
 
         if (StringUtils.hasText(user.getEmail())) {
             String message = String.format(
-                    "Hello, %s! \n"
+                    "Hello, %s!%n"
                             + "Welcome to OWLstore. Please visit the following link to activate your account: http://localhost:8080/auth/activate/%s",
                     user.getUsername(), user.getActivationCode()
             );
@@ -85,7 +85,6 @@ public class UserServiceImpl implements UserService {
     public Optional<User> findFirstByUsername(String username) {
         return userRepository.findFirstByUsername(username);
     }
-
 
     @Override
     public UserDto findUserDtoByUsername(String username) {

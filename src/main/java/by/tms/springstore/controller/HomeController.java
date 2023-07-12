@@ -22,7 +22,6 @@ public class HomeController {
         return new ModelAndView("redirect:/home");
     }
 
-
     @GetMapping("/home")
     public ModelAndView getHomePage(ModelAndView modelAndView) {
         List<Category> categories = categoryService.getCategories();
