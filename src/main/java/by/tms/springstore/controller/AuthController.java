@@ -9,6 +9,7 @@ import static by.tms.springstore.utils.Constants.Attributes.USER;
 import static by.tms.springstore.utils.Constants.PagePath.AUTH_LOGIN;
 import static by.tms.springstore.utils.Constants.PagePath.AUTH_REGISTRATION;
 import static by.tms.springstore.utils.Constants.PagePath.HOME_CONTROLLER;
+import static by.tms.springstore.utils.Constants.PagePath.REDIRECT_AUTH_LOGIN;
 
 import by.tms.springstore.dto.UserDtoFromRegistrationForm;
 import by.tms.springstore.mapper.UserMapper;
@@ -65,7 +66,7 @@ public class AuthController {
     @GetMapping("/activate/{code}")
     public ModelAndView activate(ModelAndView modelAndView, @PathVariable String code) {
         boolean isActivated = userService.activateUser(code);
-        modelAndView.setViewName(AUTH_LOGIN);
+        modelAndView.setViewName(REDIRECT_AUTH_LOGIN);
         if (isActivated) {
             modelAndView.addObject(MESSAGE, MESSAGE_ACTIVATION_SUCCESS);
         } else {

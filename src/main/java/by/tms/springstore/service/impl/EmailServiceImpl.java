@@ -1,5 +1,7 @@
 package by.tms.springstore.service.impl;
 
+import static by.tms.springstore.utils.Constants.Attributes.SUPPORT_SUBJECT;
+
 import by.tms.springstore.dto.UserDtoFromContactForm;
 import by.tms.springstore.service.EmailService;
 import jakarta.mail.MessagingException;
@@ -19,15 +21,15 @@ import org.springframework.stereotype.Service;
 @RequiredArgsConstructor
 public class EmailServiceImpl implements EmailService {
 
-    private static final String SUPPORT_SUBJECT = "Сообщение от пользователя";
-    private static final String SUPPORT_EMAIL = "testowllogin@yandex.ru";
     private final JavaMailSender javaMailSender;
     @Value("${spring.mail.username}")
-    private String username;
+    private String supportEmail;
+//    @Value("${custom.support.email}")
+//    private String supportEmail;
 
     public void send(String emailTo, String subject, String text) {
         SimpleMailMessage message = new SimpleMailMessage();
-        message.setFrom(username);
+        message.setFrom(supportEmail);
         message.setTo(emailTo);
         message.setSubject(subject);
         message.setText(text);
@@ -40,8 +42,8 @@ public class EmailServiceImpl implements EmailService {
             MimeMessage message = javaMailSender.createMimeMessage();
             MimeMessageHelper mailMessage = new MimeMessageHelper(message);
             try {
-                mailMessage.setFrom(username);
-                mailMessage.setTo(SUPPORT_EMAIL);
+                mailMessage.setFrom(supportEmail);
+                mailMessage.setTo(supportEmail);
                 mailMessage.setSubject(SUPPORT_SUBJECT);
                 mailMessage.setText("Email пользователя: <b>" + userDtoFromContactForm.getEmail() + "</b><br>"
                         + "Номер телефона: " + userDtoFromContactForm.getPhone() + "<br><br>"
@@ -61,7 +63,7 @@ public class EmailServiceImpl implements EmailService {
             MimeMessage message = javaMailSender.createMimeMessage();
             MimeMessageHelper mailMessage = new MimeMessageHelper(message);
             try {
-                mailMessage.setFrom(SUPPORT_EMAIL);
+                mailMessage.setFrom(supportEmail);
                 mailMessage.setTo(userEmail);
                 mailMessage.setSubject("Сброс пароля");
                 mailMessage.setText("<h2>Здравствуйте!</h2>"

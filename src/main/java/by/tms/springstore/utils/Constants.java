@@ -42,6 +42,7 @@ public class Constants {
         public static final String USER_NOT_FOUND_BY_EMAIL_EXCEPTION = "userNotFoundByEmailException";
         public static final String PRODUCT_NOT_FOUND_EXCEPTION = "productNotFoundException";
         public static final String INVALID_OLD_PASSWORD_EXCEPTION = "invalidOldPasswordException";
+        public static final String SUPPORT_SUBJECT = "Сообщение от пользователя";
     }
 
     @UtilityClass
@@ -72,6 +73,7 @@ public class Constants {
         public static final String ADMIN_USERLIST = "/admin/userlist";
         public static final String ADMIN_ADMINPANEL = "/admin/admin-panel";
         public static final String REDIRECT_AUTH_LOGIN_LOGOUT = "redirect:/auth/login?logout";
+        public static final String REDIRECT_AUTH_LOGIN = "redirect:/auth/login";
         public static final String CONTACTS = "contacts";
         public static final String ABOUT_US = "about-us";
         public static final String AUTH_USER_AGREEMENT = "auth/user-agreement";
