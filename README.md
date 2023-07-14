@@ -1,34 +1,16 @@
 ![OWL-store-logo](src/main/resources/static/images/screenshots-readme/about.png)
 
-<!-- Table of Contents -->
+# :satellite: О проекте OWLstore 
 
-# :notebook_with_decorative_cover: Состав проекта
-
-- [Оглавление](#star2-about-the-project)
-- [About the Project](#star2-about-the-project)
-    * [О проекте](#camera-about)
-    * [Скриншоты](#camera-screenshots)
-    * [Стек технологий](#space_invader-tech-stack)
-    * [Фичи](#dart-features)
-    * [Что нужно для локального запуска](#running-run-locally)
-    * [Структура базы данных](#key-database-structure)
-- [Contact](#handshake-contact)
-
-
-<!-- About the Project -->
-
-## :star2: About the Project
-## :star2: О проекте OWLstore {#star2-about-the-project}
-
-Java приложение OWLstore представляет собой простую версию онлайн-магазина с необходимым для работы функционалом. 
+Java приложение OWLstore представляет собой простую версию онлайн-магазина с необходимым функционалом. 
 Приложение предусматривает взаимодействие пользователя с онлайн-каталогом (выборка, поиск, сортировка, добавление в корзину, оформление заказа), взаимодействие со вспомогательными пользовательскими интерфейсом (регистрация, авторизация, аутентификация, редактирование данных профиля), взаимодействие с интерфейсом администратора (выдача ролей, восстановление и изменение паролей, активация аккаунта, обратная связь). 
 
 Приложение написано на Java 17, задействован функционал Spring фреймворка (Boot, MVC, Security). Веб часть написана с использованием Thymeleaf. 
 Более подробно стек технологий представлен ниже.
 
-### Скриншоты {#camera-screenshots}
+## :camera: Скриншоты 
 <details>
-  <summary><strong>Показать список</strong></summary>
+  <summary><strong>Больше скриншотов</strong></summary>
   
     *Домашняя страница*
   ![Домашняя страница](src/main/resources/static/images/screenshots-readme/home.png)
@@ -54,7 +36,7 @@ Java приложение OWLstore представляет собой прос�
 
 </details>
 
- ### Стек технологий {#space_invader-tech-stack}
+ ## :toolbox: Стек технологий 
  
 <details>
  <summary><strong>Показать список</strong></summary>
@@ -106,20 +88,40 @@ Flyway Maven Plugin;
 HTML, CSS, Bootstrap;
 </details>
 
-Clone the project
+## :gear: Как запустить проект:
 
+<details>
+ <summary><strong>Показать</strong></summary>
+1. Склонировать его себе в репозиторий
+   
 ```bash
   git clone https://github.com/rusakovich-viktar/SpringOwlStore.git
 ```
 
-### :key: Database structure
+2. В файле application.property добавить значения email и password почтового ящика, который будет исполнять функции саппорта для поддержки функций, связанных с активацией аккаунта,
+   обратной связи, сбросом пароля)
+   
+```bash
+   spring.mail.username=
+   spring.mail.password=
+   ```
 
+   </details>
+   
+## :memo: Структура базы данных
+
+<details>
+ <summary><strong>Показать</strong></summary>
+   
 ![DB_structure](src/main/resources/static/images/screenshots-readme/dbStructure.jpg)
 
-## :handshake: Contact
+</details>
+
+## :telephone: Контакты
 
 Viktar Rusakovich - Java developer 
-[Linkedin](https://www.linkedin.com/in/rusakovich/)
-[EMail] mrisviz.rus@gmail.com
-[Telegram] @Vitek11
-[Phone] +375447764651
+
+![EMail](https://github.com/rusakovich-viktar/SpringOwlStore/raw/main/src/main/resources/static/icon/icons8-gmail-48.png)  mrisviz.rus@gmail.com<br>
+![LINKEDIN](https://github.com/rusakovich-viktar/SpringOwlStore/raw/main/src/main/resources/static/icon/icons8-линкедин-48.png)  https://www.linkedin.com/in/rusakovich/<br>
+![Telegram](https://github.com/rusakovich-viktar/SpringOwlStore/raw/main/src/main/resources/static/icon/icons8-телеграмма-app-48.png)  @Vitek11<br>
+![Phone](https://github.com/rusakovich-viktar/SpringOwlStore/raw/main/src/main/resources/static/icon/icons8-телефон-48.png)  +375447764651
