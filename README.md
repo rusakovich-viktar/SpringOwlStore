@@ -5,7 +5,7 @@
 Java приложение OWLstore представляет собой простую версию онлайн-магазина с необходимым функционалом. 
 Приложение предусматривает взаимодействие пользователя с онлайн-каталогом (выборка, поиск, сортировка, добавление в корзину, оформление заказа), взаимодействие со вспомогательными пользовательскими интерфейсом (регистрация, авторизация, аутентификация, редактирование данных профиля), взаимодействие с интерфейсом администратора (выдача ролей, восстановление и изменение паролей, активация аккаунта, обратная связь). 
 
-Приложение написано на Java 17, задействован функционал Spring фреймворка (Boot, MVC, Security). Веб часть написана с использованием Thymeleaf. 
+Приложение написано на Java 17, задействован функционал Spring фреймворка (Boot, MVC, Security). Веб-часть написана с использованием Thymeleaf. 
 Более подробно стек технологий представлен ниже.
 
 ## :camera: Скриншоты 
@@ -88,18 +88,19 @@ Flyway Maven Plugin;
 HTML, CSS, Bootstrap;
 </details>
 
-## :gear: Как запустить проект:
+## :gear: Как запустить проект локально:
+
+Для корректной рааботы у вас должен быть установлен JDK с 17+ версией JAVA.
 
 <details>
  <summary><strong>Показать</strong></summary>
-1. Склонировать его себе в репозиторий
+1. Склонировать репозиторий себе на компьютер
    
 ```bash
   git clone https://github.com/rusakovich-viktar/SpringOwlStore.git
 ```
 
-2. В файле application.property добавить значения email и password почтового ящика, который будет исполнять функции саппорта для поддержки функций, связанных с активацией аккаунта,
-   обратной связи, сбросом пароля)
+2. В файле application.property добавить значения email и password почтового ящика, который будет исполнять функции саппорта для поддержки функций, связанных с активацией аккаунта, обратной связи, сбросом пароля)
    
 ```bash
    spring.mail.username=
@@ -122,6 +123,6 @@ HTML, CSS, Bootstrap;
 Viktar Rusakovich - Java developer 
 
 ![EMail](https://github.com/rusakovich-viktar/SpringOwlStore/raw/main/src/main/resources/static/icon/icons8-gmail-48.png)  mrisviz.rus@gmail.com<br>
-![LINKEDIN](https://github.com/rusakovich-viktar/SpringOwlStore/raw/main/src/main/resources/static/icon/icons8-линкедин-48.png)  https://www.linkedin.com/in/rusakovich/<br>
-![Telegram](https://github.com/rusakovich-viktar/SpringOwlStore/raw/main/src/main/resources/static/icon/icons8-телеграмма-app-48.png)  @Vitek11<br>
+![LINKEDIN](https://github.com/rusakovich-viktar/SpringOwlStore/raw/main/src/main/resources/static/icon/icons8-линкедин-48.png)  [linkedin.com/in/rusakovich/](https://www.linkedin.com/in/rusakovich/)<br>
+![Telegram](https://github.com/rusakovich-viktar/SpringOwlStore/raw/main/src/main/resources/static/icon/icons8-телеграмма-app-48.png)  [t.me/@Vitek11](https://t.me/Vitek11)<br>
 ![Phone](https://github.com/rusakovich-viktar/SpringOwlStore/raw/main/src/main/resources/static/icon/icons8-телефон-48.png)  +375447764651
