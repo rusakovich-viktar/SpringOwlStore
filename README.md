@@ -122,7 +122,7 @@ HTML, CSS, Bootstrap;
 
 Viktar Rusakovich - Java developer 
 
-![EMail](https://github.com/rusakovich-viktar/SpringOwlStore/raw/main/src/main/resources/static/icon/icons8-gmail-48.png)  mrisviz.rus@gmail.com<br>
+![EMail](https://github.com/rusakovich-viktar/SpringOwlStore/raw/main/src/main/resources/static/icon/icons8-gmail-48.png)  v1rusakovich@gmail.com<br>
 ![LINKEDIN](https://github.com/rusakovich-viktar/SpringOwlStore/raw/main/src/main/resources/static/icon/icons8-линкедин-48.png)  [linkedin.com/in/rusakovich/](https://www.linkedin.com/in/rusakovich/)<br>
 ![Telegram](https://github.com/rusakovich-viktar/SpringOwlStore/raw/main/src/main/resources/static/icon/icons8-телеграмма-app-48.png)  [t.me/@Vitek11](https://t.me/Vitek11)<br>
 ![Phone](https://github.com/rusakovich-viktar/SpringOwlStore/raw/main/src/main/resources/static/icon/icons8-телефон-48.png)  +375447764651
